@@ -1,0 +1,11 @@
+/* The integration's default injected base.css file */
+/* ./src/styles/base.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* base styles */
+@layer base {}
+
+/* components styles */
+@layer components {}

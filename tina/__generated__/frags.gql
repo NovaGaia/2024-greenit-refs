@@ -1,0 +1,66 @@
+fragment FichesParts on Fiches {
+  __typename
+  _warning
+  refID
+  title
+  createdAt
+  updatedAt
+  language
+  published
+  slug
+  _metadatas
+  people
+  scope
+  responsible
+  lifecycle
+  priority_implementation
+  environmental_impact
+  saved_resources
+  _corps_de_la_fiche
+  body
+  validations {
+    __typename
+    rule
+    maxValue
+  }
+}
+
+fragment LexiqueParts on Lexique {
+  __typename
+  _warning
+  title
+  createdAt
+  updatedAt
+  language
+  published
+  slug
+  _corps_de_la_fiche
+  body
+}
+
+fragment PersonnasParts on Personnas {
+  __typename
+  _warning
+  title
+  createdAt
+  updatedAt
+  language
+  published
+  slug
+  _corps_de_la_fiche
+  body
+}
+
+fragment PagesParts on Pages {
+  __typename
+  _warning
+  title
+  createdAt
+  updatedAt
+  language
+  published
+  slug
+  _corps_de_la_fiche
+  useProse
+  body
+}
