@@ -50,12 +50,14 @@ var RestartWarning = ({ view, comment }) => {
   ] }) });
 };
 
-// tina/utils/commonFields.tsx
-import { Fragment, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
-var REF_NAME = "RWP";
+// src/js/utils.js
 var slugify = (text) => {
   return text.toString().normalize("NFD").toLowerCase().replace(/['"]/g, " ").replace(/\s+/g, "-").replace(/[^\w-]+/g, "").replace(/--+/g, "-").replace(/^-+/, "").replace(/[^\x00-\x7F]/g, "-").replace(/-+$/, "");
 };
+
+// tina/utils/commonFields.tsx
+import { Fragment, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
+var REF_NAME = "RWP";
 var onFichesBeforeSubmit_DefaultFields = async ({
   form,
   values
