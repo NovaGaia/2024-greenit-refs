@@ -100,8 +100,8 @@ const onLexiqueBeforeSubmit_DefaultFields = async ({
       updatedAt: new Date().toISOString(),
       filename:
         values.language !== "fr"
-          ? slugify(values.title)
-          : values.language + "/" + slugify(values.title),
+          ? values.language + "/" + slugify(values.title)
+          : slugify(values.title),
     };
   }
   return {
@@ -132,9 +132,8 @@ const onPersonnasBeforeSubmit_DefaultFields = async ({
       updatedAt: new Date().toISOString(),
       filename:
         values.language !== "fr"
-          ? slugify(values.title)
-          : values.language + "/" + slugify(values.title),
-      slug: slugify(values.title),
+          ? values.language + "/" + slugify(values.title)
+          : slugify(values.title),
     };
   }
   return {
@@ -165,8 +164,8 @@ const onPagesBeforeSubmit_DefaultFields = async ({
       updatedAt: new Date().toISOString(),
       filename:
         values.language !== "fr"
-          ? slugify(values.title)
-          : values.language + "/" + slugify(values.title),
+          ? values.language + "/" + slugify(values.title)
+          : slugify(values.title),
     };
   }
   return {

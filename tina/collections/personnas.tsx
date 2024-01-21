@@ -25,7 +25,7 @@ const personnas: Collection = {
   },
   fields: [
     warnField("", ""),
-    slugHiddenField,
+    // slugHiddenField,
     ...defaultFields,
     titleField("Corps de la fiche"),
     {

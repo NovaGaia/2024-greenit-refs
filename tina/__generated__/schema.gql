@@ -274,7 +274,6 @@ type PersonnasConnection implements Connection {
 
 type Pages implements Node & Document {
   _warning: String
-  slug: String
   title: String!
   createdAt: String
   updatedAt: String
@@ -290,7 +289,6 @@ type Pages implements Node & Document {
 
 input PagesFilter {
   _warning: StringFilter
-  slug: StringFilter
   title: StringFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
@@ -467,7 +465,6 @@ input PersonnasMutation {
 
 input PagesMutation {
   _warning: String
-  slug: String
   title: String
   createdAt: String
   updatedAt: String

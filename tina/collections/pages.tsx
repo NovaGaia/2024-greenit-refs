@@ -26,7 +26,7 @@ const pages: Collection = {
   },
   fields: [
     warnField("", ""),
-    slugVisibleField,
+    // slugVisibleField,
     ...defaultFields,
     titleField("Corps de la fiche"),
     { type: "boolean", name: "useProse", label: "Utiliser le style 'Prose'" },

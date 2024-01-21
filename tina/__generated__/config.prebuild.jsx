@@ -82,7 +82,7 @@ var onLexiqueBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: values.language !== "fr" ? slugify(values.title) : values.language + "/" + slugify(values.title)
+      filename: values.language !== "fr" ? values.language + "/" + slugify(values.title) : slugify(values.title)
     };
   }
   return {
@@ -99,7 +99,7 @@ var onPersonnasBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: values.language !== "fr" ? slugify(values.title) : values.language + "/" + slugify(values.title)
+      filename: values.language !== "fr" ? values.language + "/" + slugify(values.title) : slugify(values.title)
     };
   }
   return {
@@ -116,19 +116,13 @@ var onPagesBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: values.language !== "fr" ? slugify(values.title) : values.language + "/" + slugify(values.title)
+      filename: values.language !== "fr" ? values.language + "/" + slugify(values.title) : slugify(values.title)
     };
   }
   return {
     ...values,
     updatedAt: (/* @__PURE__ */ new Date()).toISOString()
   };
-};
-var slugVisibleField = {
-  type: "string",
-  name: `slug`,
-  label: "Slug",
-  description: "Ce champs sera automatiquement g\xE9n\xE9r\xE9 au premier enregistrement. Il n'est pas recommand\xE9 de le modifier. Pour cr\xE9er une page index, utilisez `.` comme slug."
 };
 var titleField = (label) => {
   return {
@@ -440,6 +434,7 @@ var personnas = {
   },
   fields: [
     warnField("", ""),
+    // slugHiddenField,
     ...defaultFields,
     titleField("Corps de la fiche"),
     {
@@ -473,7 +468,7 @@ var pages = {
   },
   fields: [
     warnField("", ""),
-    slugVisibleField,
+    // slugVisibleField,
     ...defaultFields,
     titleField("Corps de la fiche"),
     { type: "boolean", name: "useProse", label: "Utiliser le style 'Prose'" },

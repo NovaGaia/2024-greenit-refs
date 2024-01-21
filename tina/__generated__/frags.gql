@@ -51,7 +51,6 @@ fragment PersonnasParts on Personnas {
 fragment PagesParts on Pages {
   __typename
   _warning
-  slug
   title
   createdAt
   updatedAt
