@@ -1,4 +1,5 @@
 import {
+  slugHiddenField,
   titleField,
   warnField,
   defaultFields,
@@ -20,7 +21,10 @@ const fiches: Collection = {
     beforeSubmit: onFichesBeforeSubmit_DefaultFields,
   },
   defaultItem: () => {
-    return { published: false };
+    return {
+      published: false,
+      validations: [{ rule: "<A CHANGER>", maxValue: 3 }],
+    };
   },
   fields: [
     warnField(
@@ -133,6 +137,11 @@ const fiches: Collection = {
           return {
             label: `Rule: ${item?.rule}`,
           };
+        },
+        min: 1,
+        defaultItem: {
+          rule: "<A CHANGER>",
+          maxValue: 3,
         },
       },
       fields: [

@@ -1,4 +1,5 @@
 import {
+  slugVisibleField,
   defaultFields,
   onPagesBeforeSubmit_DefaultFields,
   titleField,
@@ -8,7 +9,7 @@ import type { Collection } from "tinacms";
 
 const pages: Collection = {
   name: "pages",
-  label: "Pages (hors index)",
+  label: "Pages",
   path: "src/content/pages",
   format: "mdx",
   match: { exclude: "{index}" },
@@ -25,6 +26,7 @@ const pages: Collection = {
   },
   fields: [
     warnField("", ""),
+    slugVisibleField,
     ...defaultFields,
     titleField("Corps de la fiche"),
     { type: "boolean", name: "useProse", label: "Utiliser le style 'Prose'" },
@@ -34,6 +36,8 @@ const pages: Collection = {
       isBody: true,
       label: "Contenu",
       required: true,
+      description:
+        "Ne pas utiliser le niveau 1 (#) pour vos titres, il est réservé au titre de la page (champs `Title`).",
     },
   ],
 };

@@ -3,6 +3,7 @@ import fiches from "./collections/fiches";
 import lexique from "./collections/lexique";
 import personnas from "./collections/personnas";
 import pages from "./collections/pages";
+import siteData from "./datas/siteData";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -31,6 +32,6 @@ export default defineConfig({
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
-    collections: [fiches, lexique, personnas, pages],
+    collections: [fiches, lexique, personnas, pages, siteData],
   },
 });

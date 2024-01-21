@@ -22,7 +22,7 @@ export const collections = {
         updatedAt: z.date().optional(),
         published: z.boolean().optional(),
         language: z.string(),
-        slug: z.string(),
+        // slug: z.string(),
         people: z.string(),
         scope: z.string(),
         responsible: z.array(z.string()),
@@ -44,7 +44,7 @@ export const collections = {
         updatedAt: z.date().optional(),
         published: z.boolean().optional(),
         language: z.string(),
-        slug: z.string(),
+        // slug: z.string(),
       }),
   }),
   personnas: defineCollection({
@@ -56,7 +56,7 @@ export const collections = {
         updatedAt: z.date().optional(),
         published: z.boolean().optional(),
         language: z.string(),
-        slug: z.string(),
+        // slug: z.string(),
       }),
   }),
   pages: defineCollection({
@@ -68,7 +68,7 @@ export const collections = {
         updatedAt: z.date().optional(),
         published: z.boolean().optional(),
         language: z.string(),
-        slug: z.string(),
+        // slug: z.string(),
       }),
   }),
 };

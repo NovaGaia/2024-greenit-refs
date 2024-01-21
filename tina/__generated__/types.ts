@@ -89,6 +89,8 @@ export type Query = {
   personnasConnection: PersonnasConnection;
   pages: Pages;
   pagesConnection: PagesConnection;
+  siteData: SiteData;
+  siteDataConnection: SiteDataConnection;
 };
 
 
@@ -172,11 +174,27 @@ export type QueryPagesConnectionArgs = {
   filter?: InputMaybe<PagesFilter>;
 };
 
+
+export type QuerySiteDataArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QuerySiteDataConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<SiteDataFilter>;
+};
+
 export type DocumentFilter = {
   fiches?: InputMaybe<FichesFilter>;
   lexique?: InputMaybe<LexiqueFilter>;
   personnas?: InputMaybe<PersonnasFilter>;
   pages?: InputMaybe<PagesFilter>;
+  siteData?: InputMaybe<SiteDataFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -216,7 +234,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Fiches | Lexique | Personnas | Pages | Folder;
+export type DocumentNode = Fiches | Lexique | Personnas | Pages | SiteData | Folder;
 
 export type FichesValidations = {
   __typename?: 'FichesValidations';
@@ -233,7 +251,6 @@ export type Fiches = Node & Document & {
   updatedAt?: Maybe<Scalars['String']['output']>;
   language: Scalars['String']['output'];
   published: Scalars['Boolean']['output'];
-  slug?: Maybe<Scalars['String']['output']>;
   _metadatas?: Maybe<Scalars['String']['output']>;
   people: Scalars['String']['output'];
   scope: Scalars['String']['output'];
@@ -299,7 +316,6 @@ export type FichesFilter = {
   updatedAt?: InputMaybe<DatetimeFilter>;
   language?: InputMaybe<StringFilter>;
   published?: InputMaybe<BooleanFilter>;
-  slug?: InputMaybe<StringFilter>;
   _metadatas?: InputMaybe<StringFilter>;
   people?: InputMaybe<StringFilter>;
   scope?: InputMaybe<StringFilter>;
@@ -334,7 +350,6 @@ export type Lexique = Node & Document & {
   updatedAt?: Maybe<Scalars['String']['output']>;
   language: Scalars['String']['output'];
   published: Scalars['Boolean']['output'];
-  slug?: Maybe<Scalars['String']['output']>;
   _corps_de_la_fiche?: Maybe<Scalars['String']['output']>;
   body: Scalars['JSON']['output'];
   id: Scalars['ID']['output'];
@@ -349,7 +364,6 @@ export type LexiqueFilter = {
   updatedAt?: InputMaybe<DatetimeFilter>;
   language?: InputMaybe<StringFilter>;
   published?: InputMaybe<BooleanFilter>;
-  slug?: InputMaybe<StringFilter>;
   _corps_de_la_fiche?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
@@ -375,7 +389,6 @@ export type Personnas = Node & Document & {
   updatedAt?: Maybe<Scalars['String']['output']>;
   language: Scalars['String']['output'];
   published: Scalars['Boolean']['output'];
-  slug?: Maybe<Scalars['String']['output']>;
   _corps_de_la_fiche?: Maybe<Scalars['String']['output']>;
   body: Scalars['JSON']['output'];
   id: Scalars['ID']['output'];
@@ -390,7 +403,6 @@ export type PersonnasFilter = {
   updatedAt?: InputMaybe<DatetimeFilter>;
   language?: InputMaybe<StringFilter>;
   published?: InputMaybe<BooleanFilter>;
-  slug?: InputMaybe<StringFilter>;
   _corps_de_la_fiche?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
@@ -411,12 +423,12 @@ export type PersonnasConnection = Connection & {
 export type Pages = Node & Document & {
   __typename?: 'Pages';
   _warning?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['String']['output']>;
   language: Scalars['String']['output'];
   published: Scalars['Boolean']['output'];
-  slug?: Maybe<Scalars['String']['output']>;
   _corps_de_la_fiche?: Maybe<Scalars['String']['output']>;
   useProse?: Maybe<Scalars['Boolean']['output']>;
   body: Scalars['JSON']['output'];
@@ -427,12 +439,12 @@ export type Pages = Node & Document & {
 
 export type PagesFilter = {
   _warning?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DatetimeFilter>;
   updatedAt?: InputMaybe<DatetimeFilter>;
   language?: InputMaybe<StringFilter>;
   published?: InputMaybe<BooleanFilter>;
-  slug?: InputMaybe<StringFilter>;
   _corps_de_la_fiche?: InputMaybe<StringFilter>;
   useProse?: InputMaybe<BooleanFilter>;
   body?: InputMaybe<RichTextFilter>;
@@ -451,6 +463,82 @@ export type PagesConnection = Connection & {
   edges?: Maybe<Array<Maybe<PagesConnectionEdges>>>;
 };
 
+export type SiteDataImage = {
+  __typename?: 'SiteDataImage';
+  url: Scalars['String']['output'];
+  alt: Scalars['String']['output'];
+};
+
+export type SiteDataNetworks = {
+  __typename?: 'SiteDataNetworks';
+  url: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  icon: Scalars['String']['output'];
+};
+
+export type SiteData = Node & Document & {
+  __typename?: 'SiteData';
+  _warning?: Maybe<Scalars['String']['output']>;
+  _seo?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  titleTemplate?: Maybe<Scalars['String']['output']>;
+  twitterUsername?: Maybe<Scalars['String']['output']>;
+  fbPageUrl?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<SiteDataImage>;
+  _footer?: Maybe<Scalars['String']['output']>;
+  informations?: Maybe<Scalars['JSON']['output']>;
+  networks?: Maybe<Array<Maybe<SiteDataNetworks>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type SiteDataImageFilter = {
+  url?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type SiteDataNetworksFilter = {
+  url?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+};
+
+export type SiteDataFilter = {
+  _warning?: InputMaybe<StringFilter>;
+  _seo?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  titleTemplate?: InputMaybe<StringFilter>;
+  twitterUsername?: InputMaybe<StringFilter>;
+  fbPageUrl?: InputMaybe<StringFilter>;
+  image?: InputMaybe<SiteDataImageFilter>;
+  _footer?: InputMaybe<StringFilter>;
+  informations?: InputMaybe<RichTextFilter>;
+  networks?: InputMaybe<SiteDataNetworksFilter>;
+};
+
+export type SiteDataConnectionEdges = {
+  __typename?: 'SiteDataConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<SiteData>;
+};
+
+export type SiteDataConnection = Connection & {
+  __typename?: 'SiteDataConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<SiteDataConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -465,6 +553,8 @@ export type Mutation = {
   createPersonnas: Personnas;
   updatePages: Pages;
   createPages: Pages;
+  updateSiteData: SiteData;
+  createSiteData: SiteData;
 };
 
 
@@ -542,11 +632,24 @@ export type MutationCreatePagesArgs = {
   params: PagesMutation;
 };
 
+
+export type MutationUpdateSiteDataArgs = {
+  relativePath: Scalars['String']['input'];
+  params: SiteDataMutation;
+};
+
+
+export type MutationCreateSiteDataArgs = {
+  relativePath: Scalars['String']['input'];
+  params: SiteDataMutation;
+};
+
 export type DocumentUpdateMutation = {
   fiches?: InputMaybe<FichesMutation>;
   lexique?: InputMaybe<LexiqueMutation>;
   personnas?: InputMaybe<PersonnasMutation>;
   pages?: InputMaybe<PagesMutation>;
+  siteData?: InputMaybe<SiteDataMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -555,6 +658,7 @@ export type DocumentMutation = {
   lexique?: InputMaybe<LexiqueMutation>;
   personnas?: InputMaybe<PersonnasMutation>;
   pages?: InputMaybe<PagesMutation>;
+  siteData?: InputMaybe<SiteDataMutation>;
 };
 
 export type FichesValidationsMutation = {
@@ -570,7 +674,6 @@ export type FichesMutation = {
   updatedAt?: InputMaybe<Scalars['String']['input']>;
   language?: InputMaybe<Scalars['String']['input']>;
   published?: InputMaybe<Scalars['Boolean']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
   _metadatas?: InputMaybe<Scalars['String']['input']>;
   people?: InputMaybe<Scalars['String']['input']>;
   scope?: InputMaybe<Scalars['String']['input']>;
@@ -591,7 +694,6 @@ export type LexiqueMutation = {
   updatedAt?: InputMaybe<Scalars['String']['input']>;
   language?: InputMaybe<Scalars['String']['input']>;
   published?: InputMaybe<Scalars['Boolean']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
   _corps_de_la_fiche?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
@@ -603,38 +705,64 @@ export type PersonnasMutation = {
   updatedAt?: InputMaybe<Scalars['String']['input']>;
   language?: InputMaybe<Scalars['String']['input']>;
   published?: InputMaybe<Scalars['Boolean']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
   _corps_de_la_fiche?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type PagesMutation = {
   _warning?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
   language?: InputMaybe<Scalars['String']['input']>;
   published?: InputMaybe<Scalars['Boolean']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
   _corps_de_la_fiche?: InputMaybe<Scalars['String']['input']>;
   useProse?: InputMaybe<Scalars['Boolean']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type FichesPartsFragment = { __typename: 'Fiches', _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, priority_implementation: string, environmental_impact: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null };
+export type SiteDataImageMutation = {
+  url?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+};
 
-export type LexiquePartsFragment = { __typename: 'Lexique', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _corps_de_la_fiche?: string | null, body: any };
+export type SiteDataNetworksMutation = {
+  url?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+};
 
-export type PersonnasPartsFragment = { __typename: 'Personnas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _corps_de_la_fiche?: string | null, body: any };
+export type SiteDataMutation = {
+  _warning?: InputMaybe<Scalars['String']['input']>;
+  _seo?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  titleTemplate?: InputMaybe<Scalars['String']['input']>;
+  twitterUsername?: InputMaybe<Scalars['String']['input']>;
+  fbPageUrl?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<SiteDataImageMutation>;
+  _footer?: InputMaybe<Scalars['String']['input']>;
+  informations?: InputMaybe<Scalars['JSON']['input']>;
+  networks?: InputMaybe<Array<InputMaybe<SiteDataNetworksMutation>>>;
+};
 
-export type PagesPartsFragment = { __typename: 'Pages', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _corps_de_la_fiche?: string | null, useProse?: boolean | null, body: any };
+export type FichesPartsFragment = { __typename: 'Fiches', _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, priority_implementation: string, environmental_impact: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null };
+
+export type LexiquePartsFragment = { __typename: 'Lexique', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
+
+export type PersonnasPartsFragment = { __typename: 'Personnas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
+
+export type PagesPartsFragment = { __typename: 'Pages', _warning?: string | null, slug?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, useProse?: boolean | null, body: any };
+
+export type SiteDataPartsFragment = { __typename: 'SiteData', _warning?: string | null, _seo?: string | null, title: string, description?: string | null, titleTemplate?: string | null, twitterUsername?: string | null, fbPageUrl?: string | null, _footer?: string | null, informations?: any | null, image?: { __typename: 'SiteDataImage', url: string, alt: string } | null, networks?: Array<{ __typename: 'SiteDataNetworks', url: string, title: string, icon: string } | null> | null };
 
 export type FichesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type FichesQuery = { __typename?: 'Query', fiches: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, priority_implementation: string, environmental_impact: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null } };
+export type FichesQuery = { __typename?: 'Query', fiches: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, priority_implementation: string, environmental_impact: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null } };
 
 export type FichesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -646,14 +774,14 @@ export type FichesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type FichesConnectionQuery = { __typename?: 'Query', fichesConnection: { __typename?: 'FichesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FichesConnectionEdges', cursor: string, node?: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, priority_implementation: string, environmental_impact: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null } | null } | null> | null } };
+export type FichesConnectionQuery = { __typename?: 'Query', fichesConnection: { __typename?: 'FichesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FichesConnectionEdges', cursor: string, node?: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, priority_implementation: string, environmental_impact: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null } | null } | null> | null } };
 
 export type LexiqueQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type LexiqueQuery = { __typename?: 'Query', lexique: { __typename: 'Lexique', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type LexiqueQuery = { __typename?: 'Query', lexique: { __typename: 'Lexique', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type LexiqueConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -665,14 +793,14 @@ export type LexiqueConnectionQueryVariables = Exact<{
 }>;
 
 
-export type LexiqueConnectionQuery = { __typename?: 'Query', lexiqueConnection: { __typename?: 'LexiqueConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'LexiqueConnectionEdges', cursor: string, node?: { __typename: 'Lexique', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type LexiqueConnectionQuery = { __typename?: 'Query', lexiqueConnection: { __typename?: 'LexiqueConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'LexiqueConnectionEdges', cursor: string, node?: { __typename: 'Lexique', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type PersonnasQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type PersonnasQuery = { __typename?: 'Query', personnas: { __typename: 'Personnas', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PersonnasQuery = { __typename?: 'Query', personnas: { __typename: 'Personnas', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PersonnasConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -684,14 +812,14 @@ export type PersonnasConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PersonnasConnectionQuery = { __typename?: 'Query', personnasConnection: { __typename?: 'PersonnasConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PersonnasConnectionEdges', cursor: string, node?: { __typename: 'Personnas', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PersonnasConnectionQuery = { __typename?: 'Query', personnasConnection: { __typename?: 'PersonnasConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PersonnasConnectionEdges', cursor: string, node?: { __typename: 'Personnas', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type PagesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'Pages', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _corps_de_la_fiche?: string | null, useProse?: boolean | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'Pages', id: string, _warning?: string | null, slug?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, useProse?: boolean | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PagesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -703,7 +831,26 @@ export type PagesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'Pages', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, slug?: string | null, _corps_de_la_fiche?: string | null, useProse?: boolean | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'Pages', id: string, _warning?: string | null, slug?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, useProse?: boolean | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type SiteDataQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type SiteDataQuery = { __typename?: 'Query', siteData: { __typename: 'SiteData', id: string, _warning?: string | null, _seo?: string | null, title: string, description?: string | null, titleTemplate?: string | null, twitterUsername?: string | null, fbPageUrl?: string | null, _footer?: string | null, informations?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, image?: { __typename: 'SiteDataImage', url: string, alt: string } | null, networks?: Array<{ __typename: 'SiteDataNetworks', url: string, title: string, icon: string } | null> | null } };
+
+export type SiteDataConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<SiteDataFilter>;
+}>;
+
+
+export type SiteDataConnectionQuery = { __typename?: 'Query', siteDataConnection: { __typename?: 'SiteDataConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SiteDataConnectionEdges', cursor: string, node?: { __typename: 'SiteData', id: string, _warning?: string | null, _seo?: string | null, title: string, description?: string | null, titleTemplate?: string | null, twitterUsername?: string | null, fbPageUrl?: string | null, _footer?: string | null, informations?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, image?: { __typename: 'SiteDataImage', url: string, alt: string } | null, networks?: Array<{ __typename: 'SiteDataNetworks', url: string, title: string, icon: string } | null> | null } | null } | null> | null } };
 
 export const FichesPartsFragmentDoc = gql`
     fragment FichesParts on Fiches {
@@ -715,7 +862,6 @@ export const FichesPartsFragmentDoc = gql`
   updatedAt
   language
   published
-  slug
   _metadatas
   people
   scope
@@ -742,7 +888,6 @@ export const LexiquePartsFragmentDoc = gql`
   updatedAt
   language
   published
-  slug
   _corps_de_la_fiche
   body
 }
@@ -756,7 +901,6 @@ export const PersonnasPartsFragmentDoc = gql`
   updatedAt
   language
   published
-  slug
   _corps_de_la_fiche
   body
 }
@@ -765,15 +909,40 @@ export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
   __typename
   _warning
+  slug
   title
   createdAt
   updatedAt
   language
   published
-  slug
   _corps_de_la_fiche
   useProse
   body
+}
+    `;
+export const SiteDataPartsFragmentDoc = gql`
+    fragment SiteDataParts on SiteData {
+  __typename
+  _warning
+  _seo
+  title
+  description
+  titleTemplate
+  twitterUsername
+  fbPageUrl
+  image {
+    __typename
+    url
+    alt
+  }
+  _footer
+  informations
+  networks {
+    __typename
+    url
+    title
+    icon
+  }
 }
     `;
 export const FichesDocument = gql`
@@ -996,6 +1165,61 @@ export const PagesConnectionDocument = gql`
   }
 }
     ${PagesPartsFragmentDoc}`;
+export const SiteDataDocument = gql`
+    query siteData($relativePath: String!) {
+  siteData(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...SiteDataParts
+  }
+}
+    ${SiteDataPartsFragmentDoc}`;
+export const SiteDataConnectionDocument = gql`
+    query siteDataConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SiteDataFilter) {
+  siteDataConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...SiteDataParts
+      }
+    }
+  }
+}
+    ${SiteDataPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -1022,6 +1246,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     pagesConnection(variables?: PagesConnectionQueryVariables, options?: C): Promise<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}> {
         return requester<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}, PagesConnectionQueryVariables>(PagesConnectionDocument, variables, options);
+      },
+    siteData(variables: SiteDataQueryVariables, options?: C): Promise<{data: SiteDataQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteDataQueryVariables, query: string}> {
+        return requester<{data: SiteDataQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteDataQueryVariables, query: string}, SiteDataQueryVariables>(SiteDataDocument, variables, options);
+      },
+    siteDataConnection(variables?: SiteDataConnectionQueryVariables, options?: C): Promise<{data: SiteDataConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteDataConnectionQueryVariables, query: string}> {
+        return requester<{data: SiteDataConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteDataConnectionQueryVariables, query: string}, SiteDataConnectionQueryVariables>(SiteDataConnectionDocument, variables, options);
       }
     };
   }

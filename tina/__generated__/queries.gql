@@ -209,3 +209,56 @@ query pagesConnection($before: String, $after: String, $first: Float, $last: Flo
     }
   }
 }
+
+query siteData($relativePath: String!) {
+  siteData(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...SiteDataParts
+  }
+}
+
+query siteDataConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SiteDataFilter) {
+  siteDataConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...SiteDataParts
+      }
+    }
+  }
+}

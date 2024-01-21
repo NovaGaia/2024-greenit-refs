@@ -1,4 +1,5 @@
 import {
+  slugHiddenField,
   titleField,
   warnField,
   defaultFields,
@@ -24,6 +25,7 @@ const personnas: Collection = {
   },
   fields: [
     warnField("", ""),
+    slugHiddenField,
     ...defaultFields,
     titleField("Corps de la fiche"),
     {

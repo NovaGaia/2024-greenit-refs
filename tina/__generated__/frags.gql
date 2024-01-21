@@ -7,7 +7,6 @@ fragment FichesParts on Fiches {
   updatedAt
   language
   published
-  slug
   _metadatas
   people
   scope
@@ -33,7 +32,6 @@ fragment LexiqueParts on Lexique {
   updatedAt
   language
   published
-  slug
   _corps_de_la_fiche
   body
 }
@@ -46,7 +44,6 @@ fragment PersonnasParts on Personnas {
   updatedAt
   language
   published
-  slug
   _corps_de_la_fiche
   body
 }
@@ -54,13 +51,37 @@ fragment PersonnasParts on Personnas {
 fragment PagesParts on Pages {
   __typename
   _warning
+  slug
   title
   createdAt
   updatedAt
   language
   published
-  slug
   _corps_de_la_fiche
   useProse
   body
+}
+
+fragment SiteDataParts on SiteData {
+  __typename
+  _warning
+  _seo
+  title
+  description
+  titleTemplate
+  twitterUsername
+  fbPageUrl
+  image {
+    __typename
+    url
+    alt
+  }
+  _footer
+  informations
+  networks {
+    __typename
+    url
+    title
+    icon
+  }
 }

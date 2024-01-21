@@ -1,6 +1,11 @@
 // tina/config.ts
 import { defineConfig } from "tinacms";
 
+// tina/utils/commonFields.tsx
+import {
+  wrapFieldsWithMeta
+} from "tinacms";
+
 // tina/utils/warning.jsx
 import { jsx, jsxs } from "react/jsx-runtime";
 var WarningIcon = (props) => {
@@ -46,7 +51,7 @@ var RestartWarning = ({ view, comment }) => {
 };
 
 // tina/utils/commonFields.tsx
-import { jsx as jsx2 } from "react/jsx-runtime";
+import { Fragment, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
 var REF_NAME = "RWP";
 var slugify = (text) => {
   return text.toString().normalize("NFD").toLowerCase().replace(/['"]/g, " ").replace(/\s+/g, "-").replace(/[^\w-]+/g, "").replace(/--+/g, "-").replace(/^-+/, "").replace(/[^\x00-\x7F]/g, "-").replace(/-+$/, "");
@@ -60,14 +65,12 @@ var onFichesBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: REF_NAME + "_" + values.refID + "-" + values.language + "-" + slugify(values.title),
-      slug: "/fiches/" + REF_NAME + "_" + values.refID + "-" + values.language + "-" + slugify(values.title)
+      filename: values.language !== "fr" ? values.language + "/" + REF_NAME + "_" + values.refID + "-" + slugify(values.title) : REF_NAME + "_" + values.refID + "-" + slugify(values.title)
     };
   }
   return {
     ...values,
-    updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-    slug: "/fiches/" + REF_NAME + "_" + values.refID + "-" + values.language + "-" + slugify(values.title)
+    updatedAt: (/* @__PURE__ */ new Date()).toISOString()
   };
 };
 var onLexiqueBeforeSubmit_DefaultFields = async ({
@@ -79,14 +82,12 @@ var onLexiqueBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: values.language + "-" + slugify(values.title),
-      slug: "/lexique/" + values.language + "-" + slugify(values.title)
+      filename: values.language !== "fr" ? slugify(values.title) : values.language + "/" + slugify(values.title)
     };
   }
   return {
     ...values,
-    updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-    slug: "/lexique/" + values.language + "-" + slugify(values.title)
+    updatedAt: (/* @__PURE__ */ new Date()).toISOString()
   };
 };
 var onPersonnasBeforeSubmit_DefaultFields = async ({
@@ -98,14 +99,12 @@ var onPersonnasBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: values.language + "-" + slugify(values.title),
-      slug: "/personnas/" + values.language + "-" + slugify(values.title)
+      filename: values.language !== "fr" ? slugify(values.title) : values.language + "/" + slugify(values.title)
     };
   }
   return {
     ...values,
-    updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-    slug: "/personnas/" + values.language + "-" + slugify(values.title)
+    updatedAt: (/* @__PURE__ */ new Date()).toISOString()
   };
 };
 var onPagesBeforeSubmit_DefaultFields = async ({
@@ -117,15 +116,19 @@ var onPagesBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: values.language + "-" + slugify(values.title),
-      slug: values.language + "-" + slugify(values.title)
+      filename: values.language !== "fr" ? slugify(values.title) : values.language + "/" + slugify(values.title)
     };
   }
   return {
     ...values,
-    updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-    slug: values.language + "-" + slugify(values.title)
+    updatedAt: (/* @__PURE__ */ new Date()).toISOString()
   };
+};
+var slugVisibleField = {
+  type: "string",
+  name: `slug`,
+  label: "Slug",
+  description: "Ce champs sera automatiquement g\xE9n\xE9r\xE9 au premier enregistrement. Il n'est pas recommand\xE9 de le modifier. Pour cr\xE9er une page index, utilisez `.` comme slug."
 };
 var titleField = (label) => {
   return {
@@ -178,16 +181,60 @@ var defaultFields = [
     name: "language",
     label: "Language",
     required: true,
-    options: ["fr", "en", "es"]
-  },
-  { type: "boolean", name: "published", label: "Published", required: true },
-  {
-    type: "string",
-    name: "slug",
-    label: "Slug",
+    options: ["fr", "en", "es"],
     ui: {
-      component: "hidden"
+      // component: "select",
+      validate: (value) => {
+        if (value === "" || value === void 0 || value === null) {
+          return "Required";
+        }
+      },
+      component: wrapFieldsWithMeta(({ field, input, meta }) => {
+        if (meta.initial === void 0) {
+          return jsx2(Fragment, { children: jsxs2("div", { className: "group relative", children: [
+            jsxs2(
+              "select",
+              {
+                ...input,
+                ...field,
+                ...meta,
+                className: "focus:shadow-outline block w-full cursor-pointer appearance-none truncate rounded-md border border-gray-200 bg-white py-2 pl-3 pr-8 text-base text-gray-300 shadow focus:border-blue-500 focus:outline-none focus:ring-blue-500 group-has-[option:not([value='']):checked]:text-gray-700 sm:text-sm",
+                children: [
+                  jsx2("option", { value: "", children: "Choose an option" }),
+                  field["options"].map((option) => jsx2("option", { value: option, children: option }))
+                ]
+              }
+            ),
+            jsxs2(
+              "svg",
+              {
+                stroke: "currentColor",
+                fill: "currentColor",
+                strokeWidth: "0",
+                viewBox: "0 0 24 24",
+                className: "pointer-events-none absolute right-2 top-1/2 h-auto w-6 -translate-y-1/2 text-gray-300 transition duration-150 ease-out group-hover:text-blue-500",
+                height: "1em",
+                width: "1em",
+                xmlns: "http://www.w3.org/2000/svg",
+                children: [
+                  jsx2("path", { fill: "none", d: "M0 0h24v24H0V0z" }),
+                  jsx2("path", { d: "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" })
+                ]
+              }
+            )
+          ] }) });
+        } else {
+          return jsx2("span", { className: "font-bold", children: input.value });
+        }
+      })
     }
+  },
+  {
+    type: "boolean",
+    name: "published",
+    label: "Published",
+    required: true,
+    description: "La page/fiche ne sera pas visible tant qu'elle n'est pas publi\xE9e."
   }
 ];
 
@@ -206,7 +253,10 @@ var fiches = {
     beforeSubmit: onFichesBeforeSubmit_DefaultFields
   },
   defaultItem: () => {
-    return { published: false };
+    return {
+      published: false,
+      validations: [{ rule: "<A CHANGER>", maxValue: 3 }]
+    };
   },
   fields: [
     warnField(
@@ -319,6 +369,11 @@ var fiches = {
           return {
             label: `Rule: ${item?.rule}`
           };
+        },
+        min: 1,
+        defaultItem: {
+          rule: "<A CHANGER>",
+          maxValue: 3
         }
       },
       fields: [
@@ -401,7 +456,7 @@ var personnas_default = personnas;
 // tina/collections/pages.tsx
 var pages = {
   name: "pages",
-  label: "Pages (hors index)",
+  label: "Pages",
   path: "src/content/pages",
   format: "mdx",
   match: { exclude: "{index}" },
@@ -418,6 +473,7 @@ var pages = {
   },
   fields: [
     warnField("", ""),
+    slugVisibleField,
     ...defaultFields,
     titleField("Corps de la fiche"),
     { type: "boolean", name: "useProse", label: "Utiliser le style 'Prose'" },
@@ -426,11 +482,111 @@ var pages = {
       name: "body",
       isBody: true,
       label: "Contenu",
-      required: true
+      required: true,
+      description: "Ne pas utiliser le niveau 1 (#) pour vos titres, il est r\xE9serv\xE9 au titre de la page (champs `Title`)."
     }
   ]
 };
 var pages_default = pages;
+
+// tina/datas/siteData.tsx
+var siteData = {
+  label: "Site Informations (SEO, etc.)",
+  name: "siteData",
+  path: "src/data",
+  match: { include: "siteData", exclude: "i18n.json" },
+  ui: {
+    allowedActions: {
+      create: false,
+      delete: false
+    }
+  },
+  format: "json",
+  fields: [
+    warnField("", ""),
+    titleField("SEO"),
+    {
+      type: "string",
+      name: "title",
+      label: "Default Title",
+      isTitle: true,
+      required: true
+    },
+    {
+      type: "string",
+      name: "description",
+      label: "Default Description",
+      ui: {
+        component: "textarea"
+      }
+    },
+    {
+      type: "string",
+      name: "titleTemplate",
+      label: "Add to title, ex: '%s | Site'"
+    },
+    {
+      type: "string",
+      name: "twitterUsername",
+      label: "Twitter Username"
+    },
+    {
+      type: "string",
+      name: "fbPageUrl",
+      label: "Facebook Page/User URL"
+    },
+    {
+      type: "object",
+      name: "image",
+      label: "Default Image",
+      fields: [
+        {
+          type: "image",
+          name: "url",
+          label: "URL",
+          required: true
+        },
+        {
+          type: "string",
+          name: "alt",
+          label: "Alt",
+          required: true
+        }
+      ]
+    },
+    titleField("Footer"),
+    { type: "rich-text", name: "informations", label: "Informations" },
+    {
+      type: "object",
+      name: "networks",
+      label: "Social Networks",
+      list: true,
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.url };
+        }
+      },
+      fields: [
+        { type: "string", name: "url", label: "URL", required: true },
+        { type: "string", name: "title", label: "Title", required: true },
+        {
+          type: "string",
+          name: "icon",
+          label: "Network",
+          required: true,
+          options: [
+            "tabler:brand-github",
+            "tabler:brand-linkedin",
+            "tabler:brand-facebook",
+            "tabler:brand-instagram",
+            "tabler:brand-google-maps"
+          ]
+        }
+      ]
+    }
+  ]
+};
+var siteData_default = siteData;
 
 // tina/config.ts
 var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
@@ -452,7 +608,7 @@ var config_default = defineConfig({
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
-    collections: [fiches_default, lexique_default, personnas_default, pages_default]
+    collections: [fiches_default, lexique_default, personnas_default, pages_default, siteData_default]
   }
 });
 export {

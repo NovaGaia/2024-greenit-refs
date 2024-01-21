@@ -61,6 +61,8 @@ type Query {
   personnasConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PersonnasFilter): PersonnasConnection!
   pages(relativePath: String): Pages!
   pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
+  siteData(relativePath: String): SiteData!
+  siteDataConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SiteDataFilter): SiteDataConnection!
 }
 
 input DocumentFilter {
@@ -68,6 +70,7 @@ input DocumentFilter {
   lexique: LexiqueFilter
   personnas: PersonnasFilter
   pages: PagesFilter
+  siteData: SiteDataFilter
 }
 
 type DocumentConnectionEdges {
@@ -93,7 +96,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Fiches | Lexique | Personnas | Pages | Folder
+union DocumentNode = Fiches | Lexique | Personnas | Pages | SiteData | Folder
 
 type FichesValidations {
   rule: String
@@ -108,7 +111,6 @@ type Fiches implements Node & Document {
   updatedAt: String
   language: String!
   published: Boolean!
-  slug: String
   _metadatas: String
   people: String!
   scope: String!
@@ -174,7 +176,6 @@ input FichesFilter {
   updatedAt: DatetimeFilter
   language: StringFilter
   published: BooleanFilter
-  slug: StringFilter
   _metadatas: StringFilter
   people: StringFilter
   scope: StringFilter
@@ -206,7 +207,6 @@ type Lexique implements Node & Document {
   updatedAt: String
   language: String!
   published: Boolean!
-  slug: String
   _corps_de_la_fiche: String
   body: JSON!
   id: ID!
@@ -221,7 +221,6 @@ input LexiqueFilter {
   updatedAt: DatetimeFilter
   language: StringFilter
   published: BooleanFilter
-  slug: StringFilter
   _corps_de_la_fiche: StringFilter
   body: RichTextFilter
 }
@@ -244,7 +243,6 @@ type Personnas implements Node & Document {
   updatedAt: String
   language: String!
   published: Boolean!
-  slug: String
   _corps_de_la_fiche: String
   body: JSON!
   id: ID!
@@ -259,7 +257,6 @@ input PersonnasFilter {
   updatedAt: DatetimeFilter
   language: StringFilter
   published: BooleanFilter
-  slug: StringFilter
   _corps_de_la_fiche: StringFilter
   body: RichTextFilter
 }
@@ -277,12 +274,12 @@ type PersonnasConnection implements Connection {
 
 type Pages implements Node & Document {
   _warning: String
+  slug: String
   title: String!
   createdAt: String
   updatedAt: String
   language: String!
   published: Boolean!
-  slug: String
   _corps_de_la_fiche: String
   useProse: Boolean
   body: JSON!
@@ -293,12 +290,12 @@ type Pages implements Node & Document {
 
 input PagesFilter {
   _warning: StringFilter
+  slug: StringFilter
   title: StringFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   language: StringFilter
   published: BooleanFilter
-  slug: StringFilter
   _corps_de_la_fiche: StringFilter
   useProse: BooleanFilter
   body: RichTextFilter
@@ -315,6 +312,77 @@ type PagesConnection implements Connection {
   edges: [PagesConnectionEdges]
 }
 
+type SiteDataImage {
+  url: String!
+  alt: String!
+}
+
+type SiteDataNetworks {
+  url: String!
+  title: String!
+  icon: String!
+}
+
+type SiteData implements Node & Document {
+  _warning: String
+  _seo: String
+  title: String!
+  description: String
+  titleTemplate: String
+  twitterUsername: String
+  fbPageUrl: String
+  image: SiteDataImage
+  _footer: String
+  informations: JSON
+  networks: [SiteDataNetworks]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input SiteDataImageFilter {
+  url: ImageFilter
+  alt: StringFilter
+}
+
+input SiteDataNetworksFilter {
+  url: StringFilter
+  title: StringFilter
+  icon: StringFilter
+}
+
+input SiteDataFilter {
+  _warning: StringFilter
+  _seo: StringFilter
+  title: StringFilter
+  description: StringFilter
+  titleTemplate: StringFilter
+  twitterUsername: StringFilter
+  fbPageUrl: StringFilter
+  image: SiteDataImageFilter
+  _footer: StringFilter
+  informations: RichTextFilter
+  networks: SiteDataNetworksFilter
+}
+
+type SiteDataConnectionEdges {
+  cursor: String!
+  node: SiteData
+}
+
+type SiteDataConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [SiteDataConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -328,6 +396,8 @@ type Mutation {
   createPersonnas(relativePath: String!, params: PersonnasMutation!): Personnas!
   updatePages(relativePath: String!, params: PagesMutation!): Pages!
   createPages(relativePath: String!, params: PagesMutation!): Pages!
+  updateSiteData(relativePath: String!, params: SiteDataMutation!): SiteData!
+  createSiteData(relativePath: String!, params: SiteDataMutation!): SiteData!
 }
 
 input DocumentUpdateMutation {
@@ -335,6 +405,7 @@ input DocumentUpdateMutation {
   lexique: LexiqueMutation
   personnas: PersonnasMutation
   pages: PagesMutation
+  siteData: SiteDataMutation
   relativePath: String
 }
 
@@ -343,6 +414,7 @@ input DocumentMutation {
   lexique: LexiqueMutation
   personnas: PersonnasMutation
   pages: PagesMutation
+  siteData: SiteDataMutation
 }
 
 input FichesValidationsMutation {
@@ -358,7 +430,6 @@ input FichesMutation {
   updatedAt: String
   language: String
   published: Boolean
-  slug: String
   _metadatas: String
   people: String
   scope: String
@@ -379,7 +450,6 @@ input LexiqueMutation {
   updatedAt: String
   language: String
   published: Boolean
-  slug: String
   _corps_de_la_fiche: String
   body: JSON
 }
@@ -391,22 +461,46 @@ input PersonnasMutation {
   updatedAt: String
   language: String
   published: Boolean
-  slug: String
   _corps_de_la_fiche: String
   body: JSON
 }
 
 input PagesMutation {
   _warning: String
+  slug: String
   title: String
   createdAt: String
   updatedAt: String
   language: String
   published: Boolean
-  slug: String
   _corps_de_la_fiche: String
   useProse: Boolean
   body: JSON
+}
+
+input SiteDataImageMutation {
+  url: String
+  alt: String
+}
+
+input SiteDataNetworksMutation {
+  url: String
+  title: String
+  icon: String
+}
+
+input SiteDataMutation {
+  _warning: String
+  _seo: String
+  title: String
+  description: String
+  titleTemplate: String
+  twitterUsername: String
+  fbPageUrl: String
+  image: SiteDataImageMutation
+  _footer: String
+  informations: JSON
+  networks: [SiteDataNetworksMutation]
 }
 
 schema {
