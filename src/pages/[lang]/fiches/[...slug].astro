@@ -1,4 +1,5 @@
 ---
+import Base from "@layouts/Base.astro";
 import client from "@tina/__generated__/client";
 import { getCollection, type CollectionEntry } from "astro:content";
 
@@ -44,4 +45,6 @@ try {
 const { Content } = await entry.render();
 ---
 
-<Content />
+<Base>
+  <Content />
+</Base>
