@@ -9,13 +9,52 @@ export const languages = {
 export const defaultLang = "fr";
 
 export const ui = {
+  es: {
+    "nav.baseline": "Mejores prácticas de ecodiseño para WordPress",
+    "nav.back.home": "Regreso a casa",
+    "nav.fiches": "Mejores prácticas",
+    "nav.lexique": "Léxico",
+    "nav.contrib": "Contribuir",
+  },
   en: {
-    "nav.home": "Home",
-    "nav.about": "About",
-    "nav.twitter": "Twitter",
+    "nav.baseline": "Ecodesign best practices for WordPress",
+    "nav.back.home": "Back to home",
+    "nav.fiches": "Best practices",
+    "nav.lexique": "Lexicon",
+    "nav.contrib": "Contribute",
   },
   fr: {
-    "nav.home": "Accueil",
-    "nav.about": "À propos",
+    pathPrefix: "/wp",
+    "repo.url": "https://github.com/cnumr/best-practices-wordpress",
+    "repo.branch": "main",
+    // BacktoTop
+    "backToTop.title": "Retour en haut de page",
+    // header
+    "nav.refName": "WordPress",
+    "nav.baseline": "Les bonnes pratiques d'écoconception pour WordPress",
+    "nav.back.home": "Retour à l'accueil",
+    "nav.fiches.label": "Bonnes pratiques",
+    "nav.fiches.title": "Bonnes pratiques",
+    "nav.lexique.label": "Lexique",
+    "nav.lexique.title": "Lexique",
+    "nav.contrib.label": "Contribuez !",
+    "nav.contrib.title":
+      "Voir la méthode de contribution sur le GitHub du CNUMR",
+    "nav.contrib.icon.title": "Voir le repository GitHub de CNUMR",
+    "nav.secondary.mentionsLegale.label": "Mentions légales",
+    "nav.secondary.mentionsLegale.title": "Les Mentions légales du site.",
+    // footer
+    "footer.asso.label": "Association Green IT",
+    "footer.logo.title":
+      "Aller sur le site de l'assiciation GreenIT (site externe)",
+    "footer.logo.alt":
+      "Logo association Green It - lien sortant vers le site l'association GreenIT",
+    "footer.licence.type": "Sous licence CC BY-NC-ND 4.0",
+    "footer.licence.link.title":
+      "Consulter le contenu de la licence CC BY-NC-ND 4.0 (site externe)",
+    //
+    "contribCTA.errorText":
+      "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?",
+    "contribCTA.discuss": "Venez sur le repo pour lancer une discussion sur",
   },
 } as const;
