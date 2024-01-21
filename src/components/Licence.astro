@@ -1,0 +1,25 @@
+---
+import { Icon } from "astro-icon/components";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+const { size = "base" } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<a
+  href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr"
+  target={`_blank`}
+  class:list={[
+    `flex items-center gap-1`,
+    {
+      "text-xs": size === "sm",
+      "text-base": size !== "sm",
+    },
+  ]}
+  title={t("footer.licence.link.title")}
+  >{t("footer.licence.type")}
+  <Icon name="tabler:creative-commons" width={16} height={16} />
+  <Icon name="tabler:creative-commons-by" width={16} height={16} />
+  <Icon name="tabler:creative-commons-nc" width={16} height={16} />
+  <Icon name="tabler:creative-commons-nd" width={16} height={16} />
+</a>

@@ -1,0 +1,117 @@
+---
+import { Icon } from "astro-icon/components";
+import {
+  getLangFromUrl,
+  useTranslatedPath,
+  useTranslations,
+} from "../i18n/utils";
+import LanguagePicker from "./LanguagePicker.astro";
+
+const { classes, menuState, repoURL } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<header
+  class:list={[
+    "border-neutral-light bg-neutral sticky top-0 z-20 flex min-h-[80px] border-b-2 px-4 lg:px-0",
+    classes,
+  ]}
+>
+  <div
+    class="mx-auto flex w-full flex-row items-center justify-between lg:max-w-5xl"
+  >
+    <div class="flex items-center gap-4">
+      <div>
+        <a
+          href="/"
+          class="text-inherit text-white no-underline"
+          title={t("nav.back.home")}
+        >
+          <span class="font-normal">
+            {t("nav.baseline")}
+          </span>
+          <br />
+          <span class="text-xl font-bold leading-none">{t("nav.refName")}</span>
+        </a>
+      </div>
+    </div>
+    <nav aria-label="Navigation principale">
+      <ul
+        class:list={[
+          menuState,
+          `bg-primary fixed right-0 top-0 z-50 flex flex-col gap-4 px-10 py-16 lg:relative lg:m-0 lg:flex-row lg:items-center lg:bg-transparent lg:p-0`,
+        ]}
+      >
+        <li class="z-90 fixed right-5 top-5 lg:hidden">
+          <!-- <button
+                class="text-right text-white text-4xl"
+                onClick={() => toggleMenu()}
+              >
+                &times;
+              </button> -->
+        </li>
+        <li class="!m-0">
+          <a
+            href={translatePath("/fiches/")}
+            class={`text-white text-xl lg:text-base no-underline text-inherit font-medium`}
+            title={t("nav.fiches.title")}
+          >
+            {t("nav.fiches.label")}
+          </a>
+        </li>
+        <li class="!m-0">
+          <a
+            href={translatePath("/lexique/")}
+            class={`text-white text-xl lg:text-base no-underline text-inherit font-medium`}
+            title={t("nav.lexique.title")}
+          >
+            {t("nav.lexique.label")}
+          </a>
+        </li>
+
+        <li class="!m-0">
+          <!-- <SearchBar /> -->
+        </li>
+        <li
+          class={`!m-0 border border-primary-focus lg:border-zinc-200 lg:h-7`}
+        >
+        </li>
+        <li class="!m-0">
+          <a
+            href={`${repoURL}/blob/main/CONTRIBUTING.md`}
+            class={`text-white text-xl lg:text-base text-inherit font-medium inline-flex gap-[.15rem] items-center no-underline`}
+            target="_blank"
+            rel="noreferrer"
+            title={t("nav.contrib.title")}
+          >
+            {t("nav.contrib.label")}
+          </a>
+        </li>
+        <li class="!m-0">
+          <a
+            href={repoURL}
+            class={`text-white text-xl lg:text-base no-underline text-inherit font-medium inline-flex gap-[.15rem] items-center`}
+            target="_blank"
+            rel="noreferrer"
+            title={t("nav.contrib.icon.title")}
+          >
+            <Icon name="tabler:brand-github-filled" width={16} height={16} />
+          </a>
+        </li>
+        <li class="!m-0">
+          <LanguagePicker style="dark" />
+        </li>
+      </ul>
+      <div class="relative flex items-center lg:hidden">
+        <!-- <button
+              class="text-3xl text-white"
+              onClick={() => toggleMenu()}
+            >
+              &#9776;
+            </button> -->
+      </div>
+    </nav>
+  </div>
+</header>

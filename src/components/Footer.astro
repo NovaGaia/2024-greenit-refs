@@ -1,0 +1,59 @@
+---
+import logoGreenIT from "@assets/logo-asso.png";
+import { Image } from "astro:assets";
+import {
+  getLangFromUrl,
+  useTranslatedPath,
+  useTranslations,
+} from "../i18n/utils";
+import LanguagePicker from "./LanguagePicker.astro";
+import Licence from "./Licence.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<footer
+  class="border-neutral-light mx-auto flex flex-col items-center gap-5 border-t-2 px-4 pb-4 pt-4 md:flex-row md:justify-between lg:max-w-5xl lg:px-0"
+>
+  <div>
+    <span>© <span id="copyright"></span></span>
+    <span>&middot;</span>
+    <span>{t("footer.asso.label")}</span>
+    <span>&middot;</span>
+    <ul class="flex gap-4">
+      <a
+        href={translatePath("/mentions-legales/")}
+        title={t("nav.secondary.mentionsLegale.title")}
+      >
+        {t("nav.secondary.mentionsLegale.label")}
+      </a>
+      <LanguagePicker style="light" />
+    </ul>
+    <Licence />
+  </div>
+  <div>
+    <a
+      class="inline-flex items-center gap-[.15rem] no-underline"
+      target="_blank"
+      rel="noreferrer"
+      href="https://www.greenit.fr/"
+      title={t("footer.logo.title")}
+    >
+      <Image
+        width="175"
+        height="55"
+        src={logoGreenIT}
+        alt={t("footer.logo.alt")}
+      />
+    </a>
+  </div>
+  <script>
+    const obj = document.querySelector("#copyright") || undefined;
+    if (obj !== undefined) {
+      obj.textContent = new Date().getFullYear().toString();
+    } else {
+    }
+  </script>
+</footer>
