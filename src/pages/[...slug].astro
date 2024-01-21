@@ -1,4 +1,6 @@
 ---
+import PageView from "@components/pages/PageView.astro";
+import Base from "@layouts/Base.astro";
 import client from "@tina/__generated__/client";
 import { getCollection, type CollectionEntry } from "astro:content";
 
@@ -15,7 +17,9 @@ export async function getStaticPaths() {
     .filter((entry) => entry.data.published)
     .map((entry) => {
       return {
-        params: { slug: entry.slug || undefined },
+        params: {
+          slug: entry.slug === "index" ? undefined : entry.slug || undefined,
+        },
         props: { entry },
       };
     });
@@ -42,4 +46,8 @@ try {
 const { Content } = await entry.render();
 ---
 
-<Content />
+<Base>
+  <PageView>
+    <Content />
+  </PageView>
+</Base>
