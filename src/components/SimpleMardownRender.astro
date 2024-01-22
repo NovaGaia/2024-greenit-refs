@@ -1,0 +1,30 @@
+---
+import { marked } from "marked";
+type Props = {
+  markdown?: string;
+  tag?: string;
+  title?: string;
+  classes?: string;
+};
+const { markdown, tag = "p", title = "", classes, ...rest } = Astro.props;
+const Cmp = tag;
+const _Classes = { class: classes };
+const _Title = { title: title };
+---
+{!markdown?<></>:
+  tag === "p" ? (
+    <div
+      set:html={marked.parse(markdown)}
+      title={title}
+      class={classes}
+      {...rest}
+    />
+  ) : (
+    <Cmp
+      set:html={marked.parse(markdown)}
+      {..._Title}
+      {..._Classes}
+      {...rest}
+    />
+  )
+}
