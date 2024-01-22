@@ -1,6 +1,6 @@
 ---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import { Icon } from "astro-icon/components";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const { size = "base" } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

@@ -1,0 +1,89 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import jsonLDGenerator from "../js/jsonLD";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+type Props = {
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+  frontmatter?: {
+    title: string;
+    description: string;
+    date: string;
+    tags: string[];
+  };
+  overrideSiteTemplate?: boolean;
+};
+
+const {
+  title,
+  description,
+  url = Astro.url,
+  image,
+  frontmatter,
+  overrideSiteTemplate = false,
+} = Astro.props;
+
+const jsonLD = jsonLDGenerator({
+  type: frontmatter ? "post" : "website",
+  post: frontmatter,
+  url,
+});
+---
+
+<!-- SEO -->
+<link rel="canonical" href={url} />
+
+<!-- Open Graph -->
+<meta property="og:site_name" content={t("seo.site_name")} />
+{
+  !overrideSiteTemplate ? (
+    <meta
+      property="og:title"
+      content={t("seo.titleTemplate").replace(
+        "%s",
+        title || t("seo.site_name"),
+      )}
+    />
+  ) : (
+    <meta property="og:title" content={title || t("seo.site_name")} />
+  )
+}
+<meta
+  property="og:description"
+  content={description || t("seo.default.description")}
+/>
+<meta property="og:url" content={url} />
+<meta property="og:image" content={image?.src || t("seo.fb.image.url")} />
+<meta property="og:image:url" content={image?.src || t("seo.fb.image.url")} />
+<meta
+  property="og:image:secure_url"
+  content={image?.src || t("seo.fb.image.url")}
+/>
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image:alt" content={image?.alt || t("seo.image.alt")} />
+
+<!-- Twitter -->
+<meta name="twitter:title" content={title} />
+<meta
+  name="twitter:description"
+  content={description || t("seo.default.description")}
+/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={image?.src || t("seo.tw.image.url")} />
+<meta name="twitter:image:alt" content={image?.alt || t("seo.image.alt")} />
+<meta name="twitter:domain" content={t("seo.url")} />
+
+{t("seo.noRobots") && <meta name="robots" content="noindex, nofollow" />}
+
+{/* JSON LD */}
+<!-- <Fragment set:html={jsonLD} /> -->

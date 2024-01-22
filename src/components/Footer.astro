@@ -1,11 +1,11 @@
 ---
 import logoGreenIT from "@assets/logo-asso.png";
-import { Image } from "astro:assets";
 import {
   getLangFromUrl,
   useTranslatedPath,
   useTranslations,
-} from "../i18n/utils";
+} from "@i18n/utils";
+import { Image } from "astro:assets";
 import LanguagePicker from "./LanguagePicker.astro";
 import Licence from "./Licence.astro";
 
@@ -15,7 +15,7 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <footer
-  class="border-neutral-light mx-auto flex flex-col items-center gap-5 border-t-2 px-4 pb-4 pt-4 md:flex-row md:justify-between lg:max-w-5xl lg:px-0"
+  class="mx-auto flex flex-col items-center gap-5 border-t-2 border-neutral-light px-4 pb-4 pt-4 md:flex-row md:justify-between lg:max-w-5xl lg:px-0"
 >
   <div>
     <span>© <span id="copyright"></span></span>

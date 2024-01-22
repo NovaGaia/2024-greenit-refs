@@ -3,7 +3,7 @@ import {
   titleField,
   warnField,
   defaultFields,
-  onFichesBeforeSubmit_DefaultFields,
+  onFichesBeforeSubmit,
 } from "../utils/commonFields";
 import type { Collection } from "tinacms";
 
@@ -18,7 +18,7 @@ const fiches: Collection = {
     //   // return document._sys.path;
     //   return `/${document._sys.breadcrumbs.join("/")}`;
     // },
-    beforeSubmit: onFichesBeforeSubmit_DefaultFields,
+    beforeSubmit: onFichesBeforeSubmit,
   },
   defaultItem: () => {
     return {

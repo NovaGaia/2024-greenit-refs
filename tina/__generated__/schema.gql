@@ -59,8 +59,10 @@ type Query {
   lexiqueConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: LexiqueFilter): LexiqueConnection!
   personnas(relativePath: String): Personnas!
   personnasConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PersonnasFilter): PersonnasConnection!
-  pages(relativePath: String): Pages!
-  pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
+  mentionsLegales(relativePath: String): MentionsLegales!
+  mentionsLegalesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: MentionsLegalesFilter): MentionsLegalesConnection!
+  home(relativePath: String): Home!
+  homeConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomeFilter): HomeConnection!
   siteData(relativePath: String): SiteData!
   siteDataConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SiteDataFilter): SiteDataConnection!
 }
@@ -69,7 +71,8 @@ input DocumentFilter {
   fiches: FichesFilter
   lexique: LexiqueFilter
   personnas: PersonnasFilter
-  pages: PagesFilter
+  mentionsLegales: MentionsLegalesFilter
+  home: HomeFilter
   siteData: SiteDataFilter
 }
 
@@ -96,7 +99,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Fiches | Lexique | Personnas | Pages | SiteData | Folder
+union DocumentNode = Fiches | Lexique | Personnas | MentionsLegales | Home | SiteData | Folder
 
 type FichesValidations {
   rule: String
@@ -272,7 +275,7 @@ type PersonnasConnection implements Connection {
   edges: [PersonnasConnectionEdges]
 }
 
-type Pages implements Node & Document {
+type MentionsLegales implements Node & Document {
   _warning: String
   title: String!
   createdAt: String
@@ -280,14 +283,13 @@ type Pages implements Node & Document {
   language: String!
   published: Boolean!
   _corps_de_la_fiche: String
-  useProse: Boolean
   body: JSON!
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input PagesFilter {
+input MentionsLegalesFilter {
   _warning: StringFilter
   title: StringFilter
   createdAt: DatetimeFilter
@@ -295,19 +297,54 @@ input PagesFilter {
   language: StringFilter
   published: BooleanFilter
   _corps_de_la_fiche: StringFilter
-  useProse: BooleanFilter
   body: RichTextFilter
 }
 
-type PagesConnectionEdges {
+type MentionsLegalesConnectionEdges {
   cursor: String!
-  node: Pages
+  node: MentionsLegales
 }
 
-type PagesConnection implements Connection {
+type MentionsLegalesConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [PagesConnectionEdges]
+  edges: [MentionsLegalesConnectionEdges]
+}
+
+type Home implements Node & Document {
+  _warning: String
+  title: String!
+  createdAt: String
+  updatedAt: String
+  language: String!
+  published: Boolean!
+  _corps_de_la_fiche: String
+  body: JSON!
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input HomeFilter {
+  _warning: StringFilter
+  title: StringFilter
+  createdAt: DatetimeFilter
+  updatedAt: DatetimeFilter
+  language: StringFilter
+  published: BooleanFilter
+  _corps_de_la_fiche: StringFilter
+  body: RichTextFilter
+}
+
+type HomeConnectionEdges {
+  cursor: String!
+  node: Home
+}
+
+type HomeConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [HomeConnectionEdges]
 }
 
 type SiteDataImage {
@@ -392,8 +429,10 @@ type Mutation {
   createLexique(relativePath: String!, params: LexiqueMutation!): Lexique!
   updatePersonnas(relativePath: String!, params: PersonnasMutation!): Personnas!
   createPersonnas(relativePath: String!, params: PersonnasMutation!): Personnas!
-  updatePages(relativePath: String!, params: PagesMutation!): Pages!
-  createPages(relativePath: String!, params: PagesMutation!): Pages!
+  updateMentionsLegales(relativePath: String!, params: MentionsLegalesMutation!): MentionsLegales!
+  createMentionsLegales(relativePath: String!, params: MentionsLegalesMutation!): MentionsLegales!
+  updateHome(relativePath: String!, params: HomeMutation!): Home!
+  createHome(relativePath: String!, params: HomeMutation!): Home!
   updateSiteData(relativePath: String!, params: SiteDataMutation!): SiteData!
   createSiteData(relativePath: String!, params: SiteDataMutation!): SiteData!
 }
@@ -402,7 +441,8 @@ input DocumentUpdateMutation {
   fiches: FichesMutation
   lexique: LexiqueMutation
   personnas: PersonnasMutation
-  pages: PagesMutation
+  mentionsLegales: MentionsLegalesMutation
+  home: HomeMutation
   siteData: SiteDataMutation
   relativePath: String
 }
@@ -411,7 +451,8 @@ input DocumentMutation {
   fiches: FichesMutation
   lexique: LexiqueMutation
   personnas: PersonnasMutation
-  pages: PagesMutation
+  mentionsLegales: MentionsLegalesMutation
+  home: HomeMutation
   siteData: SiteDataMutation
 }
 
@@ -463,7 +504,7 @@ input PersonnasMutation {
   body: JSON
 }
 
-input PagesMutation {
+input MentionsLegalesMutation {
   _warning: String
   title: String
   createdAt: String
@@ -471,7 +512,17 @@ input PagesMutation {
   language: String
   published: Boolean
   _corps_de_la_fiche: String
-  useProse: Boolean
+  body: JSON
+}
+
+input HomeMutation {
+  _warning: String
+  title: String
+  createdAt: String
+  updatedAt: String
+  language: String
+  published: Boolean
+  _corps_de_la_fiche: String
   body: JSON
 }
 

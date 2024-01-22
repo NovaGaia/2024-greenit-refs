@@ -1,6 +1,13 @@
 ---
-import PersonnasListView from "@components/personnas/PersonnasListView";
+import PersonnasListView from "@components/personnas/PersonnasListView.astro";
+import { code_languages } from "@i18n/ui";
 import Base from "@layouts/Base.astro";
+
+export async function getStaticPaths() {
+  return code_languages.map((lang) => {
+    return { params: { lang } };
+  });
+}
 ---
 
 <Base>

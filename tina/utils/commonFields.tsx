@@ -3,9 +3,6 @@ import {
   type Form,
   type TinaCMS,
   type TinaField,
-  Select,
-  SelectField,
-  SelectFieldPlugin,
 } from "tinacms";
 import { RestartWarning } from "./warning";
 import { slugify } from "../../src/js/utils";
@@ -19,7 +16,7 @@ const REF_NAME = "RWP";
  * @param {Record<string, any>} values - The values object.
  * @returns {Record<string, any>} The values object.
  */
-const onFichesBeforeSubmit_DefaultFields = async ({
+const onFichesBeforeSubmit = async ({
   form,
   values,
 }: {
@@ -33,15 +30,13 @@ const onFichesBeforeSubmit_DefaultFields = async ({
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       filename:
-        values.language !== "fr"
-          ? values.language +
-            "/" +
-            REF_NAME +
-            "_" +
-            values.refID +
-            "-" +
-            slugify(values.title)
-          : REF_NAME + "_" + values.refID + "-" + slugify(values.title),
+        values.language +
+        "/" +
+        REF_NAME +
+        "_" +
+        values.refID +
+        "-" +
+        slugify(values.title),
     };
   }
   return {
@@ -57,7 +52,7 @@ const onFichesBeforeSubmit_DefaultFields = async ({
  * @param {Record<string, any>} values - The values object.
  * @returns {Record<string, any>} The values object.
  */
-const onLexiqueBeforeSubmit_DefaultFields = async ({
+const onLexiqueBeforeSubmit = async ({
   form,
   values,
 }: {
@@ -70,10 +65,7 @@ const onLexiqueBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      filename:
-        values.language !== "fr"
-          ? values.language + "/" + slugify(values.title)
-          : slugify(values.title),
+      filename: values.language + "/" + slugify(values.title),
     };
   }
   return {
@@ -89,7 +81,7 @@ const onLexiqueBeforeSubmit_DefaultFields = async ({
  * @param {Record<string, any>} values - The values object.
  * @returns {Record<string, any>} The values object.
  */
-const onPersonnasBeforeSubmit_DefaultFields = async ({
+const onPersonnasBeforeSubmit = async ({
   form,
   values,
 }: {
@@ -102,10 +94,37 @@ const onPersonnasBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      filename:
-        values.language !== "fr"
-          ? values.language + "/" + slugify(values.title)
-          : slugify(values.title),
+      filename: values.language + "/" + slugify(values.title),
+    };
+  }
+  return {
+    ...values,
+    updatedAt: new Date().toISOString(),
+  };
+};
+
+/**
+ * This function is called before the form is submitted.
+ * @param {Form} form - The form object.
+ * @param {TinaCMS} cms - The cms object.
+ * @param {Record<string, any>} values - The values object.
+ * @returns {Record<string, any>} The values object.
+ * @deprecated use `home`, `mentionsLegales`
+ */
+const onPagesBeforeSubmit = async ({
+  form,
+  values,
+}: {
+  form: Form;
+  cms: TinaCMS;
+  values: Record<string, any>;
+}) => {
+  if (form.crudType === "create") {
+    return {
+      ...values,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      filename: values.language + "/" + slugify(values.title),
     };
   }
   return {
@@ -121,7 +140,7 @@ const onPersonnasBeforeSubmit_DefaultFields = async ({
  * @param {Record<string, any>} values - The values object.
  * @returns {Record<string, any>} The values object.
  */
-const onPagesBeforeSubmit_DefaultFields = async ({
+const onDefaultPagesBeforeSubmit = async ({
   form,
   values,
 }: {
@@ -134,10 +153,7 @@ const onPagesBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      filename:
-        values.language !== "fr"
-          ? values.language + "/" + slugify(values.title)
-          : slugify(values.title),
+      filename: values.language,
     };
   }
   return {
@@ -297,8 +313,9 @@ export {
   slugHiddenField,
   warnField,
   defaultFields,
-  onFichesBeforeSubmit_DefaultFields,
-  onLexiqueBeforeSubmit_DefaultFields,
-  onPersonnasBeforeSubmit_DefaultFields,
-  onPagesBeforeSubmit_DefaultFields,
+  onFichesBeforeSubmit,
+  onLexiqueBeforeSubmit,
+  onPersonnasBeforeSubmit,
+  onPagesBeforeSubmit,
+  onDefaultPagesBeforeSubmit,
 };

@@ -1,6 +1,6 @@
 ---
-import { languages } from "../i18n/ui";
-import { getLangFromUrl, useTranslatedPath } from "../i18n/utils";
+import { languages } from "@i18n/ui";
+import { getLangFromUrl, useTranslatedPath } from "@i18n/utils";
 
 type Props = {
   style: "dark" | "light";
@@ -16,7 +16,7 @@ const translatePath = useTranslatedPath(lang);
     id="lang-select"
     onchange="window.location.href = this.value"
     class:list={[
-      "rounded-sm py-1 text-sm",
+      "rounded-sm py-1 text-sm font-bold",
       {
         "bg-green-600 text-white lg:bg-slate-600 lg:text-white":
           style === "dark",

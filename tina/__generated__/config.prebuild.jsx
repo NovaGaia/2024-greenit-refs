@@ -58,7 +58,7 @@ var slugify = (text) => {
 // tina/utils/commonFields.tsx
 import { Fragment, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
 var REF_NAME = "RWP";
-var onFichesBeforeSubmit_DefaultFields = async ({
+var onFichesBeforeSubmit = async ({
   form,
   values
 }) => {
@@ -67,7 +67,7 @@ var onFichesBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: values.language !== "fr" ? values.language + "/" + REF_NAME + "_" + values.refID + "-" + slugify(values.title) : REF_NAME + "_" + values.refID + "-" + slugify(values.title)
+      filename: values.language + "/" + REF_NAME + "_" + values.refID + "-" + slugify(values.title)
     };
   }
   return {
@@ -75,7 +75,7 @@ var onFichesBeforeSubmit_DefaultFields = async ({
     updatedAt: (/* @__PURE__ */ new Date()).toISOString()
   };
 };
-var onLexiqueBeforeSubmit_DefaultFields = async ({
+var onLexiqueBeforeSubmit = async ({
   form,
   values
 }) => {
@@ -84,7 +84,7 @@ var onLexiqueBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: values.language !== "fr" ? values.language + "/" + slugify(values.title) : slugify(values.title)
+      filename: values.language + "/" + slugify(values.title)
     };
   }
   return {
@@ -92,7 +92,7 @@ var onLexiqueBeforeSubmit_DefaultFields = async ({
     updatedAt: (/* @__PURE__ */ new Date()).toISOString()
   };
 };
-var onPersonnasBeforeSubmit_DefaultFields = async ({
+var onPersonnasBeforeSubmit = async ({
   form,
   values
 }) => {
@@ -101,7 +101,7 @@ var onPersonnasBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: values.language !== "fr" ? values.language + "/" + slugify(values.title) : slugify(values.title)
+      filename: values.language + "/" + slugify(values.title)
     };
   }
   return {
@@ -109,7 +109,7 @@ var onPersonnasBeforeSubmit_DefaultFields = async ({
     updatedAt: (/* @__PURE__ */ new Date()).toISOString()
   };
 };
-var onPagesBeforeSubmit_DefaultFields = async ({
+var onDefaultPagesBeforeSubmit = async ({
   form,
   values
 }) => {
@@ -118,7 +118,7 @@ var onPagesBeforeSubmit_DefaultFields = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: values.language !== "fr" ? values.language + "/" + slugify(values.title) : slugify(values.title)
+      filename: values.language
     };
   }
   return {
@@ -246,7 +246,7 @@ var fiches = {
     //   // return document._sys.path;
     //   return `/${document._sys.breadcrumbs.join("/")}`;
     // },
-    beforeSubmit: onFichesBeforeSubmit_DefaultFields
+    beforeSubmit: onFichesBeforeSubmit
   },
   defaultItem: () => {
     return {
@@ -397,7 +397,7 @@ var lexique = {
     //   // return document._sys.path;
     //   return `/${document._sys.breadcrumbs.join("/")}`;
     // },
-    beforeSubmit: onLexiqueBeforeSubmit_DefaultFields
+    beforeSubmit: onLexiqueBeforeSubmit
   },
   defaultItem: () => {
     return { published: false };
@@ -429,7 +429,7 @@ var personnas = {
     //   // return document._sys.path;
     //   return `/${document._sys.breadcrumbs.join("/")}`;
     // },
-    beforeSubmit: onPersonnasBeforeSubmit_DefaultFields
+    beforeSubmit: onPersonnasBeforeSubmit
   },
   defaultItem: () => {
     return { published: false };
@@ -450,20 +450,20 @@ var personnas = {
 };
 var personnas_default = personnas;
 
-// tina/collections/pages.tsx
-var pages = {
-  name: "pages",
-  label: "Pages",
-  path: "src/content/pages",
+// tina/collections/home.tsx
+var home = {
+  name: "home",
+  label: "Home pages",
+  path: "src/content/home",
   format: "mdx",
-  match: { exclude: "{index}" },
+  match: { include: "{en,fr,es}" },
   ui: {
     // router: ({ document }) => {
     //   // navigate to the post that was clicked
     //   // return document._sys.path;
     //   return `/${document._sys.breadcrumbs.join("/")}`;
     // },
-    beforeSubmit: onPagesBeforeSubmit_DefaultFields
+    beforeSubmit: onDefaultPagesBeforeSubmit
   },
   defaultItem: () => {
     return { published: false };
@@ -473,18 +473,56 @@ var pages = {
     // slugVisibleField,
     ...defaultFields,
     titleField("Corps de la fiche"),
-    { type: "boolean", name: "useProse", label: "Utiliser le style 'Prose'" },
+    // { type: "boolean", name: "useProse", label: "Utiliser le style 'Prose'" },
     {
       type: "rich-text",
       name: "body",
       isBody: true,
       label: "Contenu",
-      required: true,
-      description: "Ne pas utiliser le niveau 1 (#) pour vos titres, il est r\xE9serv\xE9 au titre de la page (champs `Title`)."
+      required: true
+      // description:
+      //   "Ne pas utiliser le niveau 1 (#) pour vos titres, il est réservé au titre de la page (champs `Title`).",
     }
   ]
 };
-var pages_default = pages;
+var home_default = home;
+
+// tina/collections/mentionsLegales.tsx
+var mentionsLegales = {
+  name: "mentionsLegales",
+  label: "Mentions L\xE9agales",
+  path: "src/content/mentionsLegales",
+  format: "mdx",
+  match: { include: "{en,fr,es}" },
+  ui: {
+    // router: ({ document }) => {
+    //   // navigate to the post that was clicked
+    //   // return document._sys.path;
+    //   return `/${document._sys.breadcrumbs.join("/")}`;
+    // },
+    beforeSubmit: onDefaultPagesBeforeSubmit
+  },
+  defaultItem: () => {
+    return { published: false };
+  },
+  fields: [
+    warnField("", ""),
+    // slugVisibleField,
+    ...defaultFields,
+    titleField("Corps de la fiche"),
+    // { type: "boolean", name: "useProse", label: "Utiliser le style 'Prose'" },
+    {
+      type: "rich-text",
+      name: "body",
+      isBody: true,
+      label: "Contenu",
+      required: true
+      // description:
+      //   "Ne pas utiliser le niveau 1 (#) pour vos titres, il est réservé au titre de la page (champs `Title`).",
+    }
+  ]
+};
+var mentionsLegales_default = mentionsLegales;
 
 // tina/datas/siteData.tsx
 var siteData = {
@@ -605,7 +643,7 @@ var config_default = defineConfig({
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
-    collections: [fiches_default, lexique_default, personnas_default, pages_default, siteData_default]
+    collections: [fiches_default, lexique_default, personnas_default, mentionsLegales_default, home_default, siteData_default]
   }
 });
 export {

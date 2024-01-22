@@ -1,0 +1,18 @@
+---
+import PageView from "@components/pages/PageView.astro";
+import { getIndexPageByLang } from "@contentConfig";
+import { getLangFromUrl } from "@i18n/utils";
+import Base from "@layouts/Base.astro";
+
+const lang = getLangFromUrl(Astro.url);
+// Get specific content
+const entry: any = await getIndexPageByLang(lang);
+// Use Astro Entry renderer
+const { Content } = await entry.render();
+---
+
+<Base>
+  <PageView>
+    <Content />
+  </PageView>
+</Base>

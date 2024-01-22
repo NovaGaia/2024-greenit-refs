@@ -48,7 +48,7 @@ fragment PersonnasParts on Personnas {
   body
 }
 
-fragment PagesParts on Pages {
+fragment MentionsLegalesParts on MentionsLegales {
   __typename
   _warning
   title
@@ -57,7 +57,18 @@ fragment PagesParts on Pages {
   language
   published
   _corps_de_la_fiche
-  useProse
+  body
+}
+
+fragment HomeParts on Home {
+  __typename
+  _warning
+  title
+  createdAt
+  updatedAt
+  language
+  published
+  _corps_de_la_fiche
   body
 }
 

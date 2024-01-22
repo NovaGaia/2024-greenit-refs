@@ -1,9 +1,8 @@
 import {
-  slugHiddenField,
   titleField,
   warnField,
   defaultFields,
-  onPersonnasBeforeSubmit_DefaultFields,
+  onPersonnasBeforeSubmit,
 } from "../utils/commonFields";
 import type { Collection } from "tinacms";
 
@@ -18,7 +17,7 @@ const personnas: Collection = {
     //   // return document._sys.path;
     //   return `/${document._sys.breadcrumbs.join("/")}`;
     // },
-    beforeSubmit: onPersonnasBeforeSubmit_DefaultFields,
+    beforeSubmit: onPersonnasBeforeSubmit,
   },
   defaultItem: () => {
     return { published: false };

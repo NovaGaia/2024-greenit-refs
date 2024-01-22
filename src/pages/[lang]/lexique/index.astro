@@ -1,6 +1,17 @@
 ---
 import LexiqueListView from "@components/lexique/LexiqueListView.astro";
+import { code_languages } from "@i18n/ui";
 import Base from "@layouts/Base.astro";
+
+export async function getStaticPaths() {
+  return code_languages.map((lang) => {
+    return { params: { lang } };
+  });
+  // return code_languages.map((_lang) => {
+  //   const lang = _lang === "fr" ? "." : _lang;
+  //   return { params: { lang } };
+  // });
+}
 ---
 
 <Base>

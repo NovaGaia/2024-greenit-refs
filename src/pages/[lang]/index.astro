@@ -1,0 +1,26 @@
+---
+import PageView from "@components/pages/PageView.astro";
+import { getIndexPageByLang } from "@contentConfig";
+import { code_languages } from "@i18n/ui";
+import { getLangFromUrl } from "@i18n/utils";
+import Base from "@layouts/Base.astro";
+
+const lang = getLangFromUrl(Astro.url);
+// Get specific content
+const entry: any = await getIndexPageByLang(lang);
+// Use Astro Entry renderer
+const { Content } = await entry.render();
+
+// Generate i18n pages
+export async function getStaticPaths() {
+  return code_languages.map((lang) => {
+    return { params: { lang } };
+  });
+}
+---
+
+<Base>
+  <PageView>
+    <Content />
+  </PageView>
+</Base>

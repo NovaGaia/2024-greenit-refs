@@ -20,14 +20,14 @@ const tina = ({ directiveName = "tina" } = {}) => ({
 
 // https://astro.build/config
 export default defineConfig({
-  site: SITE_URL,
-  i18n: {
-    defaultLocale: "fr",
-    locales: ["en", "es", "fr"],
-    routing: {
-      prefixDefaultLocale: false,
-    },
-  },
+  // site: SITE_URL,
+  // i18n: {
+  //   defaultLocale: "fr",
+  //   locales: ["en", "es", "fr"],
+  //   routing: {
+  //     prefixDefaultLocale: false,
+  //   },
+  // },
   integrations: [
     tailwind({
       // Example: Disable injecting a basic `base.css` import on every page.

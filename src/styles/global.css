@@ -43,7 +43,7 @@
   }
 
   html {
-    @apply font-base text-neutral scroll-pt-24 scroll-smooth bg-zinc-100 text-base;
+    @apply scroll-pt-24 scroll-smooth bg-zinc-100 font-base text-base text-neutral;
     -webkit-hyphens: auto;
     hyphens: auto;
   }
@@ -61,7 +61,7 @@
     @apply mb-10 mt-10 text-4xl font-bold;
   }
   h2 {
-    @apply text-primary text-2xl font-bold;
+    @apply text-2xl font-bold text-primary;
   }
   h3 {
     @apply text-xl font-bold;
@@ -78,25 +78,25 @@
 @layer components {
   /**** BOX ****/
   .box {
-    @apply border-primary rounded-lg border-2 p-2 md:p-4;
+    @apply rounded-lg border-2 border-primary p-2 md:p-4;
   }
   .box.interactive {
-    @apply hover:bg-neutral-transparent hover:border-primary hover:shadow-lg;
+    @apply hover:border-primary hover:bg-neutral-transparent hover:shadow-lg;
   }
 
   /**** TABLE ****/
   table {
-    @apply border-primary my-2 w-full table-fixed break-words rounded-lg border-2 font-medium;
+    @apply my-2 w-full table-fixed break-words rounded-lg border-2 border-primary font-medium;
     -webkit-hyphens: auto;
     hyphens: auto;
     thead {
-      @apply bg-primary-transparent text-primary-dark text-center;
+      @apply bg-primary-transparent text-center text-primary-dark;
     }
     th {
-      @apply border-primary border-2 p-2;
+      @apply border-2 border-primary p-2;
     }
     td {
-      @apply border-primary border-2 p-2;
+      @apply border-2 border-primary p-2;
     }
     tr:nth-child(even) {
       @apply bg-neutral-transparent;
@@ -120,11 +120,11 @@
   }
   .content li,
   .markdown-content li {
-    @apply before:bg-primary mb-2 list-none before:relative before:top-[0.4rem] before:float-left before:mr-2 before:inline-block before:h-3.5 before:w-3.5 before:rounded-full before:rounded-tr-3xl before:content-[''];
+    @apply mb-2 list-none before:relative before:top-[0.4rem] before:float-left before:mr-2 before:inline-block before:h-3.5 before:w-3.5 before:rounded-full before:rounded-tr-3xl before:bg-primary before:content-[''];
     ul {
       @apply ml-8;
       li {
-        @apply before:border-primary mb-2 list-none before:relative before:top-[0.4rem] before:float-left before:mr-2 before:inline-block before:h-3.5 before:w-3.5 before:rounded-full before:rounded-tr-3xl before:border-2 before:bg-transparent before:content-[''];
+        @apply mb-2 list-none before:relative before:top-[0.4rem] before:float-left before:mr-2 before:inline-block before:h-3.5 before:w-3.5 before:rounded-full before:rounded-tr-3xl before:border-2 before:border-primary before:bg-transparent before:content-[''];
       }
     }
   }
@@ -150,13 +150,13 @@
     @apply cursor-pointer rounded-lg p-3 px-4 normal-case no-underline duration-100 hover:drop-shadow-lg;
   }
   .btn-bg {
-    @apply bg-primary hover:bg-primary-focus text-primary-content;
+    @apply bg-primary text-primary-content hover:bg-primary-focus;
   }
   .btn-outline {
-    @apply border-primary bg-primary-transparent text-primary-dark hover:bg-primary border-2 hover:text-white;
+    @apply border-2 border-primary bg-primary-transparent text-primary-dark hover:bg-primary hover:text-white;
   }
   .small-primary-btn {
-    @apply bg-primary hover:bg-primary cursor-pointer rounded-md px-2 py-0 text-sm text-white;
+    @apply cursor-pointer rounded-md bg-primary px-2 py-0 text-sm text-white hover:bg-primary;
     &:disabled {
       @apply cursor-not-allowed opacity-50;
     }
@@ -169,13 +169,11 @@
 
   /**** CONTENT ****/
   .markdown-content {
-    &* {
-      @apply whitespace-pre-wrap;
-    }
+    @apply *:whitespace-pre-wrap;
 
     /**** BLOCKQUOTE ****/
     blockquote {
-      @apply border-primary bg-primary-transparent my-2 rounded-lg border-2 p-2 md:p-4;
+      @apply my-2 rounded-lg border-2 border-primary bg-primary-transparent p-2 md:p-4;
       p {
         @apply my-0 text-base;
       }
@@ -204,7 +202,7 @@
     @apply pl-2;
   }
   .summary-article a {
-    @apply hover:text-primary font-normal;
+    @apply font-normal hover:text-primary;
   }
 }
 /* Tooltip */

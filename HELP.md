@@ -1,0 +1,2 @@
+- https://medium.com/@rebeca.murillo/astro-starter-template-blog-enhanced-with-i18n-2e37f47fa5b5
+- https://github.com/rebecamurillo/astro-blog-i18n-starter/blob/main/src/pages/index.astro

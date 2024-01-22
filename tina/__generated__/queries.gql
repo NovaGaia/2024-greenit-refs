@@ -157,8 +157,8 @@ query personnasConnection($before: String, $after: String, $first: Float, $last:
   }
 }
 
-query pages($relativePath: String!) {
-  pages(relativePath: $relativePath) {
+query mentionsLegales($relativePath: String!) {
+  mentionsLegales(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -170,12 +170,12 @@ query pages($relativePath: String!) {
       }
       id
     }
-    ...PagesParts
+    ...MentionsLegalesParts
   }
 }
 
-query pagesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PagesFilter) {
-  pagesConnection(
+query mentionsLegalesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: MentionsLegalesFilter) {
+  mentionsLegalesConnection(
     before: $before
     after: $after
     first: $first
@@ -204,7 +204,60 @@ query pagesConnection($before: String, $after: String, $first: Float, $last: Flo
           }
           id
         }
-        ...PagesParts
+        ...MentionsLegalesParts
+      }
+    }
+  }
+}
+
+query home($relativePath: String!) {
+  home(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...HomeParts
+  }
+}
+
+query homeConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: HomeFilter) {
+  homeConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...HomeParts
       }
     }
   }

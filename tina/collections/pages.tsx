@@ -1,7 +1,7 @@
 import {
   slugVisibleField,
   defaultFields,
-  onPagesBeforeSubmit_DefaultFields,
+  onPagesBeforeSubmit,
   titleField,
   warnField,
 } from "../utils/commonFields";
@@ -19,7 +19,7 @@ const pages: Collection = {
     //   // return document._sys.path;
     //   return `/${document._sys.breadcrumbs.join("/")}`;
     // },
-    beforeSubmit: onPagesBeforeSubmit_DefaultFields,
+    beforeSubmit: onPagesBeforeSubmit,
   },
   defaultItem: () => {
     return { published: false };
@@ -29,15 +29,15 @@ const pages: Collection = {
     // slugVisibleField,
     ...defaultFields,
     titleField("Corps de la fiche"),
-    { type: "boolean", name: "useProse", label: "Utiliser le style 'Prose'" },
+    // { type: "boolean", name: "useProse", label: "Utiliser le style 'Prose'" },
     {
       type: "rich-text",
       name: "body",
       isBody: true,
       label: "Contenu",
       required: true,
-      description:
-        "Ne pas utiliser le niveau 1 (#) pour vos titres, il est réservé au titre de la page (champs `Title`).",
+      // description:
+      //   "Ne pas utiliser le niveau 1 (#) pour vos titres, il est réservé au titre de la page (champs `Title`).",
     },
   ],
 };

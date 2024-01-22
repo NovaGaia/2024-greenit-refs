@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "tinacms dev -c \"astro dev\"",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build",
+    "check:build": "astro check && astro build",
     "preview": "astro preview",
     "format": "prettier -w --plugin-search-dir=. .",
     "astro": "astro",

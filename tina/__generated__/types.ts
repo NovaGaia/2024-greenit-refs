@@ -87,8 +87,10 @@ export type Query = {
   lexiqueConnection: LexiqueConnection;
   personnas: Personnas;
   personnasConnection: PersonnasConnection;
-  pages: Pages;
-  pagesConnection: PagesConnection;
+  mentionsLegales: MentionsLegales;
+  mentionsLegalesConnection: MentionsLegalesConnection;
+  home: Home;
+  homeConnection: HomeConnection;
   siteData: SiteData;
   siteDataConnection: SiteDataConnection;
 };
@@ -160,18 +162,33 @@ export type QueryPersonnasConnectionArgs = {
 };
 
 
-export type QueryPagesArgs = {
+export type QueryMentionsLegalesArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryPagesConnectionArgs = {
+export type QueryMentionsLegalesConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<PagesFilter>;
+  filter?: InputMaybe<MentionsLegalesFilter>;
+};
+
+
+export type QueryHomeArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryHomeConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<HomeFilter>;
 };
 
 
@@ -193,7 +210,8 @@ export type DocumentFilter = {
   fiches?: InputMaybe<FichesFilter>;
   lexique?: InputMaybe<LexiqueFilter>;
   personnas?: InputMaybe<PersonnasFilter>;
-  pages?: InputMaybe<PagesFilter>;
+  mentionsLegales?: InputMaybe<MentionsLegalesFilter>;
+  home?: InputMaybe<HomeFilter>;
   siteData?: InputMaybe<SiteDataFilter>;
 };
 
@@ -234,7 +252,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Fiches | Lexique | Personnas | Pages | SiteData | Folder;
+export type DocumentNode = Fiches | Lexique | Personnas | MentionsLegales | Home | SiteData | Folder;
 
 export type FichesValidations = {
   __typename?: 'FichesValidations';
@@ -420,8 +438,8 @@ export type PersonnasConnection = Connection & {
   edges?: Maybe<Array<Maybe<PersonnasConnectionEdges>>>;
 };
 
-export type Pages = Node & Document & {
-  __typename?: 'Pages';
+export type MentionsLegales = Node & Document & {
+  __typename?: 'MentionsLegales';
   _warning?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['String']['output']>;
@@ -429,14 +447,13 @@ export type Pages = Node & Document & {
   language: Scalars['String']['output'];
   published: Scalars['Boolean']['output'];
   _corps_de_la_fiche?: Maybe<Scalars['String']['output']>;
-  useProse?: Maybe<Scalars['Boolean']['output']>;
   body: Scalars['JSON']['output'];
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type PagesFilter = {
+export type MentionsLegalesFilter = {
   _warning?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DatetimeFilter>;
@@ -444,21 +461,59 @@ export type PagesFilter = {
   language?: InputMaybe<StringFilter>;
   published?: InputMaybe<BooleanFilter>;
   _corps_de_la_fiche?: InputMaybe<StringFilter>;
-  useProse?: InputMaybe<BooleanFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
-export type PagesConnectionEdges = {
-  __typename?: 'PagesConnectionEdges';
+export type MentionsLegalesConnectionEdges = {
+  __typename?: 'MentionsLegalesConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Pages>;
+  node?: Maybe<MentionsLegales>;
 };
 
-export type PagesConnection = Connection & {
-  __typename?: 'PagesConnection';
+export type MentionsLegalesConnection = Connection & {
+  __typename?: 'MentionsLegalesConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<PagesConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<MentionsLegalesConnectionEdges>>>;
+};
+
+export type Home = Node & Document & {
+  __typename?: 'Home';
+  _warning?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  createdAt?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['String']['output']>;
+  language: Scalars['String']['output'];
+  published: Scalars['Boolean']['output'];
+  _corps_de_la_fiche?: Maybe<Scalars['String']['output']>;
+  body: Scalars['JSON']['output'];
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type HomeFilter = {
+  _warning?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  createdAt?: InputMaybe<DatetimeFilter>;
+  updatedAt?: InputMaybe<DatetimeFilter>;
+  language?: InputMaybe<StringFilter>;
+  published?: InputMaybe<BooleanFilter>;
+  _corps_de_la_fiche?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+};
+
+export type HomeConnectionEdges = {
+  __typename?: 'HomeConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Home>;
+};
+
+export type HomeConnection = Connection & {
+  __typename?: 'HomeConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<HomeConnectionEdges>>>;
 };
 
 export type SiteDataImage = {
@@ -549,8 +604,10 @@ export type Mutation = {
   createLexique: Lexique;
   updatePersonnas: Personnas;
   createPersonnas: Personnas;
-  updatePages: Pages;
-  createPages: Pages;
+  updateMentionsLegales: MentionsLegales;
+  createMentionsLegales: MentionsLegales;
+  updateHome: Home;
+  createHome: Home;
   updateSiteData: SiteData;
   createSiteData: SiteData;
 };
@@ -619,15 +676,27 @@ export type MutationCreatePersonnasArgs = {
 };
 
 
-export type MutationUpdatePagesArgs = {
+export type MutationUpdateMentionsLegalesArgs = {
   relativePath: Scalars['String']['input'];
-  params: PagesMutation;
+  params: MentionsLegalesMutation;
 };
 
 
-export type MutationCreatePagesArgs = {
+export type MutationCreateMentionsLegalesArgs = {
   relativePath: Scalars['String']['input'];
-  params: PagesMutation;
+  params: MentionsLegalesMutation;
+};
+
+
+export type MutationUpdateHomeArgs = {
+  relativePath: Scalars['String']['input'];
+  params: HomeMutation;
+};
+
+
+export type MutationCreateHomeArgs = {
+  relativePath: Scalars['String']['input'];
+  params: HomeMutation;
 };
 
 
@@ -646,7 +715,8 @@ export type DocumentUpdateMutation = {
   fiches?: InputMaybe<FichesMutation>;
   lexique?: InputMaybe<LexiqueMutation>;
   personnas?: InputMaybe<PersonnasMutation>;
-  pages?: InputMaybe<PagesMutation>;
+  mentionsLegales?: InputMaybe<MentionsLegalesMutation>;
+  home?: InputMaybe<HomeMutation>;
   siteData?: InputMaybe<SiteDataMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -655,7 +725,8 @@ export type DocumentMutation = {
   fiches?: InputMaybe<FichesMutation>;
   lexique?: InputMaybe<LexiqueMutation>;
   personnas?: InputMaybe<PersonnasMutation>;
-  pages?: InputMaybe<PagesMutation>;
+  mentionsLegales?: InputMaybe<MentionsLegalesMutation>;
+  home?: InputMaybe<HomeMutation>;
   siteData?: InputMaybe<SiteDataMutation>;
 };
 
@@ -707,7 +778,7 @@ export type PersonnasMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type PagesMutation = {
+export type MentionsLegalesMutation = {
   _warning?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
@@ -715,7 +786,17 @@ export type PagesMutation = {
   language?: InputMaybe<Scalars['String']['input']>;
   published?: InputMaybe<Scalars['Boolean']['input']>;
   _corps_de_la_fiche?: InputMaybe<Scalars['String']['input']>;
-  useProse?: InputMaybe<Scalars['Boolean']['input']>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type HomeMutation = {
+  _warning?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+  language?: InputMaybe<Scalars['String']['input']>;
+  published?: InputMaybe<Scalars['Boolean']['input']>;
+  _corps_de_la_fiche?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
@@ -750,7 +831,9 @@ export type LexiquePartsFragment = { __typename: 'Lexique', _warning?: string | 
 
 export type PersonnasPartsFragment = { __typename: 'Personnas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
-export type PagesPartsFragment = { __typename: 'Pages', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, useProse?: boolean | null, body: any };
+export type MentionsLegalesPartsFragment = { __typename: 'MentionsLegales', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
+
+export type HomePartsFragment = { __typename: 'Home', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
 export type SiteDataPartsFragment = { __typename: 'SiteData', _warning?: string | null, _seo?: string | null, title: string, description?: string | null, titleTemplate?: string | null, twitterUsername?: string | null, fbPageUrl?: string | null, _footer?: string | null, informations?: any | null, image?: { __typename: 'SiteDataImage', url: string, alt: string } | null, networks?: Array<{ __typename: 'SiteDataNetworks', url: string, title: string, icon: string } | null> | null };
 
@@ -811,24 +894,43 @@ export type PersonnasConnectionQueryVariables = Exact<{
 
 export type PersonnasConnectionQuery = { __typename?: 'Query', personnasConnection: { __typename?: 'PersonnasConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PersonnasConnectionEdges', cursor: string, node?: { __typename: 'Personnas', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type PagesQueryVariables = Exact<{
+export type MentionsLegalesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'Pages', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, useProse?: boolean | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type MentionsLegalesQuery = { __typename?: 'Query', mentionsLegales: { __typename: 'MentionsLegales', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type PagesConnectionQueryVariables = Exact<{
+export type MentionsLegalesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<PagesFilter>;
+  filter?: InputMaybe<MentionsLegalesFilter>;
 }>;
 
 
-export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'Pages', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, useProse?: boolean | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type MentionsLegalesConnectionQuery = { __typename?: 'Query', mentionsLegalesConnection: { __typename?: 'MentionsLegalesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'MentionsLegalesConnectionEdges', cursor: string, node?: { __typename: 'MentionsLegales', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type HomeQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type HomeQuery = { __typename?: 'Query', home: { __typename: 'Home', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type HomeConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<HomeFilter>;
+}>;
+
+
+export type HomeConnectionQuery = { __typename?: 'Query', homeConnection: { __typename?: 'HomeConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomeConnectionEdges', cursor: string, node?: { __typename: 'Home', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type SiteDataQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -902,8 +1004,8 @@ export const PersonnasPartsFragmentDoc = gql`
   body
 }
     `;
-export const PagesPartsFragmentDoc = gql`
-    fragment PagesParts on Pages {
+export const MentionsLegalesPartsFragmentDoc = gql`
+    fragment MentionsLegalesParts on MentionsLegales {
   __typename
   _warning
   title
@@ -912,7 +1014,19 @@ export const PagesPartsFragmentDoc = gql`
   language
   published
   _corps_de_la_fiche
-  useProse
+  body
+}
+    `;
+export const HomePartsFragmentDoc = gql`
+    fragment HomeParts on Home {
+  __typename
+  _warning
+  title
+  createdAt
+  updatedAt
+  language
+  published
+  _corps_de_la_fiche
   body
 }
     `;
@@ -1106,9 +1220,9 @@ export const PersonnasConnectionDocument = gql`
   }
 }
     ${PersonnasPartsFragmentDoc}`;
-export const PagesDocument = gql`
-    query pages($relativePath: String!) {
-  pages(relativePath: $relativePath) {
+export const MentionsLegalesDocument = gql`
+    query mentionsLegales($relativePath: String!) {
+  mentionsLegales(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -1120,13 +1234,13 @@ export const PagesDocument = gql`
       }
       id
     }
-    ...PagesParts
+    ...MentionsLegalesParts
   }
 }
-    ${PagesPartsFragmentDoc}`;
-export const PagesConnectionDocument = gql`
-    query pagesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PagesFilter) {
-  pagesConnection(
+    ${MentionsLegalesPartsFragmentDoc}`;
+export const MentionsLegalesConnectionDocument = gql`
+    query mentionsLegalesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: MentionsLegalesFilter) {
+  mentionsLegalesConnection(
     before: $before
     after: $after
     first: $first
@@ -1155,12 +1269,67 @@ export const PagesConnectionDocument = gql`
           }
           id
         }
-        ...PagesParts
+        ...MentionsLegalesParts
       }
     }
   }
 }
-    ${PagesPartsFragmentDoc}`;
+    ${MentionsLegalesPartsFragmentDoc}`;
+export const HomeDocument = gql`
+    query home($relativePath: String!) {
+  home(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...HomeParts
+  }
+}
+    ${HomePartsFragmentDoc}`;
+export const HomeConnectionDocument = gql`
+    query homeConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: HomeFilter) {
+  homeConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...HomeParts
+      }
+    }
+  }
+}
+    ${HomePartsFragmentDoc}`;
 export const SiteDataDocument = gql`
     query siteData($relativePath: String!) {
   siteData(relativePath: $relativePath) {
@@ -1237,11 +1406,17 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     personnasConnection(variables?: PersonnasConnectionQueryVariables, options?: C): Promise<{data: PersonnasConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonnasConnectionQueryVariables, query: string}> {
         return requester<{data: PersonnasConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonnasConnectionQueryVariables, query: string}, PersonnasConnectionQueryVariables>(PersonnasConnectionDocument, variables, options);
       },
-    pages(variables: PagesQueryVariables, options?: C): Promise<{data: PagesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesQueryVariables, query: string}> {
-        return requester<{data: PagesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesQueryVariables, query: string}, PagesQueryVariables>(PagesDocument, variables, options);
+    mentionsLegales(variables: MentionsLegalesQueryVariables, options?: C): Promise<{data: MentionsLegalesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesQueryVariables, query: string}> {
+        return requester<{data: MentionsLegalesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesQueryVariables, query: string}, MentionsLegalesQueryVariables>(MentionsLegalesDocument, variables, options);
       },
-    pagesConnection(variables?: PagesConnectionQueryVariables, options?: C): Promise<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}> {
-        return requester<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}, PagesConnectionQueryVariables>(PagesConnectionDocument, variables, options);
+    mentionsLegalesConnection(variables?: MentionsLegalesConnectionQueryVariables, options?: C): Promise<{data: MentionsLegalesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesConnectionQueryVariables, query: string}> {
+        return requester<{data: MentionsLegalesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesConnectionQueryVariables, query: string}, MentionsLegalesConnectionQueryVariables>(MentionsLegalesConnectionDocument, variables, options);
+      },
+    home(variables: HomeQueryVariables, options?: C): Promise<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}> {
+        return requester<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}, HomeQueryVariables>(HomeDocument, variables, options);
+      },
+    homeConnection(variables?: HomeConnectionQueryVariables, options?: C): Promise<{data: HomeConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeConnectionQueryVariables, query: string}> {
+        return requester<{data: HomeConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeConnectionQueryVariables, query: string}, HomeConnectionQueryVariables>(HomeConnectionDocument, variables, options);
       },
     siteData(variables: SiteDataQueryVariables, options?: C): Promise<{data: SiteDataQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteDataQueryVariables, query: string}> {
         return requester<{data: SiteDataQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteDataQueryVariables, query: string}, SiteDataQueryVariables>(SiteDataDocument, variables, options);

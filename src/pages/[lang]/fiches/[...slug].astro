@@ -1,7 +1,8 @@
 ---
 import Base from "@layouts/Base.astro";
 import client from "@tina/__generated__/client";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
+import { getFiches } from "src/content/config";
 
 // Pages props type
 type Props = {
@@ -10,20 +11,34 @@ type Props = {
 
 // generate getStaticPaths (params, props) from collection
 export async function getStaticPaths() {
-  const entries = await getCollection("fiches");
-  const paths = entries
-    .filter((entry) => entry.slug.includes("/"))
-    .filter((entry) => entry.data.published)
-    .map((entry) => {
-      const [lang, ...slug] = entry.slug.split("/");
-      return {
-        params: { lang, slug: slug.join("/") || undefined },
-        props: { entry },
-      };
-    });
+  const pages = await getFiches();
+  const paths = pages.map((entry) => {
+    return {
+      params: {
+        lang: entry.item_lang,
+        slug: entry.item_slug,
+      },
+      props: { entry },
+    };
+  });
 
   return paths;
 }
+// export async function getStaticPaths() {
+//   const entries = await getCollection("fiches");
+//   const paths = entries
+//     .filter((entry) => entry.slug.includes("/"))
+//     .filter((entry) => entry.data.published)
+//     .map((entry) => {
+//       const [lang, ...slug] = entry.slug.split("/");
+//       return {
+//         params: { lang, slug: slug.join("/") || undefined },
+//         props: { entry },
+//       };
+//     });
+
+//   return paths;
+// }
 
 // Get entry activated by getStaticPaths
 const { lang, slug } = Astro.params;

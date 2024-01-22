@@ -1,8 +1,24 @@
 ---
+import Seo from "@components/Seo.astro";
 import FichesListView from "@components/fiches/FichesListView.astro";
+import { code_languages } from "@i18n/ui";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+export async function getStaticPaths() {
+  return code_languages.map((lang) => {
+    return { params: { lang } };
+  });
+}
 ---
 
 <Base>
+  <Seo
+    title={t("fiches.title")}
+    description={t("fiches.description")}
+    slot="seo"
+  />
   <FichesListView />
 </Base>

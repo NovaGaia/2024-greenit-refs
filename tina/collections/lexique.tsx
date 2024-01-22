@@ -3,7 +3,7 @@ import {
   titleField,
   warnField,
   defaultFields,
-  onLexiqueBeforeSubmit_DefaultFields,
+  onLexiqueBeforeSubmit,
 } from "../utils/commonFields";
 import type { Collection } from "tinacms";
 
@@ -18,7 +18,7 @@ const lexique: Collection = {
     //   // return document._sys.path;
     //   return `/${document._sys.breadcrumbs.join("/")}`;
     // },
-    beforeSubmit: onLexiqueBeforeSubmit_DefaultFields,
+    beforeSubmit: onLexiqueBeforeSubmit,
   },
   defaultItem: () => {
     return { published: false };
