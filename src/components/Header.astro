@@ -70,7 +70,15 @@ const translatePath = useTranslatedPath(lang);
             {t("nav.lexique.label")}
           </a>
         </li>
-
+        <li class="!m-0 lg:hidden">
+          <a
+            href={translatePath("/personnas/")}
+            class={`text-white text-xl lg:text-base no-underline text-inherit font-medium`}
+            title={t("nav.personnas.title")}
+          >
+            {t("nav.personnas.label")}
+          </a>
+        </li>
         <li class="!m-0">
           <!-- <SearchBar /> -->
         </li>
