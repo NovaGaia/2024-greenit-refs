@@ -1,39 +1,26 @@
 ---
+import Card from "@components/Card";
 import { getCollectionByLang } from "@contentConfig";
-import { defaultLang } from "@i18n/ui";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
-import { getCollection } from "astro:content";
+import CardView from "../CardView.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const entries = await getCollection("fiches");
-const filteredEntries = entries.reduce((acc: any[], entry) => {
-  const {
-    data: { published },
-    slug,
-  } = entry;
-  // pas publié, out
-  if (!published) return acc;
-  //   console.log("🚀 ~ filteredEntries ~ published:", "ok");
-  // langue par défaut, mais avec un slash, donc avec une langue, out
-  if (slug.includes("/") && lang === defaultLang) return acc;
-  //   console.log("🚀 ~ filteredEntries ~ cohérence lang:", "ok");
-  // On check
-  if (slug.includes("/")) {
-    // langue par défaut, mais avec un slash, donc avec une langue, out
-    const [slugLang, ...slugPath] = slug.split("/");
-    if (slugLang !== lang) return acc;
-  }
-
-  acc.push(entry);
-  return acc;
-}, []);
 // const props = Astro.props;
-const _entries = await getCollectionByLang("fiches", lang);
+const entries = await getCollectionByLang("fiches", lang);
 ---
 
 <h1>{t("fiches.title")}</h1>
 {/* filters */}
-<ul class="wp-list"><pre>{JSON.stringify(filteredEntries, null, 2)}</pre></ul>
-<ul class="wp-list"><pre>{JSON.stringify(_entries, null, 2)}</pre></ul>
+<ul class="wp-list">
+  {
+    entries.map((entry) => (
+      <CardView
+        display={Card.VERTICAL_LAYOUT}
+        type={Card.FICHES}
+        entry={entry}
+      />
+    ))
+  }
+</ul>
