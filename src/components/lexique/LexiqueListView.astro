@@ -1,5 +1,65 @@
 ---
-const props = Astro.props;
+import SimpleMardownRender from "@components/SimpleMardownRender.astro";
+import { getCollectionByLang } from "@contentConfig";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import type { CollectionEntry } from "astro:content";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// const props = Astro.props;
+const entries: CollectionEntry<"lexique">[] = await getCollectionByLang(
+  "lexique",
+  lang,
+);
+
+const byGroup = entries.reduce((r, a) => {
+  r[a.data.title.slice(0, 1)] = [...(r[a.data.title.slice(0, 1)] || []), a];
+  return r;
+}, []);
 ---
 
-<div>TODO LEXIQUE LIST VIEW</div>
+<h1>{t("lexique.title")}</h1>
+<ul class="mb-2 flex flex-wrap items-start gap-2">
+  {
+    Object.keys(byGroup).map((entry, index) => {
+      return (
+        <li class="m-0 mb-4 list-none whitespace-nowrap leading-none">
+          <a
+            href={`#${entry}`}
+            class="badge text-sm text-neutral no-underline transition hover:bg-primary-transparent"
+          >
+            {entry}
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
+{/* filters */}
+<ul>
+  {
+    Object.entries(byGroup).map((goupedEntry: any, index) => {
+      // console.log('goupedEntry[0] :>> ', goupedEntry[0])
+      return (
+        <li>
+          <ul id={`${goupedEntry[0]}`}>
+            {goupedEntry[1].map((entry, index) => {
+              if (entry)
+                return (
+                  <li class="box mb-6 border-neutral-transparent pb-0">
+                    <h2 class="mb-4 mt-0 text-neutral">{entry?.data.title}</h2>
+                    <SimpleMardownRender
+                      markdown={entry.body}
+                      classes="markdown-content"
+                    />
+                  </li>
+                );
+              else return null;
+            })}
+          </ul>
+        </li>
+      );
+    })
+  }
+</ul>
