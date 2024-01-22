@@ -7,10 +7,6 @@ export async function getStaticPaths() {
   return code_languages.map((lang) => {
     return { params: { lang } };
   });
-  // return code_languages.map((_lang) => {
-  //   const lang = _lang === "fr" ? "." : _lang;
-  //   return { params: { lang } };
-  // });
 }
 ---
 

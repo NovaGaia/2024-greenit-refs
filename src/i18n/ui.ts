@@ -31,6 +31,7 @@ export const ui = {
   fr: {
     // global
     pathPrefix: pathPrefix,
+    "refName.min": "RWP",
     "repo.url": "https://github.com/cnumr/best-practices-wordpress",
     "repo.branch": "main",
     // SEO
@@ -52,6 +53,8 @@ export const ui = {
     "nav.fiches.title": "Bonnes pratiques",
     "nav.lexique.label": "Lexique",
     "nav.lexique.title": "Lexique",
+    "nav.personnas.label": "Personnas",
+    "nav.personnas.title": "Personnas",
     "nav.contrib.label": "Contribuez !",
     "nav.contrib.title":
       "Voir la méthode de contribution sur le GitHub du CNUMR",
@@ -75,5 +78,11 @@ export const ui = {
     "fiches.title": "Bonnes pratiques",
     "fiches.description":
       "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.",
+    // Lexique
+    "lexique.title": "Lexique",
+    "lexique.description": "TODO",
+    // Personnas
+    "personnas.title": "Personnas",
+    "personnas.description": "TODO",
   },
 } as const;

@@ -177,19 +177,12 @@ export async function getIndexPageByLang(_lang) {
   const lang = _lang || "defaultLang";
   return getEntry("home", lang);
 }
+export async function getMentionsLegalesByLang(_lang) {
+  const lang = _lang || "defaultLang";
+  return getEntry("mentionsLegales", lang);
+}
 
 const getInformations = (slug) => {
   const [item_lang, ...item_slug] = slug.split("/");
-  console.log("🚀 ~ getInformations ~ item_slug:", item_slug);
-  console.log("🚀 ~ getInformations ~ item_lang:", item_lang);
-
-  // var item_lang: string = defaultLang;
-  // var item_slug: string = slug;
-  // if (slug.split("/").length > 1) {
-  //   item_lang = slug.split("/")[0];
-  //   var _item_slug = slug.split("/");
-  //   _item_slug.shift();
-  //   item_slug = _item_slug.join("/");
-  // }
   return { item_lang, item_slug };
 };
