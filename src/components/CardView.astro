@@ -1,0 +1,101 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import type { CollectionEntry } from "astro:content";
+import Card from "./Card";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+function trimWikiLinks(str) {
+  const regex = /\[\[(?:[^|\]]*\|)?([^\]]+)\]\]/gm;
+  const subst = `$1`;
+  if (str === undefined) return null;
+  return str.replace(regex, subst);
+}
+
+function cleanImpact(meta) {
+  return entry.data[`${meta}`].replace(/Fort|Moyen|Faible/gi, " ");
+}
+
+type Props = {
+  entry:
+    | CollectionEntry<"fiches">
+    | CollectionEntry<"lexique">
+    | CollectionEntry<"personnas">
+    | any;
+  type: string;
+  display: string;
+};
+
+const {
+  entry,
+  type = Card.PERSONAS,
+  display = Card.VERTICAL_LAYOUT,
+} = Astro.props;
+---
+
+<li class="box interactive mb-4 border-neutral-transparent py-2 md:py-6">
+  <a
+    href={`${entry.id}`}
+    class:list={[
+      "flex no-underline",
+      {
+        "h-full flex-row items-center justify-between gap-2":
+          display === Card.HORIZONTAL_LAYOUT,
+        "h-full flex-col divide-y-2 divide-primary":
+          display === Card.VERTICAL_LAYOUT,
+      },
+    ]}
+    title={`Voir la fiche : ${entry.data.title}`}
+  >
+    {
+      type === Card.FICHES ? (
+        <section class="mb-0 mt-0 text-lg font-bold text-neutral md:grid md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-2">
+          <h2 class="m-0 flex flex-row items-start text-lg font-bold text-neutral md:col-span-1 md:row-span-2">
+            <span class="badge mr-2 whitespace-nowrap border-primary bg-primary">
+              {t("refName.min")} {entry.data.refID}
+            </span>
+            <span>{entry.data.title}</span>
+          </h2>
+          <div class="flex flex-row items-center justify-end gap-2">
+            <span
+              title={`Priority Implementation`}
+              aria-label={`Priority Implementation : ${
+                entry.data[`priority_implementation`]
+              }`}
+              role="img"
+            >
+              {cleanImpact("priority_implementation")}
+            </span>
+            <span>|</span>
+            <span
+              title={`Environmental Impact`}
+              aria-label={`Environmental Impact : ${
+                entry.data[`environmental_impact`]
+              }`}
+              role="img"
+            >
+              {cleanImpact("environmental_impact")}
+            </span>
+          </div>
+          <div class="mt-2 flex flex-row items-center justify-end gap-2 md:mt-0 md:gap-4">
+            <span
+              title={`Lifecycle`}
+              class="badge border-primary text-xs text-neutral"
+            >
+              {entry.data.lifecycle}
+            </span>
+            <span
+              title={`Scope`}
+              class="badge border-primary text-xs text-neutral"
+            >
+              {entry.data.scope}
+            </span>
+          </div>
+        </section>
+      ) : (
+        <h3 class="mt-0">{entry.data.title}</h3>
+      )
+    }
+  </a>
+</li>
