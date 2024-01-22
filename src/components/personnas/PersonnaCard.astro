@@ -1,5 +1,19 @@
 ---
-const props = Astro.props;
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  entry: CollectionEntry<"personnas">;
+};
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { entry } = Astro.props;
+const tt = t("backToTop.title");
 ---
 
-<div>TODO PERSONNA CARD</div>
+<div>
+  <h3>{entry.data.title} - {entry.data.language}</h3>
+  <p>{entry.slug}</p>
+</div>

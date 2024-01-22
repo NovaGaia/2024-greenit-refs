@@ -1,5 +1,26 @@
 ---
-const props = Astro.props;
+import Card from "@components/Card";
+import CardView from "@components/CardView.astro";
+import { getCollectionByLang } from "@contentConfig";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// const props = Astro.props;
+const entries = await getCollectionByLang("personnas", lang);
 ---
 
-<div>TODO PERSONNAS LIST VIEW</div>
+<h1>{t("personnas.title")}</h1>
+{/* filters */}
+<ul class="wp-list">
+  {
+    entries.map((entry) => (
+      <CardView
+        display={Card.HORIZONTAL_LAYOUT}
+        type={Card.PERSONAS}
+        entry={entry}
+      />
+    ))
+  }
+</ul>
