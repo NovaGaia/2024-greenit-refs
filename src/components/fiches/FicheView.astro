@@ -1,5 +1,14 @@
 ---
-const props = Astro.props;
+import type { CollectionEntry } from "astro:content";
+import FicheViewPaginate from "./FicheViewPaginate.astro";
+
+type Props = {
+  entry: CollectionEntry<"fiches">;
+};
+const { entry } = Astro.props;
 ---
 
-<div>TODO VIEW</div>
+<div class="markdown-content">
+  <slot />
+</div>
+<FicheViewPaginate current={entry} />

@@ -1,5 +1,6 @@
 ---
-import LexiqueView from "@components/lexique/LexiqueView.astro";
+import Seo from "@components/Seo.astro";
+import FicheView from "@components/fiches/FicheView.astro";
 import getMDXcomponents from "@components/mdx/getMDXcomponents";
 import Base from "@layouts/Base.astro";
 import client from "@tina/__generated__/client";
@@ -46,8 +47,9 @@ const { Content } = await entry.render();
 ---
 
 <Base>
-  <LexiqueView entry={entry}>
+  <Seo title={entry.data.title || "coucou"} slot="seo" />
+  <FicheView entry={entry}>
     <h1>{entry.data.title}</h1>
     <Content components={getMDXcomponents} />
-  </LexiqueView>
+  </FicheView>
 </Base>
