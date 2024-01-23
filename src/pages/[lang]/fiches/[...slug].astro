@@ -2,6 +2,7 @@
 import Seo from "@components/Seo.astro";
 import FicheView from "@components/fiches/FicheView.astro";
 import getMDXcomponents from "@components/mdx/getMDXcomponents";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
 import client from "@tina/__generated__/client";
 import { getCollection, type CollectionEntry } from "astro:content";
@@ -45,10 +46,12 @@ try {
 
 // Use Astro Entry renderer
 const { Content, headings } = await entry.render();
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Base>
-  <Seo title={entry.data.title || "coucou"} slot="seo" />
+  <Seo title={entry.data.title} slot="seo" />
   <FicheView entry={entry} headings={headings}>
     <Content components={getMDXcomponents} />
   </FicheView>

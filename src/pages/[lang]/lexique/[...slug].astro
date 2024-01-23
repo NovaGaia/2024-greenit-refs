@@ -1,8 +1,9 @@
 ---
+import Seo from "@components/Seo.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
 import client from "@tina/__generated__/client";
-import { type CollectionEntry } from "astro:content";
-import { getLexique } from "src/content/config";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 // Pages props type
 type Props = {
@@ -11,16 +12,16 @@ type Props = {
 
 // generate getStaticPaths (params, props) from collection
 export async function getStaticPaths() {
-  const pages = await getLexique();
-  const paths = pages.map((entry) => {
-    return {
-      params: {
-        lang: entry.item_lang,
-        slug: entry.item_slug,
-      },
-      props: { entry },
-    };
-  });
+  const entries = await getCollection("lexique");
+  const paths = entries
+    .filter((entry) => entry.data.published)
+    .map((entry) => {
+      const [lang, ...slug] = entry.slug.split("/");
+      return {
+        params: { lang, slug: slug.join("/") || undefined },
+        props: { entry },
+      };
+    });
 
   return paths;
 }
@@ -41,7 +42,6 @@ export async function getStaticPaths() {
 // }
 
 // Get entry activated by getStaticPaths
-const { lang, slug } = Astro.params;
 const { entry } = Astro.props;
 let response: any = {};
 try {
@@ -58,8 +58,11 @@ try {
 
 // Use Astro Entry renderer
 const { Content } = await entry.render();
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Base>
+  <Seo title="<Lexique>" slot="seo" />
   <Content />
 </Base>

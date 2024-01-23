@@ -5,13 +5,14 @@ import { code_languages } from "@i18n/ui";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 export async function getStaticPaths() {
   return code_languages.map((lang) => {
     return { params: { lang } };
   });
 }
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Base>
@@ -20,5 +21,5 @@ export async function getStaticPaths() {
     description={t("fiches.description")}
     slot="seo"
   />
-  <FichesListView />
+  <FichesListView data-pagefind-ignore />
 </Base>

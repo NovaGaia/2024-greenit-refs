@@ -1,11 +1,13 @@
 ---
+import Seo from "@components/Seo.astro";
 import PageView from "@components/pages/PageView.astro";
 import { getMentionsLegalesByLang } from "@contentConfig";
 import { code_languages } from "@i18n/ui";
-import { getLangFromUrl } from "@i18n/utils";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 // Get specific content
 const entry: any = await getMentionsLegalesByLang(lang);
 // Use Astro Entry renderer
@@ -20,6 +22,7 @@ export async function getStaticPaths() {
 ---
 
 <Base>
+  <Seo title="<Mentions légales>" slot="seo" />
   <PageView>
     <Content />
   </PageView>

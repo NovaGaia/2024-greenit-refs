@@ -11,8 +11,13 @@ type Props = {
 const { entry, headings } = Astro.props;
 ---
 
-<MarkdownDisplay type="fiches" entry={entry} headings={headings}>
-  <slot />
-</MarkdownDisplay>
-<ContributeCTA sourceInstanceName="fiches" relativePath={`${entry.slug}.md`} />
-<FicheViewPaginate current={entry} />
+<div data-pagefind-body data-pagefind-filter="fiches">
+  <MarkdownDisplay type="fiches" entry={entry} headings={headings}>
+    <slot />
+  </MarkdownDisplay>
+  <ContributeCTA
+    sourceInstanceName="fiches"
+    relativePath={`${entry.slug}.md`}
+  />
+  <FicheViewPaginate current={entry} />
+</div>

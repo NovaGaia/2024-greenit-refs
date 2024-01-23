@@ -13,7 +13,7 @@ const entries = await getCollectionByLang("personnas", lang);
 
 <h1>{t("personnas.title")}</h1>
 {/* filters */}
-<ul class="wp-list">
+<ul class="wp-list" data-pagefind-ignore>
   {
     entries.map((entry) => (
       <CardView

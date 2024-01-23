@@ -5,6 +5,7 @@ import {
   useTranslations,
 } from "@i18n/utils";
 import { Icon } from "astro-icon/components";
+import Search from "astro-pagefind/components/Search";
 import LanguagePicker from "./LanguagePicker.astro";
 
 const { classes, menuState, repoURL } = Astro.props;
@@ -123,3 +124,4 @@ const translatePath = useTranslatedPath(lang);
     </nav>
   </div>
 </header>
+<Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
