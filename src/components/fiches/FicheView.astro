@@ -1,14 +1,18 @@
 ---
+import ContributeCTA from "@components/ContributeCTA.astro";
+import MarkdownDisplay from "@components/MarkdownDisplay.astro";
 import type { CollectionEntry } from "astro:content";
 import FicheViewPaginate from "./FicheViewPaginate.astro";
 
 type Props = {
   entry: CollectionEntry<"fiches">;
+  headings: Array<{ depth: number; text: string; slug: string }>;
 };
-const { entry } = Astro.props;
+const { entry, headings } = Astro.props;
 ---
 
-<div class="markdown-content">
+<MarkdownDisplay type="fiches" entry={entry} headings={headings}>
   <slot />
-</div>
+</MarkdownDisplay>
+<ContributeCTA sourceInstanceName="fiches" relativePath={`${entry.slug}.md`} />
 <FicheViewPaginate current={entry} />

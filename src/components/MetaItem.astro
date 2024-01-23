@@ -1,0 +1,52 @@
+---
+const {
+  frontmatter,
+  meta,
+  fontSize = "normal",
+  displayTitle = false,
+} = Astro.props;
+const values = frontmatter[meta];
+const toDisplay = values;
+---
+
+{
+  Array.isArray(values) ? (
+    <li
+      class:list={[
+        "mb-2 mt-0",
+        {
+          "text-xs": fontSize === "xs",
+          "text-sm": fontSize === "sm",
+        },
+      ]}
+    >
+      {displayTitle === true && (
+        <strong class="capitalize">{meta.replace("_", " ")} : </strong>
+      )}
+      <ul class="mb-0">
+        {toDisplay.map((item, index) => {
+          return (
+            <li class="my-2 max-h-5 whitespace-nowrap p-0 leading-4">
+              → {item}
+            </li>
+          );
+        })}
+      </ul>
+    </li>
+  ) : (
+    <li
+      class:list={[
+        "mb-2 mt-0 max-h-5 whitespace-nowrap last:mb-0",
+        {
+          "text-xs": fontSize === "xs",
+          "text-sm": fontSize === "sm",
+        },
+      ]}
+    >
+      {displayTitle === true && (
+        <strong class="capitalize">{meta.replace("_", " ")} : </strong>
+      )}
+      {toDisplay || "TBD"}
+    </li>
+  )
+}
