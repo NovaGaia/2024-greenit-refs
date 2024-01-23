@@ -8,7 +8,7 @@ import Base from "@layouts/Base.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 // Get specific content
-const entry: any = await getIndexPageByLang(lang);
+const entry: any = await getIndexPageByLang("fr");
 // Use Astro Entry renderer
 const { Content } = await entry.render();
 ---
