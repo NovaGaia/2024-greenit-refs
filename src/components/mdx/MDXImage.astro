@@ -1,0 +1,47 @@
+---
+import ResponsiveImage from "@components/ResponsiveImage.astro";
+import { responsiveSequence } from "@js/utils";
+import type { ImageMetadata } from "astro";
+type Props = {
+  src: string;
+  width: number;
+  alt: string;
+  title?: string;
+  class?: string;
+  frameClass?: string;
+};
+const props = Astro.props as Props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif,svg}",
+);
+if (!images[props.src])
+  throw new Error(
+    `"${props.src}" does not exist in glob: "src/assets/**/*.{jpeg,jpg,png,gif,svg}"`,
+  );
+const image = await images[props.src]();
+const sizes = responsiveSequence(400, props.width || 1600);
+---
+
+{
+  /*
+  <Picture
+    src={images[props.src]()}
+    formats={["avif", "webp"]}
+    width={props.width || 400}
+    height={props.height || 300}
+    alt={props.alt || `Undefined`}
+    title={props.title || ``}
+    class={props.class || ``}
+  />
+  */
+}
+<ResponsiveImage
+  src={image.default}
+  alt={props.alt || `Undefined`}
+  sizes={sizes}
+  format="webp"
+  title={props.title || ``}
+  classes={props.class || ``}
+  frameClasses={props.frameClass || ``}
+/>

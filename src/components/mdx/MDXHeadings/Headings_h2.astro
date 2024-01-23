@@ -1,0 +1,9 @@
+---
+import { slugify } from "@js/utils";
+
+const props = Astro.props;
+---
+
+<h2 class="h2" id={slugify(props.id)} {...props}>
+  <slot />
+</h2>
