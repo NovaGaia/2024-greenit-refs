@@ -4,6 +4,7 @@ import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
+import remarkToc from "remark-toc";
 
 const SITE_URL = process.env.SITE_URL || "http://localhost:4321";
 const tina = ({ directiveName = "tina" } = {}) => ({
@@ -28,6 +29,11 @@ export default defineConfig({
   //     prefixDefaultLocale: false,
   //   },
   // },
+  markdown: {
+    // Applied to .md and .mdx files
+    remarkPlugins: [remarkToc],
+    // rehypePlugins: [rehypeAccessibleEmojis],
+  },
   integrations: [
     tailwind({
       // Example: Disable injecting a basic `base.css` import on every page.
