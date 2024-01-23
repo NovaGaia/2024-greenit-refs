@@ -32,7 +32,7 @@ export { slugify };
 /**
  * This function takes a date string and returns a formatted date string in French locale.
  *
- * @param {string} date - The date string to be formatted.
+ * @param {date} date - The date string to be formatted.
  * @returns {string} The formatted date string.
  */
 export function formatDate(date) {
