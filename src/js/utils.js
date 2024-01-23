@@ -28,3 +28,39 @@ const slugify = (text) => {
 };
 
 export { slugify };
+
+/**
+ * This function takes a date string and returns a formatted date string in French locale.
+ *
+ * @param {string} date - The date string to be formatted.
+ * @returns {string} The formatted date string.
+ */
+export function formatDate(date) {
+  return new Date(date).toLocaleDateString("fr-FR", {
+    timeZone: "UTC",
+  });
+}
+
+/**
+ * Generates a sequence of sizes for responsives images.
+ *
+ * @param {number} first - The min width in the sequence.
+ * @param {number} last - The max width in the sequence.
+ * @param {number} [size=16] - The number of elements in the sequence. Defaults to 16.
+ * @returns {number[]} The generated sequence, with each number rounded to the nearest integer.
+ */
+export function responsiveSequence(first, last, size = 16) {
+  if (size <= 0) return [];
+  if (size === 1) return [first];
+  if (size === 2) return [first, last];
+
+  const ratio = (last / first) ** (1 / (size - 1));
+
+  const seq = [first];
+  for (let i = 1; i < size - 1; i++) {
+    seq.push(seq[i - 1] * ratio);
+  }
+  seq.push(last);
+
+  return seq.map((value) => Math.round(value));
+}
