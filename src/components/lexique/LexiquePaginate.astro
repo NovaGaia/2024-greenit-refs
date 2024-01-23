@@ -7,7 +7,12 @@ type Props = {
   className?: string;
 };
 
-function generatePrevNext(entries, current, lang) {
+type PrevNext = {
+  prev: CollectionEntry<"fiches"> | null;
+  next: CollectionEntry<"fiches"> | null;
+};
+
+function generatePrevNext(entries, current, lang): PrevNext {
   const filteredEntries = entries.filter(
     (entry) => entry.slug.split("/")[0] === lang,
   );
