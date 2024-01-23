@@ -20,8 +20,8 @@ const fiches = defineCollection({
     z.object({
       refID: z.string(),
       title: z.string(),
-      createdAt: z.date().optional(),
-      updatedAt: z.date().optional(),
+      createdAt: z.date(),
+      updatedAt: z.date(),
       published: z.boolean().optional(),
       language: z.string(),
       // slug: z.string(),
@@ -43,8 +43,8 @@ const lexique = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      createdAt: z.date().optional(),
-      updatedAt: z.date().optional(),
+      createdAt: z.date(),
+      updatedAt: z.date(),
       published: z.boolean().optional(),
       language: z.string(),
       // slug: z.string(),
@@ -56,8 +56,8 @@ const personnas = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      createdAt: z.date().optional(),
-      updatedAt: z.date().optional(),
+      createdAt: z.date(),
+      updatedAt: z.date(),
       published: z.boolean().optional(),
       language: z.string(),
       // slug: z.string(),
@@ -69,8 +69,8 @@ const pages = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      createdAt: z.date().optional(),
-      updatedAt: z.date().optional(),
+      createdAt: z.date(),
+      updatedAt: z.date(),
       published: z.boolean().optional(),
       language: z.string(),
       // slug: z.string(),
@@ -154,11 +154,8 @@ export async function getCollectionByLang(
   collection: "fiches" | "lexique" | "personnas",
   lang: "fr" | "es" | "en",
 ) {
-  const items:
-    | CollectionEntry<"fiches">[]
-    | CollectionEntry<"lexique">[]
-    | CollectionEntry<"personnas">[]
-    | any[] = await getCollection(collection);
+  const items: CollectionEntry<"fiches" | "lexique" | "personnas">[] | any[] =
+    await getCollection(collection);
 
   return items
     .filter((item) => item.data.published)
