@@ -1,48 +1,33 @@
 ---
+import LexiqueView from "@components/lexique/LexiqueView.astro";
+import getMDXcomponents from "@components/mdx/getMDXcomponents";
 import Base from "@layouts/Base.astro";
 import client from "@tina/__generated__/client";
-import { type CollectionEntry } from "astro:content";
-import { getFiches } from "src/content/config";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 // Pages props type
 type Props = {
   entry: CollectionEntry<"fiches">;
+  entries: CollectionEntry<"fiches">[];
 };
 
-// generate getStaticPaths (params, props) from collection
 export async function getStaticPaths() {
-  const pages = await getFiches();
-  const paths = pages.map((entry) => {
-    return {
-      params: {
-        lang: entry.item_lang,
-        slug: entry.item_slug,
-      },
-      props: { entry },
-    };
-  });
+  const entries = await getCollection("fiches");
+  const paths = entries
+    .filter((entry) => entry.data.published)
+    .map((entry) => {
+      const [lang, ...slug] = entry.slug.split("/");
+      return {
+        params: { lang, slug: slug.join("/") || undefined },
+        props: { entry, entries },
+      };
+    });
 
   return paths;
 }
-// export async function getStaticPaths() {
-//   const entries = await getCollection("fiches");
-//   const paths = entries
-//     .filter((entry) => entry.slug.includes("/"))
-//     .filter((entry) => entry.data.published)
-//     .map((entry) => {
-//       const [lang, ...slug] = entry.slug.split("/");
-//       return {
-//         params: { lang, slug: slug.join("/") || undefined },
-//         props: { entry },
-//       };
-//     });
 
-//   return paths;
-// }
-
-// Get entry activated by getStaticPaths
-const { lang, slug } = Astro.params;
 const { entry } = Astro.props;
+
 let response: any = {};
 try {
   await client.queries
@@ -61,5 +46,8 @@ const { Content } = await entry.render();
 ---
 
 <Base>
-  <Content />
+  <LexiqueView entry={entry}>
+    <h1>{entry.data.title}</h1>
+    <Content components={getMDXcomponents} />
+  </LexiqueView>
 </Base>

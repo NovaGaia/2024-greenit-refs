@@ -1,0 +1,93 @@
+---
+import { getLangFromUrl } from "@i18n/utils";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+type Props = {
+  current: CollectionEntry<"fiches">;
+  className?: string;
+};
+
+function generatePrevNext(entries, current, lang) {
+  const filteredEntries = entries.filter(
+    (entry) => entry.slug.split("/")[0] === lang,
+  );
+
+  let returned = { prev: null, next: null };
+  filteredEntries.map((entry, idx) => {
+    const prev = filteredEntries[idx - 1];
+    const next = filteredEntries[idx + 1];
+    if (current.slug === entry.slug) {
+      returned = { prev, next };
+      return { prev, next };
+    }
+  });
+
+  return {
+    prev: returned?.prev,
+    next: returned?.next,
+  };
+}
+
+const lang = getLangFromUrl(Astro.url);
+const entries = await getCollection("fiches");
+const { current, className } = Astro.props;
+const { prev, next } = generatePrevNext(entries, current, lang);
+---
+
+<nav
+  class:list={["blog-post-nav border-t-2 pt-4", className]}
+  aria-label="Naviagtion entre les bonnes pratiques"
+>
+  <ul
+    class:list={[
+      "noliststyle grid",
+      {
+        "grid-cols-3": prev && next,
+        "grid-cols-2": !prev || !next,
+      },
+    ]}
+  >
+    {
+      prev && (
+        <li class="text-center md:text-left">
+          <a
+            href={`${prev.slug.split("/")[1]}`}
+            rel="prev"
+            class="no-underline"
+          >
+            ← <span class="hidden md:block">{prev.data.title}</span>
+          </a>
+        </li>
+      )
+    }
+    <li
+      class:list={[
+        "",
+        {
+          "text-right": !prev,
+          "text-left": !next,
+          "text-center": next && prev,
+        },
+      ]}
+    >
+      {
+        /* <Link to="/" rel="home">
+            Accueil
+          </Link> */
+      }
+    </li>
+    {
+      next && (
+        <li class="text-center md:text-right">
+          <a
+            href={`${next.slug.split("/")[1]}`}
+            rel="next"
+            class="no-underline"
+          >
+            → <span class="hidden md:block">{next.data.title}</span>
+          </a>
+        </li>
+      )
+    }
+  </ul>
+</nav>
