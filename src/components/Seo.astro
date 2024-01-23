@@ -40,6 +40,9 @@ const jsonLD = jsonLDGenerator({
 
 <!-- SEO -->
 <link rel="canonical" href={url} />
+<title>
+  {t("seo.titleTemplate").replace("%s", title || t("seo.site_name"))}
+</title>
 
 <!-- Open Graph -->
 <meta property="og:site_name" content={t("seo.site_name")} />
