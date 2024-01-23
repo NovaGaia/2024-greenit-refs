@@ -6,9 +6,10 @@ import { code_languages } from "@i18n/ui";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 // Get specific content
+const _lang = getLangFromUrl(Astro.url);
+const { lang } = Astro.params;
+const t = useTranslations(_lang);
 const entry: any = await getMentionsLegalesByLang(lang);
 // Use Astro Entry renderer
 const { Content } = await entry.render();
