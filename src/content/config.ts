@@ -135,20 +135,20 @@ export async function getPersonnas() {
     });
 }
 
-export async function getPages() {
-  const collection = await getCollection("pages");
+// export async function getPages() {
+//   const collection = await getCollection("pages");
 
-  return collection
-    .filter((item) => item.data.published)
-    .map((item) => {
-      const { item_lang, item_slug } = getInformations(item.slug);
-      return {
-        ...item,
-        item_lang,
-        item_slug,
-      };
-    });
-}
+//   return collection
+//     .filter((item) => item.data.published)
+//     .map((item) => {
+//       const { item_lang, item_slug } = getInformations(item.slug);
+//       return {
+//         ...item,
+//         item_lang,
+//         item_slug,
+//       };
+//     });
+// }
 
 export async function getCollectionByLang(
   collection: "fiches" | "lexique" | "personnas",
