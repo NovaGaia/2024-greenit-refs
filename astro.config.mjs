@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import remarkToc from "remark-toc";
+import pagefind from "astro-pagefind";
 
 const SITE_URL = process.env.SITE_URL || "http://localhost:4321";
 const tina = ({ directiveName = "tina" } = {}) => ({
@@ -22,6 +23,9 @@ const tina = ({ directiveName = "tina" } = {}) => ({
 // https://astro.build/config
 export default defineConfig({
   // site: SITE_URL,
+  build: {
+    format: "file",
+  },
   // i18n: {
   //   defaultLocale: "fr",
   //   locales: ["en", "es", "fr"],
@@ -53,5 +57,6 @@ export default defineConfig({
     sitemap(),
     mdx(),
     react(),
+    pagefind(),
   ],
 });
