@@ -34,7 +34,13 @@ const translatePath = useTranslatedPath(lang);
             {t("seo.site_name")}
           </span>
           <br />
-          <span class="text-xl font-bold leading-none">{t("nav.refName")}</span>
+          <span class="text-xl font-bold leading-none"
+            >{t("nav.refName")}{
+              import.meta.env.MODE === "development" && (
+                <span class="text-white"> ({lang})</span>
+              )
+            }</span
+          >
         </a>
       </div>
     </div>
@@ -176,7 +182,7 @@ const translatePath = useTranslatedPath(lang);
   .pagefind-ui .pagefind-ui__result-excerpt {
     color: var(--pagefind-ui-text);
   }
-  .pagefind-ui .pagefind-ui__filter-panel {
+  /* .pagefind-ui .pagefind-ui__filter-panel {
     display: none !important;
-  }
+  } */
 </style>
