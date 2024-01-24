@@ -4,11 +4,10 @@ import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-import remarkToc from "remark-toc";
 import pagefind from "astro-pagefind";
-// import highlightMD from "../bin/highlight-md.js";
-
-// import { remarkReadingTime } from "./src/lib/ remark-reading-time.mjs";
+import remarkHighLight from "./src/lib/remark-higlight.mjs";
+import remarkExternalLink from "./src/lib/remark-external-links.mjs";
+import remarkWikilinks from "./src/lib/remark-wikilinks.mjs";
 
 const SITE_URL = process.env.SITE_URL || "http://localhost:4321";
 const tina = ({ directiveName = "tina" } = {}) => ({
@@ -38,8 +37,7 @@ export default defineConfig({
   // },
   markdown: {
     // Applied to .md and .mdx files
-    // remarkPlugins: [remarkToc],
-    // remarkPlugins: [remarkToc, highlightMD],
+    remarkPlugins: [remarkHighLight, remarkExternalLink, remarkWikilinks],
     // rehypePlugins: [rehypeAccessibleEmojis],
   },
   integrations: [

@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+
+const { lexique } = Astro.props;
+console.log("🚀 ~ lexique:", lexique);
+const { lang } = Astro.params;
+const collection = await getCollection("lexique");
+const matched = collection
+  .filter((item) => item.slug.split("/")[0] === lang)
+  .filter((item) => item.slug.split("/")[1] === lexique)[0];
+---
+
+{
+  matched ? (
+    <span class="tooltip" title="">
+      {lexique}
+      <span class="bottom">
+        <span>{matched.body}</span>
+        <i />
+      </span>
+    </span>
+  ) : (
+    <span class="tooltip alert" title="">
+      {lexique}
+      <span class="bottom">
+        <span>Définition manquante, allez dans le Lexique.</span>
+        <i />
+      </span>
+    </span>
+  )
+}

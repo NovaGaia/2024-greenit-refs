@@ -105,7 +105,7 @@
 
   /**** GRID ****/
   .wp-grid {
-    @apply noliststyle grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3;
+    @apply grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3;
   }
   .wp-list {
     @apply noliststyle flex flex-col gap-2;
@@ -168,8 +168,10 @@
   }
 
   /**** CONTENT ****/
-  .markdown-content {
-    @apply *:whitespace-pre-wrap;
+  .markdown-content * {
+    &:not(.tooltip) {
+      /* @apply whitespace-pre-wrap; */
+    }
 
     /**** BLOCKQUOTE ****/
     blockquote {
@@ -211,6 +213,12 @@
   position: relative;
   border-bottom: 1px dotted #666;
   text-align: left;
+  &.alert {
+    @apply text-red-500;
+    .bottom span {
+      @apply bg-red-100;
+    }
+  }
 }
 .tooltip .bottom {
   min-width: 300px;
