@@ -1,0 +1,19 @@
+---
+const props = Astro.props;
+---
+
+{/* small badge to display current break-point (only in dev mode) */}
+{
+  import.meta.env.MODE === "development" ? (
+    <div class="fixed bottom-[2px] left-[2px] z-50">
+      <div class="inline-block rounded bg-white bg-opacity-80 px-[4px] py-[2px] text-xs leading-none text-gray-600 shadow">
+        <div class="sm:hidden">xs</div>
+        <div class="hidden sm:inline md:hidden">sm</div>
+        <div class="hidden md:inline lg:hidden">md</div>
+        <div class="hidden lg:inline xl:hidden">lg</div>
+        <div class="hidden xl:inline 2xl:hidden">xl</div>
+        <div class="hidden 2xl:inline">2xl</div>
+      </div>
+    </div>
+  ) : null
+}
