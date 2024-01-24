@@ -15,7 +15,7 @@ const { Content } = await entry.render();
 
 <Base>
   <Seo title={t("seo.site_name")} slot="seo" />
-  <PageView>
+  <PageView notIndexable>
     <Content />
   </PageView>
 </Base>
