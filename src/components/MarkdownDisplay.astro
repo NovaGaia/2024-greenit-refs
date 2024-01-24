@@ -24,6 +24,9 @@ const t = useTranslations(lang);
           Mise à jour le{" "}
           {formatDate(entry.data.updatedAt || entry.data.updatedAt)}
         </i>
+        <span class="hidden" data-pagefind-filter="type">
+          {t("fiches.title")}
+        </span>
         <h1 class="flex flex-col items-start gap-2 lg:col-span-2 lg:flex-row lg:items-center lg:gap-0">
           <span class="badge mr-2 whitespace-nowrap border-primary bg-primary">
             {t("refName.min")} {entry.data["refID"]}
@@ -38,7 +41,20 @@ const t = useTranslations(lang);
       <h1 class="lg:col-span-2">{entry.data.title}</h1>
     )
   }
-
+  {
+    type === Card.LEXIQUE && (
+      <span class="hidden" data-pagefind-filter="type">
+        {t("lexique.title")}
+      </span>
+    )
+  }
+  {
+    type === Card.PERSONAS && (
+      <span class="hidden" data-pagefind-filter="type">
+        {t("personnas.title")}
+      </span>
+    )
+  }
   {
     type === Card.FICHES && (
       <aside>

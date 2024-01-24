@@ -11,7 +11,7 @@ type Props = {
 const { entry, headings } = Astro.props;
 ---
 
-<div data-pagefind-body data-pagefind-filter="fiches">
+<div data-pagefind-body>
   <MarkdownDisplay type="fiches" entry={entry} headings={headings}>
     <slot />
   </MarkdownDisplay>

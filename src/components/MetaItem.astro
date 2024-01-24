@@ -1,4 +1,6 @@
 ---
+import { capitalizeFirstLetter } from "@i18n/utils";
+
 const {
   frontmatter,
   meta,
@@ -26,7 +28,11 @@ const toDisplay = values;
       <ul class="mb-0">
         {toDisplay.map((item, index) => {
           return (
-            <li class="my-2 max-h-5 whitespace-nowrap p-0 leading-4">
+            <li
+              class="my-2 max-h-5 whitespace-nowrap p-0 leading-4"
+              data-pagefind-filter="tags[data-content]"
+              data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${item}`}
+            >
               → {item}
             </li>
           );
@@ -44,7 +50,13 @@ const toDisplay = values;
       ]}
     >
       {displayTitle === true && (
-        <strong class="capitalize">{meta.replace("_", " ")} : </strong>
+        <strong
+          class="capitalize"
+          data-pagefind-filter="tags[data-content]"
+          data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${toDisplay}`}
+        >
+          {meta.replace("_", " ")} :{" "}
+        </strong>
       )}
       {toDisplay || "TBD"}
     </li>

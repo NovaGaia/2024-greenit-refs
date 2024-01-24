@@ -19,12 +19,8 @@ const byGroup = entries.reduce((r, a) => {
 }, []);
 ---
 
-<h1>{t("lexique.title")}</h1>
-<ul
-  class="mb-2 flex flex-wrap items-start gap-2"
-  data-pagefind-body
-  data-pagefind-filter="lexique"
->
+<h1 data-pagefind-filter="type">{t("lexique.title")}</h1>
+<ul class="mb-2 flex flex-wrap items-start gap-2" data-pagefind-body>
   {
     Object.keys(byGroup).map((entry, index) => {
       return (
