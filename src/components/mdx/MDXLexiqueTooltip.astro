@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 
 const { lexique } = Astro.props;
-console.log("🚀 ~ lexique:", lexique);
 const { lang } = Astro.params;
 const collection = await getCollection("lexique");
 const matched = collection
