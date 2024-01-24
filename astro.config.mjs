@@ -6,6 +6,9 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import remarkToc from "remark-toc";
 import pagefind from "astro-pagefind";
+// import highlightMD from "../bin/highlight-md.js";
+
+// import { remarkReadingTime } from "./src/lib/ remark-reading-time.mjs";
 
 const SITE_URL = process.env.SITE_URL || "http://localhost:4321";
 const tina = ({ directiveName = "tina" } = {}) => ({
@@ -35,7 +38,8 @@ export default defineConfig({
   // },
   markdown: {
     // Applied to .md and .mdx files
-    remarkPlugins: [remarkToc],
+    // remarkPlugins: [remarkToc],
+    // remarkPlugins: [remarkToc, highlightMD],
     // rehypePlugins: [rehypeAccessibleEmojis],
   },
   integrations: [
