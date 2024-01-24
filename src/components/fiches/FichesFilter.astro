@@ -14,16 +14,18 @@ const styles = datas.map((item) => {
 });
 ---
 
-<h2 class="font-black">Filters</h2>
-<ul class="grid grid-cols-3 gap-3">
+<h2 class="font-black">Catégories</h2>
+<ul
+  class="grid grid-cols-1 gap-3 rounded border border-primary p-4 sm:grid-cols-3"
+>
   {
     datas.map((item) => {
       return (
         <div>
-          <li class="font-black">
+          <li class="mb-2 font-black">
             {capitalizeFirstLetter(item.name?.replaceAll("_", " "))}
           </li>
-          <ul>
+          <ul class="flex flex-col gap-1">
             {item.values.map((child) => {
               return (
                 <li>

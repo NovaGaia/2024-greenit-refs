@@ -12,6 +12,20 @@ const t = useTranslations(lang);
 const entries = await getCollectionByLang("fiches", lang);
 const datas = [
   {
+    name: "lifecycle",
+    values: [
+      "Analyse des besoins",
+      "Installation",
+      "Conception & Design",
+      "Intégration & Développement",
+      "Contenu & médias",
+      "Tests & validation",
+      "Mise en ligne",
+      "Maintenance",
+      "Fin de vie",
+    ],
+  },
+  {
     name: "scope",
     values: [
       "Cache",
@@ -24,20 +38,6 @@ const datas = [
       "Stockage",
       "Thèmes",
       "Vidéos/Audios",
-    ],
-  },
-  {
-    name: "lifecycle",
-    values: [
-      "Analyse des besoins",
-      "Installation",
-      "Conception & Design",
-      "Intégration & Développement",
-      "Contenu & médias",
-      "Tests & validation",
-      "Mise en ligne",
-      "Maintenance",
-      "Fin de vie",
     ],
   },
   {
