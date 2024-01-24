@@ -131,11 +131,11 @@ const translatePath = useTranslatedPath(lang);
   </div>
 </header>
 <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
-<style>
-  nav {
+<style is:global>
+  /* nav {
     display: grid;
     place-items: center;
-  }
+  } */
 
   .pagefind-ui {
     --pagefind-ui-scale: 0.75;
