@@ -131,7 +131,7 @@ const translatePath = useTranslatedPath(lang);
   </div>
 </header>
 <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
-<style is:global>
+<style>
   nav {
     display: grid;
     place-items: center;
@@ -147,7 +147,7 @@ const translatePath = useTranslatedPath(lang);
     --pagefind-ui-font: sans-serif;
 
     /* width: 50%; */
-    @apply container mx-auto;
+    @apply container mx-auto lg:max-w-5xl;
   }
 
   .pagefind-ui.yellow {
