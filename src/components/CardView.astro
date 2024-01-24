@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { slugify } from "@js/utils";
 import type { CollectionEntry } from "astro:content";
 import Card from "./Card";
 
@@ -35,7 +36,9 @@ const {
 const [entry_lang, ...entry_slug] = entry.slug.split("/");
 ---
 
-<li class="box interactive mb-4 border-neutral-transparent py-2 md:py-6">
+<li
+  class="tohide box interactive mb-4 border-neutral-transparent py-2 transition-all md:py-6"
+>
   <a
     href={`${entry_slug}`}
     class:list={[
@@ -51,7 +54,11 @@ const [entry_lang, ...entry_slug] = entry.slug.split("/");
   >
     {
       type === Card.FICHES ? (
-        <section class="mb-0 mt-0 text-lg font-bold text-neutral md:grid md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-2">
+        <div
+          class="mb-0 mt-0 text-lg font-bold text-neutral md:grid md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-2"
+          data-lifecycle={slugify(entry.data.lifecycle)}
+          data-scope={slugify(entry.data.scope)}
+        >
           <h2 class="m-0 flex flex-row items-start text-lg font-bold text-neutral md:col-span-1 md:row-span-2">
             <span class="badge mr-2 whitespace-nowrap border-primary bg-primary">
               {t("refName.min")} {entry.data.refID}
@@ -93,7 +100,7 @@ const [entry_lang, ...entry_slug] = entry.slug.split("/");
               {entry.data.scope}
             </span>
           </div>
-        </section>
+        </div>
       ) : (
         <h3 class="mt-0">{entry.data.title}</h3>
       )

@@ -3,24 +3,74 @@ import Card from "@components/Card";
 import { getCollectionByLang } from "@contentConfig";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import CardView from "../CardView.astro";
+import FichesFilter from "./FichesFilter.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 // const props = Astro.props;
 const entries = await getCollectionByLang("fiches", lang);
+const datas = [
+  {
+    name: "scope",
+    values: [
+      "Cache",
+      "Documents",
+      "Fonctionnalités",
+      "Front-office",
+      "Hébergement",
+      "Images",
+      "Sécurité",
+      "Stockage",
+      "Thèmes",
+      "Vidéos/Audios",
+    ],
+  },
+  {
+    name: "lifecycle",
+    values: [
+      "Analyse des besoins",
+      "Installation",
+      "Conception & Design",
+      "Intégration & Développement",
+      "Contenu & médias",
+      "Tests & validation",
+      "Mise en ligne",
+      "Maintenance",
+      "Fin de vie",
+    ],
+  },
+  {
+    name: "saved_resources",
+    values: [
+      "Processeur",
+      "Mémoire vive",
+      "Stockage",
+      "Réseau",
+      "Requêtes",
+      "Déchets électroniques",
+      "Consommation électrique",
+      "Émissions de gaz à effet de serre",
+    ],
+  },
+];
 ---
 
-<h1>{t("fiches.title")}</h1>
-{/* filters */}
-<ul class="wp-list" data-pagefind-ignore>
-  {
-    entries.map((entry) => (
-      <CardView
-        display={Card.VERTICAL_LAYOUT}
-        type={Card.FICHES}
-        entry={entry}
-      />
-    ))
-  }
-</ul>
+<div class="group">
+  <h1>{t("fiches.title")}</h1>
+  {/* filters */}
+  <FichesFilter datas={datas} />
+
+  {/* cards */}
+  <ul class="wp-list" data-pagefind-ignore>
+    {
+      entries.map((entry) => (
+        <CardView
+          display={Card.VERTICAL_LAYOUT}
+          type={Card.FICHES}
+          entry={entry}
+        />
+      ))
+    }
+  </ul>
+</div>

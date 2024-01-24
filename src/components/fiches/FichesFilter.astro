@@ -1,0 +1,53 @@
+---
+import { capitalizeFirstLetter } from "@i18n/utils";
+import { slugify } from "@js/utils";
+
+const { datas } = Astro.props;
+const styles = datas.map((item) => {
+  return item.values.map((child) => {
+    return `.group:has(#cb_${slugify(item.name)}_${slugify(child)}:checked)
+                    .tohide:not(:has([data-${slugify(item.name)}="${slugify(child)}"])) {
+                    animation: slideaway 200ms;
+                    display: none;
+                }`;
+  });
+});
+---
+
+<h2 class="font-black">Filters</h2>
+<ul class="grid grid-cols-3 gap-3">
+  {
+    datas.map((item) => {
+      return (
+        <div>
+          <li class="font-black">
+            {capitalizeFirstLetter(item.name?.replaceAll("_", " "))}
+          </li>
+          <ul>
+            {item.values.map((child) => {
+              return (
+                <li>
+                  <input
+                    id={`cb_${slugify(item.name)}_${slugify(child)}`}
+                    type="checkbox"
+                    value={slugify(child)}
+                  />
+                  <label for={`cb_${slugify(item.name)}_${slugify(child)}`}>
+                    {child}
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    })
+  }
+  <style id="filter_styles" is:inline></style>
+</ul>
+<script define:vars={{ styles: styles }}>
+  //   console.log(JSON.stringify(styles, null, 2));
+  document.getElementById("filter_styles").innerHTML = styles
+    .join("\n")
+    .replaceAll(",", "\n");
+</script>
