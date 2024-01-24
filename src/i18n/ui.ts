@@ -15,18 +15,24 @@ export const defaultLang = "fr";
 
 export const ui = {
   es: {
-    "nav.baseline": "Mejores prácticas de ecodiseño para WordPress",
+    "seo.site_name": "Mejores prácticas de ecodiseño para WordPress",
     "nav.back.home": "Regreso a casa",
-    "nav.fiches": "Mejores prácticas",
-    "nav.lexique": "Léxico",
-    "nav.contrib": "Contribuir",
+    "nav.fiches.title": "Mejores prácticas",
+    "nav.fiches.label": "Mejores prácticas",
+    "nav.lexique.title": "Léxico",
+    "nav.lexique.label": "Léxico",
+    "nav.contrib.title": "Contribuir",
+    "nav.contrib.label": "Contribuir",
   },
   en: {
-    "nav.baseline": "Ecodesign best practices for WordPress",
+    "seo.site_name": "Ecodesign best practices for WordPress",
     "nav.back.home": "Back to home",
-    "nav.fiches": "Best practices",
-    "nav.lexique": "Lexicon",
-    "nav.contrib": "Contribute",
+    "nav.fiches.title": "Best practices",
+    "nav.fiches.label": "Best practices",
+    "nav.lexique.title": "Lexicon",
+    "nav.lexique.label": "Lexicon",
+    "nav.contrib.title": "Contribute",
+    "nav.contrib.label": "Contribute",
   },
   fr: {
     // global
