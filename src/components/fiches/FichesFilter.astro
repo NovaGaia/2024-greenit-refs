@@ -42,6 +42,18 @@ const getDatas = async () => {
     datas.forEach((data) => {
       data.values = [...new Set(data.values)];
     });
+    // trie des valeurs par ordre alphabétique
+    datas.forEach((data) => {
+      data.values.sort((a, b) => {
+        if (a < b) {
+          return -1;
+        }
+        if (b < a) {
+          return 1;
+        }
+        return 0;
+      });
+    });
   });
 };
 
