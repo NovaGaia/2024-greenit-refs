@@ -2,6 +2,7 @@
 import Card from "@components/Card";
 import { getCollectionByLang } from "@contentConfig";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import type { CollectionEntry } from "astro:content";
 import CardView from "../CardView.astro";
 import FichesFilter from "./FichesFilter.astro";
 
@@ -9,57 +10,16 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 // const props = Astro.props;
-const entries = await getCollectionByLang("fiches", lang);
-const datas = [
-  {
-    name: "lifecycle",
-    values: [
-      "Analyse des besoins",
-      "Installation",
-      "Conception & Design",
-      "Intégration & Développement",
-      "Contenu & médias",
-      "Tests & validation",
-      "Mise en ligne",
-      "Maintenance",
-      "Fin de vie",
-    ],
-  },
-  {
-    name: "scope",
-    values: [
-      "Cache",
-      "Documents",
-      "Fonctionnalités",
-      "Front-office",
-      "Hébergement",
-      "Images",
-      "Sécurité",
-      "Stockage",
-      "Thèmes",
-      "Vidéos/Audios",
-    ],
-  },
-  {
-    name: "saved_resources",
-    values: [
-      "Processeur",
-      "Mémoire vive",
-      "Stockage",
-      "Réseau",
-      "Requêtes",
-      "Déchets électroniques",
-      "Consommation électrique",
-      "Émissions de gaz à effet de serre",
-    ],
-  },
-];
+const entries: CollectionEntry<"fiches">[] = await getCollectionByLang(
+  "fiches",
+  lang,
+);
 ---
 
 <div class="group flex flex-col gap-4">
   <h1>{t("fiches.title")}</h1>
   {/* filters */}
-  <FichesFilter datas={datas} />
+  {entries && <FichesFilter />}
 
   {/* cards */}
   <ul class="wp-list" data-pagefind-ignore>

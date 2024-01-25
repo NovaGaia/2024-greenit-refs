@@ -273,17 +273,56 @@ var fiches = {
       name: "scope",
       label: "Scope",
       required: true,
+      // répercuter ces changements dans src/components/fiches/FichesFilter.astro et dans src/i18n/ui.ts
       options: [
-        "Cache",
-        "Documents",
-        "Fonctionnalit\xE9s",
-        "Front-office",
-        "H\xE9bergement",
-        "Images",
-        "S\xE9curit\xE9",
-        "Stockage",
-        "Th\xE8mes",
-        "Vid\xE9os/Audios"
+        {
+          value: "cache",
+          label: "Cache"
+        },
+        {
+          value: "documents",
+          label: "Documents"
+        },
+        {
+          value: "features",
+          label: "Fonctionnalit\xE9s"
+        },
+        {
+          value: "images",
+          label: "Images"
+        },
+        {
+          value: "front-office",
+          label: "Front-office"
+        },
+        {
+          value: "hosting",
+          label: "H\xE9bergement"
+        },
+        {
+          value: "performance",
+          label: "Performance"
+        },
+        {
+          value: "security",
+          label: "S\xE9curit\xE9"
+        },
+        {
+          value: "seo",
+          label: "SEO"
+        },
+        {
+          value: "storage",
+          label: "Stockage"
+        },
+        {
+          value: "themes",
+          label: "Th\xE8mes"
+        },
+        {
+          value: "videos-sounds",
+          label: "Vid\xE9os/Audios"
+        }
       ]
     },
     {
@@ -292,11 +331,24 @@ var fiches = {
       label: "Responsible(s)",
       list: true,
       required: true,
+      // répercuter ces changements dans src/i18n/ui.ts
       options: [
-        "Code(use\xB7ur) \u2192 D\xE9veloppeu\xB7se\xB7r",
-        "Designeu(se\xB7r)",
-        "Low-code \u2192 Freelance et d\xE9veloppeur Front-End d'agences",
-        "No-code \u2192 Madame et Monsieur tout le monde"
+        {
+          value: "developer",
+          label: "Code(use\xB7ur) \u2192 D\xE9veloppeu\xB7se\xB7r"
+        },
+        {
+          value: "designer",
+          label: "Designeu(se\xB7r)"
+        },
+        {
+          value: "lowcode",
+          label: "Low-code \u2192 Freelance et d\xE9veloppeur Front-End d'agences"
+        },
+        {
+          value: "nocode",
+          label: "No-code \u2192 Madame et Monsieur tout le monde"
+        }
       ]
     },
     {
@@ -304,16 +356,44 @@ var fiches = {
       name: "lifecycle",
       label: "Lifecycle",
       required: true,
+      // répercuter ces changements dans src/components/fiches/FichesFilter.astro et dans src/i18n/ui.ts
       options: [
-        "Analyse des besoins",
-        "Installation",
-        "Conception & Design",
-        "Int\xE9gration & D\xE9veloppement",
-        "Contenu & m\xE9dias",
-        "Tests & validation",
-        "Mise en ligne",
-        "Maintenance",
-        "Fin de vie"
+        {
+          value: "1-analyse-of-needs",
+          label: "1. Analyse des besoins"
+        },
+        {
+          value: "2-installation",
+          label: "2. Installation"
+        },
+        {
+          value: "3-conception-design",
+          label: "3. Conception & Design"
+        },
+        {
+          value: "4-integration-development",
+          label: "4. Int\xE9gration & D\xE9veloppement"
+        },
+        {
+          value: "5-content-media",
+          label: "5. Contenu & m\xE9dias"
+        },
+        {
+          value: "6-tests-validation",
+          label: "6. Tests & validation"
+        },
+        {
+          value: "7-online",
+          label: "7. Mise en ligne"
+        },
+        {
+          value: "8-maintenance",
+          label: "8. Maintenance"
+        },
+        {
+          value: "9-end-of-life",
+          label: "9. Fin de vie"
+        }
       ]
     },
     {
@@ -321,6 +401,7 @@ var fiches = {
       name: "priority_implementation",
       label: "Priority implementation",
       required: true,
+      // répercuter ces changements dans src/i18n/ui.ts
       options: ["Fort \u{1F44D}\u{1F44D}\u{1F44D}", "Moyen \u{1F44D}\u{1F44D}", "Faible \u{1F44D}"]
     },
     {
@@ -328,6 +409,7 @@ var fiches = {
       name: "environmental_impact",
       label: "Environmental impact",
       required: true,
+      // répercuter ces changements dans src/i18n/ui.ts
       options: ["Fort \u{1F331}\u{1F331}\u{1F331}", "Moyen \u{1F331}\u{1F331}", "Faible \u{1F331}"]
     },
     {
@@ -336,15 +418,40 @@ var fiches = {
       label: "Saved resource(s)",
       list: true,
       required: true,
+      // répercuter ces changements dans src/components/fiches/FichesFilter.astro et dans src/i18n/ui.ts
       options: [
-        "Processeur",
-        "M\xE9moire vive",
-        "Stockage",
-        "R\xE9seau",
-        "Requ\xEAtes",
-        "D\xE9chets \xE9lectroniques",
-        "Consommation \xE9lectrique",
-        "\xC9missions de gaz \xE0 effet de serre"
+        {
+          value: "cpu",
+          label: "Processeur"
+        },
+        {
+          value: "ram",
+          label: "M\xE9moire vive"
+        },
+        {
+          value: "storage",
+          label: "Stockage"
+        },
+        {
+          value: "network",
+          label: "R\xE9seau"
+        },
+        {
+          value: "queries",
+          label: "Requ\xEAtes"
+        },
+        {
+          value: "e-waste",
+          label: "D\xE9chets \xE9lectroniques"
+        },
+        {
+          value: "electricity",
+          label: "Consommation \xE9lectrique"
+        },
+        {
+          value: "ghg",
+          label: "\xC9missions de gaz \xE0 effet de serre"
+        }
       ]
     },
     titleField("Corps de la fiche"),

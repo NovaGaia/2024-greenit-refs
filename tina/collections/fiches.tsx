@@ -45,17 +45,56 @@ const fiches: Collection = {
       name: "scope",
       label: "Scope",
       required: true,
+      // répercuter ces changements dans src/components/fiches/FichesFilter.astro et dans src/i18n/ui.ts
       options: [
-        "Cache",
-        "Documents",
-        "Fonctionnalités",
-        "Front-office",
-        "Hébergement",
-        "Images",
-        "Sécurité",
-        "Stockage",
-        "Thèmes",
-        "Vidéos/Audios",
+        {
+          value: "cache",
+          label: "Cache",
+        },
+        {
+          value: "documents",
+          label: "Documents",
+        },
+        {
+          value: "features",
+          label: "Fonctionnalités",
+        },
+        {
+          value: "images",
+          label: "Images",
+        },
+        {
+          value: "front-office",
+          label: "Front-office",
+        },
+        {
+          value: "hosting",
+          label: "Hébergement",
+        },
+        {
+          value: "performance",
+          label: "Performance",
+        },
+        {
+          value: "security",
+          label: "Sécurité",
+        },
+        {
+          value: "seo",
+          label: "SEO",
+        },
+        {
+          value: "storage",
+          label: "Stockage",
+        },
+        {
+          value: "themes",
+          label: "Thèmes",
+        },
+        {
+          value: "videos-sounds",
+          label: "Vidéos/Audios",
+        },
       ],
     },
     {
@@ -64,11 +103,24 @@ const fiches: Collection = {
       label: "Responsible(s)",
       list: true,
       required: true,
+      // répercuter ces changements dans src/i18n/ui.ts
       options: [
-        "Code(use·ur) → Développeu·se·r",
-        "Designeu(se·r)",
-        "Low-code → Freelance et développeur Front-End d'agences",
-        "No-code → Madame et Monsieur tout le monde",
+        {
+          value: "developer",
+          label: "Code(use·ur) → Développeu·se·r",
+        },
+        {
+          value: "designer",
+          label: "Designeu(se·r)",
+        },
+        {
+          value: "lowcode",
+          label: "Low-code → Freelance et développeur Front-End d'agences",
+        },
+        {
+          value: "nocode",
+          label: "No-code → Madame et Monsieur tout le monde",
+        },
       ],
     },
     {
@@ -76,16 +128,44 @@ const fiches: Collection = {
       name: "lifecycle",
       label: "Lifecycle",
       required: true,
+      // répercuter ces changements dans src/components/fiches/FichesFilter.astro et dans src/i18n/ui.ts
       options: [
-        "Analyse des besoins",
-        "Installation",
-        "Conception & Design",
-        "Intégration & Développement",
-        "Contenu & médias",
-        "Tests & validation",
-        "Mise en ligne",
-        "Maintenance",
-        "Fin de vie",
+        {
+          value: "1-analyse-of-needs",
+          label: "1. Analyse des besoins",
+        },
+        {
+          value: "2-installation",
+          label: "2. Installation",
+        },
+        {
+          value: "3-conception-design",
+          label: "3. Conception & Design",
+        },
+        {
+          value: "4-integration-development",
+          label: "4. Intégration & Développement",
+        },
+        {
+          value: "5-content-media",
+          label: "5. Contenu & médias",
+        },
+        {
+          value: "6-tests-validation",
+          label: "6. Tests & validation",
+        },
+        {
+          value: "7-online",
+          label: "7. Mise en ligne",
+        },
+        {
+          value: "8-maintenance",
+          label: "8. Maintenance",
+        },
+        {
+          value: "9-end-of-life",
+          label: "9. Fin de vie",
+        },
       ],
     },
     {
@@ -93,6 +173,7 @@ const fiches: Collection = {
       name: "priority_implementation",
       label: "Priority implementation",
       required: true,
+      // répercuter ces changements dans src/i18n/ui.ts
       options: ["Fort 👍👍👍", "Moyen 👍👍", "Faible 👍"],
     },
     {
@@ -100,6 +181,7 @@ const fiches: Collection = {
       name: "environmental_impact",
       label: "Environmental impact",
       required: true,
+      // répercuter ces changements dans src/i18n/ui.ts
       options: ["Fort 🌱🌱🌱", "Moyen 🌱🌱", "Faible 🌱"],
     },
     {
@@ -108,15 +190,40 @@ const fiches: Collection = {
       label: "Saved resource(s)",
       list: true,
       required: true,
+      // répercuter ces changements dans src/components/fiches/FichesFilter.astro et dans src/i18n/ui.ts
       options: [
-        "Processeur",
-        "Mémoire vive",
-        "Stockage",
-        "Réseau",
-        "Requêtes",
-        "Déchets électroniques",
-        "Consommation électrique",
-        "Émissions de gaz à effet de serre",
+        {
+          value: "cpu",
+          label: "Processeur",
+        },
+        {
+          value: "ram",
+          label: "Mémoire vive",
+        },
+        {
+          value: "storage",
+          label: "Stockage",
+        },
+        {
+          value: "network",
+          label: "Réseau",
+        },
+        {
+          value: "queries",
+          label: "Requêtes",
+        },
+        {
+          value: "e-waste",
+          label: "Déchets électroniques",
+        },
+        {
+          value: "electricity",
+          label: "Consommation électrique",
+        },
+        {
+          value: "ghg",
+          label: "Émissions de gaz à effet de serre",
+        },
       ],
     },
     titleField("Corps de la fiche"),

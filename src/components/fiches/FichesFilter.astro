@@ -1,13 +1,103 @@
 ---
-import { capitalizeFirstLetter } from "@i18n/utils";
+import { getCollectionByLang } from "@contentConfig";
+import { capitalizeFirstLetter, getLangFromUrl } from "@i18n/utils";
 import { slugify } from "@js/utils";
 import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
 
-const { datas } = Astro.props;
-const styles = datas.map((item) => {
+const datas: any[] = [];
+const lang = getLangFromUrl(Astro.url);
+let entries: CollectionEntry<"fiches">[] = [];
+
+const getDatas = async () => {
+  entries = await getCollectionByLang("fiches", lang);
+
+  entries.forEach((entry) => {
+    Object.keys(entry.data).forEach((key) => {
+      if (key === "lifecycle" || key === "scope" || key === "saved_resources") {
+        if (!datas.find((data) => data.name === key)) {
+          datas.push({
+            name: key,
+            values: [],
+          });
+        }
+        if (
+          !datas
+            .find((data) => data.name === key)
+            .values.includes(entry.data[key])
+        ) {
+          if (Array.isArray(entry.data[key])) {
+            datas
+              .find((data) => data.name === key)
+              .values.push(...entry.data[key]);
+          } else {
+            datas
+              .find((data) => data.name === key)
+              .values.push(entry.data[key]);
+          }
+        }
+      }
+    });
+    // netoyage des valeurs en double
+    datas.forEach((data) => {
+      data.values = [...new Set(data.values)];
+    });
+  });
+};
+
+await getDatas();
+
+const styleDatas = [
+  {
+    name: "lifecycle",
+    values: [
+      "1-analyse-of-needs",
+      "2-installation",
+      "3-conception-design",
+      "4-integration-development",
+      "5-content-media",
+      "6-tests-validation",
+      "7-online",
+      "8-maintenance",
+      "9-end-of-life",
+    ],
+  },
+  {
+    name: "scope",
+    values: [
+      "cache",
+      "documents",
+      "features",
+      "images",
+      "front-office",
+      "hosting",
+      "performance",
+      "security",
+      "seo",
+      "storage",
+      "themes",
+      "videos-sounds",
+    ],
+  },
+  {
+    name: "saved_resources",
+    values: [
+      "cpu",
+      "ram",
+      "storage",
+      "network",
+      "Requêtes",
+      "queries",
+      "e-waste",
+      "electricity",
+      "ghg",
+    ],
+  },
+];
+const styles = styleDatas.map((item) => {
   return item.values.map((child) => {
     return `.group:has(#cb_${slugify(item.name)}_${slugify(child)}:checked)
-                    .tohide:not(:has([data-${slugify(item.name)}="${slugify(child)}"])) {
+                    .tohide:not(:has([data-${slugify(item.name)}*="${slugify(child)}"])) {
                     animation: slideaway 200ms;
                     display: none;
                 }`;
@@ -79,7 +169,6 @@ const styles = datas.map((item) => {
   <style id="filter_styles" is:inline></style>
 </section>
 <script define:vars={{ styles: styles }}>
-  //   console.log(JSON.stringify(styles, null, 2));
   document.getElementById("filter_styles").innerHTML = styles
     .join("\n")
     .replaceAll(",", "\n");

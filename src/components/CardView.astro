@@ -58,6 +58,7 @@ const [entry_lang, ...entry_slug] = entry.slug.split("/");
           class="mb-0 mt-0 text-lg font-bold text-neutral md:grid md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-2"
           data-lifecycle={slugify(entry.data.lifecycle)}
           data-scope={slugify(entry.data.scope)}
+          data-saved_resources={slugify(entry.data.saved_resources.join(" "))}
         >
           <h2 class="m-0 flex flex-row items-start text-lg font-bold text-neutral md:col-span-1 md:row-span-2">
             <span class="badge mr-2 whitespace-nowrap border-primary bg-primary">
