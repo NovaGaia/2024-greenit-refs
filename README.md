@@ -1,47 +1,86 @@
-# Astro Starter Kit: Minimal
+# Gestion de référentiels GreenIT
 
-```sh
-npm create astro@latest -- --template minimal
+![GreenIT](./src/assets/logo-asso.png)
+
+## Présentation
+
+Ce projet est un template de site pour gérer les référentiels du collectif.
+
+Il utilise cette stack :
+
+- [Astro](https://astro.build/)
+- [TinaCMS](https://tinacms.org/)
+- [Devcontainer](https://code.visualstudio.com/docs/remote/containers)
+- [TailwindCSS](https://tailwindcss.com/)
+
+## Astro
+
+Il sert à générer le site front servant les fiches.
+
+C'est un site static.
+
+## TinaCMS
+
+C'est le CMS qui sert à gérer les fiches. Il tourne en local et permet de modifier les fiches en markdown.
+
+Vous pourrez éditer les fiches en français, anglais et espagnol.
+
+Ce CMS permet aussi d'ajouter des médias aux fiches.
+
+## Devcontainer
+
+C'est un container docker qui permet de lancer le site Astro et TinaCMS.
+
+## TailwindCSS
+
+C'est un framework CSS qui permet de gérer le style du site.
+
+## Installation
+
+### Prérequis
+
+- [Docker](https://www.docker.com/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+### Installation
+
+1. Cloner le projet
+2. Ouvrir le projet dans Visual Studio Code
+3. Ouvrir le dossier dans un container
+4. Lancer le container
+5. Ouvrir un terminal dans le container
+6. Installer les dépendances
+
+```bash
+npm install
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+> Il n'y a pas besoin de fichier de configuration `.env`.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Lancement
 
-## 🚀 Project Structure
+Lancer le site Astro et TinaCMS
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- Pour voir le site : [http://localhost:4321/ref](http://localhost:4321/ref)
+- Pour voir TinaCMS : [http://localhost:4321/ref/admin/index.html](http://localhost:4321/ref/admin/index.html)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Ajout ou modification d'une fiche
 
-Any static assets, like images, can be placed in the `public/` directory.
+Dans VSCode, créez une nouvelle branche à partir de la branche `main`.
 
-## 🧞 Commands
+Dans TinaCMS, ajoutez ou modifiez une fiche.
 
-All commands are run from the root of the project, from a terminal:
+Une fois les modifications terminées, créez un commit et un push.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Créez une pull request et demandez une revue.
 
-## 👀 Want to learn more?
+### Déploiement
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+TinaCMS est un CMS qui se lance en local. Il n'est pas possible de déployer directement. Tout sera géré par GitHub.
+
+Le site est déployé sur infomaniak quand il y un merge sur la branch `main`.
