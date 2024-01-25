@@ -1,6 +1,7 @@
 ---
 import { capitalizeFirstLetter } from "@i18n/utils";
 import { slugify } from "@js/utils";
+import { Icon } from "astro-icon/components";
 
 const { datas } = Astro.props;
 const styles = datas.map((item) => {
@@ -14,39 +15,69 @@ const styles = datas.map((item) => {
 });
 ---
 
-<h2 class="font-black">Catégories</h2>
-<ul
-  class="grid grid-cols-1 gap-3 rounded border border-primary p-4 sm:grid-cols-3"
->
-  {
-    datas.map((item) => {
-      return (
-        <div>
-          <li class="mb-2 font-black">
-            {capitalizeFirstLetter(item.name?.replaceAll("_", " "))}
-          </li>
-          <ul class="flex flex-col gap-1">
-            {item.values.map((child) => {
-              return (
-                <li>
-                  <input
-                    id={`cb_${slugify(item.name)}_${slugify(child)}`}
-                    type="checkbox"
-                    value={slugify(child)}
-                  />
-                  <label for={`cb_${slugify(item.name)}_${slugify(child)}`}>
-                    {child}
-                  </label>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      );
-    })
-  }
+<section class="group flex flex-col gap-4">
+  <div class="grid-cols-1 sm:col-span-3">
+    <label
+      for="filter-state"
+      role="button"
+      class="btn btn-outline inline-flex items-center gap-2 p-3"
+    >
+      <span>
+        <span class="inline group-has-[#filter-state:checked]:hidden"
+          >Afficher</span
+        ><span class="hidden group-has-[#filter-state:checked]:inline"
+          >Masquer</span
+        > les filtres
+      </span>
+      <input id="filter-state" type="checkbox" class="hidden" />
+      <Icon
+        name="tabler:circle-chevron-right"
+        class="inline group-has-[#filter-state:checked]:hidden"
+        width={24}
+        height={24}
+      />
+      <Icon
+        name="tabler:circle-chevron-down"
+        class="hidden group-has-[#filter-state:checked]:inline"
+        width={24}
+        height={24}
+      />
+    </label>
+  </div>
+  <div
+    class="hidden grid-cols-1 gap-3 rounded border border-primary p-4 group-has-[#filter-state:checked]:grid sm:grid-cols-3"
+  >
+    <div class="col-span-3 hidden"><h2 class="font-black">Catégories</h2></div>
+    {
+      datas.map((item) => {
+        return (
+          <div>
+            <p class="mb-2 font-black">
+              {capitalizeFirstLetter(item.name?.replaceAll("_", " "))}
+            </p>
+            <ul class="flex flex-col gap-1">
+              {item.values.map((child) => {
+                return (
+                  <li>
+                    <input
+                      id={`cb_${slugify(item.name)}_${slugify(child)}`}
+                      type="checkbox"
+                      value={slugify(child)}
+                    />
+                    <label for={`cb_${slugify(item.name)}_${slugify(child)}`}>
+                      {child}
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })
+    }
+  </div>
   <style id="filter_styles" is:inline></style>
-</ul>
+</section>
 <script define:vars={{ styles: styles }}>
   //   console.log(JSON.stringify(styles, null, 2));
   document.getElementById("filter_styles").innerHTML = styles
