@@ -20,7 +20,7 @@ if (!images[props.src])
     `"${props.src}" does not exist in glob: "src/assets/**/*.{jpeg,jpg,png,gif,svg}"`,
   );
 const image = await images[props.src]();
-const sizes = responsiveSequence(400, props.width || 1600);
+const sizes = responsiveSequence(400, props.width || 730);
 ---
 
 {
