@@ -1,6 +1,7 @@
 ---
 import Seo from "@components/Seo.astro";
 import PersonnaView from "@components/personnas/PersonnaView.astro";
+import { TinaReactHelper } from "@components/tinacms/react";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
 import client from "@tina/__generated__/client";
@@ -64,6 +65,11 @@ const t = useTranslations(lang);
 ---
 
 <Base>
+  {
+    response && (
+      <TinaReactHelper client:tina client:only tina={response} entry={entry} />
+    )
+  }
   <Seo title="<Personnas>" slot="seo" />
   <PersonnaView>
     <Content />

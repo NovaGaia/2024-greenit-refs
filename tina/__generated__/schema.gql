@@ -59,21 +59,18 @@ type Query {
   lexiqueConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: LexiqueFilter): LexiqueConnection!
   personnas(relativePath: String): Personnas!
   personnasConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PersonnasFilter): PersonnasConnection!
-  mentionsLegales(relativePath: String): MentionsLegales!
-  mentionsLegalesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: MentionsLegalesFilter): MentionsLegalesConnection!
   home(relativePath: String): Home!
   homeConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomeFilter): HomeConnection!
-  siteData(relativePath: String): SiteData!
-  siteDataConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SiteDataFilter): SiteDataConnection!
+  mentionsLegales(relativePath: String): MentionsLegales!
+  mentionsLegalesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: MentionsLegalesFilter): MentionsLegalesConnection!
 }
 
 input DocumentFilter {
   fiches: FichesFilter
   lexique: LexiqueFilter
   personnas: PersonnasFilter
-  mentionsLegales: MentionsLegalesFilter
   home: HomeFilter
-  siteData: SiteDataFilter
+  mentionsLegales: MentionsLegalesFilter
 }
 
 type DocumentConnectionEdges {
@@ -99,7 +96,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Fiches | Lexique | Personnas | MentionsLegales | Home | SiteData | Folder
+union DocumentNode = Fiches | Lexique | Personnas | Home | MentionsLegales | Folder
 
 type FichesValidations {
   rule: String
@@ -275,42 +272,6 @@ type PersonnasConnection implements Connection {
   edges: [PersonnasConnectionEdges]
 }
 
-type MentionsLegales implements Node & Document {
-  _warning: String
-  title: String!
-  createdAt: String
-  updatedAt: String
-  language: String!
-  published: Boolean!
-  _corps_de_la_fiche: String
-  body: JSON!
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input MentionsLegalesFilter {
-  _warning: StringFilter
-  title: StringFilter
-  createdAt: DatetimeFilter
-  updatedAt: DatetimeFilter
-  language: StringFilter
-  published: BooleanFilter
-  _corps_de_la_fiche: StringFilter
-  body: RichTextFilter
-}
-
-type MentionsLegalesConnectionEdges {
-  cursor: String!
-  node: MentionsLegales
-}
-
-type MentionsLegalesConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [MentionsLegalesConnectionEdges]
-}
-
 type Home implements Node & Document {
   _warning: String
   title: String!
@@ -347,75 +308,40 @@ type HomeConnection implements Connection {
   edges: [HomeConnectionEdges]
 }
 
-type SiteDataImage {
-  url: String!
-  alt: String!
-}
-
-type SiteDataNetworks {
-  url: String!
-  title: String!
-  icon: String!
-}
-
-type SiteData implements Node & Document {
+type MentionsLegales implements Node & Document {
   _warning: String
-  _seo: String
   title: String!
-  description: String
-  titleTemplate: String
-  twitterUsername: String
-  fbPageUrl: String
-  image: SiteDataImage
-  _footer: String
-  informations: JSON
-  networks: [SiteDataNetworks]
+  createdAt: String
+  updatedAt: String
+  language: String!
+  published: Boolean!
+  _corps_de_la_fiche: String
+  body: JSON!
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input ImageFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
-input SiteDataImageFilter {
-  url: ImageFilter
-  alt: StringFilter
-}
-
-input SiteDataNetworksFilter {
-  url: StringFilter
-  title: StringFilter
-  icon: StringFilter
-}
-
-input SiteDataFilter {
+input MentionsLegalesFilter {
   _warning: StringFilter
-  _seo: StringFilter
   title: StringFilter
-  description: StringFilter
-  titleTemplate: StringFilter
-  twitterUsername: StringFilter
-  fbPageUrl: StringFilter
-  image: SiteDataImageFilter
-  _footer: StringFilter
-  informations: RichTextFilter
-  networks: SiteDataNetworksFilter
+  createdAt: DatetimeFilter
+  updatedAt: DatetimeFilter
+  language: StringFilter
+  published: BooleanFilter
+  _corps_de_la_fiche: StringFilter
+  body: RichTextFilter
 }
 
-type SiteDataConnectionEdges {
+type MentionsLegalesConnectionEdges {
   cursor: String!
-  node: SiteData
+  node: MentionsLegales
 }
 
-type SiteDataConnection implements Connection {
+type MentionsLegalesConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [SiteDataConnectionEdges]
+  edges: [MentionsLegalesConnectionEdges]
 }
 
 type Mutation {
@@ -429,21 +355,18 @@ type Mutation {
   createLexique(relativePath: String!, params: LexiqueMutation!): Lexique!
   updatePersonnas(relativePath: String!, params: PersonnasMutation!): Personnas!
   createPersonnas(relativePath: String!, params: PersonnasMutation!): Personnas!
-  updateMentionsLegales(relativePath: String!, params: MentionsLegalesMutation!): MentionsLegales!
-  createMentionsLegales(relativePath: String!, params: MentionsLegalesMutation!): MentionsLegales!
   updateHome(relativePath: String!, params: HomeMutation!): Home!
   createHome(relativePath: String!, params: HomeMutation!): Home!
-  updateSiteData(relativePath: String!, params: SiteDataMutation!): SiteData!
-  createSiteData(relativePath: String!, params: SiteDataMutation!): SiteData!
+  updateMentionsLegales(relativePath: String!, params: MentionsLegalesMutation!): MentionsLegales!
+  createMentionsLegales(relativePath: String!, params: MentionsLegalesMutation!): MentionsLegales!
 }
 
 input DocumentUpdateMutation {
   fiches: FichesMutation
   lexique: LexiqueMutation
   personnas: PersonnasMutation
-  mentionsLegales: MentionsLegalesMutation
   home: HomeMutation
-  siteData: SiteDataMutation
+  mentionsLegales: MentionsLegalesMutation
   relativePath: String
 }
 
@@ -451,9 +374,8 @@ input DocumentMutation {
   fiches: FichesMutation
   lexique: LexiqueMutation
   personnas: PersonnasMutation
-  mentionsLegales: MentionsLegalesMutation
   home: HomeMutation
-  siteData: SiteDataMutation
+  mentionsLegales: MentionsLegalesMutation
 }
 
 input FichesValidationsMutation {
@@ -504,17 +426,6 @@ input PersonnasMutation {
   body: JSON
 }
 
-input MentionsLegalesMutation {
-  _warning: String
-  title: String
-  createdAt: String
-  updatedAt: String
-  language: String
-  published: Boolean
-  _corps_de_la_fiche: String
-  body: JSON
-}
-
 input HomeMutation {
   _warning: String
   title: String
@@ -526,29 +437,15 @@ input HomeMutation {
   body: JSON
 }
 
-input SiteDataImageMutation {
-  url: String
-  alt: String
-}
-
-input SiteDataNetworksMutation {
-  url: String
-  title: String
-  icon: String
-}
-
-input SiteDataMutation {
+input MentionsLegalesMutation {
   _warning: String
-  _seo: String
   title: String
-  description: String
-  titleTemplate: String
-  twitterUsername: String
-  fbPageUrl: String
-  image: SiteDataImageMutation
-  _footer: String
-  informations: JSON
-  networks: [SiteDataNetworksMutation]
+  createdAt: String
+  updatedAt: String
+  language: String
+  published: Boolean
+  _corps_de_la_fiche: String
+  body: JSON
 }
 
 schema {

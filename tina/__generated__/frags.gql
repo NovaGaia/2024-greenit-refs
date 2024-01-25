@@ -48,18 +48,6 @@ fragment PersonnasParts on Personnas {
   body
 }
 
-fragment MentionsLegalesParts on MentionsLegales {
-  __typename
-  _warning
-  title
-  createdAt
-  updatedAt
-  language
-  published
-  _corps_de_la_fiche
-  body
-}
-
 fragment HomeParts on Home {
   __typename
   _warning
@@ -72,26 +60,14 @@ fragment HomeParts on Home {
   body
 }
 
-fragment SiteDataParts on SiteData {
+fragment MentionsLegalesParts on MentionsLegales {
   __typename
   _warning
-  _seo
   title
-  description
-  titleTemplate
-  twitterUsername
-  fbPageUrl
-  image {
-    __typename
-    url
-    alt
-  }
-  _footer
-  informations
-  networks {
-    __typename
-    url
-    title
-    icon
-  }
+  createdAt
+  updatedAt
+  language
+  published
+  _corps_de_la_fiche
+  body
 }

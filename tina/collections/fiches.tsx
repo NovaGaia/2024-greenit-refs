@@ -5,6 +5,7 @@ import {
   defaultFields,
   onFichesBeforeSubmit,
 } from "../utils/commonFields";
+import { slugify } from "../../src/js/utils.js";
 import type { Collection } from "tinacms";
 
 const fiches: Collection = {
@@ -13,11 +14,11 @@ const fiches: Collection = {
   path: "src/content/fiches",
   format: "mdx",
   ui: {
-    // router: ({ document }) => {
-    //   // navigate to the post that was clicked
-    //   // return document._sys.path;
-    //   return `/${document._sys.breadcrumbs.join("/")}`;
-    // },
+    router: ({ document }) => {
+      // navigate to the post that was clicked
+      // return document._sys.path;
+      return `${document._sys.breadcrumbs[0]}/fiches/${slugify(document._sys.breadcrumbs[1])}`;
+    },
     beforeSubmit: onFichesBeforeSubmit,
   },
   defaultItem: () => {

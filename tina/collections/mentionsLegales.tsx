@@ -8,16 +8,17 @@ import type { Collection } from "tinacms";
 
 const mentionsLegales: Collection = {
   name: "mentionsLegales",
-  label: "Mentions Léagales",
+  label: "Mentions légales",
   path: "src/content/mentionsLegales",
   format: "mdx",
   match: { include: "{en,fr,es}" },
   ui: {
-    // router: ({ document }) => {
-    //   // navigate to the post that was clicked
-    //   // return document._sys.path;
-    //   return `/${document._sys.breadcrumbs.join("/")}`;
-    // },
+    router: ({ document }) => {
+      console.log("🚀 ~ document:", document);
+      // navigate to the post that was clicked
+      // return document._sys.path;
+      return `/${document._sys.breadcrumbs[0]}/mentions-legales`;
+    },
     beforeSubmit: onDefaultPagesBeforeSubmit,
   },
   defaultItem: () => {

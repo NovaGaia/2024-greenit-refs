@@ -241,11 +241,9 @@ var fiches = {
   path: "src/content/fiches",
   format: "mdx",
   ui: {
-    // router: ({ document }) => {
-    //   // navigate to the post that was clicked
-    //   // return document._sys.path;
-    //   return `/${document._sys.breadcrumbs.join("/")}`;
-    // },
+    router: ({ document }) => {
+      return `${document._sys.breadcrumbs[0]}/fiches/${slugify(document._sys.breadcrumbs[1])}`;
+    },
     beforeSubmit: onFichesBeforeSubmit
   },
   defaultItem: () => {
@@ -531,11 +529,9 @@ var personnas = {
   path: "src/content/personnas",
   format: "mdx",
   ui: {
-    // router: ({ document }) => {
-    //   // navigate to the post that was clicked
-    //   // return document._sys.path;
-    //   return `/${document._sys.breadcrumbs.join("/")}`;
-    // },
+    router: ({ document }) => {
+      return `${document._sys.breadcrumbs[0]}/personnas/${slugify(document._sys.breadcrumbs[1])}`;
+    },
     beforeSubmit: onPersonnasBeforeSubmit
   },
   defaultItem: () => {
@@ -565,11 +561,9 @@ var home = {
   format: "mdx",
   match: { include: "{en,fr,es}" },
   ui: {
-    // router: ({ document }) => {
-    //   // navigate to the post that was clicked
-    //   // return document._sys.path;
-    //   return `/${document._sys.breadcrumbs.join("/")}`;
-    // },
+    router: ({ document }) => {
+      return `${document._sys.breadcrumbs[0]}`;
+    },
     beforeSubmit: onDefaultPagesBeforeSubmit
   },
   defaultItem: () => {
@@ -597,16 +591,15 @@ var home_default = home;
 // tina/collections/mentionsLegales.tsx
 var mentionsLegales = {
   name: "mentionsLegales",
-  label: "Mentions L\xE9agales",
+  label: "Mentions l\xE9gales",
   path: "src/content/mentionsLegales",
   format: "mdx",
   match: { include: "{en,fr,es}" },
   ui: {
-    // router: ({ document }) => {
-    //   // navigate to the post that was clicked
-    //   // return document._sys.path;
-    //   return `/${document._sys.breadcrumbs.join("/")}`;
-    // },
+    router: ({ document }) => {
+      console.log("\u{1F680} ~ document:", document);
+      return `/${document._sys.breadcrumbs[0]}/mentions-legales`;
+    },
     beforeSubmit: onDefaultPagesBeforeSubmit
   },
   defaultItem: () => {
@@ -728,7 +721,6 @@ var siteData = {
     }
   ]
 };
-var siteData_default = siteData;
 
 // tina/config.ts
 var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
@@ -750,7 +742,7 @@ var config_default = defineConfig({
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
-    collections: [fiches_default, lexique_default, personnas_default, mentionsLegales_default, home_default, siteData_default]
+    collections: [fiches_default, lexique_default, personnas_default, home_default, mentionsLegales_default]
   }
 });
 export {

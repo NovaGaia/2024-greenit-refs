@@ -13,11 +13,11 @@ const home: Collection = {
   format: "mdx",
   match: { include: "{en,fr,es}" },
   ui: {
-    // router: ({ document }) => {
-    //   // navigate to the post that was clicked
-    //   // return document._sys.path;
-    //   return `/${document._sys.breadcrumbs.join("/")}`;
-    // },
+    router: ({ document }) => {
+      // navigate to the post that was clicked
+      // return document._sys.path;
+      return `${document._sys.breadcrumbs[0]}`;
+    },
     beforeSubmit: onDefaultPagesBeforeSubmit,
   },
   defaultItem: () => {

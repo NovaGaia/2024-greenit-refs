@@ -157,59 +157,6 @@ query personnasConnection($before: String, $after: String, $first: Float, $last:
   }
 }
 
-query mentionsLegales($relativePath: String!) {
-  mentionsLegales(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...MentionsLegalesParts
-  }
-}
-
-query mentionsLegalesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: MentionsLegalesFilter) {
-  mentionsLegalesConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...MentionsLegalesParts
-      }
-    }
-  }
-}
-
 query home($relativePath: String!) {
   home(relativePath: $relativePath) {
     ... on Document {
@@ -263,8 +210,8 @@ query homeConnection($before: String, $after: String, $first: Float, $last: Floa
   }
 }
 
-query siteData($relativePath: String!) {
-  siteData(relativePath: $relativePath) {
+query mentionsLegales($relativePath: String!) {
+  mentionsLegales(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -276,12 +223,12 @@ query siteData($relativePath: String!) {
       }
       id
     }
-    ...SiteDataParts
+    ...MentionsLegalesParts
   }
 }
 
-query siteDataConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SiteDataFilter) {
-  siteDataConnection(
+query mentionsLegalesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: MentionsLegalesFilter) {
+  mentionsLegalesConnection(
     before: $before
     after: $after
     first: $first
@@ -310,7 +257,7 @@ query siteDataConnection($before: String, $after: String, $first: Float, $last: 
           }
           id
         }
-        ...SiteDataParts
+        ...MentionsLegalesParts
       }
     }
   }

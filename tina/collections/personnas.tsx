@@ -1,3 +1,4 @@
+import { slugify } from "../../src/js/utils.js";
 import {
   titleField,
   warnField,
@@ -12,11 +13,11 @@ const personnas: Collection = {
   path: "src/content/personnas",
   format: "mdx",
   ui: {
-    // router: ({ document }) => {
-    //   // navigate to the post that was clicked
-    //   // return document._sys.path;
-    //   return `/${document._sys.breadcrumbs.join("/")}`;
-    // },
+    router: ({ document }) => {
+      // navigate to the post that was clicked
+      // return document._sys.path;
+      return `${document._sys.breadcrumbs[0]}/personnas/${slugify(document._sys.breadcrumbs[1])}`;
+    },
     beforeSubmit: onPersonnasBeforeSubmit,
   },
   defaultItem: () => {

@@ -87,12 +87,10 @@ export type Query = {
   lexiqueConnection: LexiqueConnection;
   personnas: Personnas;
   personnasConnection: PersonnasConnection;
-  mentionsLegales: MentionsLegales;
-  mentionsLegalesConnection: MentionsLegalesConnection;
   home: Home;
   homeConnection: HomeConnection;
-  siteData: SiteData;
-  siteDataConnection: SiteDataConnection;
+  mentionsLegales: MentionsLegales;
+  mentionsLegalesConnection: MentionsLegalesConnection;
 };
 
 
@@ -162,21 +160,6 @@ export type QueryPersonnasConnectionArgs = {
 };
 
 
-export type QueryMentionsLegalesArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryMentionsLegalesConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<MentionsLegalesFilter>;
-};
-
-
 export type QueryHomeArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -192,27 +175,26 @@ export type QueryHomeConnectionArgs = {
 };
 
 
-export type QuerySiteDataArgs = {
+export type QueryMentionsLegalesArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QuerySiteDataConnectionArgs = {
+export type QueryMentionsLegalesConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<SiteDataFilter>;
+  filter?: InputMaybe<MentionsLegalesFilter>;
 };
 
 export type DocumentFilter = {
   fiches?: InputMaybe<FichesFilter>;
   lexique?: InputMaybe<LexiqueFilter>;
   personnas?: InputMaybe<PersonnasFilter>;
-  mentionsLegales?: InputMaybe<MentionsLegalesFilter>;
   home?: InputMaybe<HomeFilter>;
-  siteData?: InputMaybe<SiteDataFilter>;
+  mentionsLegales?: InputMaybe<MentionsLegalesFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -252,7 +234,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Fiches | Lexique | Personnas | MentionsLegales | Home | SiteData | Folder;
+export type DocumentNode = Fiches | Lexique | Personnas | Home | MentionsLegales | Folder;
 
 export type FichesValidations = {
   __typename?: 'FichesValidations';
@@ -438,45 +420,6 @@ export type PersonnasConnection = Connection & {
   edges?: Maybe<Array<Maybe<PersonnasConnectionEdges>>>;
 };
 
-export type MentionsLegales = Node & Document & {
-  __typename?: 'MentionsLegales';
-  _warning?: Maybe<Scalars['String']['output']>;
-  title: Scalars['String']['output'];
-  createdAt?: Maybe<Scalars['String']['output']>;
-  updatedAt?: Maybe<Scalars['String']['output']>;
-  language: Scalars['String']['output'];
-  published: Scalars['Boolean']['output'];
-  _corps_de_la_fiche?: Maybe<Scalars['String']['output']>;
-  body: Scalars['JSON']['output'];
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type MentionsLegalesFilter = {
-  _warning?: InputMaybe<StringFilter>;
-  title?: InputMaybe<StringFilter>;
-  createdAt?: InputMaybe<DatetimeFilter>;
-  updatedAt?: InputMaybe<DatetimeFilter>;
-  language?: InputMaybe<StringFilter>;
-  published?: InputMaybe<BooleanFilter>;
-  _corps_de_la_fiche?: InputMaybe<StringFilter>;
-  body?: InputMaybe<RichTextFilter>;
-};
-
-export type MentionsLegalesConnectionEdges = {
-  __typename?: 'MentionsLegalesConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<MentionsLegales>;
-};
-
-export type MentionsLegalesConnection = Connection & {
-  __typename?: 'MentionsLegalesConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<MentionsLegalesConnectionEdges>>>;
-};
-
 export type Home = Node & Document & {
   __typename?: 'Home';
   _warning?: Maybe<Scalars['String']['output']>;
@@ -516,80 +459,43 @@ export type HomeConnection = Connection & {
   edges?: Maybe<Array<Maybe<HomeConnectionEdges>>>;
 };
 
-export type SiteDataImage = {
-  __typename?: 'SiteDataImage';
-  url: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type SiteDataNetworks = {
-  __typename?: 'SiteDataNetworks';
-  url: Scalars['String']['output'];
-  title: Scalars['String']['output'];
-  icon: Scalars['String']['output'];
-};
-
-export type SiteData = Node & Document & {
-  __typename?: 'SiteData';
+export type MentionsLegales = Node & Document & {
+  __typename?: 'MentionsLegales';
   _warning?: Maybe<Scalars['String']['output']>;
-  _seo?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
-  description?: Maybe<Scalars['String']['output']>;
-  titleTemplate?: Maybe<Scalars['String']['output']>;
-  twitterUsername?: Maybe<Scalars['String']['output']>;
-  fbPageUrl?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<SiteDataImage>;
-  _footer?: Maybe<Scalars['String']['output']>;
-  informations?: Maybe<Scalars['JSON']['output']>;
-  networks?: Maybe<Array<Maybe<SiteDataNetworks>>>;
+  createdAt?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['String']['output']>;
+  language: Scalars['String']['output'];
+  published: Scalars['Boolean']['output'];
+  _corps_de_la_fiche?: Maybe<Scalars['String']['output']>;
+  body: Scalars['JSON']['output'];
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type ImageFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type SiteDataImageFilter = {
-  url?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type SiteDataNetworksFilter = {
-  url?: InputMaybe<StringFilter>;
-  title?: InputMaybe<StringFilter>;
-  icon?: InputMaybe<StringFilter>;
-};
-
-export type SiteDataFilter = {
+export type MentionsLegalesFilter = {
   _warning?: InputMaybe<StringFilter>;
-  _seo?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  titleTemplate?: InputMaybe<StringFilter>;
-  twitterUsername?: InputMaybe<StringFilter>;
-  fbPageUrl?: InputMaybe<StringFilter>;
-  image?: InputMaybe<SiteDataImageFilter>;
-  _footer?: InputMaybe<StringFilter>;
-  informations?: InputMaybe<RichTextFilter>;
-  networks?: InputMaybe<SiteDataNetworksFilter>;
+  createdAt?: InputMaybe<DatetimeFilter>;
+  updatedAt?: InputMaybe<DatetimeFilter>;
+  language?: InputMaybe<StringFilter>;
+  published?: InputMaybe<BooleanFilter>;
+  _corps_de_la_fiche?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
 };
 
-export type SiteDataConnectionEdges = {
-  __typename?: 'SiteDataConnectionEdges';
+export type MentionsLegalesConnectionEdges = {
+  __typename?: 'MentionsLegalesConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<SiteData>;
+  node?: Maybe<MentionsLegales>;
 };
 
-export type SiteDataConnection = Connection & {
-  __typename?: 'SiteDataConnection';
+export type MentionsLegalesConnection = Connection & {
+  __typename?: 'MentionsLegalesConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<SiteDataConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<MentionsLegalesConnectionEdges>>>;
 };
 
 export type Mutation = {
@@ -604,12 +510,10 @@ export type Mutation = {
   createLexique: Lexique;
   updatePersonnas: Personnas;
   createPersonnas: Personnas;
-  updateMentionsLegales: MentionsLegales;
-  createMentionsLegales: MentionsLegales;
   updateHome: Home;
   createHome: Home;
-  updateSiteData: SiteData;
-  createSiteData: SiteData;
+  updateMentionsLegales: MentionsLegales;
+  createMentionsLegales: MentionsLegales;
 };
 
 
@@ -676,18 +580,6 @@ export type MutationCreatePersonnasArgs = {
 };
 
 
-export type MutationUpdateMentionsLegalesArgs = {
-  relativePath: Scalars['String']['input'];
-  params: MentionsLegalesMutation;
-};
-
-
-export type MutationCreateMentionsLegalesArgs = {
-  relativePath: Scalars['String']['input'];
-  params: MentionsLegalesMutation;
-};
-
-
 export type MutationUpdateHomeArgs = {
   relativePath: Scalars['String']['input'];
   params: HomeMutation;
@@ -700,24 +592,23 @@ export type MutationCreateHomeArgs = {
 };
 
 
-export type MutationUpdateSiteDataArgs = {
+export type MutationUpdateMentionsLegalesArgs = {
   relativePath: Scalars['String']['input'];
-  params: SiteDataMutation;
+  params: MentionsLegalesMutation;
 };
 
 
-export type MutationCreateSiteDataArgs = {
+export type MutationCreateMentionsLegalesArgs = {
   relativePath: Scalars['String']['input'];
-  params: SiteDataMutation;
+  params: MentionsLegalesMutation;
 };
 
 export type DocumentUpdateMutation = {
   fiches?: InputMaybe<FichesMutation>;
   lexique?: InputMaybe<LexiqueMutation>;
   personnas?: InputMaybe<PersonnasMutation>;
-  mentionsLegales?: InputMaybe<MentionsLegalesMutation>;
   home?: InputMaybe<HomeMutation>;
-  siteData?: InputMaybe<SiteDataMutation>;
+  mentionsLegales?: InputMaybe<MentionsLegalesMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -725,9 +616,8 @@ export type DocumentMutation = {
   fiches?: InputMaybe<FichesMutation>;
   lexique?: InputMaybe<LexiqueMutation>;
   personnas?: InputMaybe<PersonnasMutation>;
-  mentionsLegales?: InputMaybe<MentionsLegalesMutation>;
   home?: InputMaybe<HomeMutation>;
-  siteData?: InputMaybe<SiteDataMutation>;
+  mentionsLegales?: InputMaybe<MentionsLegalesMutation>;
 };
 
 export type FichesValidationsMutation = {
@@ -778,17 +668,6 @@ export type PersonnasMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type MentionsLegalesMutation = {
-  _warning?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  createdAt?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['String']['input']>;
-  language?: InputMaybe<Scalars['String']['input']>;
-  published?: InputMaybe<Scalars['Boolean']['input']>;
-  _corps_de_la_fiche?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['JSON']['input']>;
-};
-
 export type HomeMutation = {
   _warning?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -800,29 +679,15 @@ export type HomeMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type SiteDataImageMutation = {
-  url?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type SiteDataNetworksMutation = {
-  url?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  icon?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type SiteDataMutation = {
+export type MentionsLegalesMutation = {
   _warning?: InputMaybe<Scalars['String']['input']>;
-  _seo?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  titleTemplate?: InputMaybe<Scalars['String']['input']>;
-  twitterUsername?: InputMaybe<Scalars['String']['input']>;
-  fbPageUrl?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<SiteDataImageMutation>;
-  _footer?: InputMaybe<Scalars['String']['input']>;
-  informations?: InputMaybe<Scalars['JSON']['input']>;
-  networks?: InputMaybe<Array<InputMaybe<SiteDataNetworksMutation>>>;
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+  language?: InputMaybe<Scalars['String']['input']>;
+  published?: InputMaybe<Scalars['Boolean']['input']>;
+  _corps_de_la_fiche?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type FichesPartsFragment = { __typename: 'Fiches', _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, priority_implementation: string, environmental_impact: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null };
@@ -831,11 +696,9 @@ export type LexiquePartsFragment = { __typename: 'Lexique', _warning?: string | 
 
 export type PersonnasPartsFragment = { __typename: 'Personnas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
-export type MentionsLegalesPartsFragment = { __typename: 'MentionsLegales', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
-
 export type HomePartsFragment = { __typename: 'Home', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
-export type SiteDataPartsFragment = { __typename: 'SiteData', _warning?: string | null, _seo?: string | null, title: string, description?: string | null, titleTemplate?: string | null, twitterUsername?: string | null, fbPageUrl?: string | null, _footer?: string | null, informations?: any | null, image?: { __typename: 'SiteDataImage', url: string, alt: string } | null, networks?: Array<{ __typename: 'SiteDataNetworks', url: string, title: string, icon: string } | null> | null };
+export type MentionsLegalesPartsFragment = { __typename: 'MentionsLegales', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
 export type FichesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -894,25 +757,6 @@ export type PersonnasConnectionQueryVariables = Exact<{
 
 export type PersonnasConnectionQuery = { __typename?: 'Query', personnasConnection: { __typename?: 'PersonnasConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PersonnasConnectionEdges', cursor: string, node?: { __typename: 'Personnas', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type MentionsLegalesQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type MentionsLegalesQuery = { __typename?: 'Query', mentionsLegales: { __typename: 'MentionsLegales', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type MentionsLegalesConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<MentionsLegalesFilter>;
-}>;
-
-
-export type MentionsLegalesConnectionQuery = { __typename?: 'Query', mentionsLegalesConnection: { __typename?: 'MentionsLegalesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'MentionsLegalesConnectionEdges', cursor: string, node?: { __typename: 'MentionsLegales', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
 export type HomeQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
@@ -932,24 +776,24 @@ export type HomeConnectionQueryVariables = Exact<{
 
 export type HomeConnectionQuery = { __typename?: 'Query', homeConnection: { __typename?: 'HomeConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomeConnectionEdges', cursor: string, node?: { __typename: 'Home', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type SiteDataQueryVariables = Exact<{
+export type MentionsLegalesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type SiteDataQuery = { __typename?: 'Query', siteData: { __typename: 'SiteData', id: string, _warning?: string | null, _seo?: string | null, title: string, description?: string | null, titleTemplate?: string | null, twitterUsername?: string | null, fbPageUrl?: string | null, _footer?: string | null, informations?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, image?: { __typename: 'SiteDataImage', url: string, alt: string } | null, networks?: Array<{ __typename: 'SiteDataNetworks', url: string, title: string, icon: string } | null> | null } };
+export type MentionsLegalesQuery = { __typename?: 'Query', mentionsLegales: { __typename: 'MentionsLegales', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type SiteDataConnectionQueryVariables = Exact<{
+export type MentionsLegalesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<SiteDataFilter>;
+  filter?: InputMaybe<MentionsLegalesFilter>;
 }>;
 
 
-export type SiteDataConnectionQuery = { __typename?: 'Query', siteDataConnection: { __typename?: 'SiteDataConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SiteDataConnectionEdges', cursor: string, node?: { __typename: 'SiteData', id: string, _warning?: string | null, _seo?: string | null, title: string, description?: string | null, titleTemplate?: string | null, twitterUsername?: string | null, fbPageUrl?: string | null, _footer?: string | null, informations?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, image?: { __typename: 'SiteDataImage', url: string, alt: string } | null, networks?: Array<{ __typename: 'SiteDataNetworks', url: string, title: string, icon: string } | null> | null } | null } | null> | null } };
+export type MentionsLegalesConnectionQuery = { __typename?: 'Query', mentionsLegalesConnection: { __typename?: 'MentionsLegalesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'MentionsLegalesConnectionEdges', cursor: string, node?: { __typename: 'MentionsLegales', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const FichesPartsFragmentDoc = gql`
     fragment FichesParts on Fiches {
@@ -1004,19 +848,6 @@ export const PersonnasPartsFragmentDoc = gql`
   body
 }
     `;
-export const MentionsLegalesPartsFragmentDoc = gql`
-    fragment MentionsLegalesParts on MentionsLegales {
-  __typename
-  _warning
-  title
-  createdAt
-  updatedAt
-  language
-  published
-  _corps_de_la_fiche
-  body
-}
-    `;
 export const HomePartsFragmentDoc = gql`
     fragment HomeParts on Home {
   __typename
@@ -1030,29 +861,17 @@ export const HomePartsFragmentDoc = gql`
   body
 }
     `;
-export const SiteDataPartsFragmentDoc = gql`
-    fragment SiteDataParts on SiteData {
+export const MentionsLegalesPartsFragmentDoc = gql`
+    fragment MentionsLegalesParts on MentionsLegales {
   __typename
   _warning
-  _seo
   title
-  description
-  titleTemplate
-  twitterUsername
-  fbPageUrl
-  image {
-    __typename
-    url
-    alt
-  }
-  _footer
-  informations
-  networks {
-    __typename
-    url
-    title
-    icon
-  }
+  createdAt
+  updatedAt
+  language
+  published
+  _corps_de_la_fiche
+  body
 }
     `;
 export const FichesDocument = gql`
@@ -1220,61 +1039,6 @@ export const PersonnasConnectionDocument = gql`
   }
 }
     ${PersonnasPartsFragmentDoc}`;
-export const MentionsLegalesDocument = gql`
-    query mentionsLegales($relativePath: String!) {
-  mentionsLegales(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...MentionsLegalesParts
-  }
-}
-    ${MentionsLegalesPartsFragmentDoc}`;
-export const MentionsLegalesConnectionDocument = gql`
-    query mentionsLegalesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: MentionsLegalesFilter) {
-  mentionsLegalesConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...MentionsLegalesParts
-      }
-    }
-  }
-}
-    ${MentionsLegalesPartsFragmentDoc}`;
 export const HomeDocument = gql`
     query home($relativePath: String!) {
   home(relativePath: $relativePath) {
@@ -1330,9 +1094,9 @@ export const HomeConnectionDocument = gql`
   }
 }
     ${HomePartsFragmentDoc}`;
-export const SiteDataDocument = gql`
-    query siteData($relativePath: String!) {
-  siteData(relativePath: $relativePath) {
+export const MentionsLegalesDocument = gql`
+    query mentionsLegales($relativePath: String!) {
+  mentionsLegales(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -1344,13 +1108,13 @@ export const SiteDataDocument = gql`
       }
       id
     }
-    ...SiteDataParts
+    ...MentionsLegalesParts
   }
 }
-    ${SiteDataPartsFragmentDoc}`;
-export const SiteDataConnectionDocument = gql`
-    query siteDataConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SiteDataFilter) {
-  siteDataConnection(
+    ${MentionsLegalesPartsFragmentDoc}`;
+export const MentionsLegalesConnectionDocument = gql`
+    query mentionsLegalesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: MentionsLegalesFilter) {
+  mentionsLegalesConnection(
     before: $before
     after: $after
     first: $first
@@ -1379,12 +1143,12 @@ export const SiteDataConnectionDocument = gql`
           }
           id
         }
-        ...SiteDataParts
+        ...MentionsLegalesParts
       }
     }
   }
 }
-    ${SiteDataPartsFragmentDoc}`;
+    ${MentionsLegalesPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -1406,23 +1170,17 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     personnasConnection(variables?: PersonnasConnectionQueryVariables, options?: C): Promise<{data: PersonnasConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonnasConnectionQueryVariables, query: string}> {
         return requester<{data: PersonnasConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonnasConnectionQueryVariables, query: string}, PersonnasConnectionQueryVariables>(PersonnasConnectionDocument, variables, options);
       },
-    mentionsLegales(variables: MentionsLegalesQueryVariables, options?: C): Promise<{data: MentionsLegalesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesQueryVariables, query: string}> {
-        return requester<{data: MentionsLegalesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesQueryVariables, query: string}, MentionsLegalesQueryVariables>(MentionsLegalesDocument, variables, options);
-      },
-    mentionsLegalesConnection(variables?: MentionsLegalesConnectionQueryVariables, options?: C): Promise<{data: MentionsLegalesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesConnectionQueryVariables, query: string}> {
-        return requester<{data: MentionsLegalesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesConnectionQueryVariables, query: string}, MentionsLegalesConnectionQueryVariables>(MentionsLegalesConnectionDocument, variables, options);
-      },
     home(variables: HomeQueryVariables, options?: C): Promise<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}> {
         return requester<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}, HomeQueryVariables>(HomeDocument, variables, options);
       },
     homeConnection(variables?: HomeConnectionQueryVariables, options?: C): Promise<{data: HomeConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeConnectionQueryVariables, query: string}> {
         return requester<{data: HomeConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeConnectionQueryVariables, query: string}, HomeConnectionQueryVariables>(HomeConnectionDocument, variables, options);
       },
-    siteData(variables: SiteDataQueryVariables, options?: C): Promise<{data: SiteDataQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteDataQueryVariables, query: string}> {
-        return requester<{data: SiteDataQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteDataQueryVariables, query: string}, SiteDataQueryVariables>(SiteDataDocument, variables, options);
+    mentionsLegales(variables: MentionsLegalesQueryVariables, options?: C): Promise<{data: MentionsLegalesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesQueryVariables, query: string}> {
+        return requester<{data: MentionsLegalesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesQueryVariables, query: string}, MentionsLegalesQueryVariables>(MentionsLegalesDocument, variables, options);
       },
-    siteDataConnection(variables?: SiteDataConnectionQueryVariables, options?: C): Promise<{data: SiteDataConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteDataConnectionQueryVariables, query: string}> {
-        return requester<{data: SiteDataConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteDataConnectionQueryVariables, query: string}, SiteDataConnectionQueryVariables>(SiteDataConnectionDocument, variables, options);
+    mentionsLegalesConnection(variables?: MentionsLegalesConnectionQueryVariables, options?: C): Promise<{data: MentionsLegalesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesConnectionQueryVariables, query: string}> {
+        return requester<{data: MentionsLegalesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: MentionsLegalesConnectionQueryVariables, query: string}, MentionsLegalesConnectionQueryVariables>(MentionsLegalesConnectionDocument, variables, options);
       }
     };
   }

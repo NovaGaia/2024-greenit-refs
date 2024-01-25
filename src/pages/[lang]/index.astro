@@ -1,16 +1,30 @@
 ---
 import Seo from "@components/Seo.astro";
 import PageView from "@components/pages/PageView.astro";
+import { TinaReactHelper } from "@components/tinacms/react";
 import { getIndexPageByLang } from "@contentConfig";
 import { code_languages } from "@i18n/ui";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
+import client from "@tina/__generated__/client";
 
 // Get specific content
 const _lang = getLangFromUrl(Astro.url);
 const { lang } = Astro.params;
 const t = useTranslations(_lang);
 const entry: any = await getIndexPageByLang(lang);
+let response: any = {};
+try {
+  await client.queries
+    .home({
+      relativePath: `/${entry.id}`,
+    })
+    .then((res) => {
+      response = res;
+    });
+} catch (error) {
+  // not in edit mode
+}
 // Use Astro Entry renderer
 const { Content } = await entry.render();
 
@@ -23,6 +37,11 @@ export async function getStaticPaths() {
 ---
 
 <Base>
+  {
+    response && (
+      <TinaReactHelper client:tina client:only tina={response} entry={entry} />
+    )
+  }
   <Seo title={t("seo.site_name")} slot="seo" />
   <PageView>
     <Content />

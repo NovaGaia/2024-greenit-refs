@@ -2,6 +2,7 @@
 import Seo from "@components/Seo.astro";
 import FicheView from "@components/fiches/FicheView.astro";
 import getMDXcomponents from "@components/mdx/getMDXcomponents";
+import { TinaReactHelper as TinaHelper } from "@components/tinacms/react";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
 import client from "@tina/__generated__/client";
@@ -51,6 +52,11 @@ const t = useTranslations(lang);
 ---
 
 <Base>
+  {
+    response && (
+      <TinaHelper client:tina client:only tina={response} entry={entry} />
+    )
+  }
   <Seo title={entry.data.title} slot="seo" />
   <FicheView entry={entry} headings={headings}>
     <Content components={getMDXcomponents} />
