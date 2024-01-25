@@ -6,6 +6,10 @@ import {
 } from "../utils/commonFields";
 import type { Collection } from "tinacms";
 
+// Ne fonctionne pas, donc ref.
+const PUBLIC_BASE =
+  process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
+
 const home: Collection = {
   name: "home",
   label: "Home pages",
@@ -16,7 +20,7 @@ const home: Collection = {
     router: ({ document }) => {
       // navigate to the post that was clicked
       // return document._sys.path;
-      return `${document._sys.breadcrumbs[0]}`;
+      return `${PUBLIC_BASE}/${document._sys.breadcrumbs[0]}`;
     },
     beforeSubmit: onDefaultPagesBeforeSubmit,
   },

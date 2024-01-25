@@ -235,6 +235,7 @@ var defaultFields = [
 ];
 
 // tina/collections/fiches.tsx
+var PUBLIC_BASE = process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
 var fiches = {
   name: "fiches",
   label: "Fiches du R\xE9f\xE9rentiel",
@@ -242,7 +243,7 @@ var fiches = {
   format: "mdx",
   ui: {
     router: ({ document }) => {
-      return `${document._sys.breadcrumbs[0]}/fiches/${slugify(document._sys.breadcrumbs[1])}`;
+      return `${PUBLIC_BASE}/${document._sys.breadcrumbs[0]}/fiches/${slugify(document._sys.breadcrumbs[1])}`;
     },
     beforeSubmit: onFichesBeforeSubmit
   },
@@ -523,6 +524,7 @@ var lexique = {
 var lexique_default = lexique;
 
 // tina/collections/personnas.tsx
+var PUBLIC_BASE2 = process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
 var personnas = {
   name: "personnas",
   label: "Personnas",
@@ -530,7 +532,7 @@ var personnas = {
   format: "mdx",
   ui: {
     router: ({ document }) => {
-      return `${document._sys.breadcrumbs[0]}/personnas/${slugify(document._sys.breadcrumbs[1])}`;
+      return `${PUBLIC_BASE2}/${document._sys.breadcrumbs[0]}/personnas/${slugify(document._sys.breadcrumbs[1])}`;
     },
     beforeSubmit: onPersonnasBeforeSubmit
   },
@@ -554,6 +556,7 @@ var personnas = {
 var personnas_default = personnas;
 
 // tina/collections/home.tsx
+var PUBLIC_BASE3 = process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
 var home = {
   name: "home",
   label: "Home pages",
@@ -562,7 +565,7 @@ var home = {
   match: { include: "{en,fr,es}" },
   ui: {
     router: ({ document }) => {
-      return `${document._sys.breadcrumbs[0]}`;
+      return `${PUBLIC_BASE3}/${document._sys.breadcrumbs[0]}`;
     },
     beforeSubmit: onDefaultPagesBeforeSubmit
   },
@@ -589,6 +592,7 @@ var home = {
 var home_default = home;
 
 // tina/collections/mentionsLegales.tsx
+var PUBLIC_BASE4 = process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
 var mentionsLegales = {
   name: "mentionsLegales",
   label: "Mentions l\xE9gales",
@@ -598,7 +602,7 @@ var mentionsLegales = {
   ui: {
     router: ({ document }) => {
       console.log("\u{1F680} ~ document:", document);
-      return `/${document._sys.breadcrumbs[0]}/mentions-legales`;
+      return `${PUBLIC_BASE4}/${document._sys.breadcrumbs[0]}/mentions-legales`;
     },
     beforeSubmit: onDefaultPagesBeforeSubmit
   },
@@ -723,6 +727,7 @@ var siteData = {
 };
 
 // tina/config.ts
+var PUBLIC_BASE5 = process.env.PUBLIC_BASE || "ref";
 var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
 var config_default = defineConfig({
   branch,
@@ -732,7 +737,8 @@ var config_default = defineConfig({
   token: process.env.TINA_TOKEN,
   build: {
     outputFolder: "admin",
-    publicFolder: "public"
+    publicFolder: "public",
+    basePath: PUBLIC_BASE5
   },
   media: {
     tina: {

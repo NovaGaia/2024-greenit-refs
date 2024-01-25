@@ -10,6 +10,7 @@ import remarkExternalLink from "./src/lib/remark-external-links.mjs";
 import remarkWikilinks from "./src/lib/remark-wikilinks.mjs";
 
 const SITE_URL = process.env.SITE_URL || "http://localhost:4321";
+const PUBLIC_BASE = process.env.PUBLIC_BASE || "ref";
 const tina = ({ directiveName = "tina" } = {}) => ({
   name: "tina-cms",
   hooks: {
@@ -24,7 +25,8 @@ const tina = ({ directiveName = "tina" } = {}) => ({
 
 // https://astro.build/config
 export default defineConfig({
-  // site: SITE_URL,
+  site: SITE_URL,
+  base: PUBLIC_BASE,
   build: {
     format: "file",
   },

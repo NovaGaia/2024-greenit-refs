@@ -6,6 +6,8 @@ import home from "./collections/home";
 import mentionsLegales from "./collections/mentionsLegales";
 import siteData from "./datas/siteData";
 
+const PUBLIC_BASE = process.env.PUBLIC_BASE || "ref";
+
 // Your hosting provider likely exposes this as an environment variable
 const branch =
   process.env.GITHUB_BRANCH ||
@@ -24,6 +26,7 @@ export default defineConfig({
   build: {
     outputFolder: "admin",
     publicFolder: "public",
+    basePath: PUBLIC_BASE,
   },
   media: {
     tina: {

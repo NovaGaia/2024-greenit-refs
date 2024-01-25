@@ -5,6 +5,8 @@ import jsonLDGenerator from "../js/jsonLD";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+const PUBLIC_BASE = process.env.PUBLIC_BASE + "/" || "ref/";
+
 type Props = {
   title?: string;
   description?: string;
@@ -64,8 +66,14 @@ const jsonLD = jsonLDGenerator({
   content={description || t("seo.default.description")}
 />
 <meta property="og:url" content={url} />
-<meta property="og:image" content={image?.src || t("seo.fb.image.url")} />
-<meta property="og:image:url" content={image?.src || t("seo.fb.image.url")} />
+<meta
+  property="og:image"
+  content={PUBLIC_BASE + image?.src || PUBLIC_BASE + t("seo.fb.image.url")}
+/>
+<meta
+  property="og:image:url"
+  content={PUBLIC_BASE + image?.src || t("seo.fb.image.url")}
+/>
 <meta
   property="og:image:secure_url"
   content={image?.src || t("seo.fb.image.url")}
@@ -73,7 +81,10 @@ const jsonLD = jsonLDGenerator({
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image:alt" content={image?.alt || t("seo.image.alt")} />
+<meta
+  property="og:image:alt"
+  content={PUBLIC_BASE + image?.alt || PUBLIC_BASE + t("seo.image.alt")}
+/>
 
 <!-- Twitter -->
 <meta name="twitter:title" content={title} />
@@ -82,7 +93,10 @@ const jsonLD = jsonLDGenerator({
   content={description || t("seo.default.description")}
 />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content={image?.src || t("seo.tw.image.url")} />
+<meta
+  name="twitter:image"
+  content={PUBLIC_BASE + image?.src || PUBLIC_BASE + t("seo.tw.image.url")}
+/>
 <meta name="twitter:image:alt" content={image?.alt || t("seo.image.alt")} />
 <meta name="twitter:domain" content={t("seo.url")} />
 

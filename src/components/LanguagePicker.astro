@@ -2,6 +2,8 @@
 import { languages } from "@i18n/ui";
 import { getLangFromUrl, useTranslatedPath } from "@i18n/utils";
 
+const PUBLIC_BASE = process.env.PUBLIC_BASE || "ref";
+
 type Props = {
   style: "dark" | "light";
 };
@@ -32,7 +34,7 @@ const translatePath = useTranslatedPath(lang);
     <option>Changer de langue</option>
     {
       Object.entries(languages).map(([language, label]) => (
-        <option value={translatePath("/", language)}>{label}</option>
+        <option value={translatePath(`/`, language)}>{label}</option>
       ))
     }
   </select>

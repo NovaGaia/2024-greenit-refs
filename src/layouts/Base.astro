@@ -14,12 +14,26 @@ const _lang = getLangFromUrl(Astro.url);
 const { lang } = Astro.params;
 const t = useTranslations(_lang);
 const translatePath = useTranslatedPath(_lang);
+const PUBLIC_BASE = process.env.PUBLIC_BASE + "/" || "ref/";
 ---
 
 <html lang={lang || _lang}>
   <head>
+    <script define:vars={{ PUBLIC_BASE: PUBLIC_BASE }}>
+      // Load font with base path
+      const fontStyle = `<style>@font-face {
+        font-family: "Red Hat Display";
+        font-weight: 100 900;
+        font-display: swap;
+        font-style: normal;
+        font-named-instance: "Regular";
+        src: url(/${PUBLIC_BASE}fonts/RedHatDisplay-VariableFont_wght.woff2)
+          format("woff2");
+      }</style>`;
+      document.write(fontStyle);
+    </script>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${PUBLIC_BASE}favicon.svg`} />
     <meta name="viewport" content="width=device-width" />
     <slot name="seo" />
   </head>
