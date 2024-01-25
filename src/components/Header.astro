@@ -8,7 +8,8 @@ import { Icon } from "astro-icon/components";
 import Search from "astro-pagefind/components/Search";
 import LanguagePicker from "./LanguagePicker.astro";
 
-const { classes, menuState, repoURL } = Astro.props;
+const { classes, repoURL } = Astro.props;
+let menuState = "hidden";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
@@ -24,6 +25,7 @@ const translatePath = useTranslatedPath(lang);
     class="mx-auto flex w-full flex-row items-center justify-between lg:max-w-5xl"
   >
     <div class="flex items-center gap-4">
+      {/* logo home */}
       <div>
         <a
           href={translatePath("/")}
@@ -44,20 +46,15 @@ const translatePath = useTranslatedPath(lang);
         </a>
       </div>
     </div>
-    <nav aria-label="Navigation principale">
+    {/* menu */}
+    <nav aria-label="Navigation principale" class="flex items-center">
       <ul
-        class:list={[
-          menuState,
-          `fixed right-0 top-0 z-50 flex flex-col gap-4 bg-primary px-10 py-16 lg:relative lg:m-0 lg:flex-row lg:items-center lg:bg-transparent lg:p-0`,
-        ]}
+        class="menu fixed right-0 top-0 z-50 hidden flex-col gap-4 bg-primary px-10 py-16 lg:relative lg:m-0 lg:flex lg:flex-row lg:items-center lg:bg-transparent lg:p-0"
       >
-        <li class="z-90 fixed right-5 top-5 lg:hidden">
-          <!-- <button
-                class="text-right text-white text-4xl"
-                onClick={() => toggleMenu()}
-              >
-                &times;
-              </button> -->
+        <li class="z-90 fixed right-5 top-3 lg:hidden">
+          <button data-menu-button class="text-right text-4xl text-white">
+            &times;
+          </button>
         </li>
         <li class="!m-0">
           <a
@@ -85,9 +82,6 @@ const translatePath = useTranslatedPath(lang);
           >
             {t("nav.personnas.label")}
           </a>
-        </li>
-        <li class="!m-0">
-          <!-- <SearchBar /> -->
         </li>
         <li
           class={`!m-0 border border-primary-focus lg:border-zinc-200 lg:h-7`}
@@ -119,18 +113,31 @@ const translatePath = useTranslatedPath(lang);
           <LanguagePicker style="dark" />
         </li>
       </ul>
-      <div class="relative flex items-center lg:hidden">
-        <!-- <button
-              class="text-3xl text-white"
-              onClick={() => toggleMenu()}
-            >
-              &#9776;
-            </button> -->
-      </div>
+      {/* mobile bt */}[
+      <button data-menu-button class="text-3xl text-white lg:hidden">
+        &#9776;
+      </button>
     </nav>
   </div>
 </header>
 <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
+<script>
+  function toggleMenu() {
+    const menu = document.querySelector(".menu");
+    if (!menu) return null;
+    if (menu && menu.classList.contains("hidden")) {
+      menu.classList.remove("hidden");
+      menu.classList.add("flex");
+    } else {
+      menu.classList.remove("flex");
+      menu.classList.add("hidden");
+    }
+  }
+  const buttons = document.querySelectorAll("[data-menu-button]");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => toggleMenu());
+  });
+</script>
 <style is:global>
   /* nav {
     display: grid;
