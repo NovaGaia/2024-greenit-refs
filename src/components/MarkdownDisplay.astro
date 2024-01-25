@@ -4,6 +4,7 @@ import { formatDate } from "@js/utils";
 import type { CollectionEntry } from "astro:content";
 import Card from "./Card";
 import FichesMetasDisplay from "./FichesMetasDisplay.astro";
+import FichesTableValidation from "./fiches/FichesTableValidation.astro";
 
 type Props = {
   type: "fiches" | "lexique" | "personnas";
@@ -77,5 +78,10 @@ const t = useTranslations(lang);
     ]}
   >
     <slot />
+    {
+      type === Card.FICHES && (
+        <FichesTableValidation validations={entry.data["validations"]} />
+      )
+    }
   </div>
 </article>
