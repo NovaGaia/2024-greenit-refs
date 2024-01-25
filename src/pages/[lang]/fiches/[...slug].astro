@@ -53,7 +53,7 @@ const t = useTranslations(lang);
 
 <Base>
   {
-    response && (
+    response.data && import.meta.env.MODE === "development" && (
       <TinaHelper client:tina client:only tina={response} entry={entry} />
     )
   }

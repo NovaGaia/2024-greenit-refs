@@ -10,12 +10,13 @@ import {
 } from "@i18n/utils";
 import "../styles/global.css";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
+const _lang = getLangFromUrl(Astro.url);
+const { lang } = Astro.params;
+const t = useTranslations(_lang);
+const translatePath = useTranslatedPath(_lang);
 ---
 
-<html lang={lang}>
+<html lang={lang || _lang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

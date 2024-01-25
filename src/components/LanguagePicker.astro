@@ -25,13 +25,14 @@ const translatePath = useTranslatedPath(lang);
     ]}
   >
     {
+      /*
+    selected={language === lang}
+   */
+    }
+    <option>Changer de langue</option>
+    {
       Object.entries(languages).map(([language, label]) => (
-        <option
-          value={translatePath("/", language)}
-          selected={language === lang}
-        >
-          {label}
-        </option>
+        <option value={translatePath("/", language)}>{label}</option>
       ))
     }
   </select>

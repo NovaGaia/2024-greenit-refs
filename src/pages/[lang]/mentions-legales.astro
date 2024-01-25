@@ -38,7 +38,7 @@ export async function getStaticPaths() {
 
 <Base>
   {
-    response && (
+    response.data && import.meta.env.MODE === "development" && (
       <TinaReactHelper client:tina client:only tina={response} entry={entry} />
     )
   }
