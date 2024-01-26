@@ -7,7 +7,7 @@ export default function plugin() {
 }
 
 function transformer(tree) {
-  const slugifyTitle = (title) => `/${slugify(title, { lower: true })}`;
+  const slugifyTitle = (title) => `${slugify(title, { lower: true })}`;
   visit(tree, "paragraph", (node) => {
     const wikiLink = /!?\[\[([a-zA-Z-'À-ÿ|# ]+)\]\]/g;
     const stringifyNode = toString(node);
@@ -26,7 +26,7 @@ function transformer(tree) {
         } else {
           url = slugifyTitle(title);
         }
-        const tooltipLink_Component = `<tooltip lexique="${title}"></tooltip>`;
+        const tooltipLink_Component = `<tooltip lexique="${url}"></tooltip>`;
         html = html.replace(link, tooltipLink_Component);
       });
       node.type = "html";

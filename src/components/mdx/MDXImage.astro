@@ -45,3 +45,10 @@ const sizes = responsiveSequence(400, props.width || 730);
   classes={props.class || ``}
   frameClasses={props.frameClass || ``}
 />
+{
+  props.title && (
+    <figcaption class="text-center text-sm text-gray-500">
+      {props.title}
+    </figcaption>
+  )
+}
