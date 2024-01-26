@@ -1,4 +1,6 @@
 ---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
 type Validation = {
   rule: string;
   maxValue: number;
@@ -8,14 +10,17 @@ type Props = {
   validations: Validation[];
 };
 const { validations } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<h2 id="principe-de-validations">Principe de validation</h2>
+<h2 id="principe-de-validations">{t("Principe de validation")}</h2>
 <table class="table-auto">
   <thead>
     <tr>
-      <th>Le nombre</th>
-      <th>est inférieur ou égal à</th>
+      <th>{t("Le nombre")}</th>
+      <th>{t("est inférieur ou égal à")}</th>
     </tr>
   </thead>
   <tbody>

@@ -1,6 +1,6 @@
 ---
 import Seo from "@components/Seo.astro";
-import PersonnasListView from "@components/personnas/PersonnasListView.astro";
+import PersonasListView from "@components/personas/PersonasListView.astro";
 import { code_languages } from "@i18n/ui";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
@@ -16,6 +16,10 @@ const t = useTranslations(lang);
 ---
 
 <Base>
-  <Seo title="<Personnas>" slot="seo" />
-  <PersonnasListView />
+  <Seo
+    title={t("Personnas")}
+    description={t("Les profils que nous ciblons avec ce référentiel.")}
+    slot="seo"
+  />
+  <PersonasListView />
 </Base>

@@ -1,4 +1,5 @@
 ---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import MetaItem from "./MetaItem.astro";
 
 type Props = {
@@ -8,6 +9,8 @@ type Props = {
 };
 
 const { className, frontmatter, tableOfContents } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div
@@ -64,7 +67,7 @@ const { className, frontmatter, tableOfContents } = Astro.props;
   >
   </div>
   <div class="my-2 text-sm md:mb-0">
-    <p class="mb-0 font-bold">Sommaire :</p>
+    <p class="mb-0 font-bold">{t("Sommaire :")}</p>
     {
       /*
     <!-- <nav
@@ -86,7 +89,9 @@ const { className, frontmatter, tableOfContents } = Astro.props;
             );
           })
         }
-        <li><a href="#principe-de-validations">Principe de validation</a></li>
+        <li>
+          <a href="#principe-de-validations">{t("Principe de validation")}</a>
+        </li>
       </ul>
     </nav>
   </div>

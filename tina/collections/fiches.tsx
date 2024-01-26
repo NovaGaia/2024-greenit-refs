@@ -168,7 +168,7 @@ const fiches: Collection = {
           label: "6. Tests & validation",
         },
         {
-          value: "7-online",
+          value: "7-deployment",
           label: "7. Mise en ligne",
         },
         {
@@ -194,15 +194,15 @@ const fiches: Collection = {
       options: [
         {
           label: "Fort 🌱🌱🌱",
-          value: "high",
+          value: "high_environmental_impact",
         },
         {
           label: "Moyen 🌱🌱",
-          value: "medium",
+          value: "medium_environmental_impact",
         },
         {
           label: "Faible 🌱",
-          value: "low",
+          value: "low_environmental_impact",
         },
         {
           value: "tbd",
@@ -218,16 +218,16 @@ const fiches: Collection = {
       // répercuter ces changements dans src/i18n/ui.ts
       options: [
         {
-          label: "Fort 👍👍👍",
-          value: "high",
+          label: "Haute 👍👍👍",
+          value: "high_priority",
         },
         {
-          label: "Moyen 👍👍",
-          value: "medium",
+          label: "Moyenne 👍👍",
+          value: "medium_priority",
         },
         {
           label: "Faible 👍",
-          value: "low",
+          value: "low_priority",
         },
         {
           value: "tbd",

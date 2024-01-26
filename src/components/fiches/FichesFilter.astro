@@ -1,12 +1,17 @@
 ---
 import { getCollectionByLang } from "@contentConfig";
-import { capitalizeFirstLetter, getLangFromUrl } from "@i18n/utils";
+import {
+  capitalizeFirstLetter,
+  getLangFromUrl,
+  useTranslations,
+} from "@i18n/utils";
 import { slugify } from "@js/utils";
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
 
 const datas: any[] = [];
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 let entries: CollectionEntry<"fiches">[] = [];
 
 const getDatas = async () => {
@@ -126,10 +131,11 @@ const styles = styleDatas.map((item) => {
     >
       <span>
         <span class="inline group-has-[#filter-state:checked]:hidden"
-          >Afficher</span
+          >{t("Afficher")}</span
         ><span class="hidden group-has-[#filter-state:checked]:inline"
-          >Masquer</span
-        > les filtres
+          >{t("Masquer")}</span
+        >
+        {t("les filtres")}
       </span>
       <input id="filter-state" type="checkbox" class="hidden" />
       <Icon
@@ -149,7 +155,9 @@ const styles = styleDatas.map((item) => {
   <div
     class="hidden grid-cols-1 gap-3 rounded border border-primary p-4 group-has-[#filter-state:checked]:grid sm:grid-cols-3"
   >
-    <div class="col-span-3 hidden"><h2 class="font-black">Catégories</h2></div>
+    <div class="col-span-3 hidden">
+      <h2 class="font-black">{t("Catégories")}</h2>
+    </div>
     {
       datas.map((item) => {
         return (

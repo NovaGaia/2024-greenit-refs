@@ -2,8 +2,6 @@
 import { getLangFromUrl } from "@i18n/utils";
 
 const { notIndexable = false } = Astro.props;
-const { lang } = Astro.params;
-const _lang = getLangFromUrl(Astro.url);
 // pour ne pas indexer deux fois la page index qui avec et sans slug /index et /fr/index
 const indexOrNot = !notIndexable && { "data-pagefind-body": true };
 ---

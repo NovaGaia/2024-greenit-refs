@@ -57,8 +57,7 @@ var slugify = (text) => {
 
 // tina/utils/commonFields.tsx
 import { Fragment, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
-var REF_NAME = process.env.PUBLIC_REF_NAME || "REF";
-console.log("\u{1F680} ~ process.env.PUBLIC_REF_NAME:", process.env.PUBLIC_REF_NAME);
+var REF_NAME = process.env.PUBLIC_REF_NAME;
 var onFichesBeforeSubmit = async ({
   form,
   values
@@ -93,7 +92,7 @@ var onLexiqueBeforeSubmit = async ({
     updatedAt: (/* @__PURE__ */ new Date()).toISOString()
   };
 };
-var onPersonnasBeforeSubmit = async ({
+var onPersonasBeforeSubmit = async ({
   form,
   values
 }) => {
@@ -418,7 +417,7 @@ var fiches = {
           label: "6. Tests & validation"
         },
         {
-          value: "7-online",
+          value: "7-deployment",
           label: "7. Mise en ligne"
         },
         {
@@ -444,15 +443,15 @@ var fiches = {
       options: [
         {
           label: "Fort \u{1F331}\u{1F331}\u{1F331}",
-          value: "high"
+          value: "high_environmental_impact"
         },
         {
           label: "Moyen \u{1F331}\u{1F331}",
-          value: "medium"
+          value: "medium_environmental_impact"
         },
         {
           label: "Faible \u{1F331}",
-          value: "low"
+          value: "low_environmental_impact"
         },
         {
           value: "tbd",
@@ -468,16 +467,16 @@ var fiches = {
       // répercuter ces changements dans src/i18n/ui.ts
       options: [
         {
-          label: "Fort \u{1F44D}\u{1F44D}\u{1F44D}",
-          value: "high"
+          label: "Haute \u{1F44D}\u{1F44D}\u{1F44D}",
+          value: "high_priority"
         },
         {
-          label: "Moyen \u{1F44D}\u{1F44D}",
-          value: "medium"
+          label: "Moyenne \u{1F44D}\u{1F44D}",
+          value: "medium_priority"
         },
         {
           label: "Faible \u{1F44D}",
-          value: "low"
+          value: "low_priority"
         },
         {
           value: "tbd",
@@ -602,18 +601,18 @@ var lexique = {
 };
 var lexique_default = lexique;
 
-// tina/collections/personnas.tsx
+// tina/collections/personas.tsx
 var PUBLIC_BASE2 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE + "/" : "";
-var personnas = {
-  name: "personnas",
-  label: "Personnas",
-  path: "src/content/personnas",
+var personas = {
+  name: "personas",
+  label: "Personas",
+  path: "src/content/personas",
   format: "mdx",
   ui: {
     router: ({ document }) => {
-      return `/${PUBLIC_BASE2}${document._sys.breadcrumbs[0]}/personnas/${slugify(document._sys.breadcrumbs[1])}`;
+      return `/${PUBLIC_BASE2}${document._sys.breadcrumbs[0]}/personas/${slugify(document._sys.breadcrumbs[1])}`;
     },
-    beforeSubmit: onPersonnasBeforeSubmit
+    beforeSubmit: onPersonasBeforeSubmit
   },
   defaultItem: () => {
     return { published: false };
@@ -632,7 +631,7 @@ var personnas = {
     }
   ]
 };
-var personnas_default = personnas;
+var personas_default = personas;
 
 // tina/collections/home.tsx
 import { tinaTableTemplate as tinaTableTemplate2 } from "tinacms";
@@ -831,7 +830,7 @@ var config_default = defineConfig({
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
-    collections: [fiches_default, lexique_default, personnas_default, home_default, mentionsLegales_default]
+    collections: [fiches_default, lexique_default, personas_default, home_default, mentionsLegales_default]
   }
 });
 export {

@@ -6,13 +6,15 @@ import Card from "./Card";
 import FichesMetasDisplay from "./FichesMetasDisplay.astro";
 import FichesTableValidation from "./fiches/FichesTableValidation.astro";
 
+const REF_NAME = process.env.PUBLIC_REF_NAME;
+
 type Props = {
-  type: "fiches" | "lexique" | "personnas";
-  entry: CollectionEntry<"fiches" | "lexique" | "personnas">;
+  type: "fiches" | "lexique" | "personas";
+  entry: CollectionEntry<"fiches" | "lexique" | "personas">;
   headings: Array<{ depth: number; text: string; slug: string }>;
 };
 
-const { type = "personna", entry, headings } = Astro.props;
+const { type = "persona", entry, headings } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -26,11 +28,11 @@ const t = useTranslations(lang);
           {formatDate(entry.data.updatedAt || entry.data.updatedAt)}
         </i>
         <span class="hidden" data-pagefind-filter="type">
-          {t("fiches.title")}
+          {t("Bonnes pratiques")}
         </span>
         <h1 class="flex flex-col items-start gap-2 lg:col-span-2 lg:flex-row lg:items-center lg:gap-0">
           <span class="badge mr-2 whitespace-nowrap border-primary bg-primary">
-            {t("refName.min")} {entry.data["refID"]}
+            {REF_NAME} {entry.data["refID"]}
           </span>
           <span>{entry.data.title}</span>
         </h1>
@@ -45,14 +47,14 @@ const t = useTranslations(lang);
   {
     type === Card.LEXIQUE && (
       <span class="hidden" data-pagefind-filter="type">
-        {t("lexique.title")}
+        {t("Lexique")}
       </span>
     )
   }
   {
     type === Card.PERSONAS && (
       <span class="hidden" data-pagefind-filter="type">
-        {t("personnas.title")}
+        {t("Personas")}
       </span>
     )
   }

@@ -1,18 +1,13 @@
 ---
-import {
-  getLangFromUrl,
-  useTranslatedPath,
-  useTranslations,
-} from "@i18n/utils";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 ---
 
 <a
   href="#top"
-  title={t("backToTop.title")}
+  title={t("Retour en haut de page")}
   class="invisible fixed bottom-5 right-4 flex h-[3rem] w-[3rem] items-center justify-center rounded-full bg-primary-transparent font-mono text-2xl font-bold no-underline hover:bg-primary hover:text-white lg:visible"
 >
   ↑

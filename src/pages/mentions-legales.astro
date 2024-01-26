@@ -14,7 +14,7 @@ const { Content } = await entry.render();
 ---
 
 <Base>
-  <Seo title="<Mentions légales>" slot="seo" />
+  <Seo title={entry.data.title} slot="seo" />
   <PageView indexable>
     <Content />
   </PageView>

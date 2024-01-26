@@ -1,6 +1,10 @@
 ---
 import { languages } from "@i18n/ui";
-import { getLangFromUrl, useTranslatedPath } from "@i18n/utils";
+import {
+  getLangFromUrl,
+  useTranslatedPath,
+  useTranslations,
+} from "@i18n/utils";
 
 type Props = {
   style: "dark" | "light";
@@ -8,10 +12,11 @@ type Props = {
 const { style } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const translatePath = useTranslatedPath(lang);
+const t = useTranslations(lang);
 ---
 
 <label for="lang-select"
-  ><span class="sr-only">Language</span>
+  ><span class="sr-only">{t("Language picker")}</span>
   <select
     id="lang-select"
     onchange="window.location.href = this.value"
@@ -24,12 +29,7 @@ const translatePath = useTranslatedPath(lang);
       },
     ]}
   >
-    {
-      /*
-    selected={language === lang}
-   */
-    }
-    <option>Changer de langue</option>
+    <option>{t("Changer de langue")}</option>
     {
       Object.entries(languages).map(([language, label]) => (
         <option value={translatePath(`/`, language)}>{label}</option>

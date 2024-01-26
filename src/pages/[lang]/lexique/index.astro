@@ -16,6 +16,12 @@ const t = useTranslations(lang);
 ---
 
 <Base>
-  <Seo title="<Lexique>" slot="seo" />
+  <Seo
+    title={t("Lexique")}
+    description={t(
+      "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.",
+    )}
+    slot="seo"
+  />
   <LexiqueListView />
 </Base>

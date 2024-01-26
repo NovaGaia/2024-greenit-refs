@@ -1,16 +1,11 @@
 ---
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import type { CollectionEntry } from "astro:content";
 
 type Props = {
   entry: CollectionEntry<"fiches">;
 };
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
 const { entry } = Astro.props;
-const tt = t("backToTop.title");
 ---
 
 <div>

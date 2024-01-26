@@ -7,8 +7,7 @@ import {
 import { RestartWarning } from "./warning";
 import { slugify } from "../../src/js/utils";
 
-const REF_NAME = process.env.PUBLIC_REF_NAME || "REF";
-console.log("🚀 ~ process.env.PUBLIC_REF_NAME:", process.env.PUBLIC_REF_NAME);
+const REF_NAME = process.env.PUBLIC_REF_NAME;
 
 /**
  * This function is called before the form is submitted.
@@ -82,7 +81,7 @@ const onLexiqueBeforeSubmit = async ({
  * @param {Record<string, any>} values - The values object.
  * @returns {Record<string, any>} The values object.
  */
-const onPersonnasBeforeSubmit = async ({
+const onPersonasBeforeSubmit = async ({
   form,
   values,
 }: {
@@ -220,7 +219,7 @@ const warnField: any = (view = "", comment = "") => {
 };
 
 /**
- * Default fields for fiches/lexiques/personnas
+ * Default fields for fiches/lexiques/personas
  * @type {TinaField[]}
  */
 const defaultFields: TinaField[] = [
@@ -344,7 +343,7 @@ export {
   templateCTAWithIcon,
   onFichesBeforeSubmit,
   onLexiqueBeforeSubmit,
-  onPersonnasBeforeSubmit,
+  onPersonasBeforeSubmit,
   onPagesBeforeSubmit,
   onDefaultPagesBeforeSubmit,
 };

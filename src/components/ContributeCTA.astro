@@ -1,10 +1,9 @@
 ---
-import {
-  getLangFromUrl,
-  useTranslatedPath,
-  useTranslations,
-} from "@i18n/utils";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import { Icon } from "astro-icon/components";
+
+const PUBLIC_REPO_URL = process.env.PUBLIC_REPO_URL;
+const PUBLIC_REPO_BRANCH = process.env.PUBLIC_REPO_BRANCH;
 
 type Props = {
   sourceInstanceName: string;
@@ -13,33 +12,36 @@ type Props = {
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
-const { sourceInstanceName, relativePath = "todo" } = Astro.props;
+const { sourceInstanceName, relativePath } = Astro.props;
 let type = "";
 switch (sourceInstanceName) {
   case "fiches":
-    type = "la fiche";
+    type = t("la fiche");
     break;
   case "lexique":
-    type = "la fiche lexique";
+    type = t("la fiche du lexique");
     break;
 
   default:
-    type = "la persona";
+    type = t("le persona");
     break;
 }
 ---
 
 <div class="box mb-8 mt-20 flex flex-col items-center gap-4 p-8 shadow-lg">
   <div class="text-center text-lg font-extrabold">
-    {t("contribCTA.errorText")}
+    {
+      t(
+        "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?",
+      )
+    }
   </div>
   <p class="m-0 font-semibold">
-    {t("contribCTA.discuss")}
+    {t("Venez sur le repo pour lancer une discussion sur")}
     {type}.
   </p>
   <a
-    href={`${t("repo.url")}/blob/${t("repo.branch")}/${sourceInstanceName}/${relativePath}`}
+    href={`${PUBLIC_REPO_URL}/blob/${PUBLIC_REPO_BRANCH}/${sourceInstanceName}/${relativePath}`}
     target={`_blank`}
     class={`btn btn-outline hover:px-5 p-3 flex gap-2 items-center`}
   >

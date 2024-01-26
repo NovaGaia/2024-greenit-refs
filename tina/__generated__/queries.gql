@@ -104,8 +104,8 @@ query lexiqueConnection($before: String, $after: String, $first: Float, $last: F
   }
 }
 
-query personnas($relativePath: String!) {
-  personnas(relativePath: $relativePath) {
+query personas($relativePath: String!) {
+  personas(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -117,12 +117,12 @@ query personnas($relativePath: String!) {
       }
       id
     }
-    ...PersonnasParts
+    ...PersonasParts
   }
 }
 
-query personnasConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PersonnasFilter) {
-  personnasConnection(
+query personasConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PersonasFilter) {
+  personasConnection(
     before: $before
     after: $after
     first: $first
@@ -151,7 +151,7 @@ query personnasConnection($before: String, $after: String, $first: Float, $last:
           }
           id
         }
-        ...PersonnasParts
+        ...PersonasParts
       }
     }
   }

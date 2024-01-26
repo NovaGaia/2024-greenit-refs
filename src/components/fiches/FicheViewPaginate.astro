@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl } from "@i18n/utils";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 type Props = {
@@ -34,6 +34,7 @@ function generatePrevNext(entries, current, lang): PrevNext {
 }
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const entries = await getCollection("fiches");
 const { current, className } = Astro.props;
 const { prev, next } = generatePrevNext(entries, current, lang);
@@ -41,7 +42,7 @@ const { prev, next } = generatePrevNext(entries, current, lang);
 
 <nav
   class:list={["blog-post-nav border-t-2 pt-4", className]}
-  aria-label="Naviagtion entre les bonnes pratiques"
+  aria-label={t("Navigation entre les bonnes pratiques")}
 >
   <ul
     class:list={[

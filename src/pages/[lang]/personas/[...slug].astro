@@ -1,6 +1,6 @@
 ---
 import Seo from "@components/Seo.astro";
-import PersonnaView from "@components/personnas/PersonnaView.astro";
+import PersonnaView from "@components/personas/PersonaView.astro";
 import { TinaReactHelper } from "@components/tinacms/react";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
@@ -9,12 +9,12 @@ import { getCollection, type CollectionEntry } from "astro:content";
 
 // Pages props type
 type Props = {
-  entry: CollectionEntry<"personnas">;
+  entry: CollectionEntry<"personas">;
 };
 
 // generate getStaticPaths (params, props) from collection
 export async function getStaticPaths() {
-  const entries = await getCollection("personnas");
+  const entries = await getCollection("personas");
   const paths = entries
     .filter((entry) =>
       import.meta.env.MODE === "development" ? "true" : entry.data.published,
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
   return paths;
 }
 // export async function getStaticPaths() {
-//   const entries = await getCollection("personnas");
+//   const entries = await getCollection("personas");
 //   const paths = entries
 //     .filter((entry) => entry.slug.includes("/"))
 //     .filter((entry) => entry.data.published)
@@ -50,7 +50,7 @@ const { entry } = Astro.props;
 let response: any = {};
 try {
   await client.queries
-    .personnas({
+    .personas({
       relativePath: `/${entry.id}`,
     })
     .then((res) => {
@@ -72,7 +72,7 @@ const t = useTranslations(lang);
       <TinaReactHelper client:tina client:only tina={response} entry={entry} />
     )
   }
-  <Seo title="<Personnas>" slot="seo" />
+  <Seo title="<Personas>" slot="seo" />
   <PersonnaView>
     <Content />
   </PersonnaView>

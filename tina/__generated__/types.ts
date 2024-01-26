@@ -85,8 +85,8 @@ export type Query = {
   fichesConnection: FichesConnection;
   lexique: Lexique;
   lexiqueConnection: LexiqueConnection;
-  personnas: Personnas;
-  personnasConnection: PersonnasConnection;
+  personas: Personas;
+  personasConnection: PersonasConnection;
   home: Home;
   homeConnection: HomeConnection;
   mentionsLegales: MentionsLegales;
@@ -145,18 +145,18 @@ export type QueryLexiqueConnectionArgs = {
 };
 
 
-export type QueryPersonnasArgs = {
+export type QueryPersonasArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryPersonnasConnectionArgs = {
+export type QueryPersonasConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<PersonnasFilter>;
+  filter?: InputMaybe<PersonasFilter>;
 };
 
 
@@ -192,7 +192,7 @@ export type QueryMentionsLegalesConnectionArgs = {
 export type DocumentFilter = {
   fiches?: InputMaybe<FichesFilter>;
   lexique?: InputMaybe<LexiqueFilter>;
-  personnas?: InputMaybe<PersonnasFilter>;
+  personas?: InputMaybe<PersonasFilter>;
   home?: InputMaybe<HomeFilter>;
   mentionsLegales?: InputMaybe<MentionsLegalesFilter>;
 };
@@ -234,7 +234,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Fiches | Lexique | Personnas | Home | MentionsLegales | Folder;
+export type DocumentNode = Fiches | Lexique | Personas | Home | MentionsLegales | Folder;
 
 export type FichesValidations = {
   __typename?: 'FichesValidations';
@@ -399,8 +399,8 @@ export type LexiqueConnection = Connection & {
   edges?: Maybe<Array<Maybe<LexiqueConnectionEdges>>>;
 };
 
-export type Personnas = Node & Document & {
-  __typename?: 'Personnas';
+export type Personas = Node & Document & {
+  __typename?: 'Personas';
   _warning?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['String']['output']>;
@@ -414,7 +414,7 @@ export type Personnas = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type PersonnasFilter = {
+export type PersonasFilter = {
   _warning?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DatetimeFilter>;
@@ -425,17 +425,17 @@ export type PersonnasFilter = {
   body?: InputMaybe<RichTextFilter>;
 };
 
-export type PersonnasConnectionEdges = {
-  __typename?: 'PersonnasConnectionEdges';
+export type PersonasConnectionEdges = {
+  __typename?: 'PersonasConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Personnas>;
+  node?: Maybe<Personas>;
 };
 
-export type PersonnasConnection = Connection & {
-  __typename?: 'PersonnasConnection';
+export type PersonasConnection = Connection & {
+  __typename?: 'PersonasConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<PersonnasConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<PersonasConnectionEdges>>>;
 };
 
 export type Home = Node & Document & {
@@ -572,8 +572,8 @@ export type Mutation = {
   createFiches: Fiches;
   updateLexique: Lexique;
   createLexique: Lexique;
-  updatePersonnas: Personnas;
-  createPersonnas: Personnas;
+  updatePersonas: Personas;
+  createPersonas: Personas;
   updateHome: Home;
   createHome: Home;
   updateMentionsLegales: MentionsLegales;
@@ -632,15 +632,15 @@ export type MutationCreateLexiqueArgs = {
 };
 
 
-export type MutationUpdatePersonnasArgs = {
+export type MutationUpdatePersonasArgs = {
   relativePath: Scalars['String']['input'];
-  params: PersonnasMutation;
+  params: PersonasMutation;
 };
 
 
-export type MutationCreatePersonnasArgs = {
+export type MutationCreatePersonasArgs = {
   relativePath: Scalars['String']['input'];
-  params: PersonnasMutation;
+  params: PersonasMutation;
 };
 
 
@@ -670,7 +670,7 @@ export type MutationCreateMentionsLegalesArgs = {
 export type DocumentUpdateMutation = {
   fiches?: InputMaybe<FichesMutation>;
   lexique?: InputMaybe<LexiqueMutation>;
-  personnas?: InputMaybe<PersonnasMutation>;
+  personas?: InputMaybe<PersonasMutation>;
   home?: InputMaybe<HomeMutation>;
   mentionsLegales?: InputMaybe<MentionsLegalesMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
@@ -679,7 +679,7 @@ export type DocumentUpdateMutation = {
 export type DocumentMutation = {
   fiches?: InputMaybe<FichesMutation>;
   lexique?: InputMaybe<LexiqueMutation>;
-  personnas?: InputMaybe<PersonnasMutation>;
+  personas?: InputMaybe<PersonasMutation>;
   home?: InputMaybe<HomeMutation>;
   mentionsLegales?: InputMaybe<MentionsLegalesMutation>;
 };
@@ -721,7 +721,7 @@ export type LexiqueMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type PersonnasMutation = {
+export type PersonasMutation = {
   _warning?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
@@ -758,7 +758,7 @@ export type FichesPartsFragment = { __typename: 'Fiches', _warning?: string | nu
 
 export type LexiquePartsFragment = { __typename: 'Lexique', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
-export type PersonnasPartsFragment = { __typename: 'Personnas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
+export type PersonasPartsFragment = { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
 export type HomePartsFragment = { __typename: 'Home', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
@@ -802,24 +802,24 @@ export type LexiqueConnectionQueryVariables = Exact<{
 
 export type LexiqueConnectionQuery = { __typename?: 'Query', lexiqueConnection: { __typename?: 'LexiqueConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'LexiqueConnectionEdges', cursor: string, node?: { __typename: 'Lexique', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type PersonnasQueryVariables = Exact<{
+export type PersonasQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type PersonnasQuery = { __typename?: 'Query', personnas: { __typename: 'Personnas', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PersonasQuery = { __typename?: 'Query', personas: { __typename: 'Personas', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type PersonnasConnectionQueryVariables = Exact<{
+export type PersonasConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<PersonnasFilter>;
+  filter?: InputMaybe<PersonasFilter>;
 }>;
 
 
-export type PersonnasConnectionQuery = { __typename?: 'Query', personnasConnection: { __typename?: 'PersonnasConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PersonnasConnectionEdges', cursor: string, node?: { __typename: 'Personnas', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PersonasConnectionQuery = { __typename?: 'Query', personasConnection: { __typename?: 'PersonasConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PersonasConnectionEdges', cursor: string, node?: { __typename: 'Personas', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type HomeQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -899,8 +899,8 @@ export const LexiquePartsFragmentDoc = gql`
   body
 }
     `;
-export const PersonnasPartsFragmentDoc = gql`
-    fragment PersonnasParts on Personnas {
+export const PersonasPartsFragmentDoc = gql`
+    fragment PersonasParts on Personas {
   __typename
   _warning
   title
@@ -1048,9 +1048,9 @@ export const LexiqueConnectionDocument = gql`
   }
 }
     ${LexiquePartsFragmentDoc}`;
-export const PersonnasDocument = gql`
-    query personnas($relativePath: String!) {
-  personnas(relativePath: $relativePath) {
+export const PersonasDocument = gql`
+    query personas($relativePath: String!) {
+  personas(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -1062,13 +1062,13 @@ export const PersonnasDocument = gql`
       }
       id
     }
-    ...PersonnasParts
+    ...PersonasParts
   }
 }
-    ${PersonnasPartsFragmentDoc}`;
-export const PersonnasConnectionDocument = gql`
-    query personnasConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PersonnasFilter) {
-  personnasConnection(
+    ${PersonasPartsFragmentDoc}`;
+export const PersonasConnectionDocument = gql`
+    query personasConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PersonasFilter) {
+  personasConnection(
     before: $before
     after: $after
     first: $first
@@ -1097,12 +1097,12 @@ export const PersonnasConnectionDocument = gql`
           }
           id
         }
-        ...PersonnasParts
+        ...PersonasParts
       }
     }
   }
 }
-    ${PersonnasPartsFragmentDoc}`;
+    ${PersonasPartsFragmentDoc}`;
 export const HomeDocument = gql`
     query home($relativePath: String!) {
   home(relativePath: $relativePath) {
@@ -1228,11 +1228,11 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     lexiqueConnection(variables?: LexiqueConnectionQueryVariables, options?: C): Promise<{data: LexiqueConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LexiqueConnectionQueryVariables, query: string}> {
         return requester<{data: LexiqueConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LexiqueConnectionQueryVariables, query: string}, LexiqueConnectionQueryVariables>(LexiqueConnectionDocument, variables, options);
       },
-    personnas(variables: PersonnasQueryVariables, options?: C): Promise<{data: PersonnasQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonnasQueryVariables, query: string}> {
-        return requester<{data: PersonnasQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonnasQueryVariables, query: string}, PersonnasQueryVariables>(PersonnasDocument, variables, options);
+    personas(variables: PersonasQueryVariables, options?: C): Promise<{data: PersonasQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonasQueryVariables, query: string}> {
+        return requester<{data: PersonasQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonasQueryVariables, query: string}, PersonasQueryVariables>(PersonasDocument, variables, options);
       },
-    personnasConnection(variables?: PersonnasConnectionQueryVariables, options?: C): Promise<{data: PersonnasConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonnasConnectionQueryVariables, query: string}> {
-        return requester<{data: PersonnasConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonnasConnectionQueryVariables, query: string}, PersonnasConnectionQueryVariables>(PersonnasConnectionDocument, variables, options);
+    personasConnection(variables?: PersonasConnectionQueryVariables, options?: C): Promise<{data: PersonasConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonasConnectionQueryVariables, query: string}> {
+        return requester<{data: PersonasConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PersonasConnectionQueryVariables, query: string}, PersonasConnectionQueryVariables>(PersonasConnectionDocument, variables, options);
       },
     home(variables: HomeQueryVariables, options?: C): Promise<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}> {
         return requester<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}, HomeQueryVariables>(HomeDocument, variables, options);

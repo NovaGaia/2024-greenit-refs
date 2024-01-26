@@ -3,8 +3,8 @@ import {
   titleField,
   warnField,
   defaultFields,
-  onPersonnasBeforeSubmit,
-} from "../utils/commonFields";
+  onPersonasBeforeSubmit,
+} from "../utils/commonFields.tsx";
 import type { Collection } from "tinacms";
 
 const PUBLIC_BASE =
@@ -12,18 +12,18 @@ const PUBLIC_BASE =
     ? process.env.PUBLIC_BASE + "/"
     : "";
 
-const personnas: Collection = {
-  name: "personnas",
-  label: "Personnas",
-  path: "src/content/personnas",
+const personas: Collection = {
+  name: "personas",
+  label: "Personas",
+  path: "src/content/personas",
   format: "mdx",
   ui: {
     router: ({ document }) => {
       // navigate to the post that was clicked
       // return document._sys.path;
-      return `/${PUBLIC_BASE}${document._sys.breadcrumbs[0]}/personnas/${slugify(document._sys.breadcrumbs[1])}`;
+      return `/${PUBLIC_BASE}${document._sys.breadcrumbs[0]}/personas/${slugify(document._sys.breadcrumbs[1])}`;
     },
-    beforeSubmit: onPersonnasBeforeSubmit,
+    beforeSubmit: onPersonasBeforeSubmit,
   },
   defaultItem: () => {
     return { published: false };
@@ -43,4 +43,4 @@ const personnas: Collection = {
   ],
 };
 
-export default personnas;
+export default personas;

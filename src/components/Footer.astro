@@ -20,14 +20,14 @@ const translatePath = useTranslatedPath(lang);
   <div>
     <span>© <span id="copyright"></span></span>
     <span>&middot;</span>
-    <span>{t("footer.asso.label")}</span>
+    <span>{t("Association Green IT")}</span>
     <span>&middot;</span>
     <ul class="flex gap-4">
       <a
         href={translatePath("/mentions-legales/")}
-        title={t("nav.secondary.mentionsLegale.title")}
+        title={t("Les mentions légales du site.")}
       >
-        {t("nav.secondary.mentionsLegale.label")}
+        {t("Mentions légales")}
       </a>
       <LanguagePicker style="light" />
     </ul>
@@ -39,13 +39,15 @@ const translatePath = useTranslatedPath(lang);
       target="_blank"
       rel="noreferrer"
       href="https://www.greenit.fr/"
-      title={t("footer.logo.title")}
+      title={t("Aller sur le site de l'association Green IT (site externe)")}
     >
       <Image
         width="175"
         height="55"
         src={logoGreenIT}
-        alt={t("footer.logo.alt")}
+        alt={t(
+          "Logo association Green IT - lien sortant vers le site l'association Green IT",
+        )}
       />
     </a>
   </div>

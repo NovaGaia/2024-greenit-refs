@@ -1,7 +1,7 @@
 import { defineConfig } from "tinacms";
 import fiches from "./collections/fiches";
 import lexique from "./collections/lexique";
-import personnas from "./collections/personnas";
+import personas from "./collections/personas";
 import home from "./collections/home";
 import mentionsLegales from "./collections/mentionsLegales";
 import siteData from "./datas/siteData";
@@ -39,6 +39,6 @@ export default defineConfig({
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
-    collections: [fiches, lexique, personnas, home, mentionsLegales],
+    collections: [fiches, lexique, personas, home, mentionsLegales],
   },
 });

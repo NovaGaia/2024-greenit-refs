@@ -36,7 +36,7 @@ fragment LexiqueParts on Lexique {
   body
 }
 
-fragment PersonnasParts on Personnas {
+fragment PersonasParts on Personas {
   __typename
   _warning
   title

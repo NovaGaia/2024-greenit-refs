@@ -57,8 +57,8 @@ type Query {
   fichesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: FichesFilter): FichesConnection!
   lexique(relativePath: String): Lexique!
   lexiqueConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: LexiqueFilter): LexiqueConnection!
-  personnas(relativePath: String): Personnas!
-  personnasConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PersonnasFilter): PersonnasConnection!
+  personas(relativePath: String): Personas!
+  personasConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PersonasFilter): PersonasConnection!
   home(relativePath: String): Home!
   homeConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomeFilter): HomeConnection!
   mentionsLegales(relativePath: String): MentionsLegales!
@@ -68,7 +68,7 @@ type Query {
 input DocumentFilter {
   fiches: FichesFilter
   lexique: LexiqueFilter
-  personnas: PersonnasFilter
+  personas: PersonasFilter
   home: HomeFilter
   mentionsLegales: MentionsLegalesFilter
 }
@@ -96,7 +96,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Fiches | Lexique | Personnas | Home | MentionsLegales | Folder
+union DocumentNode = Fiches | Lexique | Personas | Home | MentionsLegales | Folder
 
 type FichesValidations {
   rule: String
@@ -254,7 +254,7 @@ type LexiqueConnection implements Connection {
   edges: [LexiqueConnectionEdges]
 }
 
-type Personnas implements Node & Document {
+type Personas implements Node & Document {
   _warning: String
   title: String!
   createdAt: String
@@ -268,7 +268,7 @@ type Personnas implements Node & Document {
   _values: JSON!
 }
 
-input PersonnasFilter {
+input PersonasFilter {
   _warning: StringFilter
   title: StringFilter
   createdAt: DatetimeFilter
@@ -279,15 +279,15 @@ input PersonnasFilter {
   body: RichTextFilter
 }
 
-type PersonnasConnectionEdges {
+type PersonasConnectionEdges {
   cursor: String!
-  node: Personnas
+  node: Personas
 }
 
-type PersonnasConnection implements Connection {
+type PersonasConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [PersonnasConnectionEdges]
+  edges: [PersonasConnectionEdges]
 }
 
 type Home implements Node & Document {
@@ -417,8 +417,8 @@ type Mutation {
   createFiches(relativePath: String!, params: FichesMutation!): Fiches!
   updateLexique(relativePath: String!, params: LexiqueMutation!): Lexique!
   createLexique(relativePath: String!, params: LexiqueMutation!): Lexique!
-  updatePersonnas(relativePath: String!, params: PersonnasMutation!): Personnas!
-  createPersonnas(relativePath: String!, params: PersonnasMutation!): Personnas!
+  updatePersonas(relativePath: String!, params: PersonasMutation!): Personas!
+  createPersonas(relativePath: String!, params: PersonasMutation!): Personas!
   updateHome(relativePath: String!, params: HomeMutation!): Home!
   createHome(relativePath: String!, params: HomeMutation!): Home!
   updateMentionsLegales(relativePath: String!, params: MentionsLegalesMutation!): MentionsLegales!
@@ -428,7 +428,7 @@ type Mutation {
 input DocumentUpdateMutation {
   fiches: FichesMutation
   lexique: LexiqueMutation
-  personnas: PersonnasMutation
+  personas: PersonasMutation
   home: HomeMutation
   mentionsLegales: MentionsLegalesMutation
   relativePath: String
@@ -437,7 +437,7 @@ input DocumentUpdateMutation {
 input DocumentMutation {
   fiches: FichesMutation
   lexique: LexiqueMutation
-  personnas: PersonnasMutation
+  personas: PersonasMutation
   home: HomeMutation
   mentionsLegales: MentionsLegalesMutation
 }
@@ -479,7 +479,7 @@ input LexiqueMutation {
   body: JSON
 }
 
-input PersonnasMutation {
+input PersonasMutation {
   _warning: String
   title: String
   createdAt: String

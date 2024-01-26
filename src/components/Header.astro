@@ -30,14 +30,14 @@ const translatePath = useTranslatedPath(lang);
         <a
           href={translatePath("/")}
           class="text-inherit text-white no-underline"
-          title={t("nav.back.home")}
+          title={t("Retour à l'accueil")}
         >
           <span class="font-normal">
             {t("seo.site_name")}
           </span>
           <br />
           <span class="text-xl font-bold leading-none"
-            >{t("nav.refName")}{
+            >{t("WordPress")}{
               import.meta.env.MODE === "development" && (
                 <span class="text-white"> ({lang})</span>
               )
@@ -60,29 +60,33 @@ const translatePath = useTranslatedPath(lang);
           <a
             href={translatePath("/fiches/")}
             class={`text-white text-xl lg:text-base no-underline text-inherit font-medium`}
-            title={t("nav.fiches.title")}
+            title={t("Consulter les Bonnes pratiques")}
           >
-            {t("nav.fiches.label")}
+            {t("Bonnes pratiques")}
           </a>
         </li>
         <li class="!m-0">
           <a
             href={translatePath("/lexique/")}
             class={`text-white text-xl lg:text-base no-underline text-inherit font-medium`}
-            title={t("nav.lexique.title")}
+            title={t("Consulter le Lexique")}
           >
-            {t("nav.lexique.label")}
+            {t("Lexique")}
           </a>
         </li>
+        {
+          /*
         <li class="!m-0 lg:hidden">
           <a
-            href={translatePath("/personnas/")}
-            class={`text-white text-xl lg:text-base no-underline text-inherit font-medium`}
-            title={t("nav.personnas.title")}
+          href={translatePath("/personas/")}
+          class={`text-white text-xl lg:text-base no-underline text-inherit font-medium`}
+          title={t("Consulter les Personas")}
           >
-            {t("nav.personnas.label")}
-          </a>
-        </li>
+          {t("Personas")}
+        </a>
+      </li>
+          */
+        }
         <li
           class={`!m-0 border border-primary-focus lg:border-zinc-200 lg:h-7`}
         >
@@ -93,9 +97,9 @@ const translatePath = useTranslatedPath(lang);
             class={`text-white text-xl lg:text-base text-inherit font-medium inline-flex gap-[.15rem] items-center no-underline`}
             target="_blank"
             rel="noreferrer"
-            title={t("nav.contrib.title")}
+            title={t("Voir la méthode de contribution sur le GitHub du CNUMR")}
           >
-            {t("nav.contrib.label")}
+            {t("Contribuez !")}
           </a>
         </li>
         <li class="!m-0">
@@ -104,8 +108,8 @@ const translatePath = useTranslatedPath(lang);
             class={`text-white text-xl lg:text-base no-underline text-inherit font-medium inline-flex gap-[.15rem] items-center`}
             target="_blank"
             rel="noreferrer"
-            title={t("nav.contrib.icon.title")}
-            aria-label={t("nav.contrib.icon.title")}
+            title={t("Voir le repository GitHub de CNUMR")}
+            aria-label={t("Voir le repository GitHub de CNUMR")}
           >
             <Icon name="tabler:brand-github-filled" width={16} height={16} />
           </a>

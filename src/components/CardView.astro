@@ -4,27 +4,30 @@ import { slugify } from "@js/utils";
 import type { CollectionEntry } from "astro:content";
 import Card from "./Card";
 
+const REF_NAME = process.env.PUBLIC_REF_NAME;
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-function trimWikiLinks(str) {
-  const regex = /\[\[(?:[^|\]]*\|)?([^\]]+)\]\]/gm;
-  const subst = `$1`;
-  if (str === undefined) return null;
-  return str.replace(regex, subst);
-}
-
 function cleanImpact(meta) {
   // TODO: replace with a proper translation
-  return entry.data[`${meta}`].replace(/Fort|Moyen|Faible/gi, " ");
+  let regexp: RegExp;
+  switch (getLangFromUrl(Astro.url)) {
+    case "es":
+      regexp = /t("Fort")|t("Moyen")|t("Faible")/gi;
+      break;
+    case "en":
+      regexp = /t("High")|t("Medium")|t("Low")/gi;
+      break;
+    default:
+      regexp = /t("Fuerte")|t("Medio")|t("Débil")/gi;
+      break;
+  }
+  return entry.data[`${meta}`].replace(regexp, " ");
 }
 
 type Props = {
-  entry:
-    | CollectionEntry<"fiches">
-    | CollectionEntry<"lexique">
-    | CollectionEntry<"personnas">
-    | any;
+  entry: CollectionEntry<"fiches" | "lexique" | "personas"> | any;
   type: string;
   display: string;
 };
@@ -34,7 +37,7 @@ const {
   type = Card.PERSONAS,
   display = Card.VERTICAL_LAYOUT,
 } = Astro.props;
-const [entry_lang, ...entry_slug] = entry.slug.split("/");
+const [, ...entry_slug] = entry.slug.split("/");
 ---
 
 <li
@@ -63,43 +66,43 @@ const [entry_lang, ...entry_slug] = entry.slug.split("/");
         >
           <h2 class="m-0 flex flex-row items-start text-lg font-bold text-neutral md:col-span-1 md:row-span-2">
             <span class="badge mr-2 whitespace-nowrap border-primary bg-primary">
-              {t("refName.min")} {entry.data.refID}
+              {REF_NAME} {entry.data.refID}
             </span>
             <span>{entry.data.title}</span>
           </h2>
           <div class="flex flex-row items-center justify-end gap-2">
             <span
-              title={`Priority Implementation`}
-              aria-label={`Priority Implementation : ${
+              title={t("Priorité d'implémentation")}
+              aria-label={`${t("Priorité d'implémentation")} : ${
                 entry.data[`priority_implementation`]
               }`}
               role="img"
             >
-              {cleanImpact("priority_implementation")}
+              {t(cleanImpact("priority_implementation"))}
             </span>
             <span>|</span>
             <span
-              title={`Environmental Impact`}
-              aria-label={`Environmental Impact : ${
+              title={t("Impact environnemental")}
+              aria-label={`${t("Impact environnemental")} : ${
                 entry.data[`environmental_impact`]
               }`}
               role="img"
             >
-              {cleanImpact("environmental_impact")}
+              {t(cleanImpact("environmental_impact"))}
             </span>
           </div>
           <div class="mt-2 flex flex-row items-center justify-end gap-2 md:mt-0 md:gap-4">
             <span
-              title={`Lifecycle`}
+              title={t("lifecycle")}
               class="badge border-primary text-xs text-neutral"
             >
-              {entry.data.lifecycle}
+              {t(entry.data.lifecycle)}
             </span>
             <span
-              title={`Scope`}
+              title={t("scope")}
               class="badge border-primary text-xs text-neutral"
             >
-              {entry.data.scope}
+              {t(entry.data.scope)}
             </span>
           </div>
         </div>

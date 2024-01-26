@@ -42,7 +42,7 @@ export async function getStaticPaths() {
       <TinaReactHelper client:tina client:only tina={response} entry={entry} />
     )
   }
-  <Seo title="<Mentions légales>" slot="seo" />
+  <Seo title={entry.data.title} slot="seo" />
   <PageView>
     <Content />
   </PageView>

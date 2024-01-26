@@ -1,11 +1,7 @@
 // Importe les propriétés depuis `astro:content`
-import { defaultLang } from "@i18n/ui";
-import { date, string } from "astro/zod";
 import {
-  type ImageFunction,
   defineCollection,
   z,
-  reference,
   getCollection,
   getEntry,
   type CollectionEntry,
@@ -51,7 +47,7 @@ const lexique = defineCollection({
     }),
 });
 
-const personnas = defineCollection({
+const personas = defineCollection({
   type: "content",
   schema: ({ image }) =>
     z.object({
@@ -84,7 +80,7 @@ export const collections = {
   // Définir un `type` et un `schema` pour chaque collection
   fiches,
   lexique,
-  personnas,
+  personas,
   home,
   mentionsLegales,
 };
@@ -120,8 +116,8 @@ export async function getLexique() {
       };
     });
 }
-export async function getPersonnas() {
-  const collection = await getCollection("personnas");
+export async function getPersonas() {
+  const collection = await getCollection("personas");
 
   return collection
     .filter((item) => item.data.published)
@@ -151,10 +147,10 @@ export async function getPersonnas() {
 // }
 
 export async function getCollectionByLang(
-  collection: "fiches" | "lexique" | "personnas",
+  collection: "fiches" | "lexique" | "personas",
   lang: "fr" | "es" | "en",
 ) {
-  const items: CollectionEntry<"fiches" | "lexique" | "personnas">[] | any[] =
+  const items: CollectionEntry<"fiches" | "lexique" | "personas">[] | any[] =
     await getCollection(collection);
 
   return items

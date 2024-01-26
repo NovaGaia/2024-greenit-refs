@@ -1,5 +1,9 @@
 ---
-import { capitalizeFirstLetter } from "@i18n/utils";
+import {
+  capitalizeFirstLetter,
+  getLangFromUrl,
+  useTranslations,
+} from "@i18n/utils";
 
 const {
   frontmatter,
@@ -9,6 +13,8 @@ const {
 } = Astro.props;
 const values = frontmatter[meta];
 const toDisplay = values;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 {
@@ -23,7 +29,7 @@ const toDisplay = values;
       ]}
     >
       {displayTitle === true && (
-        <strong class="capitalize">{meta.replace("_", " ")} : </strong>
+        <strong>{capitalizeFirstLetter(t(meta))} : </strong>
       )}
       <ul class="mb-0">
         {toDisplay.map((item, index) => {
@@ -33,7 +39,7 @@ const toDisplay = values;
               data-pagefind-filter="tags[data-content]"
               data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${item}`}
             >
-              → {item}
+              → {t(item)}
             </li>
           );
         })}
@@ -53,12 +59,12 @@ const toDisplay = values;
         <strong
           class="capitalize"
           data-pagefind-filter="tags[data-content]"
-          data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${toDisplay}`}
+          data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${t(toDisplay)}`}
         >
-          {meta.replace("_", " ")} :{" "}
+          {t(meta)} :{" "}
         </strong>
       )}
-      {toDisplay || "TBD"}
+      {t(toDisplay) || "TBD"}
     </li>
   )
 }
