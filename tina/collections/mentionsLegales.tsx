@@ -1,10 +1,11 @@
 import {
   defaultFields,
   onDefaultPagesBeforeSubmit,
+  templateCTAWithIcon,
   titleField,
   warnField,
 } from "../utils/commonFields";
-import type { Collection } from "tinacms";
+import { tinaTableTemplate, type Collection } from "tinacms";
 
 const PUBLIC_BASE =
   process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== ""
@@ -43,6 +44,7 @@ const mentionsLegales: Collection = {
       required: true,
       // description:
       //   "Ne pas utiliser le niveau 1 (#) pour vos titres, il est réservé au titre de la page (champs `Title`).",
+      templates: [templateCTAWithIcon, tinaTableTemplate],
     },
   ],
 };

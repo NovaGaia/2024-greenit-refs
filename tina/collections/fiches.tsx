@@ -1,5 +1,4 @@
 import {
-  slugHiddenField,
   titleField,
   warnField,
   defaultFields,

@@ -1,5 +1,6 @@
 ---
 import Seo from "@components/Seo.astro";
+import getMDXcomponents from "@components/mdx/getMDXcomponents";
 import PageView from "@components/pages/PageView.astro";
 import { getIndexPageByLang } from "@contentConfig";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
@@ -16,6 +17,6 @@ const { Content } = await entry.render();
 <Base>
   <Seo title={t("seo.site_name")} slot="seo" />
   <PageView notIndexable>
-    <Content />
+    <Content components={getMDXcomponents} />
   </PageView>
 </Base>

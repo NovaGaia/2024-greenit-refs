@@ -1,5 +1,6 @@
 ---
 import Seo from "@components/Seo.astro";
+import getMDXcomponents from "@components/mdx/getMDXcomponents";
 import PageView from "@components/pages/PageView.astro";
 import { TinaReactHelper } from "@components/tinacms/react";
 import { getIndexPageByLang } from "@contentConfig";
@@ -51,6 +52,6 @@ export async function getStaticPaths() {
   }
   <Seo title={t("seo.site_name")} slot="seo" />
   <PageView>
-    <Content />
+    <Content components={getMDXcomponents} />
   </PageView>
 </Base>

@@ -5,9 +5,11 @@ import HeadingsStrong from "./MDXHeadings/Headings_strong.astro";
 import MDXImage from "./MDXImage.astro";
 import MDXPositionableImage from "./MDXPositionableImage.astro";
 import MDXLexiqueTooltip from "./MDXLexiqueTooltip.astro";
+import MDXCTAWithIcon from "./MDXCTAWithIcon.astro";
 
 export default {
   PositionableImage: MDXPositionableImage,
+  CTAWithIcon: MDXCTAWithIcon,
   h1: HeadingsH1,
   h2: HeadingsH2,
   h3: HeadingsH3,

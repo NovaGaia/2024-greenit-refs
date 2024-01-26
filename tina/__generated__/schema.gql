@@ -153,12 +153,12 @@ input RichTextFilter {
   exists: Boolean
 }
 
-input FichesBodyTableTableRowsTableCellsFilter {
+input HomeBodyTableTableRowsTableCellsFilter {
   value: RichTextFilter
 }
 
 input FichesBodyTableTableRowsFilter {
-  tableCells: FichesBodyTableTableRowsTableCellsFilter
+  tableCells: HomeBodyTableTableRowsTableCellsFilter
 }
 
 input FichesBodyTableFilter {
@@ -304,6 +304,31 @@ type Home implements Node & Document {
   _values: JSON!
 }
 
+input HomeBodyCTAWithIconFilter {
+  label: StringFilter
+  url: StringFilter
+  icon: StringFilter
+}
+
+input MentionsLegalesBodyTableTableRowsTableCellsFilter {
+  value: RichTextFilter
+}
+
+input HomeBodyTableTableRowsFilter {
+  tableCells: MentionsLegalesBodyTableTableRowsTableCellsFilter
+}
+
+input HomeBodyTableFilter {
+  firstRowHeader: BooleanFilter
+  align: StringFilter
+  tableRows: HomeBodyTableTableRowsFilter
+}
+
+input HomeBodyFilter {
+  CTAWithIcon: HomeBodyCTAWithIconFilter
+  table: HomeBodyTableFilter
+}
+
 input HomeFilter {
   _warning: StringFilter
   title: StringFilter
@@ -312,7 +337,7 @@ input HomeFilter {
   language: StringFilter
   published: BooleanFilter
   _corps_de_la_fiche: StringFilter
-  body: RichTextFilter
+  body: HomeBodyFilter
 }
 
 type HomeConnectionEdges {
@@ -340,6 +365,27 @@ type MentionsLegales implements Node & Document {
   _values: JSON!
 }
 
+input MentionsLegalesBodyCTAWithIconFilter {
+  label: StringFilter
+  url: StringFilter
+  icon: StringFilter
+}
+
+input MentionsLegalesBodyTableTableRowsFilter {
+  tableCells: MentionsLegalesBodyTableTableRowsTableCellsFilter
+}
+
+input MentionsLegalesBodyTableFilter {
+  firstRowHeader: BooleanFilter
+  align: StringFilter
+  tableRows: MentionsLegalesBodyTableTableRowsFilter
+}
+
+input MentionsLegalesBodyFilter {
+  CTAWithIcon: MentionsLegalesBodyCTAWithIconFilter
+  table: MentionsLegalesBodyTableFilter
+}
+
 input MentionsLegalesFilter {
   _warning: StringFilter
   title: StringFilter
@@ -348,7 +394,7 @@ input MentionsLegalesFilter {
   language: StringFilter
   published: BooleanFilter
   _corps_de_la_fiche: StringFilter
-  body: RichTextFilter
+  body: MentionsLegalesBodyFilter
 }
 
 type MentionsLegalesConnectionEdges {

@@ -7,7 +7,8 @@ import {
 import { RestartWarning } from "./warning";
 import { slugify } from "../../src/js/utils";
 
-const REF_NAME = "RWP";
+const REF_NAME = process.env.PUBLIC_REF_NAME || "REF";
+console.log("🚀 ~ process.env.PUBLIC_REF_NAME:", process.env.PUBLIC_REF_NAME);
 
 /**
  * This function is called before the form is submitted.
@@ -307,12 +308,40 @@ const defaultFields: TinaField[] = [
   },
 ];
 
+const templateCTAWithIcon: TinaField = {
+  type: "object",
+  name: "CTAWithIcon",
+  label: "Call to action",
+  fields: [
+    {
+      type: "string",
+      name: "label",
+      label: "Label",
+      required: true,
+    },
+    {
+      type: "string",
+      name: "url",
+      label: "URL",
+      required: true,
+    },
+    {
+      type: "string",
+      name: "icon",
+      label: "Icon",
+      required: false,
+      options: ["tabler:brand-github-filled", "tabler:brand-github"],
+    },
+  ],
+};
+
 export {
   titleField,
   slugVisibleField,
   slugHiddenField,
   warnField,
   defaultFields,
+  templateCTAWithIcon,
   onFichesBeforeSubmit,
   onLexiqueBeforeSubmit,
   onPersonnasBeforeSubmit,

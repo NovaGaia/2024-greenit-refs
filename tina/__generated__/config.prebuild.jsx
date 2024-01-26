@@ -57,7 +57,8 @@ var slugify = (text) => {
 
 // tina/utils/commonFields.tsx
 import { Fragment, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
-var REF_NAME = "RWP";
+var REF_NAME = process.env.PUBLIC_REF_NAME || "REF";
+console.log("\u{1F680} ~ process.env.PUBLIC_REF_NAME:", process.env.PUBLIC_REF_NAME);
 var onFichesBeforeSubmit = async ({
   form,
   values
@@ -233,6 +234,32 @@ var defaultFields = [
     description: "La page/fiche ne sera pas visible tant qu'elle n'est pas publi\xE9e."
   }
 ];
+var templateCTAWithIcon = {
+  type: "object",
+  name: "CTAWithIcon",
+  label: "Call to action",
+  fields: [
+    {
+      type: "string",
+      name: "label",
+      label: "Label",
+      required: true
+    },
+    {
+      type: "string",
+      name: "url",
+      label: "URL",
+      required: true
+    },
+    {
+      type: "string",
+      name: "icon",
+      label: "Icon",
+      required: false,
+      options: ["tabler:brand-github-filled", "tabler:brand-github"]
+    }
+  ]
+};
 
 // tina/collections/fiches.tsx
 import { tinaTableTemplate } from "tinacms";
@@ -608,6 +635,7 @@ var personnas = {
 var personnas_default = personnas;
 
 // tina/collections/home.tsx
+import { tinaTableTemplate as tinaTableTemplate2 } from "tinacms";
 var PUBLIC_BASE3 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE + "/" : "";
 var home = {
   name: "home",
@@ -635,15 +663,17 @@ var home = {
       name: "body",
       isBody: true,
       label: "Contenu",
-      required: true
+      required: true,
       // description:
       //   "Ne pas utiliser le niveau 1 (#) pour vos titres, il est réservé au titre de la page (champs `Title`).",
+      templates: [templateCTAWithIcon, tinaTableTemplate2]
     }
   ]
 };
 var home_default = home;
 
 // tina/collections/mentionsLegales.tsx
+import { tinaTableTemplate as tinaTableTemplate3 } from "tinacms";
 var PUBLIC_BASE4 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE + "/" : "";
 var mentionsLegales = {
   name: "mentionsLegales",
@@ -672,9 +702,10 @@ var mentionsLegales = {
       name: "body",
       isBody: true,
       label: "Contenu",
-      required: true
+      required: true,
       // description:
       //   "Ne pas utiliser le niveau 1 (#) pour vos titres, il est réservé au titre de la page (champs `Title`).",
+      templates: [templateCTAWithIcon, tinaTableTemplate3]
     }
   ]
 };

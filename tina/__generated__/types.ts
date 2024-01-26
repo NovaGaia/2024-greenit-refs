@@ -293,12 +293,12 @@ export type RichTextFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type FichesBodyTableTableRowsTableCellsFilter = {
+export type HomeBodyTableTableRowsTableCellsFilter = {
   value?: InputMaybe<RichTextFilter>;
 };
 
 export type FichesBodyTableTableRowsFilter = {
-  tableCells?: InputMaybe<FichesBodyTableTableRowsTableCellsFilter>;
+  tableCells?: InputMaybe<HomeBodyTableTableRowsTableCellsFilter>;
 };
 
 export type FichesBodyTableFilter = {
@@ -453,6 +453,31 @@ export type Home = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
+export type HomeBodyCtaWithIconFilter = {
+  label?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+};
+
+export type MentionsLegalesBodyTableTableRowsTableCellsFilter = {
+  value?: InputMaybe<RichTextFilter>;
+};
+
+export type HomeBodyTableTableRowsFilter = {
+  tableCells?: InputMaybe<MentionsLegalesBodyTableTableRowsTableCellsFilter>;
+};
+
+export type HomeBodyTableFilter = {
+  firstRowHeader?: InputMaybe<BooleanFilter>;
+  align?: InputMaybe<StringFilter>;
+  tableRows?: InputMaybe<HomeBodyTableTableRowsFilter>;
+};
+
+export type HomeBodyFilter = {
+  CTAWithIcon?: InputMaybe<HomeBodyCtaWithIconFilter>;
+  table?: InputMaybe<HomeBodyTableFilter>;
+};
+
 export type HomeFilter = {
   _warning?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
@@ -461,7 +486,7 @@ export type HomeFilter = {
   language?: InputMaybe<StringFilter>;
   published?: InputMaybe<BooleanFilter>;
   _corps_de_la_fiche?: InputMaybe<StringFilter>;
-  body?: InputMaybe<RichTextFilter>;
+  body?: InputMaybe<HomeBodyFilter>;
 };
 
 export type HomeConnectionEdges = {
@@ -492,6 +517,27 @@ export type MentionsLegales = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
+export type MentionsLegalesBodyCtaWithIconFilter = {
+  label?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+};
+
+export type MentionsLegalesBodyTableTableRowsFilter = {
+  tableCells?: InputMaybe<MentionsLegalesBodyTableTableRowsTableCellsFilter>;
+};
+
+export type MentionsLegalesBodyTableFilter = {
+  firstRowHeader?: InputMaybe<BooleanFilter>;
+  align?: InputMaybe<StringFilter>;
+  tableRows?: InputMaybe<MentionsLegalesBodyTableTableRowsFilter>;
+};
+
+export type MentionsLegalesBodyFilter = {
+  CTAWithIcon?: InputMaybe<MentionsLegalesBodyCtaWithIconFilter>;
+  table?: InputMaybe<MentionsLegalesBodyTableFilter>;
+};
+
 export type MentionsLegalesFilter = {
   _warning?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
@@ -500,7 +546,7 @@ export type MentionsLegalesFilter = {
   language?: InputMaybe<StringFilter>;
   published?: InputMaybe<BooleanFilter>;
   _corps_de_la_fiche?: InputMaybe<StringFilter>;
-  body?: InputMaybe<RichTextFilter>;
+  body?: InputMaybe<MentionsLegalesBodyFilter>;
 };
 
 export type MentionsLegalesConnectionEdges = {
