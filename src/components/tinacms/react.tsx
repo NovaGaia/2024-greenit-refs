@@ -30,7 +30,7 @@ export const TinaReactHelper: React.FC<TinaReactHelperProps> = ({
   return (
     <>
       {DISPLAY_TINA_BAR && (
-        <nav className="bg-gray-900 p-4">
+        <nav className="mb-8 bg-gray-900 p-4">
           <div className="container flex items-center gap-4">
             <span className="font-bold text-white">TinaCMS:</span>{" "}
             {inIframe() ? (
