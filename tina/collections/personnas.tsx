@@ -7,9 +7,10 @@ import {
 } from "../utils/commonFields";
 import type { Collection } from "tinacms";
 
-// Ne fonctionne pas, donc ref.
 const PUBLIC_BASE =
-  process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
+  process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== ""
+    ? process.env.PUBLIC_BASE + "/"
+    : "";
 
 const personnas: Collection = {
   name: "personnas",
@@ -20,7 +21,7 @@ const personnas: Collection = {
     router: ({ document }) => {
       // navigate to the post that was clicked
       // return document._sys.path;
-      return `${PUBLIC_BASE}/${document._sys.breadcrumbs[0]}/personnas/${slugify(document._sys.breadcrumbs[1])}`;
+      return `/${PUBLIC_BASE}${document._sys.breadcrumbs[0]}/personnas/${slugify(document._sys.breadcrumbs[1])}`;
     },
     beforeSubmit: onPersonnasBeforeSubmit,
   },

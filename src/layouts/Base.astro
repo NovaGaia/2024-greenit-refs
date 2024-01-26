@@ -14,7 +14,10 @@ const _lang = getLangFromUrl(Astro.url);
 const { lang } = Astro.params;
 const t = useTranslations(_lang);
 const translatePath = useTranslatedPath(_lang);
-const PUBLIC_BASE = process.env.PUBLIC_BASE + "/" || "ref/";
+
+const PUBLIC_BASE = process.env.PUBLIC_BASE
+  ? process.env.PUBLIC_BASE + "/"
+  : "";
 ---
 
 <html lang={lang || _lang}>

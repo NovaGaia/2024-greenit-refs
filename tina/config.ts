@@ -6,7 +6,10 @@ import home from "./collections/home";
 import mentionsLegales from "./collections/mentionsLegales";
 import siteData from "./datas/siteData";
 
-const PUBLIC_BASE = process.env.PUBLIC_BASE || "ref";
+const PUBLIC_BASE =
+  process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== ""
+    ? process.env.PUBLIC_BASE
+    : "";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =

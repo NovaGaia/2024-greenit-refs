@@ -235,7 +235,8 @@ var defaultFields = [
 ];
 
 // tina/collections/fiches.tsx
-var PUBLIC_BASE = process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
+import { tinaTableTemplate } from "tinacms";
+var PUBLIC_BASE = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE + "/" : "";
 var fiches = {
   name: "fiches",
   label: "Fiches du R\xE9f\xE9rentiel",
@@ -243,7 +244,7 @@ var fiches = {
   format: "mdx",
   ui: {
     router: ({ document }) => {
-      return `${PUBLIC_BASE}/${document._sys.breadcrumbs[0]}/fiches/${slugify(document._sys.breadcrumbs[1])}`;
+      return `${PUBLIC_BASE}${document._sys.breadcrumbs[0]}/fiches/${slugify(document._sys.breadcrumbs[1])}`;
     },
     beforeSubmit: onFichesBeforeSubmit
   },
@@ -321,6 +322,10 @@ var fiches = {
         {
           value: "videos-sounds",
           label: "Vid\xE9os/Audios"
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (\xE9viter de l'utiliser) >>"
         }
       ]
     },
@@ -347,6 +352,10 @@ var fiches = {
         {
           value: "nocode",
           label: "No-code \u2192 Madame et Monsieur tout le monde"
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (\xE9viter de l'utiliser) >>"
         }
       ]
     },
@@ -392,6 +401,35 @@ var fiches = {
         {
           value: "9-end-of-life",
           label: "9. Fin de vie"
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (\xE9viter de l'utiliser) >>"
+        }
+      ]
+    },
+    {
+      type: "string",
+      name: "environmental_impact",
+      label: "Environmental impact",
+      required: true,
+      // répercuter ces changements dans src/i18n/ui.ts
+      options: [
+        {
+          label: "Fort \u{1F331}\u{1F331}\u{1F331}",
+          value: "high"
+        },
+        {
+          label: "Moyen \u{1F331}\u{1F331}",
+          value: "medium"
+        },
+        {
+          label: "Faible \u{1F331}",
+          value: "low"
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (\xE9viter de l'utiliser) >>"
         }
       ]
     },
@@ -401,15 +439,24 @@ var fiches = {
       label: "Priority implementation",
       required: true,
       // répercuter ces changements dans src/i18n/ui.ts
-      options: ["Fort \u{1F44D}\u{1F44D}\u{1F44D}", "Moyen \u{1F44D}\u{1F44D}", "Faible \u{1F44D}"]
-    },
-    {
-      type: "string",
-      name: "environmental_impact",
-      label: "Environmental impact",
-      required: true,
-      // répercuter ces changements dans src/i18n/ui.ts
-      options: ["Fort \u{1F331}\u{1F331}\u{1F331}", "Moyen \u{1F331}\u{1F331}", "Faible \u{1F331}"]
+      options: [
+        {
+          label: "Fort \u{1F44D}\u{1F44D}\u{1F44D}",
+          value: "high"
+        },
+        {
+          label: "Moyen \u{1F44D}\u{1F44D}",
+          value: "medium"
+        },
+        {
+          label: "Faible \u{1F44D}",
+          value: "low"
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (\xE9viter de l'utiliser) >>"
+        }
+      ]
     },
     {
       type: "string",
@@ -450,6 +497,10 @@ var fiches = {
         {
           value: "ghg",
           label: "\xC9missions de gaz \xE0 effet de serre"
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (\xE9viter de l'utiliser) >>"
         }
       ]
     },
@@ -459,7 +510,8 @@ var fiches = {
       name: "body",
       isBody: true,
       label: "Contenu",
-      required: true
+      required: true,
+      templates: [tinaTableTemplate]
     },
     {
       type: "object",
@@ -524,7 +576,7 @@ var lexique = {
 var lexique_default = lexique;
 
 // tina/collections/personnas.tsx
-var PUBLIC_BASE2 = process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
+var PUBLIC_BASE2 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE + "/" : "";
 var personnas = {
   name: "personnas",
   label: "Personnas",
@@ -532,7 +584,7 @@ var personnas = {
   format: "mdx",
   ui: {
     router: ({ document }) => {
-      return `${PUBLIC_BASE2}/${document._sys.breadcrumbs[0]}/personnas/${slugify(document._sys.breadcrumbs[1])}`;
+      return `/${PUBLIC_BASE2}${document._sys.breadcrumbs[0]}/personnas/${slugify(document._sys.breadcrumbs[1])}`;
     },
     beforeSubmit: onPersonnasBeforeSubmit
   },
@@ -556,7 +608,7 @@ var personnas = {
 var personnas_default = personnas;
 
 // tina/collections/home.tsx
-var PUBLIC_BASE3 = process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
+var PUBLIC_BASE3 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE + "/" : "";
 var home = {
   name: "home",
   label: "Home pages",
@@ -592,7 +644,7 @@ var home = {
 var home_default = home;
 
 // tina/collections/mentionsLegales.tsx
-var PUBLIC_BASE4 = process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
+var PUBLIC_BASE4 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE + "/" : "";
 var mentionsLegales = {
   name: "mentionsLegales",
   label: "Mentions l\xE9gales",
@@ -602,7 +654,7 @@ var mentionsLegales = {
   ui: {
     router: ({ document }) => {
       console.log("\u{1F680} ~ document:", document);
-      return `${PUBLIC_BASE4}/${document._sys.breadcrumbs[0]}/mentions-legales`;
+      return `/${PUBLIC_BASE4}${document._sys.breadcrumbs[0]}/mentions-legales`;
     },
     beforeSubmit: onDefaultPagesBeforeSubmit
   },
@@ -727,7 +779,7 @@ var siteData = {
 };
 
 // tina/config.ts
-var PUBLIC_BASE5 = process.env.PUBLIC_BASE || "ref";
+var PUBLIC_BASE5 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE : "";
 var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
 var config_default = defineConfig({
   branch,

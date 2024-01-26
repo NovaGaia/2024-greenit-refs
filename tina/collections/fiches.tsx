@@ -6,11 +6,12 @@ import {
   onFichesBeforeSubmit,
 } from "../utils/commonFields";
 import { slugify } from "../../src/js/utils.js";
-import type { Collection } from "tinacms";
+import { tinaTableTemplate, type Collection } from "tinacms";
 
-// Ne fonctionne pas, donc ref.
 const PUBLIC_BASE =
-  process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
+  process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== ""
+    ? process.env.PUBLIC_BASE + "/"
+    : "";
 
 const fiches: Collection = {
   name: "fiches",
@@ -21,7 +22,7 @@ const fiches: Collection = {
     router: ({ document }) => {
       // navigate to the post that was clicked
       // return document._sys.path;
-      return `${PUBLIC_BASE}/${document._sys.breadcrumbs[0]}/fiches/${slugify(document._sys.breadcrumbs[1])}`;
+      return `${PUBLIC_BASE}${document._sys.breadcrumbs[0]}/fiches/${slugify(document._sys.breadcrumbs[1])}`;
     },
     beforeSubmit: onFichesBeforeSubmit,
   },
@@ -100,6 +101,10 @@ const fiches: Collection = {
           value: "videos-sounds",
           label: "Vidéos/Audios",
         },
+        {
+          value: "tbd",
+          label: "<< TBD (éviter de l'utiliser) >>",
+        },
       ],
     },
     {
@@ -125,6 +130,10 @@ const fiches: Collection = {
         {
           value: "nocode",
           label: "No-code → Madame et Monsieur tout le monde",
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (éviter de l'utiliser) >>",
         },
       ],
     },
@@ -171,6 +180,35 @@ const fiches: Collection = {
           value: "9-end-of-life",
           label: "9. Fin de vie",
         },
+        {
+          value: "tbd",
+          label: "<< TBD (éviter de l'utiliser) >>",
+        },
+      ],
+    },
+    {
+      type: "string",
+      name: "environmental_impact",
+      label: "Environmental impact",
+      required: true,
+      // répercuter ces changements dans src/i18n/ui.ts
+      options: [
+        {
+          label: "Fort 🌱🌱🌱",
+          value: "high",
+        },
+        {
+          label: "Moyen 🌱🌱",
+          value: "medium",
+        },
+        {
+          label: "Faible 🌱",
+          value: "low",
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (éviter de l'utiliser) >>",
+        },
       ],
     },
     {
@@ -179,15 +217,24 @@ const fiches: Collection = {
       label: "Priority implementation",
       required: true,
       // répercuter ces changements dans src/i18n/ui.ts
-      options: ["Fort 👍👍👍", "Moyen 👍👍", "Faible 👍"],
-    },
-    {
-      type: "string",
-      name: "environmental_impact",
-      label: "Environmental impact",
-      required: true,
-      // répercuter ces changements dans src/i18n/ui.ts
-      options: ["Fort 🌱🌱🌱", "Moyen 🌱🌱", "Faible 🌱"],
+      options: [
+        {
+          label: "Fort 👍👍👍",
+          value: "high",
+        },
+        {
+          label: "Moyen 👍👍",
+          value: "medium",
+        },
+        {
+          label: "Faible 👍",
+          value: "low",
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (éviter de l'utiliser) >>",
+        },
+      ],
     },
     {
       type: "string",
@@ -229,6 +276,10 @@ const fiches: Collection = {
           value: "ghg",
           label: "Émissions de gaz à effet de serre",
         },
+        {
+          value: "tbd",
+          label: "<< TBD (éviter de l'utiliser) >>",
+        },
       ],
     },
     titleField("Corps de la fiche"),
@@ -238,6 +289,7 @@ const fiches: Collection = {
       isBody: true,
       label: "Contenu",
       required: true,
+      templates: [tinaTableTemplate],
     },
     {
       type: "object",

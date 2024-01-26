@@ -256,8 +256,8 @@ export type Fiches = Node & Document & {
   scope: Scalars['String']['output'];
   responsible: Array<Scalars['String']['output']>;
   lifecycle: Scalars['String']['output'];
-  priority_implementation: Scalars['String']['output'];
   environmental_impact: Scalars['String']['output'];
+  priority_implementation: Scalars['String']['output'];
   saved_resources: Array<Scalars['String']['output']>;
   _corps_de_la_fiche?: Maybe<Scalars['String']['output']>;
   body: Scalars['JSON']['output'];
@@ -293,6 +293,24 @@ export type RichTextFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type FichesBodyTableTableRowsTableCellsFilter = {
+  value?: InputMaybe<RichTextFilter>;
+};
+
+export type FichesBodyTableTableRowsFilter = {
+  tableCells?: InputMaybe<FichesBodyTableTableRowsTableCellsFilter>;
+};
+
+export type FichesBodyTableFilter = {
+  firstRowHeader?: InputMaybe<BooleanFilter>;
+  align?: InputMaybe<StringFilter>;
+  tableRows?: InputMaybe<FichesBodyTableTableRowsFilter>;
+};
+
+export type FichesBodyFilter = {
+  table?: InputMaybe<FichesBodyTableFilter>;
+};
+
 export type NumberFilter = {
   lt?: InputMaybe<Scalars['Float']['input']>;
   lte?: InputMaybe<Scalars['Float']['input']>;
@@ -321,11 +339,11 @@ export type FichesFilter = {
   scope?: InputMaybe<StringFilter>;
   responsible?: InputMaybe<StringFilter>;
   lifecycle?: InputMaybe<StringFilter>;
-  priority_implementation?: InputMaybe<StringFilter>;
   environmental_impact?: InputMaybe<StringFilter>;
+  priority_implementation?: InputMaybe<StringFilter>;
   saved_resources?: InputMaybe<StringFilter>;
   _corps_de_la_fiche?: InputMaybe<StringFilter>;
-  body?: InputMaybe<RichTextFilter>;
+  body?: InputMaybe<FichesBodyFilter>;
   validations?: InputMaybe<FichesValidationsFilter>;
 };
 
@@ -638,8 +656,8 @@ export type FichesMutation = {
   scope?: InputMaybe<Scalars['String']['input']>;
   responsible?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   lifecycle?: InputMaybe<Scalars['String']['input']>;
-  priority_implementation?: InputMaybe<Scalars['String']['input']>;
   environmental_impact?: InputMaybe<Scalars['String']['input']>;
+  priority_implementation?: InputMaybe<Scalars['String']['input']>;
   saved_resources?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   _corps_de_la_fiche?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
@@ -690,7 +708,7 @@ export type MentionsLegalesMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type FichesPartsFragment = { __typename: 'Fiches', _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, priority_implementation: string, environmental_impact: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null };
+export type FichesPartsFragment = { __typename: 'Fiches', _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null };
 
 export type LexiquePartsFragment = { __typename: 'Lexique', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
@@ -705,7 +723,7 @@ export type FichesQueryVariables = Exact<{
 }>;
 
 
-export type FichesQuery = { __typename?: 'Query', fiches: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, priority_implementation: string, environmental_impact: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null } };
+export type FichesQuery = { __typename?: 'Query', fiches: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null } };
 
 export type FichesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -717,7 +735,7 @@ export type FichesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type FichesConnectionQuery = { __typename?: 'Query', fichesConnection: { __typename?: 'FichesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FichesConnectionEdges', cursor: string, node?: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, priority_implementation: string, environmental_impact: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null } | null } | null> | null } };
+export type FichesConnectionQuery = { __typename?: 'Query', fichesConnection: { __typename?: 'FichesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FichesConnectionEdges', cursor: string, node?: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: number | null } | null> | null } | null } | null> | null } };
 
 export type LexiqueQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -810,8 +828,8 @@ export const FichesPartsFragmentDoc = gql`
   scope
   responsible
   lifecycle
-  priority_implementation
   environmental_impact
+  priority_implementation
   saved_resources
   _corps_de_la_fiche
   body

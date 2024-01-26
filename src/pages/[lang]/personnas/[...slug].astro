@@ -16,7 +16,9 @@ type Props = {
 export async function getStaticPaths() {
   const entries = await getCollection("personnas");
   const paths = entries
-    .filter((entry) => entry.data.published)
+    .filter((entry) =>
+      import.meta.env.MODE === "development" ? "true" : entry.data.published,
+    )
     .map((entry) => {
       const [lang, ...slug] = entry.slug.split("/");
       return {

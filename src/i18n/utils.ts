@@ -1,6 +1,8 @@
 import { ui, defaultLang, showDefaultLang } from "./ui";
 
-const PUBLIC_BASE = process.env.PUBLIC_BASE || "ref";
+const PUBLIC_BASE = process.env.PUBLIC_BASE
+  ? process.env.PUBLIC_BASE + "/"
+  : "";
 
 export function getLangFromUrl(url: URL) {
   const [, , lang] = url.pathname.split("/");
@@ -18,7 +20,7 @@ export function useTranslatedPath(lang: keyof typeof ui) {
   return function translatePath(path: string, l: string = lang) {
     return !showDefaultLang && l === defaultLang
       ? path
-      : `/${PUBLIC_BASE}/${l}${path}`;
+      : `/${PUBLIC_BASE}${l}${path}`;
   };
 }
 

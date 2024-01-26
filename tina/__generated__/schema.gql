@@ -116,8 +116,8 @@ type Fiches implements Node & Document {
   scope: String!
   responsible: [String!]!
   lifecycle: String!
-  priority_implementation: String!
   environmental_impact: String!
+  priority_implementation: String!
   saved_resources: [String!]!
   _corps_de_la_fiche: String
   body: JSON!
@@ -153,6 +153,24 @@ input RichTextFilter {
   exists: Boolean
 }
 
+input FichesBodyTableTableRowsTableCellsFilter {
+  value: RichTextFilter
+}
+
+input FichesBodyTableTableRowsFilter {
+  tableCells: FichesBodyTableTableRowsTableCellsFilter
+}
+
+input FichesBodyTableFilter {
+  firstRowHeader: BooleanFilter
+  align: StringFilter
+  tableRows: FichesBodyTableTableRowsFilter
+}
+
+input FichesBodyFilter {
+  table: FichesBodyTableFilter
+}
+
 input NumberFilter {
   lt: Float
   lte: Float
@@ -181,11 +199,11 @@ input FichesFilter {
   scope: StringFilter
   responsible: StringFilter
   lifecycle: StringFilter
-  priority_implementation: StringFilter
   environmental_impact: StringFilter
+  priority_implementation: StringFilter
   saved_resources: StringFilter
   _corps_de_la_fiche: StringFilter
-  body: RichTextFilter
+  body: FichesBodyFilter
   validations: FichesValidationsFilter
 }
 
@@ -396,8 +414,8 @@ input FichesMutation {
   scope: String
   responsible: [String]
   lifecycle: String
-  priority_implementation: String
   environmental_impact: String
+  priority_implementation: String
   saved_resources: [String]
   _corps_de_la_fiche: String
   body: JSON

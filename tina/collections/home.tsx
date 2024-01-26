@@ -6,9 +6,10 @@ import {
 } from "../utils/commonFields";
 import type { Collection } from "tinacms";
 
-// Ne fonctionne pas, donc ref.
 const PUBLIC_BASE =
-  process.env.PUBLIC_BASE || import.meta.env.PUBLIC_BASE || "ref";
+  process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== ""
+    ? process.env.PUBLIC_BASE + "/"
+    : "";
 
 const home: Collection = {
   name: "home",

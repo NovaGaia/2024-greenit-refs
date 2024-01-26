@@ -7,7 +7,7 @@
     "start": "astro dev",
     "build": "astro build",
     "check:build": "astro check && astro build",
-    "preview": "astro preview",
+    "preview": "env-cmd astro preview --base $(PUBLIC_BASE)",
     "format": "prettier -w --plugin-search-dir=. .",
     "astro": "astro",
     "tina": "tinacms"
@@ -24,6 +24,7 @@
     "astro": "^4.2.1",
     "astro-icon": "^1.0.2",
     "astro-pagefind": "^1.4.0",
+    "env-cmd": "^10.1.0",
     "marked": "^11.1.1",
     "mdast-util-to-string": "^4.0.0",
     "react": "^18.2.0",

@@ -1,7 +1,9 @@
 import { useTina } from "tinacms/dist/react";
 
-const PUBLIC_BASE = import.meta.env.PUBLIC_BASE || "ref";
-const DISPLAY_TINA_BAR = false;
+const PUBLIC_BASE = import.meta.env.PUBLIC_BASE
+  ? import.meta.env.PUBLIC_BASE + "/"
+  : "";
+const DISPLAY_TINA_BAR = true;
 
 interface TinaReactHelperProps {
   tina: any;
@@ -24,6 +26,7 @@ export const TinaReactHelper: React.FC<TinaReactHelperProps> = ({
   }
   const btClasses =
     "bg-gray-800 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded whitespace-nowrap flex items-center gap-2 w-fit flex-none";
+  const [lang, ...slug] = entry.slug.split("/");
   return (
     <>
       {DISPLAY_TINA_BAR && (
@@ -32,7 +35,7 @@ export const TinaReactHelper: React.FC<TinaReactHelperProps> = ({
             <span className="font-bold text-white">TinaCMS:</span>{" "}
             {inIframe() ? (
               <a
-                href={`/${PUBLIC_BASE}/${entry.slug}`}
+                href={`/${PUBLIC_BASE}${lang}/${entry.collection}/${slug}`}
                 target="_blank"
                 className={btClasses}
               >
@@ -55,7 +58,7 @@ export const TinaReactHelper: React.FC<TinaReactHelperProps> = ({
               </a>
             ) : (
               <a
-                href={`/${PUBLIC_BASE}/admin/index.html#/~/${PUBLIC_BASE}/${entry.slug}`}
+                href={`/${PUBLIC_BASE}admin/index.html#/~/${PUBLIC_BASE}${lang}/${entry.collection}/${slug}`}
                 target="_blank"
                 className={btClasses}
               >

@@ -12,8 +12,8 @@ fragment FichesParts on Fiches {
   scope
   responsible
   lifecycle
-  priority_implementation
   environmental_impact
+  priority_implementation
   saved_resources
   _corps_de_la_fiche
   body
