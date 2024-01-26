@@ -15,6 +15,7 @@ function trimWikiLinks(str) {
 }
 
 function cleanImpact(meta) {
+  // TODO: replace with a proper translation
   return entry.data[`${meta}`].replace(/Fort|Moyen|Faible/gi, " ");
 }
 
