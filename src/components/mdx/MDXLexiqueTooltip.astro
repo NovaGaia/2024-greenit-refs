@@ -6,7 +6,9 @@ const { lang } = Astro.params;
 const collection = await getCollection("lexique");
 const matched = collection
   .filter((item) => item.slug.split("/")[0] === lang)
-  .filter((item) => item.slug.split("/")[1] === lexique)[0];
+  .filter(
+    (item) => item.slug.split("/")[1].toLowerCase() === lexique.toLowerCase(),
+  )[0];
 ---
 
 {
@@ -22,7 +24,10 @@ const matched = collection
     <span class="tooltip alert" title="">
       {lexique}
       <span class="bottom">
-        <span>Définition manquante, allez dans le Lexique.</span>
+        <span>
+          Définition manquante, vérifier le formatage du lien ou si la fiche
+          existe dans le Lexique.
+        </span>
         <i />
       </span>
     </span>
