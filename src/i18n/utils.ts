@@ -5,7 +5,11 @@ const PUBLIC_BASE = process.env.PUBLIC_BASE
   : "";
 
 export function getLangFromUrl(url: URL) {
-  const [, , lang] = url.pathname.split("/");
+  // const [, , lang] = url.pathname.split("/");
+  const lang =
+    PUBLIC_BASE !== ""
+      ? url.pathname.split("/")[2]
+      : url.pathname.split("/")[1];
   if (lang in ui) return lang as keyof typeof ui;
   return defaultLang;
 }
@@ -19,7 +23,7 @@ export function useTranslations(lang: keyof typeof ui) {
 export function useTranslatedPath(lang: keyof typeof ui) {
   return function translatePath(path: string, l: string = lang) {
     return !showDefaultLang && l === defaultLang
-      ? path
+      ? `/${PUBLIC_BASE}${path}`
       : `/${PUBLIC_BASE}${l}${path}`;
   };
 }

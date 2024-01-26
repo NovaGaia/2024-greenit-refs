@@ -10,8 +10,15 @@ import remarkExternalLink from "./src/lib/remark-external-links.mjs";
 import remarkWikilinks from "./src/lib/remark-wikilinks.mjs";
 
 const SITE_URL = process.env.SITE_URL || "http://localhost:4321";
+const PUBLIC_REF_NAME = process.env.PUBLIC_REF_NAME
+  ? process.env.PUBLIC_REF_NAME
+  : "";
+if (PUBLIC_REF_NAME === "") {
+  throw new Error("PUBLIC_REF_NAME is empty");
+}
+console.log("🚀 ~ PUBLIC_REF_NAME:", PUBLIC_REF_NAME);
 const PUBLIC_BASE = process.env.PUBLIC_BASE ? process.env.PUBLIC_BASE : "";
-console.log("🚀 ~ PUBLIC_BASE:", PUBLIC_BASE);
+console.log("🚀 ~ PUBLIC_BASE:", PUBLIC_BASE || "empty 👌");
 const tina = ({ directiveName = "tina" } = {}) => ({
   name: "tina-cms",
   hooks: {

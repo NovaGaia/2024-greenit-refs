@@ -1,7 +1,9 @@
 export const showDefaultLang = true;
 
 const siteURL = process.env.SITE_URL || "http://localhost:1234";
-const pathPrefix = "/wp";
+const PUBLIC_BASE = process.env.PUBLIC_BASE
+  ? "/" + process.env.PUBLIC_BASE
+  : "/";
 
 export const languages = {
   en: "English",
@@ -36,7 +38,7 @@ export const ui = {
   },
   fr: {
     // global
-    pathPrefix: pathPrefix,
+    pathPrefix: PUBLIC_BASE,
     "refName.min": "RWP",
     "repo.url": "https://github.com/cnumr/best-practices-wordpress",
     "repo.branch": "main",
@@ -44,7 +46,7 @@ export const ui = {
     "seo.site_name": "Les bonnes pratiques d'écoconception pour WordPress",
     "seo.default.description":
       "Les bonnes pratiques d'écoconception pour WordPress",
-    "seo.url": siteURL + pathPrefix,
+    "seo.url": siteURL + PUBLIC_BASE,
     "seo.titleTemplate": "%s | Collectif Green IT",
     "seo.fb.image.url": "/asso-greenit-share-fb.png",
     "seo.tw.image.url": "/asso-greenit-share-tw.png",
