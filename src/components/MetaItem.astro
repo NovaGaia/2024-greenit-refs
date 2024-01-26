@@ -37,7 +37,7 @@ const t = useTranslations(lang);
             <li
               class="my-2 max-h-5 whitespace-nowrap p-0 leading-4"
               data-pagefind-filter="tags[data-content]"
-              data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${item}`}
+              data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${t(item)}`}
             >
               → {t(item)}
             </li>
@@ -56,11 +56,11 @@ const t = useTranslations(lang);
       ]}
     >
       {displayTitle === true && (
-        <strong
-          class="capitalize"
-          data-pagefind-filter="tags[data-content]"
-          data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${t(toDisplay)}`}
-        >
+        <strong class="capitalize">
+          {/*
+            data-pagefind-filter="tags[data-content]"
+            data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${t(toDisplay)}`}
+           */}
           {t(meta)} :{" "}
         </strong>
       )}
