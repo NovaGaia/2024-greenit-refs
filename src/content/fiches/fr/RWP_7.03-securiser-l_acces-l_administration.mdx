@@ -1,27 +1,40 @@
 ---
 refID: "7.03"
 title: Sécuriser l'accès à l'administration
-people: Dominique N.
-scope: Sécurité
-responsible:
-  - Code(use·ur) → Développeu·se·r
-  - Low-code → Freelance et développeur Front-End d'agences
-  - No-code → Madame et Monsieur tout le monde
-lifecycle: Mise en ligne
-priority_implementation: Fort 👍👍👍
-environmental_impact: Moyen 🌱🌱
-saved_resources:
-  - Stockage
-  - Réseau
-  - Requêtes
 createdAt: 2024-01-20T13:17:16.663Z
-updatedAt: 2024-01-25T08:50:24.094Z
+updatedAt: 2024-01-27T12:59:52.047Z
 language: fr
 published: true
+people: Dominique N.
+scope: security
+responsible:
+  - developer
+  - lowcode
+  - nocode
+lifecycle: 7-deployment
+environmental_impact: medium_environmental_impact
+priority_implementation: high_priority
+saved_resources:
+  - storage
+  - network
+  - queries
 validations:
+  - rule: de page donnant accès à l’interface d’administration avec l’url classique
+    maxValue: "0"
+  - rule: de page donnant accès à l’interface d’administration une url simple
+    maxValue: "0"
+  - rule: d’utilisateur ayant un identifiant de connexion simple
+    maxValue: "0"
+  - rule: d’utilisateur ayant un mot de passe de connexion simple
+    maxValue: "0"
   - rule: >-
-      TODO: Règle à valider
-    maxValue: 0
+      d’utilisateur ayant un couple “identifiant / mot de passe” déjà utilisé
+      sur d’autres plateformes
+    maxValue: "0"
+  - rule: d’utilisateur ayant un mot de passe changé il y a plus de 90 jours
+    maxValue: "0"
+  - rule: de tentative d’accès à l’administration erroné
+    maxValue: "3"
 ---
 
 ## Sujet
@@ -61,18 +74,6 @@ En effet, plusieurs extensions, éprouvées et sûres, vous permettent de réali
 - des lettres minuscules et majuscules
 - des caractères spéciaux
 - est changé régulièrement
-
-## Principe de validation
-
-| Le nombre                                                                                        | est inférieur ou égal à |
-| ------------------------------------------------------------------------------------------------ | :---------------------: |
-| de page donnant accès à l'interface d'administration avec l'url classique                        |            0            |
-| de page donnant accès à l'interface d'administration une url simple                              |            0            |
-| d'utilisateur ayant un identifiant de connexion simple                                           |            0            |
-| d'utilisateur ayant un mot de passe de connexion simple                                          |            0            |
-| d'utilisateur ayant un couple "identifiant / mot de passe" déjà utilisé sur d'autres plateformes |            0            |
-| d'utilisateur ayant un mot de passe changé il y a plus de 90 jours                               |            0            |
-| de tentative d'accès à l'administration erroné                                                   |            3            |
 
 ## Sources
 

@@ -1,23 +1,23 @@
 ---
 refID: "4.03"
 title: Limiter le nombre de révisions
-people: Dominique N.
-scope: Stockage
-responsible:
-  - Code(use·ur) → Développeu·se·r
-lifecycle: Intégration & Développement
-priority_implementation: Faible 👍
-environmental_impact: Faible 🌱
-saved_resources:
-  - Stockage
 createdAt: 2024-01-20T13:17:16.663Z
-updatedAt: 2024-01-25T08:50:24.094Z
+updatedAt: 2024-01-27T12:32:25.135Z
 language: fr
 published: true
+people: Dominique N.
+scope: storage
+responsible:
+  - developer
+  - lowcode
+lifecycle: 4-integration-development
+environmental_impact: low_environmental_impact
+priority_implementation: low_priority
+saved_resources:
+  - storage
 validations:
-  - rule: >-
-      TODO: Règle à valider
-    maxValue: 0
+  - rule: de révisions par contenu
+    maxValue: "10"
 ---
 
 ## Sujet
@@ -47,9 +47,3 @@ Pour supprimer l'enregistrement des révisions :
 ```php
 define('WP_POST_REVISIONS', false);
 ```
-
-## Principe de validation
-
-| Le nombre                | est inférieur ou égal à |
-| ------------------------ | :---------------------: |
-| de révisions par contenu |           10            |

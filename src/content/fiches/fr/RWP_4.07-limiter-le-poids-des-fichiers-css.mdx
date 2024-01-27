@@ -1,25 +1,26 @@
 ---
 refID: "4.07"
 title: Limiter le poids des fichiers CSS
-people: Yann Gautreau.
-scope: Thèmes
-responsible:
-  - Code(use·ur) → Développeu·se·r
-  - Low-code → Freelance et développeur Front-End d'agences
-lifecycle: Intégration & Développement
-priority_implementation: Fort 👍👍👍
-environmental_impact: Fort 🌱🌱🌱
-saved_resources:
-  - Réseau
-  - Requêtes
 createdAt: 2024-01-20T13:17:16.663Z
-updatedAt: 2024-01-25T08:50:24.094Z
+updatedAt: 2024-01-27T12:40:36.347Z
 language: fr
 published: true
+people: Yann Gautreau.
+scope: themes
+responsible:
+  - developer
+  - lowcode
+lifecycle: 4-integration-development
+environmental_impact: high_environmental_impact
+priority_implementation: high_priority
+saved_resources:
+  - network
+  - queries
 validations:
-  - rule: >-
-      TODO: Règle à valider
-    maxValue: 0
+  - rule: de règles de style non utilisées
+    maxValue: "0"
+  - rule: de fichiers CSS non minifiés
+    maxValue: "0"
 ---
 
 ## Sujet
@@ -30,7 +31,7 @@ Le poids numérique des fichiers CSS est en constante augmentation depuis 10 ans
 
 ### Solution no-code 🌱
 
-Nous vous invitons à vous référer à la bonne pratique : [Utiliser un système de cache](./WP_7.02-utiliser-un-systeme-de-cache.md). La plupart des [[extension|extensions]] de cache propose à minima la minification du CSS.
+Nous vous invitons à vous référer à la bonne pratique : [Utiliser un système de cache](./WP_7.02-utiliser-un-systeme-de-cache.md). La plupart des \[\[extension|extensions]] de cache propose à minima la minification du CSS.
 
 ### Solution code 🌱🌱🌱
 
@@ -45,10 +46,3 @@ Nous vous recommandons de :
 - Minifier les fichiers CSS
 - Éviter d'utiliser les propriétés coûteuses en ressources (`position : fixed`, `border-radius`, `box-shadow`, `text-shadow`, `opacity`, `transform`, `filter`)
 - Adopter une approche mobile-first (économie de style et de ressources) et d'ajouter les styles à mesure que le support s’agrandit (Voir la fiche [Concevoir en Mobile First](./WP_3.07-concevoir-vos-sites-en-mobile-first.md)).
-
-## Principe de validation
-
-| Le nombre                        | est inférieur ou égal à |
-| -------------------------------- | :---------------------: |
-| de règles de style non utilisées |            0            |
-| de fichiers CSS non minifiés     |            0            |

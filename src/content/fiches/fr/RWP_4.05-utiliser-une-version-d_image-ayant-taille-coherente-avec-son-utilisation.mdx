@@ -1,29 +1,29 @@
 ---
 refID: "4.05"
 title: Utiliser une version d'image ayant une taille cohérente avec son utilisation
-people: Renaud H.
-scope: Images
-responsible:
-  - Code(use·ur) → Développeu·se·r
-  - Designeu(se·r)
-  - Low-code → Freelance et développeur Front-End d'agences
-  - No-code → Madame et Monsieur tout le monde
-lifecycle: Intégration & Développement
-priority_implementation: Fort 👍👍👍
-environmental_impact: Fort 🌱🌱🌱
-saved_resources:
-  - Processeur
-  - Mémoire vive
-  - Stockage
-  - Réseau
 createdAt: 2024-01-20T13:17:16.663Z
-updatedAt: 2024-01-25T08:50:24.094Z
+updatedAt: 2024-01-27T12:36:26.264Z
 language: fr
 published: true
+people: Renaud H.
+scope: images
+responsible:
+  - developer
+  - designer
+  - lowcode
+  - nocode
+lifecycle: 4-integration-development
+environmental_impact: high_environmental_impact
+priority_implementation: high_priority
+saved_resources:
+  - cpu
+  - ram
+  - storage
+  - network
+  - queries
 validations:
-  - rule: >-
-      TODO: Règle à valider
-    maxValue: 0
+  - rule: d'images sans une vignette adaptée à son affichage HTML
+    maxValue: "0"
 ---
 
 ## Sujet
@@ -37,11 +37,11 @@ Lors de l'ajout d'une image dans l'interface d'une page, il faut se poser plusie
 - La transparence ou non
 - Et ici, la taille de l'image.
 
-Lors de l'upload, WordPress crée d'office des versions [[vignette|vignettes]] de vos médias.
+Lors de l'upload, WordPress crée d'office des versions \[\[vignette|vignettes]] de vos médias.
 
 Les vignettes sont des versions de dimensions réduites de votre média initial et certaines avec des proportions différentes (carrée).
 
-Les [[theme|thèmes]], si c'est configuré dans le code, génèrent aussi des vignettes répondant aux besoins de leur interface (une pour un affichage en grille, en mobile pour les Portfolios, une autre pour la version tablette, etc.).
+Les \[\[theme|thèmes]], si c'est configuré dans le code, génèrent aussi des vignettes répondant aux besoins de leur interface (une pour un affichage en grille, en mobile pour les Portfolios, une autre pour la version tablette, etc.).
 
 Lors de la création d'un site, il est important de configurer la génération des vignettes pour optimiser et accélérer l'affichage.
 
@@ -51,7 +51,7 @@ Sachant que votre site va finalement n'utiliser que des versions de tailles réd
 
 ### Solution no-code 🌱
 
-Voici une [[extension]] pour créer des [[vignette|vignettes]] (`post-thumbnails`) et régénérer les images pour qu'elles soient disponibles dans WordPress : https://fr.wordpress.org/plugins/regenerate-thumbnails-advanced/
+Voici une \[\[extension]] pour créer des \[\[vignette|vignettes]] (`post-thumbnails`) et régénérer les images pour qu'elles soient disponibles dans WordPress : [https://fr.wordpress.org/plugins/regenerate-thumbnails-advanced/](https://fr.wordpress.org/plugins/regenerate-thumbnails-advanced/)
 
 ### Solution code 🌱🌱🌱
 
@@ -82,10 +82,4 @@ function mysite_custom_image_sizes($sizes)
 }
 ```
 
-Utilisez cette extension pour regénéner les vignettes suite à leur ajout dans la configuration : https://fr.wordpress.org/plugins/regenerate-thumbnails/
-
-## Principe de validation
-
-| Le nombre ...                                           | est inférieur ou égal à |
-| ------------------------------------------------------- | :---------------------: |
-| d'images sans une vignette adaptée à son affichage HTML |            0            |
+Utilisez cette extension pour regénéner les vignettes suite à leur ajout dans la configuration : [https://fr.wordpress.org/plugins/regenerate-thumbnails/](https://fr.wordpress.org/plugins/regenerate-thumbnails/)

@@ -1,26 +1,31 @@
 ---
 refID: "5.01"
 title: Compresser les médias
+createdAt: 2024-01-20T13:17:16.663Z
+updatedAt: 2024-01-27T12:46:45.828Z
+language: fr
+published: true
 people: Yann K.
-scope: Images
+scope: images
 responsible:
   - No-code → Madame et Monsieur tout le monde
   - Code(use·ur) → Développeu·se·r
-lifecycle: Contenu & médias
-priority_implementation: Moyen 👍👍
-environmental_impact: Fort 🌱🌱🌱
+  - nocode
+  - lowcode
+  - developer
+lifecycle: 5-content-media
+environmental_impact: high_environmental_impact
+priority_implementation: medium_priority
 saved_resources:
   - Stockage
   - Processeur
   - Réseau
-createdAt: 2024-01-20T13:17:16.663Z
-updatedAt: 2024-01-25T08:50:24.094Z
-language: fr
-published: true
+  - storage
+  - cpu
+  - network
 validations:
-  - rule: >-
-      TODO: Règle à valider
-    maxValue: 0
+  - rule: d’images affichées sans traitement
+    maxValue: "0"
 ---
 
 ## Sujet
@@ -41,9 +46,3 @@ En complément de ces optimisations, il faudra veiller à utiliser le format [d'
 ### Solution no code 🌱🌱
 
 Dans l'écran [Réglages des médias](https://fr.wordpress.org/support/article/settings-media-screen/) de WordPress, vous pouvez adapter les tailles des images qui s'afficheront sur le site en fonction de votre thème.
-
-## Principe de validation
-
-| Le nombre                          | est inférieur ou égal à |
-| ---------------------------------- | :---------------------: |
-| d'images affichées sans traitement |            0            |

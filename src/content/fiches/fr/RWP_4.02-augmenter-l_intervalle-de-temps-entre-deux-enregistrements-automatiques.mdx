@@ -1,26 +1,25 @@
 ---
 refID: "4.02"
 title: Augmenter l'intervalle de temps entre deux enregistrements automatiques
-people: Dominique N.
-scope: Stockage
-responsible:
-  - Code(use·ur) → Développeu·se·r
-  - No-code → Madame et Monsieur tout le monde
-lifecycle: Intégration & Développement
-priority_implementation: Faible 👍
-environmental_impact: Faible 🌱
-saved_resources:
-  - Stockage
-  - Réseau
-  - Requêtes
 createdAt: 2024-01-20T13:17:16.663Z
-updatedAt: 2024-01-25T08:50:24.094Z
+updatedAt: 2024-01-27T12:30:42.216Z
 language: fr
 published: true
+people: Dominique N.
+scope: storage
+responsible:
+  - developer
+  - lowcode
+lifecycle: 4-integration-development
+environmental_impact: low_environmental_impact
+priority_implementation: low_priority
+saved_resources:
+  - storage
+  - network
+  - queries
 validations:
-  - rule: >-
-      TODO: Règle à valider
-    maxValue: 0
+  - rule: d'enregistrements automatiques avec un intervalle de moins de 6 min
+    maxValue: "0"
 ---
 
 ## Sujet
@@ -34,12 +33,12 @@ Cette bonne pratique est à appliquer en complément de la fiche [Limiter le nom
 
 ### Solution no-code 🌱
 
-Nous vous conseillons de travailler vos textes via un traitement de texte en [[local]]. Une fois que votre texte est prêt pour la publication, vous pouvez le copier/coller, en utilisant `Ctrl + Shift + v` pour supprimer l'import de styles indésirables issus du traitement de texte et ainsi utiliser les styles de votre propre site.
+Nous vous conseillons de travailler vos textes via un traitement de texte en \[\[local]]. Une fois que votre texte est prêt pour la publication, vous pouvez le copier/coller, en utilisant `Ctrl + Shift + v` pour supprimer l'import de styles indésirables issus du traitement de texte et ainsi utiliser les styles de votre propre site.
 
 ### Solution code pas-à-pas 🌱
 
 Vous pouvez aussi augmenter cet intervalle de sauvegarde pour limiter le nombre de révisions générées.
-Placer cette ligne dans le fichier de configuration `wp-config.php`, via un [[ftp|serveur FTP]] :
+Placer cette ligne dans le fichier de configuration `wp-config.php`, via un \[\[ftp|serveur FTP]] :
 
 ```php
 // Ici l'intervalle entre deux sauvegardes est de X secondes
@@ -52,9 +51,3 @@ define('AUTOSAVE_INTERVAL', X);
 // Ici l'intervalle entre deux sauvegardes est de 360 secondes
 define('AUTOSAVE_INTERVAL', 360);
 ```
-
-## Principe de validation
-
-| Le nombre                                                           | est inférieur ou égal à |
-| ------------------------------------------------------------------- | :---------------------: |
-| d'enregistrements automatiques avec un intervalle de moins de 6 min |            0            |

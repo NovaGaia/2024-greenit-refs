@@ -1,24 +1,23 @@
 ---
 refID: "3.11"
 title: Eviter les animations
-people: Yann Gautreau
-scope: Front-office
-responsible:
-  - Designeu(se·r)
-lifecycle: Conception & Design
-priority_implementation: Fort 👍👍👍
-environmental_impact: Moyen 🌱🌱
-saved_resources:
-  - Processeur
-  - Mémoire vive
 createdAt: 2024-01-20T13:17:16.663Z
-updatedAt: 2024-01-25T08:50:24.094Z
+updatedAt: 2024-01-27T12:15:28.288Z
 language: fr
 published: true
+people: Yann Gautreau
+scope: front-office
+responsible:
+  - designer
+lifecycle: 3-conception-design
+environmental_impact: medium_environmental_impact
+priority_implementation: high_priority
+saved_resources:
+  - cpu
+  - ram
 validations:
-  - rule: >-
-      TODO: Règle à valider
-    maxValue: 0
+  - rule: d'animations esthétiques
+    maxValue: "0"
 ---
 
 ## Sujet
@@ -29,14 +28,8 @@ Les animations présentes sur un site internet sont généralement là pour augm
 
 - Éviter toutes animations de contenu (textes, images) par surgissement ou glissement (fade In, fadeout, etc) à l'ouverture de la page
 - Ne pas utiliser les animations au déclenchement au scroll de type parallax. Ces animations peuvent sembler viables sur ordinateur mais en version mobile elles sont inutiles, même nuisibles à l'expérience utilisateur (privilégions toujours la vision mobile first, nous y avons consacré une bonne pratique).
-- Privilégier les [[micro-interaction|micros-interactions]] via CSS uniquement, ces dernières vont effectivement participer à la compréhension et à l'expérience utilisateur
+- Privilégier les \[\[micro-interaction|micros-interactions]] via CSS uniquement, ces dernières vont effectivement participer à la compréhension et à l'expérience utilisateur
 
 ## Exemple
 
-Pour aider l'utilisateur dans la navigation sur un site, par exemple, il est intéressant de signaler un changement d'état comme un boutton par une animation de [[micro-interaction]] soit au survol ou au click, n'excédant pas 0.4 seconde, utilisant les pseudos-class et la propriété `transform` (scale, rotate) au lieu d'agir sur les propriétés `height`, `width` et `position`.
-
-## Principe de validation
-
-| Le nombre                | est inférieur ou égal à |
-| ------------------------ | :---------------------: |
-| d'animations esthétiques |            0            |
+Pour aider l'utilisateur dans la navigation sur un site, par exemple, il est intéressant de signaler un changement d'état comme un boutton par une animation de \[\[micro-interaction]] soit au survol ou au click, n'excédant pas 0.4 seconde, utilisant les pseudos-class et la propriété `transform` (scale, rotate) au lieu d'agir sur les propriétés `height`, `width` et `position`.

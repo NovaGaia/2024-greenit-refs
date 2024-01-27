@@ -1,38 +1,37 @@
 ---
 refID: "7.01"
 title: Ajouter les éléments de caching et de compression dans le .htaccess
-people: Dominique N.
-scope: Cache
-responsible:
-  - Code(use·ur) → Développeu·se·r
-lifecycle: Mise en ligne
-priority_implementation: Fort 👍👍👍
-environmental_impact: Fort 🌱🌱🌱
-saved_resources:
-  - Processeur
-  - Mémoire vive
-  - Stockage
-  - Réseau
-  - Requêtes
 createdAt: 2024-01-20T13:17:16.663Z
-updatedAt: 2024-01-25T08:50:24.094Z
+updatedAt: 2024-01-27T12:54:31.007Z
 language: fr
 published: true
+people: Dominique N.
+scope: cache
+responsible:
+  - developer
+lifecycle: 7-deployment
+environmental_impact: high_environmental_impact
+priority_implementation: high_priority
+saved_resources:
+  - cpu
+  - ram
+  - storage
+  - network
+  - queries
 validations:
-  - rule: >-
-      TODO: Règle à valider
-    maxValue: 0
+  - rule: d'élements durables non mis en cache
+    maxValue: "0"
 ---
 
 ## Sujet
 
-La fiche [Utiliser un système Cache](./WP_7.02-utiliser-un-systeme-de-cache.md) nous parle de l'importance du [[cache]] et de sa mise en place via des [[extension|extensions]] WordPress.
+La fiche [Utiliser un système Cache](./WP_7.02-utiliser-un-systeme-de-cache.md) nous parle de l'importance du \[\[cache]] et de sa mise en place via des \[\[extension|extensions]] WordPress.
 
 ## GreenIT vous conseille
 
 ### Solution code 🌱🌱🌱
 
-Nous allons directement indiquer au serveur Apache les paramétrages de [[compression]] et de contrôle du cache que nous souhaitons.
+Nous allons directement indiquer au serveur Apache les paramétrages de \[\[compression]] et de contrôle du cache que nous souhaitons.
 
 ## Exemple
 
@@ -105,10 +104,10 @@ AddOutputFilterByType DEFLATE application/json
 
 ## Principe de validation
 
-| Le nombre                            | est inférieur ou égal à |
-| ------------------------------------ | :---------------------: |
-| d'élements durables non mis en cache |            0            |
+|              Le nombre               | est inférieur ou égal à |
+| :----------------------------------: | ----------------------- |
+| d'élements durables non mis en cache | 0                       |
 
 ## Source
 
-- https://www.seomix.fr/guide-htaccess-performances-et-temps-de-chargement/
+- [https://www.seomix.fr/guide-htaccess-performances-et-temps-de-chargement/](https://www.seomix.fr/guide-htaccess-performances-et-temps-de-chargement/)
