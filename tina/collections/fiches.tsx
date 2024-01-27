@@ -304,13 +304,13 @@ const fiches: Collection = {
         min: 1,
         defaultItem: {
           rule: "<A CHANGER>",
-          maxValue: 3,
+          maxValue: "3",
         },
       },
       fields: [
         { type: "string", name: "rule", label: "Le nombre..." },
         {
-          type: "number",
+          type: "string",
           name: "maxValue",
           label: "...est inférieur ou égal à",
         },

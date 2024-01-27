@@ -65,7 +65,112 @@ export const ui = {
       "Ver el contenido de la licencia CC BY-NC-ND 4.0 (sitio externo)",
 
     // A continuer...
+
+    // src/components/ContributeCTA.astro
+    "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?":
+      "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?",
+    "Venez sur le repo pour lancer une discussion sur":
+      "Venez sur le repo pour lancer une discussion sur",
+    "la fiche": "la fiche",
+    "la fiche du lexique": "la fiche du lexique",
+    "le persona": "le persona",
+
+    // src/pages/[lang]/fiches/index.astro
+    "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.":
+      "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.",
+
+    // src/pages/[lang]/lexique/index.astro
+    "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.":
+      "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.",
+
+    // src/pages/[lang]/personas/index.astro
+    "Les profils que nous ciblons avec ce référentiel.":
+      "Les profils que nous ciblons avec ce référentiel.",
+
+    // src/components/mdx/MDXLexiqueTooltip.astro
+    "Définition manquante, vérifier le formatage du lien ou si la fiche existe dans le Lexique.":
+      "Définition manquante, vérifier le formatage du lien ou si la fiche existe dans le Lexique.",
+
+    // src/components/CardView.astro
+    Fort: "Fort",
+    Moyen: "Moyen",
+    Faible: "Faible",
+
+    // src/components/fiches/FichesFilter.astro
+    Afficher: "Afficher",
+    Masquer: "Masquer",
+    "les filtres": "les filtres",
+    Catégories: "Catégories",
+
+    // src/components/fiches/FichesTableValidation.astro
+    "Principe de validation": "Principe de validation",
+    "Le nombre": "Le nombre",
+    "est inférieur ou égal à": "est inférieur ou égal à",
+
+    // src/components/fiches/FicheViewPaginate.astro
+    "Navigation entre les bonnes pratiques":
+      "Navigation entre les bonnes pratiques",
+    "Priorité d'implémentation": "Priorité d'implémentation",
+    "Impact environnemental": "Impact environnemental",
+
+    // src/components/FichesMetasDisplay.astro
+    "Sommaire :": "Sommaire :",
+
+    // src/components/LanguagePicker.astro
+    "Language picker": "Sélecteur de langue",
     "Changer de langue": "🇬🇧 / 🇫🇷",
+
+    // Scope
+    scope: "Périmètre",
+    cache: "Cache",
+    documents: "Documents",
+    features: "Fonctionnalités",
+    images: "Images",
+    "front-office": "Front-office",
+    hosting: "Hébergement",
+    performance: "Performance",
+    security: "Sécurité",
+    themes: "Thèmes",
+    seo: "SEO",
+    storage: "Stockage",
+    "videos-sounds": "Vidéos/Audios",
+    // Responsible
+    responsible: "Responsable",
+    developer: "Code(use·ur) → Développeu·se·r",
+    designer: "Designeu(se·r)",
+    lowcode: "Low-code → Freelance et développeur Front-End d'agence",
+    nocode: "No-code → Madame et Monsieur tout le monde",
+    // Lifecycle
+    lifecycle: "Cycle de vie",
+    "1-analyse-of-needs": "1. Analyse des besoins",
+    "2-installation": "2. Installation",
+    "3-conception-design": "3. Conception & Design",
+    "4-integration-development": "4. Intégration & Développement",
+    "5-content-media": "5. Contenu & médias",
+    "6-tests-validation": "6. Tests & Validation",
+    "7-deployment": "7. Mise en ligne",
+    "8-maintenance": "8. Maintenance",
+    "9-end-of-life": "9. Fin de vie",
+    // Environmental impact
+    environmental_impact: "Impact environnemental",
+    high_environmental_impact: "Fort 🌱🌱🌱",
+    medium_environmental_impact: "Moyen 🌱🌱",
+    low_environmental_impact: "Faible 🌱",
+    // Priority implementation
+    priority_implementation: "Priorité d'implémentation",
+    high_priority: "Haute 👍👍👍",
+    medium_priority: "Moyenne 👍👍",
+    low_priority: "Faible 👍",
+    // Saved resource(s)
+    saved_resources: "Ressource(s) économisée(s)",
+    cpu: "Processeur",
+    ram: "Mémoire vive",
+    network: "Réseau",
+    queries: "Requêtes",
+    "e-waste": "Déchets électroniques",
+    electricity: "Consommation électrique",
+    ghg: "Émissions de gaz à effet de serre",
+    tdb: "À définir",
   },
   en: {
     // SEO
@@ -116,7 +221,112 @@ export const ui = {
       "View CC BY-NC-ND 4.0 license content (external site)",
 
     // A continuer...
+
+    // src/components/ContributeCTA.astro
+    "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?":
+      "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?",
+    "Venez sur le repo pour lancer une discussion sur":
+      "Venez sur le repo pour lancer une discussion sur",
+    "la fiche": "la fiche",
+    "la fiche du lexique": "la fiche du lexique",
+    "le persona": "le persona",
+
+    // src/pages/[lang]/fiches/index.astro
+    "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.":
+      "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.",
+
+    // src/pages/[lang]/lexique/index.astro
+    "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.":
+      "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.",
+
+    // src/pages/[lang]/personas/index.astro
+    "Les profils que nous ciblons avec ce référentiel.":
+      "Les profils que nous ciblons avec ce référentiel.",
+
+    // src/components/mdx/MDXLexiqueTooltip.astro
+    "Définition manquante, vérifier le formatage du lien ou si la fiche existe dans le Lexique.":
+      "Définition manquante, vérifier le formatage du lien ou si la fiche existe dans le Lexique.",
+
+    // src/components/CardView.astro
+    Fort: "Fort",
+    Moyen: "Moyen",
+    Faible: "Faible",
+
+    // src/components/fiches/FichesFilter.astro
+    Afficher: "Afficher",
+    Masquer: "Masquer",
+    "les filtres": "les filtres",
+    Catégories: "Catégories",
+
+    // src/components/fiches/FichesTableValidation.astro
+    "Principe de validation": "Principe de validation",
+    "Le nombre": "Le nombre",
+    "est inférieur ou égal à": "est inférieur ou égal à",
+
+    // src/components/fiches/FicheViewPaginate.astro
+    "Navigation entre les bonnes pratiques":
+      "Navigation entre les bonnes pratiques",
+    "Priorité d'implémentation": "Priorité d'implémentation",
+    "Impact environnemental": "Impact environnemental",
+
+    // src/components/FichesMetasDisplay.astro
+    "Sommaire :": "Sommaire :",
+
+    // src/components/LanguagePicker.astro
+    "Language picker": "Sélecteur de langue",
     "Changer de langue": "🇪🇸 / 🇫🇷",
+
+    // Scope
+    scope: "Périmètre",
+    cache: "Cache",
+    documents: "Documents",
+    features: "Fonctionnalités",
+    images: "Images",
+    "front-office": "Front-office",
+    hosting: "Hébergement",
+    performance: "Performance",
+    security: "Sécurité",
+    themes: "Thèmes",
+    seo: "SEO",
+    storage: "Stockage",
+    "videos-sounds": "Vidéos/Audios",
+    // Responsible
+    responsible: "Responsable",
+    developer: "Code(use·ur) → Développeu·se·r",
+    designer: "Designeu(se·r)",
+    lowcode: "Low-code → Freelance et développeur Front-End d'agence",
+    nocode: "No-code → Madame et Monsieur tout le monde",
+    // Lifecycle
+    lifecycle: "Cycle de vie",
+    "1-analyse-of-needs": "1. Analyse des besoins",
+    "2-installation": "2. Installation",
+    "3-conception-design": "3. Conception & Design",
+    "4-integration-development": "4. Intégration & Développement",
+    "5-content-media": "5. Contenu & médias",
+    "6-tests-validation": "6. Tests & Validation",
+    "7-deployment": "7. Mise en ligne",
+    "8-maintenance": "8. Maintenance",
+    "9-end-of-life": "9. Fin de vie",
+    // Environmental impact
+    environmental_impact: "Impact environnemental",
+    high_environmental_impact: "Fort 🌱🌱🌱",
+    medium_environmental_impact: "Moyen 🌱🌱",
+    low_environmental_impact: "Faible 🌱",
+    // Priority implementation
+    priority_implementation: "Priorité d'implémentation",
+    high_priority: "Haute 👍👍👍",
+    medium_priority: "Moyenne 👍👍",
+    low_priority: "Faible 👍",
+    // Saved resource(s)
+    saved_resources: "Ressource(s) économisée(s)",
+    cpu: "Processeur",
+    ram: "Mémoire vive",
+    network: "Réseau",
+    queries: "Requêtes",
+    "e-waste": "Déchets électroniques",
+    electricity: "Consommation électrique",
+    ghg: "Émissions de gaz à effet de serre",
+    tdb: "À définir",
   },
   fr: {
     // SEO
@@ -231,6 +441,7 @@ export const ui = {
     hosting: "Hébergement",
     performance: "Performance",
     security: "Sécurité",
+    themes: "Thèmes",
     seo: "SEO",
     storage: "Stockage",
     "videos-sounds": "Vidéos/Audios",

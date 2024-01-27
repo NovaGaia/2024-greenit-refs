@@ -29,7 +29,7 @@ const fiches = defineCollection({
       environmental_impact: z.string(),
       saved_resources: z.array(z.string()),
       validations: z.array(
-        z.object({ rule: z.string(), maxValue: z.number() }),
+        z.object({ rule: z.string(), maxValue: z.string() }),
       ),
     }),
 });

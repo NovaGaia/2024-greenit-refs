@@ -100,7 +100,7 @@ union DocumentNode = Fiches | Lexique | Personas | Home | MentionsLegales | Fold
 
 type FichesValidations {
   rule: String
-  maxValue: Float
+  maxValue: String
 }
 
 type Fiches implements Node & Document {
@@ -171,19 +171,9 @@ input FichesBodyFilter {
   table: FichesBodyTableFilter
 }
 
-input NumberFilter {
-  lt: Float
-  lte: Float
-  gte: Float
-  gt: Float
-  eq: Float
-  exists: Boolean
-  in: [Float]
-}
-
 input FichesValidationsFilter {
   rule: StringFilter
-  maxValue: NumberFilter
+  maxValue: StringFilter
 }
 
 input FichesFilter {
@@ -444,7 +434,7 @@ input DocumentMutation {
 
 input FichesValidationsMutation {
   rule: String
-  maxValue: Float
+  maxValue: String
 }
 
 input FichesMutation {
