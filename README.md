@@ -41,7 +41,7 @@ C'est un framework CSS qui permet de gérer le style du site.
 
 - [Docker](https://www.docker.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+- [Le plugin VScode Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 ### Installation
 
@@ -66,8 +66,12 @@ Lancer le site Astro et TinaCMS
 npm run dev
 ```
 
-- Pour voir le site : [http://localhost:4321/ref](http://localhost:4321/ref)
-- Pour voir TinaCMS : [http://localhost:4321/ref/admin/index.html](http://localhost:4321/ref/admin/index.html)
+- Pour voir le site : [http://localhost:4321/](http://localhost:4321/)
+- Pour voir TinaCMS : [http://localhost:4321/admin/index.html](http://localhost:4321/admin/index.html)
+
+**Arreter le site Astro et TinaCMS**
+
+dans le terminal faites `[ctrl]`+`[c]`
 
 ### Ajout ou modification d'une fiche
 
@@ -79,8 +83,18 @@ Une fois les modifications terminées, créez un commit et un push.
 
 Créez une pull request et demandez une revue.
 
+### Tester les modifications
+
+Avant de push sur GitHub
+
+```bash
+npm run build
+```
+
 ### Déploiement
 
 TinaCMS est un CMS qui se lance en local. Il n'est pas possible de déployer directement. Tout sera géré par GitHub.
+
+Push vos modifications sur votre branche et faites une pull request vers la branch main.
 
 Le site est déployé sur infomaniak quand il y un merge sur la branch `main`.
