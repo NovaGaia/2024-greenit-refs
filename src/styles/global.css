@@ -78,6 +78,9 @@
 
 /* components styles */
 @layer components {
+  pre[class="astro-code github-dark"] {
+    @apply md:max-w-full lg:max-w-[700px];
+  }
   /**** BOX ****/
   .box {
     @apply rounded-lg border-2 border-primary p-2 md:p-4;
