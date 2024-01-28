@@ -509,7 +509,7 @@ var fiches = {
           label: "R\xE9seau"
         },
         {
-          value: "queries",
+          value: "requests",
           label: "Requ\xEAtes"
         },
         {

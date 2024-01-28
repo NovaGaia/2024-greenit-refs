@@ -1,8 +1,8 @@
 ---
-refID: "4.05"
+refID: '4.05'
 title: Utiliser une version d'image ayant une taille cohérente avec son utilisation
 createdAt: 2024-01-20T13:17:16.663Z
-updatedAt: 2024-01-27T12:36:26.264Z
+updatedAt: 2024-01-28T10:13:25.476Z
 language: fr
 published: true
 people: Renaud H.
@@ -20,10 +20,10 @@ saved_resources:
   - ram
   - storage
   - network
-  - queries
+  - requests
 validations:
   - rule: d'images sans une vignette adaptée à son affichage HTML
-    maxValue: "0"
+    maxValue: '0'
 ---
 
 ## Sujet
@@ -32,10 +32,10 @@ validations:
 
 Lors de l'ajout d'une image dans l'interface d'une page, il faut se poser plusieurs questions, abordées sur d'autres fiches de ce guide :
 
-- Le type d'image (JPG, PNG, SVG, etc. voir [5.02 Utiliser le format adéquat d'image](./WP_5.02-utiliser-le-format-adequat-d_image.md))
-- La compression possible ou le nombre de couleurs embarquées
-- La transparence ou non
-- Et ici, la taille de l'image.
+* Le type d'image (JPG, PNG, SVG, etc. voir [5.02 Utiliser le format adéquat d'image](./WP_5.02-utiliser-le-format-adequat-d_image.md))
+* La compression possible ou le nombre de couleurs embarquées
+* La transparence ou non
+* Et ici, la taille de l'image.
 
 Lors de l'upload, WordPress crée d'office des versions \[\[vignette|vignettes]] de vos médias.
 
@@ -68,16 +68,18 @@ add_image_size('custom_product_size_510', 510);
 add_image_size('custom_product_size_320', 320);
 add_image_size('custom_product_size_396', 396);
 
-// And then we'll add the custom size that spans the width of the blog to the Gutenberg image dropdown
+// And then we'll add the custom size
+// that spans the width of the blog
+// to the Gutenberg image dropdown
 add_filter('image_size_names_choose', 'mysite_custom_image_sizes');
 
 function mysite_custom_image_sizes($sizes)
 {
     return array_merge($sizes, array(
         'logo_header_size' => __('Custom header logo Size'),
-        'custom_product_size_510' => __('Custom Product page Size (w:510px)'),
-        'custom_product_size_320' => __('Custom Product page Size (w:320px)'),
-        'custom_product_size_396' => __('Custom Product page Size (w:396px)'),
+        'custom_product_size_510' => __('Custom Size (w:510px)'),
+        'custom_product_size_320' => __('Custom Size (w:320px)'),
+        'custom_product_size_396' => __('Custom Size (w:396px)'),
     ));
 }
 ```

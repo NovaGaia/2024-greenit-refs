@@ -260,7 +260,7 @@ const fiches: Collection = {
           label: "Réseau",
         },
         {
-          value: "queries",
+          value: "requests",
           label: "Requêtes",
         },
         {
