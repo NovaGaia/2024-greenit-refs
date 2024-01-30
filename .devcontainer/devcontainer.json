@@ -20,7 +20,7 @@
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [4321, 4001],
+  "forwardPorts": [4321, 4001, 5000],
 
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": {
@@ -86,6 +86,9 @@
     },
     "4321": {
       "label": "Astro",
+    },
+    "5000": {
+      "label": "Retype",
     },
   },
 
