@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "retype": "retype",
+    "start": "retype start --port 8080",
+    "build": "retype build",
+    "serve": "retype serve --port 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

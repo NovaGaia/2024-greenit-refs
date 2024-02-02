@@ -20,13 +20,14 @@
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [4321, 4001, 5000],
+  "forwardPorts": [4321, 4001, 8080],
 
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": {
     ".nvmrc": "echo $(node --version) > .nvmrc",
     ".npmrc": "echo package-import-method=clone-or-copy > .npmrc",
     "prettier": "npm i -g prettier",
+    "npm install retypeapp --global": "npm install retypeapp --global",
   },
 
   // Configure tool-specific properties.
@@ -87,7 +88,7 @@
     "4321": {
       "label": "Astro",
     },
-    "5000": {
+    "8080": {
       "label": "Retype",
     },
   },
