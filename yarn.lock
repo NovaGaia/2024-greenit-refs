@@ -11836,10 +11836,10 @@ tinacms-authjs@^1.0.5:
   dependencies:
     "@tinacms/schema-tools" "1.4.15"
 
-tinacms-gitprovider-github@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/tinacms-gitprovider-github/-/tinacms-gitprovider-github-1.0.3.tgz#9da0c99739dd9f8e6ec33c8f59e6fa23318aab3f"
-  integrity sha512-rdFJvDJENpJUDldy+VCTqcF1YKqw4FRjXi8Ep5kpspbP4GY8+rFFXP/18Hn9zT3nZWrF5INYENQjHZ3QYwKvsw==
+tinacms-gitprovider-github@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tinacms-gitprovider-github/-/tinacms-gitprovider-github-1.0.0.tgz#5e8634f2e413d0f031d4bb7e3e0ef9119e2ff0a6"
+  integrity sha512-i7Wk6gfyUbtvVEf9fEWdKw2EDt347wMJEsx4dof0hcgKKZuSGw4oA9oVhi8o3KF8kCGKhhhQzMAZjAm7AGHqRQ==
   dependencies:
     "@octokit/rest" "^19.0.7"
     js-base64 "^3.7.4"

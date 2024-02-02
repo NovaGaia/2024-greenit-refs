@@ -15,6 +15,7 @@ const PUBLIC_BASE =
     : "";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
+console.log("🚀 ~ isLocal:", isLocal);
 
 export default defineConfig({
   contentApiUrlOverride: "/api/tina/gql", // ensure this value is provided depending on your hosting solution

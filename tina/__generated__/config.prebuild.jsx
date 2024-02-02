@@ -716,6 +716,7 @@ var mentionsLegales_default = mentionsLegales;
 // tina/config.ts
 var PUBLIC_BASE5 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE : "";
 var isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
+console.log("\u{1F680} ~ isLocal:", isLocal);
 var config_default = defineConfig({
   contentApiUrlOverride: "/api/tina/gql",
   // ensure this value is provided depending on your hosting solution

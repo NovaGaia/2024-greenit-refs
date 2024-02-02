@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
+console.log("🚀 ~ isLocal:", isLocal);
 
 const branch =
   process.env.GITHUB_BRANCH ||
