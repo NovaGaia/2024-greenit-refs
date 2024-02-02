@@ -75,9 +75,6 @@
           "**/*.css",
           "**/*.astro",
         ],
-        // GreenIT Refs website ID Project :
-        // https://track.toggl.com/7917687/projects/198767837/dashboard
-        "toggl.defaultProjectId": 198767837,
       },
     },
   },
