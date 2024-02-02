@@ -53,7 +53,7 @@ C'est un framework CSS qui permet de gérer le style du site.
 6. Installer les dépendances
 
 ```bash
-npm install
+yarn
 ```
 
 > Il n'y a pas besoin de fichier de configuration `.env`.
@@ -63,7 +63,7 @@ npm install
 Lancer le site Astro et TinaCMS
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 - Pour voir le site : [http://localhost:4321/](http://localhost:4321/)
@@ -88,7 +88,7 @@ Créez une pull request et demandez une revue.
 Avant de push sur GitHub
 
 ```bash
-npm run build
+yarn build
 ```
 
 ### Déploiement

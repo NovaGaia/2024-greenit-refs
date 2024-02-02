@@ -7,7 +7,7 @@ import { getIndexPageByLang } from "@contentConfig";
 import { code_languages } from "@i18n/ui";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Base from "@layouts/Base.astro";
-import client from "@tina/__generated__/client";
+import client from "@tina/__generated__/databaseClient";
 
 // Get specific content
 const { lang } = Astro.params;

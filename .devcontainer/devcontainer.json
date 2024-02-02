@@ -9,7 +9,7 @@
   "waitFor": "onCreateCommand",
   "updateContentCommand": {
     "chown node_modules": "sudo chown -R node:node node_modules",
-    "npm install": "npm install",
+    "yarn install": "yarn"
   },
   // "postAttachCommand": "pnpm dev",
 
@@ -27,6 +27,7 @@
     ".nvmrc": "echo $(node --version) > .nvmrc",
     ".npmrc": "echo package-import-method=clone-or-copy > .npmrc",
     "prettier": "npm i -g prettier",
+    "retypeapp": "yarn global add retypeapp"
   },
 
   // Configure tool-specific properties.

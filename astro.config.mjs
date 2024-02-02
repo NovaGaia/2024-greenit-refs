@@ -35,6 +35,7 @@ const tina = ({ directiveName = "tina" } = {}) => ({
 export default defineConfig({
   site: SITE_URL,
   base: PUBLIC_BASE,
+  output: "hybrid",
   build: {
     format: "file",
   },

@@ -1,6 +1,6 @@
 input: .
 favicon: static/greenit_icone_intro-alt.png
-url: https://cnumr.github.io/lighthouse-plugin-ecoindex
+url: example.com
 branding:
   title: Générateur de référentiel du Green IT
   logo: static/greenit_icone_intro-alt.png

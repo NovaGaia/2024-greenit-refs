@@ -1,5 +1,8 @@
 // tina/config.ts
-import { defineConfig } from "tinacms";
+import { LocalAuthProvider, defineConfig } from "tinacms";
+import {
+  UsernamePasswordAuthJSProvider
+} from "tinacms-authjs/dist/tinacms";
 
 // tina/utils/commonFields.tsx
 import {
@@ -710,113 +713,13 @@ var mentionsLegales = {
 };
 var mentionsLegales_default = mentionsLegales;
 
-// tina/datas/siteData.tsx
-var siteData = {
-  label: "Site Informations (SEO, etc.)",
-  name: "siteData",
-  path: "src/data",
-  match: { include: "siteData", exclude: "i18n.json" },
-  ui: {
-    allowedActions: {
-      create: false,
-      delete: false
-    }
-  },
-  format: "json",
-  fields: [
-    warnField("", ""),
-    titleField("SEO"),
-    {
-      type: "string",
-      name: "title",
-      label: "Default Title",
-      isTitle: true,
-      required: true
-    },
-    {
-      type: "string",
-      name: "description",
-      label: "Default Description",
-      ui: {
-        component: "textarea"
-      }
-    },
-    {
-      type: "string",
-      name: "titleTemplate",
-      label: "Add to title, ex: '%s | Site'"
-    },
-    {
-      type: "string",
-      name: "twitterUsername",
-      label: "Twitter Username"
-    },
-    {
-      type: "string",
-      name: "fbPageUrl",
-      label: "Facebook Page/User URL"
-    },
-    {
-      type: "object",
-      name: "image",
-      label: "Default Image",
-      fields: [
-        {
-          type: "image",
-          name: "url",
-          label: "URL",
-          required: true
-        },
-        {
-          type: "string",
-          name: "alt",
-          label: "Alt",
-          required: true
-        }
-      ]
-    },
-    titleField("Footer"),
-    { type: "rich-text", name: "informations", label: "Informations" },
-    {
-      type: "object",
-      name: "networks",
-      label: "Social Networks",
-      list: true,
-      ui: {
-        itemProps: (item) => {
-          return { label: item?.url };
-        }
-      },
-      fields: [
-        { type: "string", name: "url", label: "URL", required: true },
-        { type: "string", name: "title", label: "Title", required: true },
-        {
-          type: "string",
-          name: "icon",
-          label: "Network",
-          required: true,
-          options: [
-            "tabler:brand-github",
-            "tabler:brand-linkedin",
-            "tabler:brand-facebook",
-            "tabler:brand-instagram",
-            "tabler:brand-google-maps"
-          ]
-        }
-      ]
-    }
-  ]
-};
-
 // tina/config.ts
 var PUBLIC_BASE5 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE : "";
-var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
+var isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 var config_default = defineConfig({
-  branch,
-  // Get this from tina.io
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  // Get this from tina.io
-  token: process.env.TINA_TOKEN,
+  contentApiUrlOverride: "/api/tina/gql",
+  // ensure this value is provided depending on your hosting solution
+  authProvider: isLocal ? new LocalAuthProvider() : new UsernamePasswordAuthJSProvider(),
   build: {
     outputFolder: "admin",
     publicFolder: "public",
