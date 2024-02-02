@@ -27,6 +27,28 @@ export const TinaReactHelper: React.FC<TinaReactHelperProps> = ({
   const btClasses =
     "bg-gray-800 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded whitespace-nowrap flex items-center gap-2 w-fit flex-none";
   const [lang, ...slug] = entry.slug.split("/");
+
+  const getSlug = (collection) => {
+    switch (collection) {
+      case "mentionsLegales":
+        return "mentions-legales";
+    }
+    return slug.join(collection);
+  };
+
+  const editURL = () => {
+    if (entry.collection === "home") {
+      return `/${PUBLIC_BASE}admin/index.html#/~/${PUBLIC_BASE}${lang}`;
+    }
+    return `/${PUBLIC_BASE}admin/index.html#/~/${PUBLIC_BASE}${lang}/${getSlug(entry.collection)}/${slug}`;
+  };
+
+  const viewURL = () => {
+    if (entry.collection === "home") {
+      return `/${PUBLIC_BASE}${lang}`;
+    }
+    return `/${PUBLIC_BASE}${lang}/${getSlug(entry.collection)}/${slug}`;
+  };
   return (
     <>
       {DISPLAY_TINA_BAR && (
@@ -34,11 +56,7 @@ export const TinaReactHelper: React.FC<TinaReactHelperProps> = ({
           <div className="container flex items-center gap-4">
             <span className="font-bold text-white">TinaCMS:</span>{" "}
             {inIframe() ? (
-              <a
-                href={`/${PUBLIC_BASE}${lang}/${entry.collection}/${slug}`}
-                target="_blank"
-                className={btClasses}
-              >
+              <a href={viewURL()} target="_blank" className={btClasses}>
                 View{" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -57,11 +75,7 @@ export const TinaReactHelper: React.FC<TinaReactHelperProps> = ({
                 </svg>
               </a>
             ) : (
-              <a
-                href={`/${PUBLIC_BASE}admin/index.html#/~/${PUBLIC_BASE}${lang}/${entry.collection}/${slug}`}
-                target="_blank"
-                className={btClasses}
-              >
+              <a href={editURL()} target="_blank" className={btClasses}>
                 Edit
               </a>
             )}
