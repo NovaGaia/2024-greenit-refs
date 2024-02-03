@@ -1,8 +1,8 @@
-// tina/config.ts
+// tina/config.tsx
 import { LocalAuthProvider, defineConfig } from "tinacms";
 import {
   UsernamePasswordAuthJSProvider
-} from "tinacms-authjs/dist/tinacms";
+} from "tinacms-authjs/dist/tinacms.mjs";
 
 // tina/utils/commonFields.tsx
 import {
@@ -713,12 +713,12 @@ var mentionsLegales = {
 };
 var mentionsLegales_default = mentionsLegales;
 
-// tina/config.ts
+// tina/config.tsx
 var PUBLIC_BASE5 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE : "";
 var isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 console.log("\u{1F680} ~ isLocal:", isLocal);
 var config_default = defineConfig({
-  contentApiUrlOverride: "/api/tina/gql",
+  contentApiUrlOverride: "/api/tina/backend/",
   // ensure this value is provided depending on your hosting solution
   authProvider: isLocal ? new LocalAuthProvider() : new UsernamePasswordAuthJSProvider(),
   build: {

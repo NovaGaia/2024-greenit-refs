@@ -1,16 +1,28 @@
 {
-  "extends": "astro/tsconfigs/base",
+  // "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "plugins": [
-      {
-        "name": "@astrojs/ts-plugin",
-      },
-    ],
+    // "plugins": [
+    //   {
+    //     "name": "@astrojs/ts-plugin",
+    //   },
+    // ],
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "strictNullChecks": true,
     "allowJs": true,
     "baseUrl": ".",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    // "jsx": "react-jsx",
     "paths": {
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
@@ -22,4 +34,6 @@
       "@tina/*": ["tina/*"],
     },
   },
+  "include": ["./"],
+  "exclude": ["node_modules", "dist"],
 }

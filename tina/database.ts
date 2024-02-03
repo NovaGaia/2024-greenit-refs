@@ -1,6 +1,7 @@
 import { createDatabase, createLocalDatabase } from "@tinacms/datalayer";
-import { MongodbLevel } from "mongodb-level";
-import { GitHubProvider } from "tinacms-gitprovider-github";
+import pkg from "mongodb-level/dist/index.js";
+const { MongodbLevel } = pkg;
+import { GitHubProvider } from "tinacms-gitprovider-github/dist";
 import dotenv from "dotenv";
 
 dotenv.config();

@@ -1,8 +1,10 @@
 import { LocalBackendAuthProvider, TinaNodeBackend } from "@tinacms/datalayer";
-import { AuthJsBackendAuthProvider, TinaAuthJSOptions } from "tinacms-authjs";
+import pkg from "tinacms-authjs/dist/index.js";
+const { AuthJsBackendAuthProvider, TinaAuthJSOptions } = pkg;
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-import databaseClient from "../../__generated__/databaseClient";
+import databaseClient from "../../../../tina/__generated__/databaseClient.js";
+import { APIRoute } from "astro";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 console.log("🚀 ~ isLocal:", isLocal);
@@ -22,9 +24,20 @@ const tinaBackend = TinaNodeBackend({
   databaseClient,
 });
 
-const handler = async (req: VercelRequest, res: VercelResponse) => {
+export const GET = (req: VercelRequest, res: VercelResponse) => {
+  console.log("🚀 ~ GET ~ res:", res);
+  console.log("🚀 ~ GET ~ req:", req);
   // modify the request object here if needed
-  tinaBackend(req, res);
+  return tinaBackend(req, res);
 };
 
-export default handler;
+export const POST: APIRoute = ({ request }) => {
+  console.log("🚀 ~ request:", request);
+  return new Response(
+    JSON.stringify({
+      message: "This was a POST!",
+    }),
+  );
+};
+
+// export default GET;
