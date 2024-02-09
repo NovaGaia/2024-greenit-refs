@@ -1,7 +1,11 @@
 ---
 import Card from "@components/Card";
 import { getCollectionByLang } from "@contentConfig";
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import {
+  capitalizeFirstLetter,
+  getLangFromUrl,
+  useTranslations,
+} from "@i18n/utils";
 import type { CollectionEntry } from "astro:content";
 import CardView from "../CardView.astro";
 import FichesFilter from "./FichesFilter.astro";
@@ -17,20 +21,79 @@ const entries: CollectionEntry<"fiches">[] = await getCollectionByLang(
 ---
 
 <div class="group flex flex-col gap-4">
-  <h1>{t("Bonnes pratiques")}</h1>
-  {/* filters */}
-  {entries && <FichesFilter />}
-
-  {/* cards */}
-  <ul class="wp-list" data-pagefind-ignore>
-    {
-      entries.map((entry) => (
-        <CardView
-          display={Card.VERTICAL_LAYOUT}
-          type={Card.FICHES}
-          entry={entry}
+  <h1 class="mb-2">{t("Bonnes pratiques")}</h1>
+  <div class="flex flex-col gap-8">
+    <nav class="flex items-center gap-4">
+      <label for="bt-view" class="btn small-primary-btn">
+        <input
+          type="checkbox"
+          class="checked:is-checked peer hidden"
+          id="bt-view"
         />
-      ))
-    }
-  </ul>
+        <span class="hidden peer-checked:inline">{t("Vue en cartes")}</span>
+        <span class="inline peer-checked:hidden"
+          >{t("Vue en tableau (pour copier/coller)")}</span
+        >
+      </label>
+    </nav>
+    <div class="flex flex-col gap-4 group-has-[#bt-view:checked]:hidden">
+      {/* filters */}
+      {entries && <FichesFilter />}
+
+      {/* cards */}
+      <ul class="wp-list" data-pagefind-ignore>
+        {
+          entries.map((entry) => (
+            <CardView
+              display={Card.VERTICAL_LAYOUT}
+              type={Card.FICHES}
+              entry={entry}
+            />
+          ))
+        }
+      </ul>
+    </div>
+    <div class="hidden group-has-[#bt-view:checked]:block">
+      <table>
+        <thead>
+          <tr>
+            <th>REF ID</th>
+            <th>{t("scope")}</th>
+            {
+              /*
+          <th>{t("lifecycle")}</th>
+        */
+            }
+            <th>{t("Bonnes pratiques")}</th>
+            <th>{t("Principe de validation")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            entries.map((entry) => {
+              const [, ...entry_slug] = entry.slug.split("/");
+              return (
+                <tr>
+                  <td>
+                    <a href={`${entry_slug}`} class="text-sm no-underline">
+                      🔗{" "}
+                      <span class="underline">
+                        {process.env.PUBLIC_REF_NAME} {entry.data.refID}
+                      </span>
+                    </a>
+                  </td>
+                  <td>{capitalizeFirstLetter(t(entry.data.scope as any))}</td>
+                  {/*
+              <td>{capitalizeFirstLetter(t(entry.data.lifecycle as any))}</td>
+            */}
+                  <td>{entry.data.title}</td>
+                  <td>{entry.data.validations.length}</td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

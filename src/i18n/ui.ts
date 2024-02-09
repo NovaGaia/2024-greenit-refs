@@ -350,6 +350,9 @@ export const ui = {
     // src/pages/[lang]/fiches/index.astro && src/components/fiches/FichesListView.astro
     "Bonnes pratiques": "Bonnes pratiques",
     "Consulter les Bonnes pratiques": "Consulter les Bonnes pratiques",
+    "Vue en cartes": "Vue en cartes",
+    "Vue en tableau (pour copier/coller)":
+      "Vue en tableau (pour copier/coller)",
 
     // src/pages/[lang]/lexique/index.astro && src/components/lexique/LexiqueListView.astro
     Lexique: "Lexique",
