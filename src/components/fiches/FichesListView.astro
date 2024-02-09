@@ -1,14 +1,11 @@
 ---
 import Card from "@components/Card";
 import { getCollectionByLang } from "@contentConfig";
-import {
-  capitalizeFirstLetter,
-  getLangFromUrl,
-  useTranslations,
-} from "@i18n/utils";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import type { CollectionEntry } from "astro:content";
 import CardView from "../CardView.astro";
 import FichesFilter from "./FichesFilter.astro";
+import FichesTableView from "./FichesTableView.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -54,46 +51,7 @@ const entries: CollectionEntry<"fiches">[] = await getCollectionByLang(
       </ul>
     </div>
     <div class="hidden group-has-[#bt-view:checked]:block">
-      <table>
-        <thead>
-          <tr>
-            <th>REF ID</th>
-            <th>{t("scope")}</th>
-            {
-              /*
-          <th>{t("lifecycle")}</th>
-        */
-            }
-            <th>{t("Bonnes pratiques")}</th>
-            <th>{t("Principe de validation")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            entries.map((entry) => {
-              const [, ...entry_slug] = entry.slug.split("/");
-              return (
-                <tr>
-                  <td>
-                    <a href={`${entry_slug}`} class="text-sm no-underline">
-                      🔗{" "}
-                      <span class="underline">
-                        {process.env.PUBLIC_REF_NAME} {entry.data.refID}
-                      </span>
-                    </a>
-                  </td>
-                  <td>{capitalizeFirstLetter(t(entry.data.scope as any))}</td>
-                  {/*
-              <td>{capitalizeFirstLetter(t(entry.data.lifecycle as any))}</td>
-            */}
-                  <td>{entry.data.title}</td>
-                  <td>{entry.data.validations.length}</td>
-                </tr>
-              );
-            })
-          }
-        </tbody>
-      </table>
+      <FichesTableView entries={entries} />
     </div>
   </div>
 </div>
