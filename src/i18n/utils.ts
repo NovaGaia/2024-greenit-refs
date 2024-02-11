@@ -23,8 +23,8 @@ export function useTranslations(lang: keyof typeof ui) {
 export function useTranslatedPath(lang: keyof typeof ui) {
   return function translatePath(path: string, l: string = lang) {
     return !showDefaultLang && l === defaultLang
-      ? `/${PUBLIC_BASE}${path}`
-      : `/${PUBLIC_BASE}${l}${path}`;
+      ? `${process.env.SITE_URL}${process.env.PUBLIC_BASE}/${path}`
+      : `${process.env.SITE_URL}${process.env.PUBLIC_BASE}/${l}${path}`;
   };
 }
 
