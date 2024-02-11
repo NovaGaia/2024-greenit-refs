@@ -1,8 +1,9 @@
 import { ui, defaultLang, showDefaultLang } from "./ui";
 
-const PUBLIC_BASE = process.env.PUBLIC_BASE
-  ? process.env.PUBLIC_BASE + "/"
-  : "";
+const PUBLIC_BASE =
+  import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
+    ? process.env.PUBLIC_BASE + "/"
+    : "";
 
 export function getLangFromUrl(url: URL) {
   // const [, , lang] = url.pathname.split("/");
@@ -23,8 +24,8 @@ export function useTranslations(lang: keyof typeof ui) {
 export function useTranslatedPath(lang: keyof typeof ui) {
   return function translatePath(path: string, l: string = lang) {
     return !showDefaultLang && l === defaultLang
-      ? `${process.env.SITE_URL}${process.env.PUBLIC_BASE}/${path}`
-      : `${process.env.SITE_URL}${process.env.PUBLIC_BASE}/${l}${path}`;
+      ? `${import.meta.env.SITE_URL || process.env.SITE_URL}${import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE}/${path}`
+      : `${import.meta.env.SITE_URL || process.env.SITE_URL}${import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE}/${l}${path}`;
   };
 }
 

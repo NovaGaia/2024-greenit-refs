@@ -15,9 +15,10 @@ const { lang } = Astro.params;
 const t = useTranslations(_lang);
 const translatePath = useTranslatedPath(_lang);
 
-const PUBLIC_BASE = process.env.PUBLIC_BASE
-  ? process.env.PUBLIC_BASE + "/"
-  : "/";
+const PUBLIC_BASE =
+  import.meta.env.BASE_URL || process.env.PUBLIC_BASE
+    ? import.meta.env.BASE_URL || process.env.PUBLIC_BASE + "/"
+    : "/";
 ---
 
 <html lang={lang || _lang}>
@@ -41,7 +42,9 @@ const PUBLIC_BASE = process.env.PUBLIC_BASE
     <slot name="seo" />
   </head>
   <body>
-    <Header repoURL={process.env.PUBLIC_REPO_URL} />
+    <Header
+      repoURL={import.meta.env.PUBLIC_REPO_URL || process.env.PUBLIC_REPO_URL}
+    />
     <main class="mx-auto my-8 min-h-[400px] px-4 lg:max-w-5xl lg:px-0">
       <slot />
     </main>
