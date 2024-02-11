@@ -20,12 +20,36 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
-      - name: Install, build, and upload your site
-        uses: withastro/action@v1
-        # with:
-        # path: . # The root location of your Astro project inside the repository. (optional)
-        # node-version: 18 # The specific version of Node that should be used to build your site. Defaults to 18. (optional)
-        # package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: "Cache Node dependencies"
+        uses: actions/cache@v3
+        with:
+          path: "~/.npm"
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run build task
+        run: npm run build
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          PUBLIC_BASE: ${{ vars.PUBLIC_BASE }}
+          PUBLIC_REF_NAME: ${{ vars.PUBLIC_REF_NAME }}
+          PUBLIC_REPO_URL: ${{ vars.PUBLIC_REPO_URL }}
+          PUBLIC_REPO_BRANCH: ${{ vars.PUBLIC_REPO_BRANCH }}
+      - name: Upload Pages Artifact
+        # Must use v2 to avoid requiring `actions/deploy-pages@v4` or newer
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: "./dist/"
 
   deploy:
     needs: build
