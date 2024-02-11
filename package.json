@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "env-cmd tinacms dev -c \"astro dev\"",
     "start": "env-cmd astro dev",
-    "build": "env-cmd astro build",
+    "local:build": "env-cmd astro build",
+    "build": "astro build",
     "sync": "env-cmd astro sync",
     "check:build": "env-cmd astro check && astro build",
     "preview": "env-cmd astro preview --base $(PUBLIC_BASE)",
