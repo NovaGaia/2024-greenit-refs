@@ -2,7 +2,7 @@ import { ui, defaultLang, showDefaultLang } from "./ui";
 
 const PUBLIC_BASE =
   import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
-    ? process.env.PUBLIC_BASE + "/"
+    ? (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE) + "/"
     : "";
 
 export function getLangFromUrl(url: URL) {

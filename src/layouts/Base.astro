@@ -15,15 +15,15 @@ const { lang } = Astro.params;
 const t = useTranslations(_lang);
 const translatePath = useTranslatedPath(_lang);
 
+const SITE_URL = import.meta.env.SITE_URL || process.env.SITE_URL;
 const PUBLIC_BASE =
-  import.meta.env.PUBLIC_BASE ||
-  (process.env.PUBLIC_BASE && import.meta.env.PUBLIC_BASE) ||
-  process.env.PUBLIC_BASE;
+  (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE) &&
+  (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE) + "/";
 ---
 
 <html lang={lang || _lang}>
   <head>
-    <script define:vars={{ PUBLIC_BASE: PUBLIC_BASE }}>
+    <script define:vars={{ PUBLIC_BASE: PUBLIC_BASE, SITE_URL: SITE_URL }}>
       // Load font with base path
       const fontStyle = `<style>@font-face {
         font-family: "Red Hat Display";
@@ -31,7 +31,7 @@ const PUBLIC_BASE =
         font-display: swap;
         font-style: normal;
         font-named-instance: "Regular";
-        src: url(./${PUBLIC_BASE}/fonts/RedHatDisplay-VariableFont_wght.woff2)
+        src: url(${SITE_URL}/${PUBLIC_BASE}fonts/RedHatDisplay-VariableFont_wght.woff2)
           format("woff2");
       }</style>`;
       document.write(fontStyle);
@@ -40,7 +40,7 @@ const PUBLIC_BASE =
     <link
       rel="icon"
       type="image/svg+xml"
-      href={`./${PUBLIC_BASE}/favicon.svg`}
+      href={`${SITE_URL}/${PUBLIC_BASE}favicon.svg`}
     />
     <meta name="viewport" content="width=device-width" />
     <slot name="seo" />

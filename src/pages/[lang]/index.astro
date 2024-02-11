@@ -12,9 +12,10 @@ import client from "@tina/__generated__/client";
 // Get specific content
 const { lang } = Astro.params;
 // Fix language error -->
-const PUBLIC_BASE = process.env.PUBLIC_BASE
-  ? process.env.PUBLIC_BASE + "/"
-  : "";
+const PUBLIC_BASE =
+  import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
+    ? (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE) + "/"
+    : "";
 const url = Astro.url;
 url["pathname"] = `/${PUBLIC_BASE}${lang}/`;
 // --> Fix language error
