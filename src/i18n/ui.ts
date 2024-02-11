@@ -1,6 +1,7 @@
 export const showDefaultLang = true;
 
-const siteURL = process.env.SITE_URL || "http://localhost:1234";
+const siteURL =
+  import.meta.env.SITE_URL || process.env.SITE_URL || "http://localhost:1234";
 const PUBLIC_BASE =
   import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
     ? "/" + (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE)
