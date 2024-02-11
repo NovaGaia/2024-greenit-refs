@@ -32,7 +32,7 @@ const t = useTranslations(lang);
     <option>{t("Changer de langue")}</option>
     {
       Object.entries(languages).map(([language, label]) => (
-        <option value={translatePath(`/`, language)}>{label}</option>
+        <option value={translatePath(``, language)}>{label}</option>
       ))
     }
   </select>
