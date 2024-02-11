@@ -311,6 +311,14 @@ const templateCTAWithIcon: TinaField = {
   type: "object",
   name: "CTAWithIcon",
   label: "Call to action",
+  ui: {
+    defaultItem: {
+      label: "Label",
+      url: "https://example.com",
+      icon: "tabler:brand-github",
+      target: "_blank",
+    },
+  },
   fields: [
     {
       type: "string",
@@ -330,6 +338,13 @@ const templateCTAWithIcon: TinaField = {
       label: "Icon",
       required: false,
       options: ["tabler:brand-github-filled", "tabler:brand-github"],
+    },
+    {
+      type: "string",
+      name: "target",
+      label: "Target",
+      required: true,
+      options: ["_self", "_blank"],
     },
   ],
 };

@@ -312,6 +312,7 @@ input HomeBodyCTAWithIconFilter {
   label: StringFilter
   url: StringFilter
   icon: StringFilter
+  target: StringFilter
 }
 
 input MentionsLegalesBodyTableTableRowsTableCellsFilter {
@@ -373,6 +374,7 @@ input MentionsLegalesBodyCTAWithIconFilter {
   label: StringFilter
   url: StringFilter
   icon: StringFilter
+  target: StringFilter
 }
 
 input MentionsLegalesBodyTableTableRowsFilter {

@@ -462,6 +462,7 @@ export type HomeBodyCtaWithIconFilter = {
   label?: InputMaybe<StringFilter>;
   url?: InputMaybe<StringFilter>;
   icon?: InputMaybe<StringFilter>;
+  target?: InputMaybe<StringFilter>;
 };
 
 export type MentionsLegalesBodyTableTableRowsTableCellsFilter = {
@@ -526,6 +527,7 @@ export type MentionsLegalesBodyCtaWithIconFilter = {
   label?: InputMaybe<StringFilter>;
   url?: InputMaybe<StringFilter>;
   icon?: InputMaybe<StringFilter>;
+  target?: InputMaybe<StringFilter>;
 };
 
 export type MentionsLegalesBodyTableTableRowsFilter = {
