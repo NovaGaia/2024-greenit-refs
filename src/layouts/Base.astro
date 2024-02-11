@@ -41,7 +41,7 @@ const PUBLIC_BASE = process.env.PUBLIC_BASE
     <slot name="seo" />
   </head>
   <body>
-    <Header repoURL={t("repo.url")} />
+    <Header repoURL={process.env.PUBLIC_REPO_URL} />
     <main class="mx-auto my-8 min-h-[400px] px-4 lg:max-w-5xl lg:px-0">
       <slot />
     </main>
