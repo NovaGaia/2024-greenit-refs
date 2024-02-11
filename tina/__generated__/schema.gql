@@ -98,6 +98,12 @@ type Collection {
 
 union DocumentNode = Fiches | Lexique | Personas | Home | MentionsLegales | Folder
 
+union FichesResponsibleResponsible = Personas
+
+type FichesResponsible {
+  responsible: FichesResponsibleResponsible
+}
+
 type FichesValidations {
   rule: String
   maxValue: String
@@ -114,7 +120,7 @@ type Fiches implements Node & Document {
   _metadatas: String
   people: String!
   scope: String!
-  responsible: [String!]!
+  responsible: [FichesResponsible!]!
   lifecycle: String!
   environmental_impact: String!
   priority_implementation: String!
@@ -145,6 +151,14 @@ input DatetimeFilter {
 input BooleanFilter {
   eq: Boolean
   exists: Boolean
+}
+
+input FichesResponsibleResponsibleFilter {
+  personas: PersonasFilter
+}
+
+input FichesResponsibleFilter {
+  responsible: FichesResponsibleResponsibleFilter
 }
 
 input RichTextFilter {
@@ -187,7 +201,7 @@ input FichesFilter {
   _metadatas: StringFilter
   people: StringFilter
   scope: StringFilter
-  responsible: StringFilter
+  responsible: FichesResponsibleFilter
   lifecycle: StringFilter
   environmental_impact: StringFilter
   priority_implementation: StringFilter
@@ -432,6 +446,10 @@ input DocumentMutation {
   mentionsLegales: MentionsLegalesMutation
 }
 
+input FichesResponsibleMutation {
+  responsible: String
+}
+
 input FichesValidationsMutation {
   rule: String
   maxValue: String
@@ -448,7 +466,7 @@ input FichesMutation {
   _metadatas: String
   people: String
   scope: String
-  responsible: [String]
+  responsible: [FichesResponsibleMutation]
   lifecycle: String
   environmental_impact: String
   priority_implementation: String

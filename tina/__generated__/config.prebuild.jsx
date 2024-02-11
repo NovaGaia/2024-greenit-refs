@@ -356,34 +356,51 @@ var fiches = {
       ]
     },
     {
-      type: "string",
+      type: "object",
       name: "responsible",
       label: "Responsible(s)",
       list: true,
       required: true,
-      // répercuter ces changements dans src/i18n/ui.ts
-      options: [
-        {
-          value: "developer",
-          label: "Code(use\xB7ur) \u2192 D\xE9veloppeu\xB7se\xB7r"
+      ui: {
+        itemProps: (item) => {
+          const [src, content, type, ...label] = item?.responsible.split("/");
+          return {
+            label: `Personnas: ${label?.join("/") || "TBD"}`
+          };
         },
+        min: 1
+      },
+      fields: [
         {
-          value: "designer",
-          label: "Designeu(se\xB7r)"
-        },
-        {
-          value: "lowcode",
-          label: "Low-code \u2192 Freelance et d\xE9veloppeur Front-End d'agences"
-        },
-        {
-          value: "nocode",
-          label: "No-code \u2192 Madame et Monsieur tout le monde"
-        },
-        {
-          value: "tbd",
-          label: "<< TBD (\xE9viter de l'utiliser) >>"
+          type: "reference",
+          label: "Responsible",
+          name: "responsible",
+          collections: ["personas"]
         }
       ]
+      // répercuter ces changements dans src/i18n/ui.ts
+      // options: [
+      //   {
+      //     value: "developer",
+      //     label: "Code(use·ur) → Développeu·se·r",
+      //   },
+      //   {
+      //     value: "designer",
+      //     label: "Designeu(se·r)",
+      //   },
+      //   {
+      //     value: "lowcode",
+      //     label: "Low-code → Freelance et développeur Front-End d'agences",
+      //   },
+      //   {
+      //     value: "nocode",
+      //     label: "No-code → Madame et Monsieur tout le monde",
+      //   },
+      //   {
+      //     value: "tbd",
+      //     label: "<< TBD (éviter de l'utiliser) >>",
+      //   },
+      // ],
     },
     {
       type: "string",

@@ -1,5 +1,5 @@
 ---
-refID: '4.05'
+refID: "4.05"
 title: Utiliser une version d'image ayant une taille cohérente avec son utilisation
 createdAt: 2024-01-20T13:17:16.663Z
 updatedAt: 2024-01-28T10:13:25.476Z
@@ -8,10 +8,11 @@ published: true
 people: Renaud H.
 scope: images
 responsible:
-  - developer
-  - designer
-  - lowcode
-  - nocode
+  - responsible: src/content/personas/fr/codeuseur-developpeuser.mdx
+  - responsible: src/content/personas/fr/designeuser.mdx
+  - responsible: >-
+      src/content/personas/fr/low-code-freelance-et-developpeur-front-end-d-agences.mdx
+  - responsible: src/content/personas/fr/no-code-madame-et-monsieur-tout-le-monde.mdx
 lifecycle: 4-integration-development
 environmental_impact: high_environmental_impact
 priority_implementation: high_priority
@@ -23,7 +24,7 @@ saved_resources:
   - requests
 validations:
   - rule: d'images sans une vignette adaptée à son affichage HTML
-    maxValue: '0'
+    maxValue: "0"
 ---
 
 ## Sujet
@@ -32,10 +33,10 @@ validations:
 
 Lors de l'ajout d'une image dans l'interface d'une page, il faut se poser plusieurs questions, abordées sur d'autres fiches de ce guide :
 
-* Le type d'image (JPG, PNG, SVG, etc. voir [5.02 Utiliser le format adéquat d'image](./WP_5.02-utiliser-le-format-adequat-d_image.md))
-* La compression possible ou le nombre de couleurs embarquées
-* La transparence ou non
-* Et ici, la taille de l'image.
+- Le type d'image (JPG, PNG, SVG, etc. voir [5.02 Utiliser le format adéquat d'image](./WP_5.02-utiliser-le-format-adequat-d_image.md))
+- La compression possible ou le nombre de couleurs embarquées
+- La transparence ou non
+- Et ici, la taille de l'image.
 
 Lors de l'upload, WordPress crée d'office des versions \[\[vignette|vignettes]] de vos médias.
 

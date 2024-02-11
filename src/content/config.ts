@@ -23,7 +23,7 @@ const fiches = defineCollection({
       // slug: z.string(),
       people: z.string(),
       scope: z.string(),
-      responsible: z.array(z.string()),
+      responsible: z.array(z.object({ responsible: z.string() })),
       lifecycle: z.string(),
       priority_implementation: z.string(),
       environmental_impact: z.string(),

@@ -10,7 +10,33 @@ fragment FichesParts on Fiches {
   _metadatas
   people
   scope
-  responsible
+  responsible {
+    __typename
+    responsible {
+      ... on Personas {
+        __typename
+        _warning
+        title
+        createdAt
+        updatedAt
+        language
+        published
+        _corps_de_la_fiche
+        body
+      }
+      ... on Document {
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        id
+      }
+    }
+  }
   lifecycle
   environmental_impact
   priority_implementation

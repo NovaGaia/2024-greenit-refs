@@ -236,6 +236,13 @@ export type CollectionDocumentsArgs = {
 
 export type DocumentNode = Fiches | Lexique | Personas | Home | MentionsLegales | Folder;
 
+export type FichesResponsibleResponsible = Personas;
+
+export type FichesResponsible = {
+  __typename?: 'FichesResponsible';
+  responsible?: Maybe<FichesResponsibleResponsible>;
+};
+
 export type FichesValidations = {
   __typename?: 'FichesValidations';
   rule?: Maybe<Scalars['String']['output']>;
@@ -254,7 +261,7 @@ export type Fiches = Node & Document & {
   _metadatas?: Maybe<Scalars['String']['output']>;
   people: Scalars['String']['output'];
   scope: Scalars['String']['output'];
-  responsible: Array<Scalars['String']['output']>;
+  responsible: Array<FichesResponsible>;
   lifecycle: Scalars['String']['output'];
   environmental_impact: Scalars['String']['output'];
   priority_implementation: Scalars['String']['output'];
@@ -285,6 +292,14 @@ export type DatetimeFilter = {
 export type BooleanFilter = {
   eq?: InputMaybe<Scalars['Boolean']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type FichesResponsibleResponsibleFilter = {
+  personas?: InputMaybe<PersonasFilter>;
+};
+
+export type FichesResponsibleFilter = {
+  responsible?: InputMaybe<FichesResponsibleResponsibleFilter>;
 };
 
 export type RichTextFilter = {
@@ -327,7 +342,7 @@ export type FichesFilter = {
   _metadatas?: InputMaybe<StringFilter>;
   people?: InputMaybe<StringFilter>;
   scope?: InputMaybe<StringFilter>;
-  responsible?: InputMaybe<StringFilter>;
+  responsible?: InputMaybe<FichesResponsibleFilter>;
   lifecycle?: InputMaybe<StringFilter>;
   environmental_impact?: InputMaybe<StringFilter>;
   priority_implementation?: InputMaybe<StringFilter>;
@@ -674,6 +689,10 @@ export type DocumentMutation = {
   mentionsLegales?: InputMaybe<MentionsLegalesMutation>;
 };
 
+export type FichesResponsibleMutation = {
+  responsible?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type FichesValidationsMutation = {
   rule?: InputMaybe<Scalars['String']['input']>;
   maxValue?: InputMaybe<Scalars['String']['input']>;
@@ -690,7 +709,7 @@ export type FichesMutation = {
   _metadatas?: InputMaybe<Scalars['String']['input']>;
   people?: InputMaybe<Scalars['String']['input']>;
   scope?: InputMaybe<Scalars['String']['input']>;
-  responsible?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  responsible?: InputMaybe<Array<InputMaybe<FichesResponsibleMutation>>>;
   lifecycle?: InputMaybe<Scalars['String']['input']>;
   environmental_impact?: InputMaybe<Scalars['String']['input']>;
   priority_implementation?: InputMaybe<Scalars['String']['input']>;
@@ -744,7 +763,7 @@ export type MentionsLegalesMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type FichesPartsFragment = { __typename: 'Fiches', _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null };
+export type FichesPartsFragment = { __typename: 'Fiches', _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, responsible: Array<{ __typename: 'FichesResponsible', responsible?: { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null }>, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null };
 
 export type LexiquePartsFragment = { __typename: 'Lexique', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
@@ -759,7 +778,7 @@ export type FichesQueryVariables = Exact<{
 }>;
 
 
-export type FichesQuery = { __typename?: 'Query', fiches: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null } };
+export type FichesQuery = { __typename?: 'Query', fiches: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, responsible: Array<{ __typename: 'FichesResponsible', responsible?: { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null }>, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null } };
 
 export type FichesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -771,7 +790,7 @@ export type FichesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type FichesConnectionQuery = { __typename?: 'Query', fichesConnection: { __typename?: 'FichesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FichesConnectionEdges', cursor: string, node?: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, responsible: Array<string>, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null } | null } | null> | null } };
+export type FichesConnectionQuery = { __typename?: 'Query', fichesConnection: { __typename?: 'FichesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FichesConnectionEdges', cursor: string, node?: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, responsible: Array<{ __typename: 'FichesResponsible', responsible?: { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null }>, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null } | null } | null> | null } };
 
 export type LexiqueQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -862,7 +881,33 @@ export const FichesPartsFragmentDoc = gql`
   _metadatas
   people
   scope
-  responsible
+  responsible {
+    __typename
+    responsible {
+      ... on Personas {
+        __typename
+        _warning
+        title
+        createdAt
+        updatedAt
+        language
+        published
+        _corps_de_la_fiche
+        body
+      }
+      ... on Document {
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        id
+      }
+    }
+  }
   lifecycle
   environmental_impact
   priority_implementation
