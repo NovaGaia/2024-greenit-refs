@@ -9,7 +9,7 @@ export interface Props {
 }
 
 const { id, className, query, uiOptions = {} } = Astro.props as Props;
-const bundlePath = `${import.meta.env.PUBLIC_BASE || (process.env.PUBLIC_BASE && "/" + (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE))}/pagefind/`;
+const bundlePath = `${(import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE) && "/" + (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE)}/pagefind/`;
 ---
 
 <div
