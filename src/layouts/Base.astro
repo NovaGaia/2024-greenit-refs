@@ -16,9 +16,9 @@ const t = useTranslations(_lang);
 const translatePath = useTranslatedPath(_lang);
 
 const PUBLIC_BASE =
-  import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
-    ? import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE + "/"
-    : "/";
+  import.meta.env.PUBLIC_BASE ||
+  (process.env.PUBLIC_BASE && import.meta.env.PUBLIC_BASE) ||
+  process.env.PUBLIC_BASE;
 ---
 
 <html lang={lang || _lang}>
@@ -31,7 +31,7 @@ const PUBLIC_BASE =
         font-display: swap;
         font-style: normal;
         font-named-instance: "Regular";
-        src: url(./${PUBLIC_BASE}fonts/RedHatDisplay-VariableFont_wght.woff2)
+        src: url(./${PUBLIC_BASE}/fonts/RedHatDisplay-VariableFont_wght.woff2)
           format("woff2");
       }</style>`;
       document.write(fontStyle);
@@ -40,7 +40,7 @@ const PUBLIC_BASE =
     <link
       rel="icon"
       type="image/svg+xml"
-      href={`./${PUBLIC_BASE}favicon.svg`}
+      href={`./${PUBLIC_BASE}/favicon.svg`}
     />
     <meta name="viewport" content="width=device-width" />
     <slot name="seo" />
