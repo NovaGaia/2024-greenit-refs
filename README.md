@@ -97,6 +97,8 @@ TinaCMS est un CMS qui se lance en local. Il n'est pas possible de déployer dir
 
 Push vos modifications sur votre branche et faites une pull request vers la branch main.
 
+> Pour ne pas déclancher le build, ajouter `[skip ci]` (avec les crochets) à votre message de commit.
+
 Le site est déployé sur infomaniak quand il y un merge sur la branch `main`.
 
 #### Configuration GitHub (a faire évoluer...)
