@@ -33,22 +33,17 @@ export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function getTranslatedTitle(lang: string, key: string = "short") {
-  const META_PUBLIC_SITE_TITLE = import.meta.env.PUBLIC_SITE_TITLE || undefined;
-  const PROCESS_PUBLIC_SITE_TITLE = process.env.PUBLIC_SITE_TITLE || undefined;
-  if (META_PUBLIC_SITE_TITLE || PROCESS_PUBLIC_SITE_TITLE) {
-    const SITE_TITLE: object = JSON.parse(
-      (META_PUBLIC_SITE_TITLE || PROCESS_PUBLIC_SITE_TITLE).replaceAll(
-        "\\",
-        "",
-      ),
-    );
+export function getTranslatedTitle(
+  lang: string,
+  key: string = "short",
+  data: any = undefined,
+) {
+  // console.log(`data`, data);
+
+  if (data !== undefined) {
+    const SITE_TITLE: object = JSON.parse(data.replaceAll("\\", ""));
     return `${SITE_TITLE[lang][key] || SITE_TITLE[defaultLang][key] || "TBD"}`;
   } else {
-    console.warn(`uiUtils > META_PUBLIC_SITE_TITLE`, META_PUBLIC_SITE_TITLE);
-    console.warn(
-      `uiUtils > PROCESS_PUBLIC_SITE_TITLE`,
-      PROCESS_PUBLIC_SITE_TITLE,
-    );
+    // console.warn(`uiUtils > data = undefined`);
   }
 }

@@ -10,7 +10,6 @@ import LanguagePicker from "./LanguagePicker.astro";
 import Search from "./SearchInt.astro";
 
 const { classes, repoURL } = Astro.props;
-let menuState = "hidden";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
@@ -38,7 +37,14 @@ const translatePath = useTranslatedPath(lang);
           </span>
           <br />
           <span class="text-xl font-bold leading-none"
-            >{getTranslatedTitle(lang, "short")}{
+            >{
+              getTranslatedTitle(
+                lang,
+                "short",
+                import.meta.env.PUBLIC_SITE_TITLE ||
+                  process.env.PUBLIC_SITE_TITLE,
+              )
+            }{
               import.meta.env.MODE === "development" && (
                 <span class="text-white"> ({lang})</span>
               )

@@ -1,28 +1,11 @@
-function getTranslatedTitle(lang: string, key: string = "short") {
-  const META_PUBLIC_SITE_TITLE = import.meta.env.PUBLIC_SITE_TITLE || undefined;
-  const PROCESS_PUBLIC_SITE_TITLE = process.env.PUBLIC_SITE_TITLE || undefined;
-  if (META_PUBLIC_SITE_TITLE || PROCESS_PUBLIC_SITE_TITLE) {
-    const SITE_TITLE: object = JSON.parse(
-      (META_PUBLIC_SITE_TITLE || PROCESS_PUBLIC_SITE_TITLE).replaceAll(
-        "\\",
-        "",
-      ),
-    );
-    return `${SITE_TITLE[lang][key] || SITE_TITLE[defaultLang][key] || "TBD"}`;
-  } else {
-    console.warn(`ui > META_PUBLIC_SITE_TITLE`, META_PUBLIC_SITE_TITLE);
-    console.warn(`ui > PROCESS_PUBLIC_SITE_TITLE`, PROCESS_PUBLIC_SITE_TITLE);
-  }
-}
-
 export const showDefaultLang = true;
 
 const siteURL =
   import.meta.env.SITE_URL || process.env.SITE_URL || "http://localhost:1234";
 const PUBLIC_BASE =
   import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
-    ? "/" + (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE)
-    : "/";
+    ? import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
+    : "";
 
 export const languages = {
   en: "🇬🇧 English",
@@ -38,14 +21,12 @@ export const ui = {
   es: {
     // SEO
     "seo.site_name": "Buenas prácticas de ecodiseño",
-    "seo.default.description":
-      "Buenas prácticas de ecodiseño" + getTranslatedTitle("es", "long"),
+    "seo.default.description": "Buenas prácticas de ecodiseño",
     "seo.url": siteURL + PUBLIC_BASE,
     "seo.titleTemplate": "%s | Colectivo de TI Verde",
     "seo.fb.image.url": "/asso-greenit-share-fb.png",
     "seo.tw.image.url": "/asso-greenit-share-tw.png",
-    "seo.image.alt":
-      "Buenas prácticas de ecodiseño" + getTranslatedTitle("es", "long"),
+    "seo.image.alt": "Buenas prácticas de ecodiseño",
     "seo.noRobots": true,
 
     // src/components/BackToTop.astro
@@ -189,14 +170,12 @@ export const ui = {
   en: {
     // SEO
     "seo.site_name": "Good ecodesign practices",
-    "seo.default.description":
-      "Good ecodesign practices" + getTranslatedTitle("en", "long"),
+    "seo.default.description": "Good ecodesign practices",
     "seo.url": siteURL + PUBLIC_BASE,
     "seo.titleTemplate": "%s | Green IT Collective",
     "seo.fb.image.url": "/asso-greenit-share-fb.png",
     "seo.tw.image.url": "/asso-greenit-share-tw.png",
-    "seo.image.alt":
-      "Good ecodesign practices" + getTranslatedTitle("en", "long"),
+    "seo.image.alt": "Good ecodesign practices",
     "seo.noRobots": true,
 
     // src/components/BackToTop.astro
@@ -340,14 +319,12 @@ export const ui = {
   fr: {
     // SEO
     "seo.site_name": "Les bonnes pratiques d'écoconception",
-    "seo.default.description":
-      "Les bonnes pratiques d'écoconception" + getTranslatedTitle("fr", "long"),
+    "seo.default.description": "Les bonnes pratiques d'écoconception",
     "seo.url": siteURL + PUBLIC_BASE,
     "seo.titleTemplate": "%s | Collectif Green IT",
     "seo.fb.image.url": "/asso-greenit-share-fb.png",
     "seo.tw.image.url": "/asso-greenit-share-tw.png",
-    "seo.image.alt":
-      "Les bonnes pratiques d'écoconception" + getTranslatedTitle("fr", "long"),
+    "seo.image.alt": "Les bonnes pratiques d'écoconception",
     "seo.noRobots": true,
 
     // src/components/BackToTop.astro

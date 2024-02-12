@@ -1,5 +1,9 @@
 ---
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import {
+  getLangFromUrl,
+  getTranslatedTitle,
+  useTranslations,
+} from "@i18n/utils";
 import jsonLDGenerator from "../js/jsonLD";
 
 const lang = getLangFromUrl(Astro.url);
@@ -9,7 +13,8 @@ const PUBLIC_BASE =
   import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
     ? (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE) + "/"
     : "";
-
+const SITE_TITLE =
+  import.meta.env.PUBLIC_SITE_TITLE || process.env.PUBLIC_SITE_TITLE;
 type Props = {
   title?: string;
   description?: string;
@@ -66,7 +71,8 @@ const jsonLD = jsonLDGenerator({
 }
 <meta
   property="og:description"
-  content={description || t("seo.default.description")}
+  content={description ||
+    t("seo.default.description") + getTranslatedTitle(lang, "long", SITE_TITLE)}
 />
 <meta property="og:url" content={url} />
 <meta
@@ -86,21 +92,27 @@ const jsonLD = jsonLDGenerator({
 <meta property="og:image:height" content="600" />
 <meta
   property="og:image:alt"
-  content={PUBLIC_BASE + image?.alt || PUBLIC_BASE + t("seo.image.alt")}
+  content={image?.alt ||
+    t("seo.image.alt") + getTranslatedTitle(lang, "long", SITE_TITLE)}
 />
 
 <!-- Twitter -->
 <meta name="twitter:title" content={title} />
 <meta
   name="twitter:description"
-  content={description || t("seo.default.description")}
+  content={description ||
+    t("seo.default.description") + getTranslatedTitle(lang, "long", SITE_TITLE)}
 />
 <meta name="twitter:card" content="summary_large_image" />
 <meta
   name="twitter:image"
   content={PUBLIC_BASE + image?.src || PUBLIC_BASE + t("seo.tw.image.url")}
 />
-<meta name="twitter:image:alt" content={image?.alt || t("seo.image.alt")} />
+<meta
+  name="twitter:image:alt"
+  content={image?.alt ||
+    t("seo.image.alt") + getTranslatedTitle(lang, "long", SITE_TITLE)}
+/>
 <meta name="twitter:domain" content={t("seo.url")} />
 
 {t("seo.noRobots") && <meta name="robots" content="noindex, nofollow" />}
