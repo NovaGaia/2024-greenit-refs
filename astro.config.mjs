@@ -38,6 +38,14 @@ export default defineConfig({
   build: {
     format: "file",
   },
+  vite: {
+    define: {
+      "process.env.PUBLIC_SITE_TITLE": JSON.stringify(
+        process.env.PUBLIC_SITE_TITLE,
+      ),
+      "process.env.PUBLIC_BASE": JSON.stringify(process.env.PUBLIC_BASE),
+    },
+  },
   // i18n: {
   //   defaultLocale: "fr",
   //   locales: ["en", "es", "fr"],

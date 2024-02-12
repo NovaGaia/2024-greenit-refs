@@ -10,8 +10,8 @@ function getTranslatedTitle(lang: string, key: string = "short") {
     );
     return `${SITE_TITLE[lang][key] || SITE_TITLE[defaultLang][key] || "TBD"}`;
   } else {
-    console.warn(`META_PUBLIC_SITE_TITLE`, META_PUBLIC_SITE_TITLE);
-    console.warn(`PROCESS_PUBLIC_SITE_TITLE`, PROCESS_PUBLIC_SITE_TITLE);
+    console.warn(`ui > META_PUBLIC_SITE_TITLE`, META_PUBLIC_SITE_TITLE);
+    console.warn(`ui > PROCESS_PUBLIC_SITE_TITLE`, PROCESS_PUBLIC_SITE_TITLE);
   }
 }
 
