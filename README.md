@@ -98,3 +98,15 @@ TinaCMS est un CMS qui se lance en local. Il n'est pas possible de déployer dir
 Push vos modifications sur votre branche et faites une pull request vers la branch main.
 
 Le site est déployé sur infomaniak quand il y un merge sur la branch `main`.
+
+#### Configuration GitHub (a faire évoluer...)
+
+Créer ces variables d'environnements sur GitHub pour les GitHub Actions :
+
+- `BASE_URL`: `https://ref.greenit.fr/wp/|https://ref.greenit.fr/web/`
+- `PUBLIC_BASE`: `wp|rwp`
+- `PUBLIC_REF_NAME`: `RWP|RWEB`
+- `PUBLIC_REPO_BRANCH`: `main`
+- `PUBLIC_REPO_URL`: `https://github.com/cnumr/best-practices-wordpress|https://github.com/cnumr/best-practices`
+- `SITE_URL`: `https://ref.greenit.fr`
+- `PUBLIC_SITE_TITLE`: n'oubliez pas de stringifier et echapper les `"` ➡️  `{\"es\":{\"short\":\"WordPress\",\"long\":\" para WordPress\"},\"en\":{\"short\":\"WordPress\",\"long\":\" for WordPress\"},\"fr\":{\"short\":\"WordPress\",\"long\":\" pour WordPress\"}}`
