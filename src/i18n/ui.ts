@@ -1,6 +1,9 @@
 function getTranslatedTitle(lang: string, key: string = "short") {
   const SITE_TITLE: object = JSON.parse(
-    import.meta.env.PUBLIC_SITE_TITLE || process.env.SITE_TITLE,
+    (import.meta.env.PUBLIC_SITE_TITLE || process.env.SITE_TITLE).replaceAll(
+      "\\",
+      "",
+    ),
   );
   return `${SITE_TITLE[lang][key] || SITE_TITLE[defaultLang][key] || "TBD"}`;
 }

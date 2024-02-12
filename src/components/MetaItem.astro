@@ -53,7 +53,6 @@ const getDatas = async ({ collectionType, item, meta, collectionTypeMeta }) => {
       )}
       <ul class="mb-0">
         {toDisplay.map(async (item, index) => {
-          console.log(item !== null && typeof item === "object");
           if (item !== null && typeof item === "object") {
             const value = await getDatas({
               meta,
