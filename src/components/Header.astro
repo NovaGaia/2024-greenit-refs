@@ -201,7 +201,7 @@ const translatePath = useTranslatedPath(lang);
   .pagefind-ui .pagefind-ui__result-excerpt {
     color: var(--pagefind-ui-text);
   }
-  /* .pagefind-ui .pagefind-ui__filter-panel {
-    display: none !important;
-  } */
+  .pagefind-ui .pagefind-ui__filter-panel {
+    @apply !hidden lg:!flex;
+  }
 </style>
