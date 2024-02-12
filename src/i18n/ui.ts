@@ -1,11 +1,18 @@
 function getTranslatedTitle(lang: string, key: string = "short") {
-  const SITE_TITLE: object = JSON.parse(
-    (import.meta.env.PUBLIC_SITE_TITLE || process.env.SITE_TITLE).replaceAll(
-      "\\",
-      "",
-    ),
-  );
-  return `${SITE_TITLE[lang][key] || SITE_TITLE[defaultLang][key] || "TBD"}`;
+  const META_PUBLIC_SITE_TITLE = import.meta.env.PUBLIC_SITE_TITLE || undefined;
+  const PROCESS_PUBLIC_SITE_TITLE = process.env.PUBLIC_SITE_TITLE || undefined;
+  if (META_PUBLIC_SITE_TITLE || PROCESS_PUBLIC_SITE_TITLE) {
+    const SITE_TITLE: object = JSON.parse(
+      (META_PUBLIC_SITE_TITLE || PROCESS_PUBLIC_SITE_TITLE).replaceAll(
+        "\\",
+        "",
+      ),
+    );
+    return `${SITE_TITLE[lang][key] || SITE_TITLE[defaultLang][key] || "TBD"}`;
+  } else {
+    console.warn(`META_PUBLIC_SITE_TITLE`, META_PUBLIC_SITE_TITLE);
+    console.warn(`PROCESS_PUBLIC_SITE_TITLE`, PROCESS_PUBLIC_SITE_TITLE);
+  }
 }
 
 export const showDefaultLang = true;
