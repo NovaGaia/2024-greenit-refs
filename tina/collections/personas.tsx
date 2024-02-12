@@ -32,6 +32,12 @@ const personas: Collection = {
     warnField("", ""),
     // slugHiddenField,
     ...defaultFields,
+    {
+      type: "string",
+      name: "shortName",
+      label: "Nom court (1 mot)",
+      required: true,
+    },
     titleField("Corps de la fiche"),
     {
       type: "rich-text",

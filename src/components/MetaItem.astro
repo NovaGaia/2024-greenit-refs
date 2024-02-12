@@ -4,17 +4,37 @@ import {
   getLangFromUrl,
   useTranslations,
 } from "@i18n/utils";
+import { getEntry } from "astro:content";
 
 const {
   frontmatter,
   meta,
   fontSize = "normal",
   displayTitle = false,
+  collectionType = undefined,
+  collectionTypeMeta = undefined,
 } = Astro.props;
 const values = frontmatter[meta];
 const toDisplay = values;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const PUBLIC_BASE =
+  import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
+    ? (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE) + "/"
+    : "";
+
+const getDatas = async ({ collectionType, item, meta, collectionTypeMeta }) => {
+  const id = item[meta]
+    .replace(`src/content/${collectionType}/`, "")
+    .replace(".mdx", "");
+  const o: any = await getEntry(collectionType, id);
+  const [lang, ...slug] = o.slug.split("/");
+  return {
+    label: o.data[collectionTypeMeta],
+    path: `/${PUBLIC_BASE}${lang}/${collectionType}/${slug}`,
+  };
+};
 ---
 
 {
@@ -32,7 +52,25 @@ const t = useTranslations(lang);
         <strong>{capitalizeFirstLetter(t(meta))} : </strong>
       )}
       <ul class="mb-0">
-        {toDisplay.map((item, index) => {
+        {toDisplay.map(async (item, index) => {
+          console.log(item !== null && typeof item === "object");
+          if (item !== null && typeof item === "object") {
+            const value = await getDatas({
+              meta,
+              collectionType,
+              collectionTypeMeta,
+              item,
+            });
+            return (
+              <li
+                class="my-2 max-h-5 whitespace-nowrap p-0 leading-4"
+                data-pagefind-filter="tags[data-content]"
+                data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${value.label}`}
+              >
+                → <a href={value.path}>{value.label}</a>
+              </li>
+            );
+          }
           return (
             <li
               class="my-2 max-h-5 whitespace-nowrap p-0 leading-4"

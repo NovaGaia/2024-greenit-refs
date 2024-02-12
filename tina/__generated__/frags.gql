@@ -21,6 +21,7 @@ fragment FichesParts on Fiches {
         updatedAt
         language
         published
+        shortName
         _corps_de_la_fiche
         body
       }
@@ -70,6 +71,7 @@ fragment PersonasParts on Personas {
   updatedAt
   language
   published
+  shortName
   _corps_de_la_fiche
   body
 }

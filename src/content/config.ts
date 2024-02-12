@@ -52,6 +52,7 @@ const personas = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      shortName: z.string(),
       createdAt: z.date(),
       updatedAt: z.date(),
       published: z.boolean().optional(),

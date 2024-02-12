@@ -393,29 +393,6 @@ var fiches = {
           collections: ["personas"]
         }
       ]
-      // répercuter ces changements dans src/i18n/ui.ts
-      // options: [
-      //   {
-      //     value: "developer",
-      //     label: "Code(use·ur) → Développeu·se·r",
-      //   },
-      //   {
-      //     value: "designer",
-      //     label: "Designeu(se·r)",
-      //   },
-      //   {
-      //     value: "lowcode",
-      //     label: "Low-code → Freelance et développeur Front-End d'agences",
-      //   },
-      //   {
-      //     value: "nocode",
-      //     label: "No-code → Madame et Monsieur tout le monde",
-      //   },
-      //   {
-      //     value: "tbd",
-      //     label: "<< TBD (éviter de l'utiliser) >>",
-      //   },
-      // ],
     },
     {
       type: "string",
@@ -653,6 +630,12 @@ var personas = {
     warnField("", ""),
     // slugHiddenField,
     ...defaultFields,
+    {
+      type: "string",
+      name: "shortName",
+      label: "Nom court (1 mot)",
+      required: true
+    },
     titleField("Corps de la fiche"),
     {
       type: "rich-text",

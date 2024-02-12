@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
-import MetaItem from "./MetaItem.astro";
+import MetaItem from "../MetaItem.astro";
 
 type Props = {
   className?: string;
@@ -48,7 +48,14 @@ const t = useTranslations(lang);
     />
     {/* <MetaItem frontmatter={frontmatter} meta="people" displayTitle /> */}
     {/* <MetaItem frontmatter={frontmatter} meta="state_validation" /> */}
-    {/* <MetaItem frontmatter={frontmatter} meta="responsible" /> */}
+    <MetaItem
+      frontmatter={frontmatter}
+      meta="responsible"
+      collectionType="personas"
+      collectionTypeMeta="shortName"
+      displayTitle
+      fontSize="sm"
+    />
   </ul>
   <div
     class="border-t-2 border-neutral-transparent md:border-r-2 lg:border-t-2"

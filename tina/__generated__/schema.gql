@@ -265,6 +265,7 @@ type Personas implements Node & Document {
   updatedAt: String
   language: String!
   published: Boolean!
+  shortName: String!
   _corps_de_la_fiche: String
   body: JSON!
   id: ID!
@@ -279,6 +280,7 @@ input PersonasFilter {
   updatedAt: DatetimeFilter
   language: StringFilter
   published: BooleanFilter
+  shortName: StringFilter
   _corps_de_la_fiche: StringFilter
   body: RichTextFilter
 }
@@ -496,6 +498,7 @@ input PersonasMutation {
   updatedAt: String
   language: String
   published: Boolean
+  shortName: String
   _corps_de_la_fiche: String
   body: JSON
 }

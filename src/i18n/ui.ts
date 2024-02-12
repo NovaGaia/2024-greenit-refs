@@ -2,8 +2,6 @@ function getTranslatedTitle(lang: string, key: string = "short") {
   const SITE_TITLE: object = JSON.parse(
     import.meta.env.PUBLIC_SITE_TITLE || process.env.SITE_TITLE,
   );
-  console.log(SITE_TITLE);
-
   return `${SITE_TITLE[lang][key] || SITE_TITLE[defaultLang][key] || "TBD"}`;
 }
 
@@ -146,12 +144,6 @@ export const ui = {
     seo: "SEO",
     storage: "Stockage",
     "videos-sounds": "Vidéos/Audios",
-    // Responsible
-    responsible: "Responsable",
-    developer: "Code(use·ur) → Développeu·se·r",
-    designer: "Designeu(se·r)",
-    lowcode: "Low-code → Freelance et développeur Front-End d'agence",
-    nocode: "No-code → Madame et Monsieur tout le monde",
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
@@ -303,12 +295,6 @@ export const ui = {
     seo: "SEO",
     storage: "Stockage",
     "videos-sounds": "Vidéos/Audios",
-    // Responsible
-    responsible: "Responsable",
-    developer: "Code(use·ur) → Développeu·se·r",
-    designer: "Designeu(se·r)",
-    lowcode: "Low-code → Freelance et développeur Front-End d'agence",
-    nocode: "No-code → Madame et Monsieur tout le monde",
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
@@ -442,6 +428,7 @@ export const ui = {
 
     // src/components/FichesMetasDisplay.astro
     "Sommaire :": "Sommaire :",
+    responsible: "Responsable(s)",
 
     // src/components/LanguagePicker.astro
     "Language picker": "Sélecteur de langue",
@@ -461,12 +448,6 @@ export const ui = {
     seo: "SEO",
     storage: "Stockage",
     "videos-sounds": "Vidéos/Audios",
-    // Responsible
-    responsible: "Responsable",
-    developer: "Code(use·ur) → Développeu·se·r",
-    designer: "Designeu(se·r)",
-    lowcode: "Low-code → Freelance et développeur Front-End d'agence",
-    nocode: "No-code → Madame et Monsieur tout le monde",
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
