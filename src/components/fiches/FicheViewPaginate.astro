@@ -13,9 +13,11 @@ type PrevNext = {
 };
 
 function generatePrevNext(entries, current, lang): PrevNext {
-  const filteredEntries = entries.filter(
-    (entry) => entry.slug.split("/")[0] === lang,
-  );
+  const filteredEntries = entries
+    .filter((entry) => entry.slug.split("/")[0] === lang)
+    .filter((entry) =>
+      import.meta.env.MODE === "development" ? "true" : entry.data.published,
+    );
 
   let returned = { prev: null, next: null };
   filteredEntries.map((entry, idx) => {
