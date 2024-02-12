@@ -1,6 +1,7 @@
 ---
 import {
   getLangFromUrl,
+  getTranslatedTitle,
   useTranslatedPath,
   useTranslations,
 } from "@i18n/utils";
@@ -37,7 +38,7 @@ const translatePath = useTranslatedPath(lang);
           </span>
           <br />
           <span class="text-xl font-bold leading-none"
-            >{t("WordPress")}{
+            >{getTranslatedTitle(lang, "short")}{
               import.meta.env.MODE === "development" && (
                 <span class="text-white"> ({lang})</span>
               )

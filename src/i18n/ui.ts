@@ -1,3 +1,12 @@
+function getTranslatedTitle(lang: string, key: string = "short") {
+  const SITE_TITLE: object = JSON.parse(
+    import.meta.env.PUBLIC_SITE_TITLE || process.env.SITE_TITLE,
+  );
+  console.log(SITE_TITLE);
+
+  return `${SITE_TITLE[lang][key] || SITE_TITLE[defaultLang][key] || "TBD"}`;
+}
+
 export const showDefaultLang = true;
 
 const siteURL =
@@ -20,20 +29,21 @@ export const defaultLang = "fr";
 export const ui = {
   es: {
     // SEO
-    "seo.site_name": "Buenas prácticas de ecodiseño para WordPress",
-    "seo.default.description": "Buenas prácticas de ecodiseño para WordPress",
+    "seo.site_name": "Buenas prácticas de ecodiseño",
+    "seo.default.description":
+      "Buenas prácticas de ecodiseño" + getTranslatedTitle("es", "long"),
     "seo.url": siteURL + PUBLIC_BASE,
     "seo.titleTemplate": "%s | Colectivo de TI Verde",
     "seo.fb.image.url": "/asso-greenit-share-fb.png",
     "seo.tw.image.url": "/asso-greenit-share-tw.png",
-    "seo.image.alt": "Buenas prácticas de ecodiseño para WordPress",
+    "seo.image.alt":
+      "Buenas prácticas de ecodiseño" + getTranslatedTitle("es", "long"),
     "seo.noRobots": true,
 
     // src/components/BackToTop.astro
     "Retour en haut de page": "Volver al principio de la página",
 
     // src/components/Header.astro
-    WordPress: "WordPress",
     "Retour à l'accueil": "Retorno al inicio",
 
     // src/pages/[lang]/fiches/index.astro && src/components/fiches/FichesListView.astro
@@ -69,8 +79,8 @@ export const ui = {
     // A continuer...
 
     // src/components/ContributeCTA.astro
-    "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?":
-      "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?",
+    "Vous avez repérez une coquille ou vous souhaitez contribuer ?":
+      "Vous avez repérez une coquille ou vous souhaitez contribuer ?",
     "Venez sur le repo pour lancer une discussion sur":
       "Venez sur le repo pour lancer une discussion sur",
     "la fiche": "la fiche",
@@ -78,8 +88,8 @@ export const ui = {
     "le persona": "le persona",
 
     // src/pages/[lang]/fiches/index.astro
-    "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.":
-      "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.",
+    "Les Fiches de Bonnes pratiques pour rendre le numérique plus respectueux de l'environnement.":
+      "Les Fiches de Bonnes pratiques pour rendre le numérique plus respectueux de l'environnement.",
 
     // src/pages/[lang]/lexique/index.astro
     "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.":
@@ -176,20 +186,21 @@ export const ui = {
   },
   en: {
     // SEO
-    "seo.site_name": "Good ecodesign practices for WordPress",
-    "seo.default.description": "Good ecodesign practices for WordPress",
+    "seo.site_name": "Good ecodesign practices",
+    "seo.default.description":
+      "Good ecodesign practices" + getTranslatedTitle("en", "long"),
     "seo.url": siteURL + PUBLIC_BASE,
     "seo.titleTemplate": "%s | Green IT Collective",
     "seo.fb.image.url": "/asso-greenit-share-fb.png",
     "seo.tw.image.url": "/asso-greenit-share-tw.png",
-    "seo.image.alt": "Good ecodesign practices for WordPress",
+    "seo.image.alt":
+      "Good ecodesign practices" + getTranslatedTitle("en", "long"),
     "seo.noRobots": true,
 
     // src/components/BackToTop.astro
     "Retour en haut de page": "Return to top of page",
 
     // src/components/Header.astro
-    WordPress: "WordPress",
     "Retour à l'accueil": "Back to Home",
 
     // src/pages/[lang]/fiches/index.astro && src/components/fiches/FichesListView.astro
@@ -225,8 +236,8 @@ export const ui = {
     // A continuer...
 
     // src/components/ContributeCTA.astro
-    "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?":
-      "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?",
+    "Vous avez repérez une coquille ou vous souhaitez contribuer ?":
+      "Vous avez repérez une coquille ou vous souhaitez contribuer ?",
     "Venez sur le repo pour lancer une discussion sur":
       "Venez sur le repo pour lancer une discussion sur",
     "la fiche": "la fiche",
@@ -234,8 +245,8 @@ export const ui = {
     "le persona": "le persona",
 
     // src/pages/[lang]/fiches/index.astro
-    "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.":
-      "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.",
+    "Les Fiches de Bonnes pratiques pour rendre le numérique plus respectueux de l'environnement.":
+      "Les Fiches de Bonnes pratiques pour rendre le numérique plus respectueux de l'environnement.",
 
     // src/pages/[lang]/lexique/index.astro
     "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.":
@@ -332,21 +343,21 @@ export const ui = {
   },
   fr: {
     // SEO
-    "seo.site_name": "Les bonnes pratiques d'écoconception pour WordPress",
+    "seo.site_name": "Les bonnes pratiques d'écoconception",
     "seo.default.description":
-      "Les bonnes pratiques d'écoconception pour WordPress",
+      "Les bonnes pratiques d'écoconception" + getTranslatedTitle("fr", "long"),
     "seo.url": siteURL + PUBLIC_BASE,
     "seo.titleTemplate": "%s | Collectif Green IT",
     "seo.fb.image.url": "/asso-greenit-share-fb.png",
     "seo.tw.image.url": "/asso-greenit-share-tw.png",
-    "seo.image.alt": "Les bonnes pratiques d'écoconception pour WordPress",
+    "seo.image.alt":
+      "Les bonnes pratiques d'écoconception" + getTranslatedTitle("fr", "long"),
     "seo.noRobots": true,
 
     // src/components/BackToTop.astro
     "Retour en haut de page": "Retour en haut de page",
 
     // src/components/Header.astro
-    WordPress: "WordPress",
     "Retour à l'accueil": "Retour à l'accueil",
 
     // src/pages/[lang]/fiches/index.astro && src/components/fiches/FichesListView.astro
@@ -383,8 +394,8 @@ export const ui = {
       "Consulter le contenu de la licence CC BY-NC-ND 4.0 (site externe)",
 
     // src/components/ContributeCTA.astro
-    "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?":
-      "Vous avez repérez une coquille ou vous souhaitez contribuer à rendre WordPress plus éco-responsable ?",
+    "Vous avez repérez une coquille ou vous souhaitez contribuer ?":
+      "Vous avez repérez une coquille ou vous souhaitez contribuer ?",
     "Venez sur le repo pour lancer une discussion sur":
       "Venez sur le repo pour lancer une discussion sur",
     "la fiche": "la fiche",
@@ -392,8 +403,8 @@ export const ui = {
     "le persona": "le persona",
 
     // src/pages/[lang]/fiches/index.astro
-    "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.":
-      "Les Fiches de Bonnes pratiques pour rendre WordPress plus respectueux de l'environnement.",
+    "Les Fiches de Bonnes pratiques pour rendre le numérique plus respectueux de l'environnement.":
+      "Les Fiches de Bonnes pratiques pour rendre le numérique plus respectueux de l'environnement.",
 
     // src/pages/[lang]/lexique/index.astro
     "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.":
