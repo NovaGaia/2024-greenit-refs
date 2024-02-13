@@ -75,7 +75,8 @@ var getRefConfig = (specificRef) => {
       priority_implementation: MESURE_ON_3,
       environmental_impact: MESURE_ON_3,
       moe: false,
-      tiers: false
+      tiers: false,
+      perimetre: false
     }
   };
   switch (currentRef) {
@@ -101,6 +102,7 @@ var getRefConfig = (specificRef) => {
       config.featuresEnabled.environmental_impact = MESURE_ON_3;
       config.featuresEnabled.moe = false;
       config.featuresEnabled.tiers = false;
+      config.featuresEnabled.perimetre = true;
       break;
     case "RWEB":
       config.i18n.locales = ["fr", "en", "es"];
@@ -120,6 +122,7 @@ var getRefConfig = (specificRef) => {
       config.featuresEnabled.environmental_impact = MESURE_ON_5;
       config.featuresEnabled.moe = true;
       config.featuresEnabled.tiers = true;
+      config.featuresEnabled.perimetre = false;
       break;
     default:
       console.error(`PUBLIC_REF_NAME NOT CONFIGURED!`);
@@ -498,6 +501,70 @@ var getSpecificRefFields = () => {
     };
     specificsFields.push(tiers);
   }
+  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.perimetre === true) {
+    const perimetre = {
+      type: "string",
+      name: "scope",
+      label: "Scope",
+      required: true,
+      // répercuter ces changements dans src/components/fiches/FichesFilter.astro et dans src/i18n/ui.ts
+      options: [
+        {
+          value: "cache",
+          label: "Cache"
+        },
+        {
+          value: "documents",
+          label: "Documents"
+        },
+        {
+          value: "features",
+          label: "Fonctionnalit\xE9s"
+        },
+        {
+          value: "images",
+          label: "Images"
+        },
+        {
+          value: "front-office",
+          label: "Front-office"
+        },
+        {
+          value: "hosting",
+          label: "H\xE9bergement"
+        },
+        {
+          value: "performance",
+          label: "Performance"
+        },
+        {
+          value: "security",
+          label: "S\xE9curit\xE9"
+        },
+        {
+          value: "seo",
+          label: "SEO"
+        },
+        {
+          value: "storage",
+          label: "Stockage"
+        },
+        {
+          value: "themes",
+          label: "Th\xE8mes"
+        },
+        {
+          value: "videos-sounds",
+          label: "Vid\xE9os/Audios"
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (\xE9viter de l'utiliser) >>"
+        }
+      ]
+    };
+    specificsFields.push(perimetre);
+  }
   return specificsFields;
 };
 var fiches = {
@@ -581,67 +648,6 @@ var fiches = {
       name: "people",
       label: "Auteur\xB7e\xB7s",
       required: true
-    },
-    {
-      type: "string",
-      name: "scope",
-      label: "Scope",
-      required: true,
-      // répercuter ces changements dans src/components/fiches/FichesFilter.astro et dans src/i18n/ui.ts
-      options: [
-        {
-          value: "cache",
-          label: "Cache"
-        },
-        {
-          value: "documents",
-          label: "Documents"
-        },
-        {
-          value: "features",
-          label: "Fonctionnalit\xE9s"
-        },
-        {
-          value: "images",
-          label: "Images"
-        },
-        {
-          value: "front-office",
-          label: "Front-office"
-        },
-        {
-          value: "hosting",
-          label: "H\xE9bergement"
-        },
-        {
-          value: "performance",
-          label: "Performance"
-        },
-        {
-          value: "security",
-          label: "S\xE9curit\xE9"
-        },
-        {
-          value: "seo",
-          label: "SEO"
-        },
-        {
-          value: "storage",
-          label: "Stockage"
-        },
-        {
-          value: "themes",
-          label: "Th\xE8mes"
-        },
-        {
-          value: "videos-sounds",
-          label: "Vid\xE9os/Audios"
-        },
-        {
-          value: "tbd",
-          label: "<< TBD (\xE9viter de l'utiliser) >>"
-        }
-      ]
     },
     {
       type: "object",

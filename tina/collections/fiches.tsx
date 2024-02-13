@@ -181,6 +181,74 @@ const getSpecificRefFields: any = () => {
     specificsFields.push(tiers);
   }
 
+  if (
+    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.perimetre ===
+    true
+  ) {
+    const perimetre: TinaField = {
+      type: "string",
+      name: "scope",
+      label: "Scope",
+      required: true,
+      // répercuter ces changements dans src/components/fiches/FichesFilter.astro et dans src/i18n/ui.ts
+      options: [
+        {
+          value: "cache",
+          label: "Cache",
+        },
+        {
+          value: "documents",
+          label: "Documents",
+        },
+        {
+          value: "features",
+          label: "Fonctionnalités",
+        },
+        {
+          value: "images",
+          label: "Images",
+        },
+        {
+          value: "front-office",
+          label: "Front-office",
+        },
+        {
+          value: "hosting",
+          label: "Hébergement",
+        },
+        {
+          value: "performance",
+          label: "Performance",
+        },
+        {
+          value: "security",
+          label: "Sécurité",
+        },
+        {
+          value: "seo",
+          label: "SEO",
+        },
+        {
+          value: "storage",
+          label: "Stockage",
+        },
+        {
+          value: "themes",
+          label: "Thèmes",
+        },
+        {
+          value: "videos-sounds",
+          label: "Vidéos/Audios",
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (éviter de l'utiliser) >>",
+        },
+      ],
+    };
+    specificsFields.push(perimetre);
+  }
+
   return specificsFields;
 };
 
@@ -270,67 +338,6 @@ const fiches: Collection = {
       name: "people",
       label: "Auteur·e·s",
       required: true,
-    },
-    {
-      type: "string",
-      name: "scope",
-      label: "Scope",
-      required: true,
-      // répercuter ces changements dans src/components/fiches/FichesFilter.astro et dans src/i18n/ui.ts
-      options: [
-        {
-          value: "cache",
-          label: "Cache",
-        },
-        {
-          value: "documents",
-          label: "Documents",
-        },
-        {
-          value: "features",
-          label: "Fonctionnalités",
-        },
-        {
-          value: "images",
-          label: "Images",
-        },
-        {
-          value: "front-office",
-          label: "Front-office",
-        },
-        {
-          value: "hosting",
-          label: "Hébergement",
-        },
-        {
-          value: "performance",
-          label: "Performance",
-        },
-        {
-          value: "security",
-          label: "Sécurité",
-        },
-        {
-          value: "seo",
-          label: "SEO",
-        },
-        {
-          value: "storage",
-          label: "Stockage",
-        },
-        {
-          value: "themes",
-          label: "Thèmes",
-        },
-        {
-          value: "videos-sounds",
-          label: "Vidéos/Audios",
-        },
-        {
-          value: "tbd",
-          label: "<< TBD (éviter de l'utiliser) >>",
-        },
-      ],
     },
     {
       type: "object",
