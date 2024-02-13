@@ -2,18 +2,19 @@
 const { versions } = Astro.props;
 ---
 
-<div class="my-4 grid w-fit grid-flow-col grid-rows-2 gap-2">
-  <div class="font-bold">Ref. Version</div>
-  <div class="font-bold">Ref. BP</div>
-  {
-    versions.map((data) => {
-      return (
-        <>
-          <div>→ {data.version}</div>
-          <div>→ {data.idRef}</div>
-        </>
-      );
-    })
-  }
+<div class="box my-4 border-neutral-transparent lg:my-8">
+  <div class="grid w-fit grid-flow-col grid-rows-2 gap-2">
+    <div class="font-bold">Ref. Version</div>
+    <div class="font-bold">Ref. BP</div>
+    {
+      versions.map((data) => {
+        return (
+          <>
+            <div>→ {data.version}</div>
+            <div>→ {data.idRef}</div>
+          </>
+        );
+      })
+    }
+  </div>
 </div>
-<hr />
