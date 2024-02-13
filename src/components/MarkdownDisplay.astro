@@ -69,7 +69,6 @@ const t = useTranslations(lang);
             tableOfContents={headings}
           />
         </aside>
-        <FicheVersionDisplay versions={entry.data["versions"]} />
       </>
     )
   }
@@ -81,6 +80,11 @@ const t = useTranslations(lang);
       },
     ]}
   >
+    {
+      type === Card.FICHES && (
+        <FicheVersionDisplay versions={entry.data["versions"]} />
+      )
+    }
     <slot />
     {
       type === Card.FICHES && (
