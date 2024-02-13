@@ -5,12 +5,184 @@ import {
   onFichesBeforeSubmit,
 } from "../utils/commonFields";
 import { slugify } from "../../src/js/utils.js";
-import { tinaTableTemplate, type Collection } from "tinacms";
+import { tinaTableTemplate, type Collection, type TinaField } from "tinacms";
+import {
+  getRefConfig,
+  MESURE_ON_3,
+  MESURE_ON_5,
+} from "../../referentiel-config";
 
 const PUBLIC_BASE =
   process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== ""
     ? process.env.PUBLIC_BASE + "/"
     : "";
+
+const TINA_PUBLIC_REF_NAME_PROCESS = process.env.TINA_PUBLIC_REF_NAME;
+
+const getSpecificRefFields: any = () => {
+  const specificsFields: TinaField[] = [];
+  if (
+    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled
+      .priority_implementation === MESURE_ON_3
+  ) {
+    const environmental_impact: TinaField = {
+      type: "string",
+      name: "environmental_impact",
+      label: "Environmental impact",
+      required: true,
+      // répercuter ces changements dans src/i18n/ui.ts
+      options: [
+        {
+          label: "Fort 🌱🌱🌱",
+          value: "high_environmental_impact",
+        },
+        {
+          label: "Moyen 🌱🌱",
+          value: "medium_environmental_impact",
+        },
+        {
+          label: "Faible 🌱",
+          value: "low_environmental_impact",
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (éviter de l'utiliser) >>",
+        },
+      ],
+    };
+    specificsFields.push(environmental_impact);
+  }
+
+  if (
+    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled
+      .priority_implementation === MESURE_ON_5
+  ) {
+    const environmental_impact: TinaField = {
+      type: "number",
+      name: "environmental_impact",
+      label: "Environmental impact",
+      required: true,
+      ui: {
+        validate: (value) => {
+          if (value > 5) {
+            return "La valeur doit être comprise entre 1 et 5.";
+          }
+          if (value < 1) {
+            return "La valeur doit être comprise entre 1 et 5.";
+          }
+        },
+      },
+    };
+    specificsFields.push(environmental_impact);
+  }
+
+  if (
+    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled
+      .environmental_impact === MESURE_ON_3
+  ) {
+    const priority_implementation: TinaField = {
+      type: "string",
+      name: "priority_implementation",
+      label: "Priority implementation",
+      required: true,
+      // répercuter ces changements dans src/i18n/ui.ts
+      options: [
+        {
+          label: "Haute 👍👍👍",
+          value: "high_priority",
+        },
+        {
+          label: "Moyenne 👍👍",
+          value: "medium_priority",
+        },
+        {
+          label: "Faible 👍",
+          value: "low_priority",
+        },
+        {
+          value: "tbd",
+          label: "<< TBD (éviter de l'utiliser) >>",
+        },
+      ],
+    };
+    specificsFields.push(priority_implementation);
+  }
+
+  if (
+    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled
+      .environmental_impact === MESURE_ON_5
+  ) {
+    const priority_implementation: TinaField = {
+      type: "number",
+      name: "priority_implementation",
+      label: "Priority implementation",
+      required: true,
+      ui: {
+        validate: (value) => {
+          if (value > 5) {
+            return "La valeur doit être comprise entre 1 et 5.";
+          }
+          if (value < 1) {
+            return "La valeur doit être comprise entre 1 et 5.";
+          }
+        },
+      },
+    };
+    specificsFields.push(priority_implementation);
+  }
+
+  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.moe === true) {
+    const moe: TinaField = {
+      type: "number",
+      name: "moe",
+      label: "Mise en oeuvre",
+      required: true,
+      ui: {
+        validate: (value) => {
+          if (value > 5) {
+            return "La valeur doit être comprise entre 1 et 5.";
+          }
+          if (value < 1) {
+            return "La valeur doit être comprise entre 1 et 5.";
+          }
+        },
+      },
+    };
+    specificsFields.push(moe);
+  }
+
+  if (
+    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.tiers === true
+  ) {
+    const tiers: TinaField = {
+      type: "string",
+      name: "tiers",
+      label: "Tiers",
+      required: true, // répercuter ces changements dans src/i18n/ui.ts
+      options: [
+        {
+          label: "Utilisateur/Terminal",
+          value: "user-device",
+        },
+        {
+          label: "Réseau",
+          value: "network",
+        },
+        {
+          label: "Datacenter",
+          value: "datacenter",
+        },
+        {
+          label: "<< TBD (éviter de l'utiliser) >>",
+          value: "tbd",
+        },
+      ],
+    };
+    specificsFields.push(tiers);
+  }
+
+  return specificsFields;
+};
 
 const fiches: Collection = {
   name: "fiches",
@@ -28,17 +200,71 @@ const fiches: Collection = {
   defaultItem: () => {
     return {
       published: false,
-      validations: [{ rule: "<A CHANGER>", maxValue: 3 }],
+      refType: TINA_PUBLIC_REF_NAME_PROCESS,
+      validations: [{ rule: "<A CHANGER>", maxValue: "3" }],
+      versions: [
+        {
+          version: getRefConfig(process.env.TINA_PUBLIC_REF_NAME)
+            .refInformations.currentVersion,
+          idRef: "<A CHANGER>",
+        },
+      ],
     };
   },
   fields: [
     warnField(
-      "",
-      "Le nom de fichier de la fiche dépends des valeurs initiales #REF, Title et Language. Il ne changera plus automatiquement, il faut modifier manuellement le nom dans un second temps.",
+      "Pour voir les modifications, il faut sauvegarder pour déclencher un refresh.<br />Le nom de fichier de la fiche dépends des valeurs initiales #REF, Title et Language. Il ne changera plus automatiquement, il faut modifier manuellement le nom dans l'explorateur de fichier.",
+    ),
+    warnField(
+      "Les élements marqués <b>A renseigner dans un second temps.</b> sont à compléter après la création de la fiche.",
+      "_warn2",
     ),
     { type: "string", name: "refID", label: "#REF", required: true },
     ...defaultFields,
     titleField("Metadatas"),
+    {
+      type: "string",
+      name: "refType",
+      label: "Type de fiche",
+      ui: {
+        component: "hidden",
+      },
+    },
+    {
+      type: "object",
+      list: true,
+      name: "versions",
+      label: "Version(s)",
+      description:
+        "A renseigner dans un second temps. N'a qu'un rôle informatif, le #REF est celui qui sert pour générer le nom de fichier.",
+      ui: {
+        defaultItem: {
+          version: getRefConfig(process.env.TINA_PUBLIC_REF_NAME)
+            .refInformations.currentVersion,
+          idRef: "<A CHANGER>",
+        },
+        itemProps: (item) => {
+          return {
+            label: `Version: ${item?.version} | ID: ${item?.idRef}`,
+          };
+        },
+        min: 1,
+      },
+      fields: [
+        {
+          type: "string",
+          name: "version",
+          label: "Version Ref.",
+          required: true,
+        },
+        {
+          type: "string",
+          name: "idRef",
+          label: "ID Ref.",
+          required: true,
+        },
+      ],
+    },
     {
       type: "string",
       name: "people",
@@ -110,22 +336,25 @@ const fiches: Collection = {
       type: "object",
       name: "responsible",
       label: "Responsible(s)",
+      description: "A renseigner dans un second temps.",
       list: true,
       required: true,
       ui: {
         itemProps: (item) => {
+          if (!item || item.responsible === undefined)
+            return { label: "Personnas: TBD" };
           const [src, content, type, ...label] = item?.responsible.split("/");
           return {
             label: `Personnas: ${label?.join("/") || "TBD"}`,
           };
         },
-        min: 1,
       },
       fields: [
         {
           type: "reference",
           label: "Responsible",
           name: "responsible",
+          description: "A renseigner dans un second temps.",
           collections: ["personas"],
         },
       ],
@@ -179,56 +408,7 @@ const fiches: Collection = {
         },
       ],
     },
-    {
-      type: "string",
-      name: "environmental_impact",
-      label: "Environmental impact",
-      required: true,
-      // répercuter ces changements dans src/i18n/ui.ts
-      options: [
-        {
-          label: "Fort 🌱🌱🌱",
-          value: "high_environmental_impact",
-        },
-        {
-          label: "Moyen 🌱🌱",
-          value: "medium_environmental_impact",
-        },
-        {
-          label: "Faible 🌱",
-          value: "low_environmental_impact",
-        },
-        {
-          value: "tbd",
-          label: "<< TBD (éviter de l'utiliser) >>",
-        },
-      ],
-    },
-    {
-      type: "string",
-      name: "priority_implementation",
-      label: "Priority implementation",
-      required: true,
-      // répercuter ces changements dans src/i18n/ui.ts
-      options: [
-        {
-          label: "Haute 👍👍👍",
-          value: "high_priority",
-        },
-        {
-          label: "Moyenne 👍👍",
-          value: "medium_priority",
-        },
-        {
-          label: "Faible 👍",
-          value: "low_priority",
-        },
-        {
-          value: "tbd",
-          label: "<< TBD (éviter de l'utiliser) >>",
-        },
-      ],
-    },
+    ...getSpecificRefFields(),
     {
       type: "string",
       name: "saved_resources",
@@ -288,6 +468,7 @@ const fiches: Collection = {
       type: "object",
       name: "validations",
       label: "Principe(s) de validation",
+      description: "A renseigner dans un second temps.",
       list: true,
       ui: {
         itemProps: (item) => {
@@ -295,11 +476,11 @@ const fiches: Collection = {
             label: `Rule: ${item?.rule}`,
           };
         },
-        min: 1,
         defaultItem: {
           rule: "<A CHANGER>",
           maxValue: "3",
         },
+        min: 1,
       },
       fields: [
         { type: "string", name: "rule", label: "Le nombre..." },

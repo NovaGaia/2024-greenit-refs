@@ -7,8 +7,6 @@ import {
 import { RestartWarning } from "./warning";
 import { slugify } from "../../src/js/utils";
 
-const REF_NAME = process.env.PUBLIC_REF_NAME;
-
 /**
  * This function is called before the form is submitted.
  * @param {Form} form - The form object.
@@ -24,15 +22,17 @@ const onFichesBeforeSubmit = async ({
   cms: TinaCMS;
   values: Record<string, any>;
 }) => {
+  const TINA_PUBLIC_REF_NAME_PROCESS = process.env.TINA_PUBLIC_REF_NAME;
+  if (!values.responsible) {
+    values.responsible = [];
+  }
   if (form.crudType === "create") {
     return {
       ...values,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       filename:
-        values.language +
-        "/" +
-        REF_NAME +
+        TINA_PUBLIC_REF_NAME_PROCESS +
         "_" +
         values.refID +
         "-" +
@@ -65,7 +65,7 @@ const onLexiqueBeforeSubmit = async ({
       ...values,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      filename: values.language + "/" + slugify(values.title),
+      filename: slugify(values.title),
     };
   }
   return {
@@ -94,7 +94,7 @@ const onPersonasBeforeSubmit = async ({
       ...values,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      filename: values.language + "/" + slugify(values.title),
+      filename: slugify(values.title),
     };
   }
   return {
@@ -109,7 +109,6 @@ const onPersonasBeforeSubmit = async ({
  * @param {TinaCMS} cms - The cms object.
  * @param {Record<string, any>} values - The values object.
  * @returns {Record<string, any>} The values object.
- * @deprecated use `home`, `mentionsLegales`
  */
 const onPagesBeforeSubmit = async ({
   form,
@@ -124,7 +123,7 @@ const onPagesBeforeSubmit = async ({
       ...values,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      filename: values.language + "/" + slugify(values.title),
+      filename: slugify(values.title),
     };
   }
   return {
@@ -206,13 +205,13 @@ const titleField: any = (label) => {
  * Warning field
  * @type {TinaField}
  */
-const warnField: any = (view = "", comment = "") => {
+const warnField: any = (comment = "", name = "_warning") => {
   return {
     type: "string",
-    name: "_warning",
+    name: name,
     ui: {
       component: () => {
-        return <RestartWarning view={view} comment={comment} />;
+        return <RestartWarning comment={comment} />;
       },
     },
   };

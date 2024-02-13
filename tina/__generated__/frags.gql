@@ -1,6 +1,7 @@
 fragment FichesParts on Fiches {
   __typename
   _warning
+  _warn2
   refID
   title
   createdAt
@@ -8,6 +9,12 @@ fragment FichesParts on Fiches {
   language
   published
   _metadatas
+  refType
+  versions {
+    __typename
+    version
+    idRef
+  }
   people
   scope
   responsible {
@@ -53,7 +60,6 @@ fragment FichesParts on Fiches {
 
 fragment LexiqueParts on Lexique {
   __typename
-  _warning
   title
   createdAt
   updatedAt

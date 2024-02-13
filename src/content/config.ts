@@ -23,14 +23,16 @@ const fiches = defineCollection({
       // slug: z.string(),
       people: z.string(),
       scope: z.string(),
-      responsible: z.array(z.object({ responsible: z.string() })),
+      responsible: z.array(z.object({ responsible: z.string() })).optional(),
       lifecycle: z.string(),
-      priority_implementation: z.string(),
-      environmental_impact: z.string(),
+      priority_implementation: z.any(),
+      environmental_impact: z.any(),
+      moe: z.any().optional(),
+      tiers: z.string().optional(),
       saved_resources: z.array(z.string()),
-      validations: z.array(
-        z.object({ rule: z.string(), maxValue: z.string() }),
-      ),
+      validations: z
+        .array(z.object({ rule: z.string(), maxValue: z.string() }))
+        .optional(),
     }),
 });
 

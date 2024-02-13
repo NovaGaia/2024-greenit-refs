@@ -1,11 +1,11 @@
 ---
 import {
   getLangFromUrl,
-  getTranslatedTitle,
   useTranslatedPath,
   useTranslations,
 } from "@i18n/utils";
 import { Icon } from "astro-icon/components";
+import { getRefConfig } from "../../referentiel-config";
 import LanguagePicker from "./LanguagePicker.astro";
 import Search from "./SearchInt.astro";
 
@@ -36,20 +36,21 @@ const translatePath = useTranslatedPath(lang);
             {t("seo.site_name")}
           </span>
           <br />
-          <span class="text-xl font-bold leading-none"
-            >{
-              getTranslatedTitle(
-                lang,
-                "short",
-                import.meta.env.PUBLIC_SITE_TITLE ||
-                  process.env.PUBLIC_SITE_TITLE,
-              )
+          <span class="text-xl font-bold leading-none">
+            {
+              getRefConfig(
+                import.meta.env.PUBLIC_REF_NAME || process.env.PUBLIC_REF_NAME,
+              ).i18n.refTitles[lang]["short"]
             }{
               import.meta.env.MODE === "development" && (
                 <span class="text-white"> ({lang})</span>
               )
-            }</span
-          >
+            }
+            {" "}
+            <span class="text-sm">
+              {getRefConfig().refInformations.currentVersion}
+            </span>
+          </span>
         </a>
       </div>
     </div>
@@ -72,15 +73,22 @@ const translatePath = useTranslatedPath(lang);
             {t("Bonnes pratiques")}
           </a>
         </li>
-        <li class="!m-0">
-          <a
-            href={translatePath("/lexique")}
-            class={`text-white text-xl lg:text-base no-underline text-inherit font-medium`}
-            title={t("Consulter le Lexique")}
-          >
-            {t("Lexique")}
-          </a>
-        </li>
+        {
+          getRefConfig(
+            import.meta.env.PUBLIC_REF_NAME || process.env.PUBLIC_REF_NAME,
+          ).featuresEnabled.lexique && (
+            <li class="!m-0">
+              <a
+                href={translatePath("/lexique")}
+                class={`text-xl font-medium text-inherit text-white no-underline lg:text-base`}
+                title={t("Consulter le Lexique")}
+              >
+                {t("Lexique")}
+              </a>
+            </li>
+          )
+        }
+
         {
           /*
         <li class="!m-0 lg:hidden">

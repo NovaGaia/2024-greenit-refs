@@ -1,3 +1,6 @@
+import { get } from "http";
+import { getRefConfig } from "referentiel-config";
+
 export const showDefaultLang = true;
 
 const siteURL =
@@ -7,15 +10,11 @@ const PUBLIC_BASE =
     ? import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
     : "";
 
-export const languages = {
-  en: "🇬🇧 English",
-  fr: "🇫🇷 Français",
-  es: "🇪🇸 Espagnol",
-};
+export const languages: Record<string, string> = getRefConfig().i18n.languages;
 
-export const code_languages = ["en", "fr", "es"];
+export const code_languages: string[] = getRefConfig().i18n.locales;
 
-export const defaultLang = "fr";
+export const defaultLang = getRefConfig().i18n.defaultLang;
 
 export const ui = {
   es: {
@@ -465,6 +464,9 @@ export const ui = {
     "e-waste": "Déchets électroniques",
     electricity: "Consommation électrique",
     ghg: "Émissions de gaz à effet de serre",
+    // MoE
+    moe: "Mise en oeuvre",
+    "priority-level": "Degré de priorité",
     tdb: "À définir",
   },
 } as const;

@@ -98,6 +98,11 @@ type Collection {
 
 union DocumentNode = Fiches | Lexique | Personas | Home | MentionsLegales | Folder
 
+type FichesVersions {
+  version: String!
+  idRef: String!
+}
+
 union FichesResponsibleResponsible = Personas
 
 type FichesResponsible {
@@ -111,6 +116,7 @@ type FichesValidations {
 
 type Fiches implements Node & Document {
   _warning: String
+  _warn2: String
   refID: String!
   title: String!
   createdAt: String
@@ -118,6 +124,8 @@ type Fiches implements Node & Document {
   language: String!
   published: Boolean!
   _metadatas: String
+  refType: String
+  versions: [FichesVersions]
   people: String!
   scope: String!
   responsible: [FichesResponsible!]!
@@ -151,6 +159,11 @@ input DatetimeFilter {
 input BooleanFilter {
   eq: Boolean
   exists: Boolean
+}
+
+input FichesVersionsFilter {
+  version: StringFilter
+  idRef: StringFilter
 }
 
 input FichesResponsibleResponsibleFilter {
@@ -192,6 +205,7 @@ input FichesValidationsFilter {
 
 input FichesFilter {
   _warning: StringFilter
+  _warn2: StringFilter
   refID: StringFilter
   title: StringFilter
   createdAt: DatetimeFilter
@@ -199,6 +213,8 @@ input FichesFilter {
   language: StringFilter
   published: BooleanFilter
   _metadatas: StringFilter
+  refType: StringFilter
+  versions: FichesVersionsFilter
   people: StringFilter
   scope: StringFilter
   responsible: FichesResponsibleFilter
@@ -223,7 +239,6 @@ type FichesConnection implements Connection {
 }
 
 type Lexique implements Node & Document {
-  _warning: String
   title: String!
   createdAt: String
   updatedAt: String
@@ -237,7 +252,6 @@ type Lexique implements Node & Document {
 }
 
 input LexiqueFilter {
-  _warning: StringFilter
   title: StringFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
@@ -450,6 +464,11 @@ input DocumentMutation {
   mentionsLegales: MentionsLegalesMutation
 }
 
+input FichesVersionsMutation {
+  version: String
+  idRef: String
+}
+
 input FichesResponsibleMutation {
   responsible: String
 }
@@ -461,6 +480,7 @@ input FichesValidationsMutation {
 
 input FichesMutation {
   _warning: String
+  _warn2: String
   refID: String
   title: String
   createdAt: String
@@ -468,6 +488,8 @@ input FichesMutation {
   language: String
   published: Boolean
   _metadatas: String
+  refType: String
+  versions: [FichesVersionsMutation]
   people: String
   scope: String
   responsible: [FichesResponsibleMutation]
@@ -481,7 +503,6 @@ input FichesMutation {
 }
 
 input LexiqueMutation {
-  _warning: String
   title: String
   createdAt: String
   updatedAt: String

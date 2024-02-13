@@ -1,5 +1,4 @@
 import {
-  slugVisibleField,
   defaultFields,
   onPagesBeforeSubmit,
   titleField,
@@ -25,7 +24,9 @@ const pages: Collection = {
     return { published: false };
   },
   fields: [
-    warnField("", ""),
+    warnField(
+      "Pour voir les modifications, il faut sauvegarder pour déclencher un refresh.",
+    ),
     // slugVisibleField,
     ...defaultFields,
     titleField("Corps de la fiche"),

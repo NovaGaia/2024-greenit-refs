@@ -1,9 +1,6 @@
 ---
-import {
-  getLangFromUrl,
-  getTranslatedTitle,
-  useTranslations,
-} from "@i18n/utils";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getRefConfig } from "../../referentiel-config";
 import jsonLDGenerator from "../js/jsonLD";
 
 const lang = getLangFromUrl(Astro.url);
@@ -13,8 +10,6 @@ const PUBLIC_BASE =
   import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE
     ? (import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE) + "/"
     : "";
-const SITE_TITLE =
-  import.meta.env.PUBLIC_SITE_TITLE || process.env.PUBLIC_SITE_TITLE;
 type Props = {
   title?: string;
   description?: string;
@@ -72,7 +67,10 @@ const jsonLD = jsonLDGenerator({
 <meta
   property="og:description"
   content={description ||
-    t("seo.default.description") + getTranslatedTitle(lang, "long", SITE_TITLE)}
+    t("seo.default.description") +
+      getRefConfig(
+        import.meta.env.PUBLIC_REF_NAME || process.env.PUBLIC_REF_NAME,
+      ).i18n.refTitles[lang]["long"]}
 />
 <meta property="og:url" content={url} />
 <meta
@@ -93,7 +91,10 @@ const jsonLD = jsonLDGenerator({
 <meta
   property="og:image:alt"
   content={image?.alt ||
-    t("seo.image.alt") + getTranslatedTitle(lang, "long", SITE_TITLE)}
+    t("seo.image.alt") +
+      getRefConfig(
+        import.meta.env.PUBLIC_REF_NAME || process.env.PUBLIC_REF_NAME,
+      ).i18n.refTitles[lang]["long"]}
 />
 
 <!-- Twitter -->
@@ -101,7 +102,10 @@ const jsonLD = jsonLDGenerator({
 <meta
   name="twitter:description"
   content={description ||
-    t("seo.default.description") + getTranslatedTitle(lang, "long", SITE_TITLE)}
+    t("seo.default.description") +
+      getRefConfig(
+        import.meta.env.PUBLIC_REF_NAME || process.env.PUBLIC_REF_NAME,
+      ).i18n.refTitles[lang]["long"]}
 />
 <meta name="twitter:card" content="summary_large_image" />
 <meta
@@ -111,7 +115,10 @@ const jsonLD = jsonLDGenerator({
 <meta
   name="twitter:image:alt"
   content={image?.alt ||
-    t("seo.image.alt") + getTranslatedTitle(lang, "long", SITE_TITLE)}
+    t("seo.image.alt") +
+      getRefConfig(
+        import.meta.env.PUBLIC_REF_NAME || process.env.PUBLIC_REF_NAME,
+      ).i18n.refTitles[lang]["long"]}
 />
 <meta name="twitter:domain" content={t("seo.url")} />
 

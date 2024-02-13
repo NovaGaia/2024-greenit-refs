@@ -5,6 +5,7 @@ import {
   useTranslations,
 } from "@i18n/utils";
 import { getEntry } from "astro:content";
+import { getRefConfig } from "../../../referentiel-config";
 
 const {
   frontmatter,
@@ -14,6 +15,7 @@ const {
   collectionType = undefined,
   collectionTypeMeta = undefined,
 } = Astro.props;
+
 const values = frontmatter[meta];
 const toDisplay = values;
 const lang = getLangFromUrl(Astro.url);
@@ -34,6 +36,14 @@ const getDatas = async ({ collectionType, item, meta, collectionTypeMeta }) => {
     label: o.data[collectionTypeMeta],
     path: `/${PUBLIC_BASE}${lang}/${collectionType}/${slug}`,
   };
+};
+
+const getValue = (value) => {
+  // if value is a number
+  if (typeof value === "number") {
+    return value;
+  }
+  return t(value);
 };
 ---
 
@@ -66,7 +76,14 @@ const getDatas = async ({ collectionType, item, meta, collectionTypeMeta }) => {
                 data-pagefind-filter="tags[data-content]"
                 data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${value.label}`}
               >
-                → <a href={value.path}>{value.label}</a>
+                →
+                {getRefConfig().featuresEnabled.linkToPersonas === true ? (
+                  <a href={value.path} class="uppercase">
+                    {value.label}
+                  </a>
+                ) : (
+                  <span class="uppercase">{value.label}</span>
+                )}
               </li>
             );
           }
@@ -74,9 +91,9 @@ const getDatas = async ({ collectionType, item, meta, collectionTypeMeta }) => {
             <li
               class="my-2 max-h-5 whitespace-nowrap p-0 leading-4"
               data-pagefind-filter="tags[data-content]"
-              data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${t(item)}`}
+              data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${getValue(item)}`}
             >
-              → {t(item)}
+              → {getValue(item)}
             </li>
           );
         })}
@@ -93,15 +110,9 @@ const getDatas = async ({ collectionType, item, meta, collectionTypeMeta }) => {
       ]}
     >
       {displayTitle === true && (
-        <strong class="capitalize">
-          {/*
-            data-pagefind-filter="tags[data-content]"
-            data-content={`${capitalizeFirstLetter(meta.replace("_", " "))} → ${t(toDisplay)}`}
-           */}
-          {t(meta)} :{" "}
-        </strong>
+        <strong class="capitalize">{t(meta)} : </strong>
       )}
-      {t(toDisplay) || "TBD"}
+      {getValue(toDisplay) || "TBD"}
     </li>
   )
 }

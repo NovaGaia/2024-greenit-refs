@@ -6,6 +6,7 @@ import {
   useTranslations,
 } from "@i18n/utils";
 import { Image } from "astro:assets";
+import { getRefConfig } from "referentiel-config";
 import LanguagePicker from "./LanguagePicker.astro";
 import Licence from "./Licence.astro";
 
@@ -18,18 +19,27 @@ const translatePath = useTranslatedPath(lang);
   class="mx-auto flex flex-col items-center gap-5 border-t-2 border-neutral-light px-4 pb-4 pt-4 md:flex-row md:justify-between lg:max-w-5xl lg:px-0"
 >
   <div>
-    <span>© <span id="copyright"></span></span>
-    <span>&middot;</span>
-    <span>{t("Association Green IT")}</span>
-    <span>&middot;</span>
-    <ul class="flex gap-4">
-      <a
-        href={translatePath("/mentions-legales")}
-        title={t("Les mentions légales du site.")}
-      >
-        {t("Mentions légales")}
-      </a>
-      <LanguagePicker style="light" />
+    <ul class="flex flex-col gap-4 lg:flex-row">
+      <li>
+        <span
+          >© {getRefConfig().refInformations.creationYear} -
+          <span id="copyright"></span></span
+        >
+        <span>&middot;</span>
+        <span>{t("Association Green IT")}</span>
+        <span class="hidden lg:inline">&middot;</span>
+      </li>
+      <li>
+        <a
+          href={translatePath("/mentions-legales")}
+          title={t("Les mentions légales du site.")}
+        >
+          {t("Mentions légales")}
+        </a>
+        <li>
+          <LanguagePicker style="light" />
+        </li>
+      </li>
     </ul>
     <Licence />
   </div>

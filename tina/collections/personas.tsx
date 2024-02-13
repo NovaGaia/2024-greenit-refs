@@ -29,7 +29,9 @@ const personas: Collection = {
     return { published: false };
   },
   fields: [
-    warnField("", ""),
+    warnField(
+      "Pour voir les modifications, il faut sauvegarder pour déclencher un refresh.",
+    ),
     // slugHiddenField,
     ...defaultFields,
     {
