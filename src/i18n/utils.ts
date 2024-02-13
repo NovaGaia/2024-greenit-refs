@@ -32,18 +32,3 @@ export function useTranslatedPath(lang: keyof typeof ui) {
 export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
-export function getTranslatedTitle(
-  lang: string,
-  key: string = "short",
-  data: any = undefined,
-) {
-  // console.log(`data`, data);
-
-  if (data !== undefined) {
-    const SITE_TITLE: object = JSON.parse(data.replaceAll("\\", ""));
-    return `${SITE_TITLE[lang][key] || SITE_TITLE[defaultLang][key] || "TBD"}`;
-  } else {
-    // console.warn(`uiUtils > data = undefined`);
-  }
-}

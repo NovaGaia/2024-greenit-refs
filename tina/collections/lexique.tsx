@@ -1,7 +1,5 @@
 import {
-  slugHiddenField,
   titleField,
-  warnField,
   defaultFields,
   onLexiqueBeforeSubmit,
 } from "../utils/commonFields";
@@ -24,7 +22,6 @@ const lexique: Collection = {
     return { published: false };
   },
   fields: [
-    warnField("", ""),
     ...defaultFields,
     titleField("Corps de la fiche"),
     {

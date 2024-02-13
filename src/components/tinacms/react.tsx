@@ -33,7 +33,7 @@ export const TinaReactHelper: React.FC<TinaReactHelperProps> = ({
       case "mentionsLegales":
         return "mentions-legales";
     }
-    return slug.join(collection);
+    return collection;
   };
 
   const editURL = () => {

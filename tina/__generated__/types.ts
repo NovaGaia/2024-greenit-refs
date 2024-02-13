@@ -236,6 +236,12 @@ export type CollectionDocumentsArgs = {
 
 export type DocumentNode = Fiches | Lexique | Personas | Home | MentionsLegales | Folder;
 
+export type FichesVersions = {
+  __typename?: 'FichesVersions';
+  version: Scalars['String']['output'];
+  idRef: Scalars['String']['output'];
+};
+
 export type FichesResponsibleResponsible = Personas;
 
 export type FichesResponsible = {
@@ -252,6 +258,7 @@ export type FichesValidations = {
 export type Fiches = Node & Document & {
   __typename?: 'Fiches';
   _warning?: Maybe<Scalars['String']['output']>;
+  _warn2?: Maybe<Scalars['String']['output']>;
   refID: Scalars['String']['output'];
   title: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['String']['output']>;
@@ -259,6 +266,8 @@ export type Fiches = Node & Document & {
   language: Scalars['String']['output'];
   published: Scalars['Boolean']['output'];
   _metadatas?: Maybe<Scalars['String']['output']>;
+  refType?: Maybe<Scalars['String']['output']>;
+  versions?: Maybe<Array<Maybe<FichesVersions>>>;
   people: Scalars['String']['output'];
   scope: Scalars['String']['output'];
   responsible: Array<FichesResponsible>;
@@ -292,6 +301,11 @@ export type DatetimeFilter = {
 export type BooleanFilter = {
   eq?: InputMaybe<Scalars['Boolean']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type FichesVersionsFilter = {
+  version?: InputMaybe<StringFilter>;
+  idRef?: InputMaybe<StringFilter>;
 };
 
 export type FichesResponsibleResponsibleFilter = {
@@ -333,6 +347,7 @@ export type FichesValidationsFilter = {
 
 export type FichesFilter = {
   _warning?: InputMaybe<StringFilter>;
+  _warn2?: InputMaybe<StringFilter>;
   refID?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DatetimeFilter>;
@@ -340,6 +355,8 @@ export type FichesFilter = {
   language?: InputMaybe<StringFilter>;
   published?: InputMaybe<BooleanFilter>;
   _metadatas?: InputMaybe<StringFilter>;
+  refType?: InputMaybe<StringFilter>;
+  versions?: InputMaybe<FichesVersionsFilter>;
   people?: InputMaybe<StringFilter>;
   scope?: InputMaybe<StringFilter>;
   responsible?: InputMaybe<FichesResponsibleFilter>;
@@ -367,7 +384,6 @@ export type FichesConnection = Connection & {
 
 export type Lexique = Node & Document & {
   __typename?: 'Lexique';
-  _warning?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['String']['output']>;
@@ -381,7 +397,6 @@ export type Lexique = Node & Document & {
 };
 
 export type LexiqueFilter = {
-  _warning?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DatetimeFilter>;
   updatedAt?: InputMaybe<DatetimeFilter>;
@@ -693,6 +708,11 @@ export type DocumentMutation = {
   mentionsLegales?: InputMaybe<MentionsLegalesMutation>;
 };
 
+export type FichesVersionsMutation = {
+  version?: InputMaybe<Scalars['String']['input']>;
+  idRef?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type FichesResponsibleMutation = {
   responsible?: InputMaybe<Scalars['String']['input']>;
 };
@@ -704,6 +724,7 @@ export type FichesValidationsMutation = {
 
 export type FichesMutation = {
   _warning?: InputMaybe<Scalars['String']['input']>;
+  _warn2?: InputMaybe<Scalars['String']['input']>;
   refID?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
@@ -711,6 +732,8 @@ export type FichesMutation = {
   language?: InputMaybe<Scalars['String']['input']>;
   published?: InputMaybe<Scalars['Boolean']['input']>;
   _metadatas?: InputMaybe<Scalars['String']['input']>;
+  refType?: InputMaybe<Scalars['String']['input']>;
+  versions?: InputMaybe<Array<InputMaybe<FichesVersionsMutation>>>;
   people?: InputMaybe<Scalars['String']['input']>;
   scope?: InputMaybe<Scalars['String']['input']>;
   responsible?: InputMaybe<Array<InputMaybe<FichesResponsibleMutation>>>;
@@ -724,7 +747,6 @@ export type FichesMutation = {
 };
 
 export type LexiqueMutation = {
-  _warning?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
@@ -768,9 +790,9 @@ export type MentionsLegalesMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type FichesPartsFragment = { __typename: 'Fiches', _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, responsible: Array<{ __typename: 'FichesResponsible', responsible?: { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, shortName: string, _corps_de_la_fiche?: string | null, body: any, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null }>, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null };
+export type FichesPartsFragment = { __typename: 'Fiches', _warning?: string | null, _warn2?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, refType?: string | null, people: string, scope: string, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, versions?: Array<{ __typename: 'FichesVersions', version: string, idRef: string } | null> | null, responsible: Array<{ __typename: 'FichesResponsible', responsible?: { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, shortName: string, _corps_de_la_fiche?: string | null, body: any, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null }>, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null };
 
-export type LexiquePartsFragment = { __typename: 'Lexique', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
+export type LexiquePartsFragment = { __typename: 'Lexique', title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any };
 
 export type PersonasPartsFragment = { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, shortName: string, _corps_de_la_fiche?: string | null, body: any };
 
@@ -783,7 +805,7 @@ export type FichesQueryVariables = Exact<{
 }>;
 
 
-export type FichesQuery = { __typename?: 'Query', fiches: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, responsible: Array<{ __typename: 'FichesResponsible', responsible?: { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, shortName: string, _corps_de_la_fiche?: string | null, body: any, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null }>, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null } };
+export type FichesQuery = { __typename?: 'Query', fiches: { __typename: 'Fiches', id: string, _warning?: string | null, _warn2?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, refType?: string | null, people: string, scope: string, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, versions?: Array<{ __typename: 'FichesVersions', version: string, idRef: string } | null> | null, responsible: Array<{ __typename: 'FichesResponsible', responsible?: { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, shortName: string, _corps_de_la_fiche?: string | null, body: any, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null }>, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null } };
 
 export type FichesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -795,14 +817,14 @@ export type FichesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type FichesConnectionQuery = { __typename?: 'Query', fichesConnection: { __typename?: 'FichesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FichesConnectionEdges', cursor: string, node?: { __typename: 'Fiches', id: string, _warning?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, people: string, scope: string, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, responsible: Array<{ __typename: 'FichesResponsible', responsible?: { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, shortName: string, _corps_de_la_fiche?: string | null, body: any, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null }>, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null } | null } | null> | null } };
+export type FichesConnectionQuery = { __typename?: 'Query', fichesConnection: { __typename?: 'FichesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FichesConnectionEdges', cursor: string, node?: { __typename: 'Fiches', id: string, _warning?: string | null, _warn2?: string | null, refID: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _metadatas?: string | null, refType?: string | null, people: string, scope: string, lifecycle: string, environmental_impact: string, priority_implementation: string, saved_resources: Array<string>, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, versions?: Array<{ __typename: 'FichesVersions', version: string, idRef: string } | null> | null, responsible: Array<{ __typename: 'FichesResponsible', responsible?: { __typename: 'Personas', _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, shortName: string, _corps_de_la_fiche?: string | null, body: any, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null }>, validations?: Array<{ __typename: 'FichesValidations', rule?: string | null, maxValue?: string | null } | null> | null } | null } | null> | null } };
 
 export type LexiqueQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type LexiqueQuery = { __typename?: 'Query', lexique: { __typename: 'Lexique', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type LexiqueQuery = { __typename?: 'Query', lexique: { __typename: 'Lexique', id: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type LexiqueConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -814,7 +836,7 @@ export type LexiqueConnectionQueryVariables = Exact<{
 }>;
 
 
-export type LexiqueConnectionQuery = { __typename?: 'Query', lexiqueConnection: { __typename?: 'LexiqueConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'LexiqueConnectionEdges', cursor: string, node?: { __typename: 'Lexique', id: string, _warning?: string | null, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type LexiqueConnectionQuery = { __typename?: 'Query', lexiqueConnection: { __typename?: 'LexiqueConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'LexiqueConnectionEdges', cursor: string, node?: { __typename: 'Lexique', id: string, title: string, createdAt?: string | null, updatedAt?: string | null, language: string, published: boolean, _corps_de_la_fiche?: string | null, body: any, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type PersonasQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -877,6 +899,7 @@ export const FichesPartsFragmentDoc = gql`
     fragment FichesParts on Fiches {
   __typename
   _warning
+  _warn2
   refID
   title
   createdAt
@@ -884,6 +907,12 @@ export const FichesPartsFragmentDoc = gql`
   language
   published
   _metadatas
+  refType
+  versions {
+    __typename
+    version
+    idRef
+  }
   people
   scope
   responsible {
@@ -930,7 +959,6 @@ export const FichesPartsFragmentDoc = gql`
 export const LexiquePartsFragmentDoc = gql`
     fragment LexiqueParts on Lexique {
   __typename
-  _warning
   title
   createdAt
   updatedAt

@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import { formatDate } from "@js/utils";
 import type { CollectionEntry } from "astro:content";
 import Card from "./Card";
+import FicheVersionDisplay from "./fiches/FicheVersionDisplay.astro";
 import FichesMetasDisplay from "./fiches/FichesMetasDisplay.astro";
 import FichesTableValidation from "./fiches/FichesTableValidation.astro";
 
@@ -60,15 +61,16 @@ const t = useTranslations(lang);
   }
   {
     type === Card.FICHES && (
-      <aside>
-        <FichesMetasDisplay
-          frontmatter={entry.data}
-          className=""
-          tableOfContents={headings}
-        />
-        {/*
-         */}
-      </aside>
+      <>
+        <aside>
+          <FichesMetasDisplay
+            frontmatter={entry.data}
+            className=""
+            tableOfContents={headings}
+          />
+        </aside>
+        <FicheVersionDisplay versions={entry.data["versions"]} />
+      </>
     )
   }
   <div

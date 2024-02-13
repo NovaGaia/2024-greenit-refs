@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
-import MetaItem from "../MetaItem.astro";
+import { getRefConfig } from "../../../referentiel-config";
+import MetaItem from "./MetaItem.astro";
 
 type Props = {
   className?: string;
@@ -24,30 +25,55 @@ const t = useTranslations(lang);
   <ul class="my-2 md:mb-0">
     <MetaItem
       frontmatter={frontmatter}
-      fontSize="sm"
-      meta="environmental_impact"
-      displayTitle
-    />
-    <MetaItem
-      frontmatter={frontmatter}
-      meta="priority_implementation"
-      fontSize="sm"
-      displayTitle
-    />
-    <MetaItem
-      frontmatter={frontmatter}
       meta="lifecycle"
       displayTitle
       fontSize="sm"
     />
+
+    <MetaItem
+      frontmatter={frontmatter}
+      fontSize="sm"
+      meta="environmental_impact"
+      displayTitle
+    />
+
+    {
+      getRefConfig().featuresEnabled.moe === true ? (
+        <>
+          <MetaItem
+            frontmatter={frontmatter}
+            meta="moe"
+            displayTitle
+            fontSize="sm"
+          />
+          <MetaItem
+            frontmatter={{
+              "priority-level": Math.ceil(
+                ((frontmatter["moe"] * frontmatter["environmental_impact"]) /
+                  25) *
+                  5,
+              ),
+            }}
+            meta="priority-level"
+            displayTitle
+            fontSize="sm"
+          />
+        </>
+      ) : (
+        <MetaItem
+          frontmatter={frontmatter}
+          meta="priority_implementation"
+          fontSize="sm"
+          displayTitle
+        />
+      )
+    }
     <MetaItem
       frontmatter={frontmatter}
       meta="scope"
       displayTitle
       fontSize="sm"
     />
-    {/* <MetaItem frontmatter={frontmatter} meta="people" displayTitle /> */}
-    {/* <MetaItem frontmatter={frontmatter} meta="state_validation" /> */}
     <MetaItem
       frontmatter={frontmatter}
       meta="responsible"
