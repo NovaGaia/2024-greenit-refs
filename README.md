@@ -105,10 +105,9 @@ Le site est déployé sur infomaniak quand il y un merge sur la branch `main`.
 
 Créer ces variables d'environnements sur GitHub pour les GitHub Actions :
 
-- `BASE_URL`: `https://ref.greenit.fr/wp/|https://ref.greenit.fr/web/`
+- `SITE_URL`: `https://ref.greenit.fr`
 - `PUBLIC_BASE`: `wp|rwp`
 - `PUBLIC_REF_NAME`: `RWP|RWEB`
-- `PUBLIC_REPO_BRANCH`: `main`
+- `TINA_PUBLIC_REF_NAME`: `RWP|RWEB`
 - `PUBLIC_REPO_URL`: `https://github.com/cnumr/best-practices-wordpress|https://github.com/cnumr/best-practices`
-- `SITE_URL`: `https://ref.greenit.fr`
-- `PUBLIC_SITE_TITLE`: n'oubliez pas de stringifier et echapper les `"` ➡️  `{\"es\":{\"short\":\"WordPress\",\"long\":\" para WordPress\"},\"en\":{\"short\":\"WordPress\",\"long\":\" for WordPress\"},\"fr\":{\"short\":\"WordPress\",\"long\":\" pour WordPress\"}}`
+- `PUBLIC_REPO_BRANCH`: `main`

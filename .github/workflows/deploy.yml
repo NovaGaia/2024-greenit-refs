@@ -45,7 +45,6 @@ jobs:
           PUBLIC_REF_NAME: ${{ vars.PUBLIC_REF_NAME }}
           PUBLIC_REPO_URL: ${{ vars.PUBLIC_REPO_URL }}
           PUBLIC_REPO_BRANCH: ${{ vars.PUBLIC_REPO_BRANCH }}
-          PUBLIC_SITE_TITLE: ${{ vars.PUBLIC_SITE_TITLE }}
 
       - name: Upload Pages Artifact
         # Must use v2 to avoid requiring `actions/deploy-pages@v4` or newer
