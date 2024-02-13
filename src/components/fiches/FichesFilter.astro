@@ -143,12 +143,14 @@ const styles = styleDatas.map((item) => {
         class="inline group-has-[#filter-state:checked]:hidden"
         width={24}
         height={24}
+        aria-hidden="true"
       />
       <Icon
         name="tabler:circle-chevron-down"
         class="hidden group-has-[#filter-state:checked]:inline"
         width={24}
         height={24}
+        aria-hidden="true"
       />
     </label>
   </div>
@@ -174,7 +176,10 @@ const styles = styleDatas.map((item) => {
                       type="checkbox"
                       value={slugify(child)}
                     />
-                    <label for={`cb_${slugify(item.name)}_${slugify(child)}`}>
+                    <label
+                      for={`cb_${slugify(item.name)}_${slugify(child)}`}
+                      role="button"
+                    >
                       {child}
                     </label>
                   </li>
