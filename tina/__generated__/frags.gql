@@ -16,7 +16,6 @@ fragment FichesParts on Fiches {
     idRef
   }
   people
-  scope
   responsible {
     __typename
     responsible {
@@ -48,6 +47,7 @@ fragment FichesParts on Fiches {
   lifecycle
   environmental_impact
   priority_implementation
+  scope
   saved_resources
   _corps_de_la_fiche
   body

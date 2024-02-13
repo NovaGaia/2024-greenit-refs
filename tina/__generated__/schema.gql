@@ -127,11 +127,11 @@ type Fiches implements Node & Document {
   refType: String
   versions: [FichesVersions]
   people: String!
-  scope: String!
   responsible: [FichesResponsible!]!
   lifecycle: String!
   environmental_impact: String!
   priority_implementation: String!
+  scope: String!
   saved_resources: [String!]!
   _corps_de_la_fiche: String
   body: JSON!
@@ -216,11 +216,11 @@ input FichesFilter {
   refType: StringFilter
   versions: FichesVersionsFilter
   people: StringFilter
-  scope: StringFilter
   responsible: FichesResponsibleFilter
   lifecycle: StringFilter
   environmental_impact: StringFilter
   priority_implementation: StringFilter
+  scope: StringFilter
   saved_resources: StringFilter
   _corps_de_la_fiche: StringFilter
   body: FichesBodyFilter
@@ -491,11 +491,11 @@ input FichesMutation {
   refType: String
   versions: [FichesVersionsMutation]
   people: String
-  scope: String
   responsible: [FichesResponsibleMutation]
   lifecycle: String
   environmental_impact: String
   priority_implementation: String
+  scope: String
   saved_resources: [String]
   _corps_de_la_fiche: String
   body: JSON
