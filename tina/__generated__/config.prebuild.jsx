@@ -45,6 +45,89 @@ var slugify = (text) => {
   return text.toString().normalize("NFD").toLowerCase().replace(/['"]/g, " ").replace(/\s+/g, "-").replace(/[^\w-]+/g, "").replace(/--+/g, "-").replace(/^-+/, "").replace(/[^\x00-\x7F]/g, "-").replace(/-+$/, "");
 };
 
+// referentiel-config.ts
+var MESURE_ON_3 = "use-3-grades";
+var MESURE_ON_5 = "use-5-grades";
+var getRefConfig = (specificRef) => {
+  const currentRef = specificRef || process.env.PUBLIC_REF_NAME || import.meta.env.PUBLIC_REF_NAME;
+  const config = {
+    i18n: {
+      defaultLang: "fr",
+      locales: ["fr", "en", "es"],
+      languages: {
+        fr: "\u{1F1EB}\u{1F1F7} Fran\xE7ais",
+        en: "\u{1F1EC}\u{1F1E7} English",
+        es: "\u{1F1EA}\u{1F1F8} Espa\xF1ol"
+      },
+      refTitles: {
+        es: { short: "<TBD>", long: " para <TBD>" },
+        en: { short: "<TBD>", long: " for <TBD>" },
+        fr: { short: "<TBD>", long: " pour <TBD>" }
+      }
+    },
+    refInformations: {
+      currentVersion: "0.0.1",
+      creationYear: 2021
+    },
+    featuresEnabled: {
+      lexique: false,
+      linkToPersonas: false,
+      priority_implementation: MESURE_ON_3,
+      environmental_impact: MESURE_ON_3,
+      moe: false,
+      tiers: false
+    }
+  };
+  switch (currentRef) {
+    case "RWP":
+      config.i18n.locales = ["fr", "en", "es"];
+      config.i18n.languages = {
+        fr: "\u{1F1EB}\u{1F1F7} Fran\xE7ais",
+        en: "\u{1F1EC}\u{1F1E7} English",
+        es: "\u{1F1EA}\u{1F1F8} Espa\xF1ol"
+      };
+      config.i18n.refTitles = {
+        es: { short: "WordPress", long: " para WordPress" },
+        en: { short: "WordPress", long: " for WordPress" },
+        fr: { short: "WordPress", long: " pour WordPress" }
+      };
+      config.refInformations = {
+        currentVersion: "1.0.0",
+        creationYear: 2021
+      };
+      config.featuresEnabled.lexique = true;
+      config.featuresEnabled.linkToPersonas = true;
+      config.featuresEnabled.priority_implementation = MESURE_ON_3;
+      config.featuresEnabled.environmental_impact = MESURE_ON_3;
+      config.featuresEnabled.moe = false;
+      config.featuresEnabled.tiers = false;
+      break;
+    case "RWEB":
+      config.i18n.locales = ["fr", "en", "es"];
+      config.i18n.languages = {
+        fr: "\u{1F1EB}\u{1F1F7} Fran\xE7ais",
+        en: "\u{1F1EC}\u{1F1E7} English",
+        es: "\u{1F1EA}\u{1F1F8} Espa\xF1ol"
+      };
+      config.i18n.refTitles = {
+        es: { short: "Performance Web", long: " para Performance Web" },
+        en: { short: "Web Performance", long: " for Web Performance" },
+        fr: { short: "Performance Web", long: " pour Performance Web" }
+      };
+      config.featuresEnabled.lexique = false;
+      config.featuresEnabled.linkToPersonas = false;
+      config.featuresEnabled.priority_implementation = MESURE_ON_5;
+      config.featuresEnabled.environmental_impact = MESURE_ON_5;
+      config.featuresEnabled.moe = true;
+      config.featuresEnabled.tiers = true;
+      break;
+    default:
+      console.error(`PUBLIC_REF_NAME NOT CONFIGURED!`);
+      break;
+  }
+  return config;
+};
+
 // tina/utils/commonFields.tsx
 import { Fragment, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
 var onFichesBeforeSubmit = async ({
@@ -170,7 +253,7 @@ var defaultFields = [
     name: "language",
     label: "Language",
     required: true,
-    options: ["fr", "en", "es"],
+    options: getRefConfig(process.env.TINA_PUBLIC_REF_NAME).i18n.locales,
     ui: {
       // component: "select",
       validate: (value) => {
@@ -270,91 +353,6 @@ var templateCTAWithIcon = {
 
 // tina/collections/fiches.tsx
 import { tinaTableTemplate } from "tinacms";
-
-// referentiel-config.ts
-var MESURE_ON_3 = "use-3-grades";
-var MESURE_ON_5 = "use-5-grades";
-var getRefConfig = (specificRef) => {
-  const currentRef = specificRef || process.env.PUBLIC_REF_NAME || import.meta.env.PUBLIC_REF_NAME;
-  const config = {
-    i18n: {
-      defaultLang: "fr",
-      locales: ["fr", "en", "es"],
-      languages: {
-        fr: "\u{1F1EB}\u{1F1F7} Fran\xE7ais",
-        en: "\u{1F1EC}\u{1F1E7} English",
-        es: "\u{1F1EA}\u{1F1F8} Espa\xF1ol"
-      },
-      refTitles: {
-        es: { short: "<TBD>", long: " para <TBD>" },
-        en: { short: "<TBD>", long: " for <TBD>" },
-        fr: { short: "<TBD>", long: " pour <TBD>" }
-      }
-    },
-    refInformations: {
-      currentVersion: "0.0.1",
-      creationYear: 2021
-    },
-    featuresEnabled: {
-      lexique: false,
-      linkToPersonas: false,
-      priority_implementation: MESURE_ON_3,
-      environmental_impact: MESURE_ON_3,
-      moe: false,
-      tiers: false
-    }
-  };
-  switch (currentRef) {
-    case "RWP":
-      config.i18n.locales = ["fr", "en", "es"];
-      config.i18n.languages = {
-        fr: "\u{1F1EB}\u{1F1F7} Fran\xE7ais",
-        en: "\u{1F1EC}\u{1F1E7} English",
-        es: "\u{1F1EA}\u{1F1F8} Espa\xF1ol"
-      };
-      config.i18n.refTitles = {
-        es: { short: "WordPress", long: " para WordPress" },
-        en: { short: "WordPress", long: " for WordPress" },
-        fr: { short: "WordPress", long: " pour WordPress" }
-      };
-      config.refInformations = {
-        currentVersion: "1.0.0",
-        creationYear: 2021
-      };
-      config.featuresEnabled.lexique = true;
-      config.featuresEnabled.linkToPersonas = true;
-      config.featuresEnabled.priority_implementation = MESURE_ON_3;
-      config.featuresEnabled.environmental_impact = MESURE_ON_3;
-      config.featuresEnabled.moe = false;
-      config.featuresEnabled.tiers = false;
-      break;
-    case "RWEB":
-      config.i18n.locales = ["fr", "en", "es"];
-      config.i18n.languages = {
-        fr: "\u{1F1EB}\u{1F1F7} Fran\xE7ais",
-        en: "\u{1F1EC}\u{1F1E7} English",
-        es: "\u{1F1EA}\u{1F1F8} Espa\xF1ol"
-      };
-      config.i18n.refTitles = {
-        es: { short: "Performance Web", long: " para Performance Web" },
-        en: { short: "Web Performance", long: " for Web Performance" },
-        fr: { short: "Performance Web", long: " pour Performance Web" }
-      };
-      config.featuresEnabled.lexique = false;
-      config.featuresEnabled.linkToPersonas = false;
-      config.featuresEnabled.priority_implementation = MESURE_ON_5;
-      config.featuresEnabled.environmental_impact = MESURE_ON_5;
-      config.featuresEnabled.moe = true;
-      config.featuresEnabled.tiers = true;
-      break;
-    default:
-      console.error(`PUBLIC_REF_NAME NOT CONFIGURED!`);
-      break;
-  }
-  return config;
-};
-
-// tina/collections/fiches.tsx
 var PUBLIC_BASE = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE + "/" : "";
 var TINA_PUBLIC_REF_NAME_PROCESS = process.env.TINA_PUBLIC_REF_NAME;
 var getSpecificRefFields = () => {

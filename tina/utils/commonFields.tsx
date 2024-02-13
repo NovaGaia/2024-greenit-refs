@@ -6,6 +6,7 @@ import {
 } from "tinacms";
 import { RestartWarning } from "./warning";
 import { slugify } from "../../src/js/utils";
+import { getRefConfig } from "../../referentiel-config";
 
 /**
  * This function is called before the form is submitted.
@@ -250,7 +251,7 @@ const defaultFields: TinaField[] = [
     name: "language",
     label: "Language",
     required: true,
-    options: ["fr", "en", "es"],
+    options: getRefConfig(process.env.TINA_PUBLIC_REF_NAME).i18n.locales,
     ui: {
       // component: "select",
       validate: (value) => {
