@@ -33,6 +33,9 @@ const fiches = defineCollection({
       validations: z
         .array(z.object({ rule: z.string(), maxValue: z.string() }))
         .optional(),
+      versions: z
+        .array(z.object({ version: z.string(), idRef: z.string() }))
+        .optional(),
     }),
 });
 
