@@ -100,7 +100,7 @@ export const getRefConfig: RefConfig = (specificRef) => {
       };
       config.featuresEnabled.lexique = false;
       config.featuresEnabled.linkToPersonas = false;
-      config.featuresEnabled.priority_implementation = MESURE_ON_5;
+      config.featuresEnabled.priority_implementation = "false";
       config.featuresEnabled.environmental_impact = MESURE_ON_5;
       config.featuresEnabled.moe = true;
       config.featuresEnabled.tiers = true;
