@@ -137,7 +137,7 @@ export const ui = {
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
-    "2-installation": "2. Installation",
+    "2-installation": "2. Installation / Architechture",
     "3-conception-design": "3. Conception & Design",
     "4-integration-development": "4. Intégration & Développement",
     "5-content-media": "5. Contenu & médias",
@@ -286,7 +286,7 @@ export const ui = {
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
-    "2-installation": "2. Installation",
+    "2-installation": "2. Installation / Architechture",
     "3-conception-design": "3. Conception & Design",
     "4-integration-development": "4. Intégration & Développement",
     "5-content-media": "5. Contenu & médias",
@@ -437,7 +437,7 @@ export const ui = {
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
-    "2-installation": "2. Installation",
+    "2-installation": "2. Installation / Architechture",
     "3-conception-design": "3. Conception & Design",
     "4-integration-development": "4. Intégration & Développement",
     "5-content-media": "5. Contenu & médias",
