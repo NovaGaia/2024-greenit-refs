@@ -182,8 +182,7 @@ const getSpecificRefFields: any = () => {
   }
 
   if (
-    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.perimetre ===
-    true
+    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.scope === true
   ) {
     const perimetre: TinaField = {
       type: "string",
