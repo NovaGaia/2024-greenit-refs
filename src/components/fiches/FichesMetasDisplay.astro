@@ -68,12 +68,16 @@ const t = useTranslations(lang);
         />
       )
     }
-    <MetaItem
-      frontmatter={frontmatter}
-      meta="scope"
-      displayTitle
-      fontSize="sm"
-    />
+    {
+      getRefConfig().featuresEnabled.perimetre === true ? (
+        <MetaItem
+          frontmatter={frontmatter}
+          meta="scope"
+          displayTitle
+          fontSize="sm"
+        />
+      ) : null
+    }
     <MetaItem
       frontmatter={frontmatter}
       meta="responsible"
