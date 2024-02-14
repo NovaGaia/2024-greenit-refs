@@ -94,6 +94,10 @@ export const getRefConfig: RefConfig = (specificRef) => {
         en: { short: "Web Performance", long: " for Web Performance" },
         fr: { short: "Performance Web", long: " pour Performance Web" },
       };
+      config.refInformations = {
+        currentVersion: "4.0.0",
+        creationYear: 2012,
+      };
       config.featuresEnabled.lexique = false;
       config.featuresEnabled.linkToPersonas = false;
       config.featuresEnabled.priority_implementation = MESURE_ON_5;
