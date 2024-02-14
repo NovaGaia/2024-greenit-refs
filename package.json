@@ -7,6 +7,7 @@
     "start": "env-cmd astro dev",
     "local:build": "env-cmd astro build",
     "build": "astro build",
+    "tina:build": "env-cmd tinacms build --local --skip-cloud-checks",
     "sync": "env-cmd astro sync",
     "check:build": "env-cmd astro check && astro build",
     "preview": "env-cmd astro preview --base $(PUBLIC_BASE)",
