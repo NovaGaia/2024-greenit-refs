@@ -137,7 +137,7 @@ var onFichesBeforeSubmit = async ({
   form,
   values
 }) => {
-  const TINA_PUBLIC_REF_NAME_PROCESS2 = process.env.TINA_PUBLIC_REF_NAME;
+  const TINA_PUBLIC_REF_NAME_PROCESS3 = process.env.TINA_PUBLIC_REF_NAME;
   if (!values.responsible) {
     values.responsible = [];
   }
@@ -146,7 +146,7 @@ var onFichesBeforeSubmit = async ({
       ...values,
       createdAt: (/* @__PURE__ */ new Date()).toISOString(),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      filename: TINA_PUBLIC_REF_NAME_PROCESS2 + "_" + values.refID + "-" + slugify(values.title)
+      filename: TINA_PUBLIC_REF_NAME_PROCESS3 + "_" + values.refID + "-" + slugify(values.title)
     };
   }
   return {
@@ -845,6 +845,7 @@ var lexique_default = lexique;
 
 // tina/collections/personas.tsx
 var PUBLIC_BASE2 = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? process.env.PUBLIC_BASE + "/" : "";
+var TINA_PUBLIC_REF_NAME_PROCESS2 = process.env.TINA_PUBLIC_REF_NAME;
 var personas = {
   name: "personas",
   label: "Personas",
@@ -857,13 +858,21 @@ var personas = {
     beforeSubmit: onPersonasBeforeSubmit
   },
   defaultItem: () => {
-    return { published: false };
+    return { refType: TINA_PUBLIC_REF_NAME_PROCESS2, published: false };
   },
   fields: [
     warnField(
       "Pour voir les modifications, il faut sauvegarder pour d\xE9clencher un refresh."
     ),
     // slugHiddenField,
+    {
+      type: "string",
+      name: "refType",
+      label: "Type de fiche",
+      ui: {
+        component: "hidden"
+      }
+    },
     ...defaultFields,
     {
       type: "string",

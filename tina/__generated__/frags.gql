@@ -22,6 +22,7 @@ fragment FichesParts on Fiches {
       ... on Personas {
         __typename
         _warning
+        refType
         title
         createdAt
         updatedAt
@@ -72,6 +73,7 @@ fragment LexiqueParts on Lexique {
 fragment PersonasParts on Personas {
   __typename
   _warning
+  refType
   title
   createdAt
   updatedAt

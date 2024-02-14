@@ -12,6 +12,8 @@ const PUBLIC_BASE =
     ? process.env.PUBLIC_BASE + "/"
     : "";
 
+const TINA_PUBLIC_REF_NAME_PROCESS = process.env.TINA_PUBLIC_REF_NAME;
+
 const personas: Collection = {
   name: "personas",
   label: "Personas",
@@ -26,13 +28,21 @@ const personas: Collection = {
     beforeSubmit: onPersonasBeforeSubmit,
   },
   defaultItem: () => {
-    return { published: false };
+    return { refType: TINA_PUBLIC_REF_NAME_PROCESS, published: false };
   },
   fields: [
     warnField(
       "Pour voir les modifications, il faut sauvegarder pour déclencher un refresh.",
     ),
     // slugHiddenField,
+    {
+      type: "string",
+      name: "refType",
+      label: "Type de fiche",
+      ui: {
+        component: "hidden",
+      },
+    },
     ...defaultFields,
     {
       type: "string",
