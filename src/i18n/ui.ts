@@ -1,4 +1,3 @@
-import { get } from "http";
 import { getRefConfig } from "referentiel-config";
 
 export const showDefaultLang = true;

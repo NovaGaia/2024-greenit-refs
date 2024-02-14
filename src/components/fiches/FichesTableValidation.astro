@@ -1,4 +1,5 @@
 ---
+import SimpleMardownRender from "@components/SimpleMardownRender.astro";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 type Validation = {
@@ -27,7 +28,12 @@ const t = useTranslations(lang);
     {
       validations?.map((validation) => (
         <tr>
-          <td>{validation.rule}</td>
+          <td>
+            <SimpleMardownRender
+              markdown={validation.rule}
+              classes="markdown-content"
+            />
+          </td>
           <td class="text-center">{validation.maxValue}</td>
         </tr>
       ))
