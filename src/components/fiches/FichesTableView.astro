@@ -5,9 +5,12 @@ import {
   useTranslations,
 } from "@i18n/utils";
 import type { CollectionEntry } from "astro:content";
+import { getRefConfig } from "../../../referentiel-config";
+
 type Props = {
   entries: CollectionEntry<"fiches">[];
 };
+
 const { entries } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -17,7 +20,7 @@ const t = useTranslations(lang);
   <thead>
     <tr>
       <th>REF ID</th>
-      <th>{t("scope")}</th>
+      {getRefConfig().featuresEnabled.scope && <th>{t("scope")}</th>}
       <th>{t("lifecycle")}</th>
       <th>{t("Bonnes pratiques")}</th>
       <th>{t("Principe de validation")}</th>
@@ -40,7 +43,9 @@ const t = useTranslations(lang);
                       </span>
                     </a>
                   </td>
-                  <td>{capitalizeFirstLetter(t(entry.data.scope as any))}</td>
+                  {getRefConfig().featuresEnabled.scope && (
+                    <th>{capitalizeFirstLetter(t(entry.data.scope as any))}</th>
+                  )}
                   <td>
                     {capitalizeFirstLetter(t(entry.data.lifecycle as any))}
                   </td>
