@@ -12,8 +12,12 @@ type PrevNext = {
   next: CollectionEntry<"fiches"> | null;
 };
 
+const PUBLIC_REF_NAME =
+  import.meta.env.PUBLIC_REF_NAME || process.env.PUBLIC_REF_NAME;
+
 function generatePrevNext(entries, current, lang): PrevNext {
   const filteredEntries = entries
+    .filter((entry) => entry.data.refType === PUBLIC_REF_NAME)
     .filter((entry) => entry.slug.split("/")[0] === lang)
     .filter((entry) =>
       import.meta.env.MODE === "development" ? "true" : entry.data.published,

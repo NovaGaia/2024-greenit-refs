@@ -7,6 +7,9 @@ import {
   type CollectionEntry,
 } from "astro:content";
 
+const PUBLIC_REF_NAME =
+  import.meta.env.PUBLIC_REF_NAME || process.env.PUBLIC_REF_NAME;
+
 // import { type TinaMarkdownContent } from "tinacms/dist/rich-text";
 // Exporter un objet `collections` unique pour y enregistrer vos collections
 
@@ -20,6 +23,7 @@ const fiches = defineCollection({
       updatedAt: z.date(),
       published: z.boolean().optional(),
       language: z.string(),
+      refType: z.string().optional(),
       // slug: z.string(),
       people: z.string(),
       scope: z.string(),
@@ -158,8 +162,16 @@ export async function getCollectionByLang(
 ) {
   const items: CollectionEntry<"fiches" | "lexique" | "personas">[] | any[] =
     await getCollection(collection);
+  console.log("items", items);
 
   return items
+    .filter(
+      (item) =>
+        (collection === "fiches" &&
+          item.data.refType === PUBLIC_REF_NAME &&
+          item.data.published) ||
+        (collection !== "fiches" && item.data.published),
+    )
     .filter((item) => item.data.published)
     .filter((item) => item.slug.split("/")[0] === lang)
     .map((item) => {
