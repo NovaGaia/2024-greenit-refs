@@ -143,7 +143,7 @@ export const ui = {
     "5-content-media": "5. Contenu & médias",
     "6-tests-validation": "6. Tests & Validation",
     "7-deployment": "7. Mise en ligne",
-    "8-maintenance": "8. Maintenance",
+    "8-maintenance": "8. Maintenance / Usage / Contribution",
     "9-end-of-life": "9. Fin de vie",
     // Environmental impact
     environmental_impact: "Impact environnemental",
@@ -292,7 +292,7 @@ export const ui = {
     "5-content-media": "5. Contenu & médias",
     "6-tests-validation": "6. Tests & Validation",
     "7-deployment": "7. Mise en ligne",
-    "8-maintenance": "8. Maintenance",
+    "8-maintenance": "8. Maintenance / Usage / Contribution",
     "9-end-of-life": "9. Fin de vie",
     // Environmental impact
     environmental_impact: "Impact environnemental",
@@ -443,7 +443,7 @@ export const ui = {
     "5-content-media": "5. Contenu & médias",
     "6-tests-validation": "6. Tests & Validation",
     "7-deployment": "7. Mise en ligne",
-    "8-maintenance": "8. Maintenance",
+    "8-maintenance": "8. Maintenance / Usage / Contribution",
     "9-end-of-life": "9. Fin de vie",
     // Environmental impact
     environmental_impact: "Impact environnemental",

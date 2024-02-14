@@ -402,7 +402,7 @@ const fiches: Collection = {
         },
         {
           value: "8-maintenance",
-          label: "8. Maintenance",
+          label: "8. Maintenance / Usage / Contribution",
         },
         {
           value: "9-end-of-life",
