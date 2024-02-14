@@ -1,0 +1,146 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { slugify } from "@js/utils";
+import type { CollectionEntry } from "astro:content";
+import {
+  MESURE_ON_3,
+  MESURE_ON_5,
+  getRefConfig,
+} from "../../../referentiel-config";
+
+import { getCalculatedPriorityImplementation } from "@js/utils";
+
+type Props = {
+  entry: CollectionEntry<"fiches">;
+};
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const REF_NAME = import.meta.env.PUBLIC_REF_NAME || process.env.PUBLIC_REF_NAME;
+
+const { entry } = Astro.props;
+
+function cleanImpact(meta) {
+  // TODO: replace with a proper translation
+  let regexp: RegExp;
+  switch (getLangFromUrl(Astro.url)) {
+    case "es":
+      regexp = /t("Fort")|t("Moyen")|t("Faible")/gi;
+      break;
+    case "en":
+      regexp = /t("High")|t("Medium")|t("Low")/gi;
+      break;
+    default:
+      regexp = /t("Fuerte")|t("Medio")|t("Débil")/gi;
+      break;
+  }
+  return entry.data[`${meta}`].replace(regexp, " ");
+}
+
+const getScope = () => {
+  if (getRefConfig().featuresEnabled.scope === true) {
+    return { "data-scope": slugify(entry.data.scope) };
+  }
+};
+---
+
+<div
+  class="mb-0 mt-0 text-lg font-bold text-neutral md:grid md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-2"
+  data-lifecycle={slugify(entry.data.lifecycle)}
+  {...getScope()}
+  data-saved_resources={slugify(entry.data.saved_resources.join(" "))}
+>
+  <h2
+    class="m-0 flex flex-row items-start text-lg font-bold text-neutral md:col-span-1 md:row-span-2"
+  >
+    <span class="badge mr-2 whitespace-nowrap border-primary bg-primary">
+      {REF_NAME}
+      {entry.data.refID}
+    </span>
+    <span>{entry.data.title}</span>
+  </h2>
+  <div class="flex flex-row items-center justify-end gap-2">
+    {
+      getRefConfig().featuresEnabled.priority_implementation ===
+        MESURE_ON_3 && (
+        <span
+          title={t("Priorité d'implémentation")}
+          aria-label={`${t("Priorité d'implémentation")} : ${
+            entry.data[`priority_implementation`]
+          }`}
+          role="img"
+        >
+          {t(cleanImpact("priority_implementation"))}
+        </span>
+      )
+    }
+    {
+      getRefConfig().featuresEnabled.environmental_impact === MESURE_ON_5 &&
+        getRefConfig().featuresEnabled.moe === true && (
+          <span
+            title={t("Priorité d'implémentation")}
+            aria-label={`${t("Priorité d'implémentation")} : ${`${t("Priorité d'implémentation")} : ${getCalculatedPriorityImplementation(
+              entry.data[`moe`],
+              entry.data[`environmental_impact`],
+            )}`}`}
+            role="img"
+            class="text-base"
+          >
+            {`${t("Priorité d'implémentation")} : ${getCalculatedPriorityImplementation(
+              entry.data[`moe`],
+              entry.data[`environmental_impact`],
+            )}`}
+          </span>
+        )
+    }
+    <span>|</span>
+    {
+      getRefConfig().featuresEnabled.environmental_impact === MESURE_ON_3 && (
+        <span
+          title={t("Impact environnemental")}
+          aria-label={`${t("Impact environnemental")} : ${
+            entry.data[`environmental_impact`]
+          }`}
+        >
+          {t(cleanImpact("environmental_impact"))}
+        </span>
+      )
+    }
+    {
+      getRefConfig().featuresEnabled.environmental_impact === MESURE_ON_5 && (
+        <span
+          title={t("Impact environnemental")}
+          aria-label={`${t("Impact environnemental")} : ${
+            entry.data[`environmental_impact`]
+          }`}
+          class="text-base"
+        >
+          {`${t("Impact environnemental")} : ${
+            entry.data[`environmental_impact`]
+          }`}
+        </span>
+      )
+    }
+  </div>
+  <div
+    class="mt-2 flex flex-row items-center justify-end gap-2 md:mt-0 md:gap-4"
+  >
+    <span
+      title={t("lifecycle")}
+      class="badge border-primary text-xs text-neutral"
+    >
+      {t(entry.data.lifecycle)}
+    </span>
+    {
+      getRefConfig().featuresEnabled.scope === true && (
+        <span
+          title={t("scope")}
+          class="badge border-primary text-xs text-neutral"
+        >
+          {t(entry.data.scope)}
+        </span>
+      )
+    }
+  </div>
+</div>
