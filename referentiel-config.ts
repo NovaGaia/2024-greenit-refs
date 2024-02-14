@@ -53,7 +53,7 @@ export const getRefConfig: RefConfig = (specificRef) => {
       environmental_impact: MESURE_ON_3,
       moe: false,
       tiers: false,
-      perimetre: false,
+      scope: false,
     },
   };
   switch (currentRef) {
@@ -79,7 +79,7 @@ export const getRefConfig: RefConfig = (specificRef) => {
       config.featuresEnabled.environmental_impact = MESURE_ON_3;
       config.featuresEnabled.moe = false;
       config.featuresEnabled.tiers = false;
-      config.featuresEnabled.perimetre = true;
+      config.featuresEnabled.scope = true;
       break;
 
     case "RWEB":
@@ -104,7 +104,7 @@ export const getRefConfig: RefConfig = (specificRef) => {
       config.featuresEnabled.environmental_impact = MESURE_ON_5;
       config.featuresEnabled.moe = true;
       config.featuresEnabled.tiers = true;
-      config.featuresEnabled.perimetre = false;
+      config.featuresEnabled.scope = false;
       break;
 
     default:
