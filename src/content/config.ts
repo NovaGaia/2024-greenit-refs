@@ -162,7 +162,6 @@ export async function getCollectionByLang(
 ) {
   const items: CollectionEntry<"fiches" | "lexique" | "personas">[] | any[] =
     await getCollection(collection);
-  console.log("items", items);
 
   return items
     .filter(
