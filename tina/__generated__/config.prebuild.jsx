@@ -76,7 +76,7 @@ var getRefConfig = (specificRef) => {
       environmental_impact: MESURE_ON_3,
       moe: false,
       tiers: false,
-      perimetre: false
+      scope: false
     }
   };
   switch (currentRef) {
@@ -102,7 +102,7 @@ var getRefConfig = (specificRef) => {
       config.featuresEnabled.environmental_impact = MESURE_ON_3;
       config.featuresEnabled.moe = false;
       config.featuresEnabled.tiers = false;
-      config.featuresEnabled.perimetre = true;
+      config.featuresEnabled.scope = true;
       break;
     case "RWEB":
       config.i18n.locales = ["fr", "en", "es"];
@@ -116,13 +116,17 @@ var getRefConfig = (specificRef) => {
         en: { short: "Web Performance", long: " for Web Performance" },
         fr: { short: "Performance Web", long: " pour Performance Web" }
       };
+      config.refInformations = {
+        currentVersion: "4.0.0",
+        creationYear: 2012
+      };
       config.featuresEnabled.lexique = false;
       config.featuresEnabled.linkToPersonas = false;
-      config.featuresEnabled.priority_implementation = MESURE_ON_5;
+      config.featuresEnabled.priority_implementation = "false";
       config.featuresEnabled.environmental_impact = MESURE_ON_5;
       config.featuresEnabled.moe = true;
       config.featuresEnabled.tiers = true;
-      config.featuresEnabled.perimetre = false;
+      config.featuresEnabled.scope = false;
       break;
     default:
       console.error(`PUBLIC_REF_NAME NOT CONFIGURED!`);
@@ -360,8 +364,8 @@ var PUBLIC_BASE = process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== "" ? pr
 var TINA_PUBLIC_REF_NAME_PROCESS = process.env.TINA_PUBLIC_REF_NAME;
 var getSpecificRefFields = () => {
   const specificsFields = [];
-  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.priority_implementation === MESURE_ON_3) {
-    const environmental_impact = {
+  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.environmental_impact === MESURE_ON_3) {
+    const priority_implementation = {
       type: "string",
       name: "environmental_impact",
       label: "Environmental impact",
@@ -386,9 +390,9 @@ var getSpecificRefFields = () => {
         }
       ]
     };
-    specificsFields.push(environmental_impact);
+    specificsFields.push(priority_implementation);
   }
-  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.priority_implementation === MESURE_ON_5) {
+  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.environmental_impact === MESURE_ON_5) {
     const environmental_impact = {
       type: "number",
       name: "environmental_impact",
@@ -407,7 +411,7 @@ var getSpecificRefFields = () => {
     };
     specificsFields.push(environmental_impact);
   }
-  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.environmental_impact === MESURE_ON_3) {
+  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.priority_implementation === MESURE_ON_3) {
     const priority_implementation = {
       type: "string",
       name: "priority_implementation",
@@ -432,25 +436,6 @@ var getSpecificRefFields = () => {
           label: "<< TBD (\xE9viter de l'utiliser) >>"
         }
       ]
-    };
-    specificsFields.push(priority_implementation);
-  }
-  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.environmental_impact === MESURE_ON_5) {
-    const priority_implementation = {
-      type: "number",
-      name: "priority_implementation",
-      label: "Priority implementation",
-      required: true,
-      ui: {
-        validate: (value) => {
-          if (value > 5) {
-            return "La valeur doit \xEAtre comprise entre 1 et 5.";
-          }
-          if (value < 1) {
-            return "La valeur doit \xEAtre comprise entre 1 et 5.";
-          }
-        }
-      }
     };
     specificsFields.push(priority_implementation);
   }
@@ -501,7 +486,7 @@ var getSpecificRefFields = () => {
     };
     specificsFields.push(tiers);
   }
-  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.perimetre === true) {
+  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.scope === true) {
     const perimetre = {
       type: "string",
       name: "scope",
@@ -689,7 +674,7 @@ var fiches = {
         },
         {
           value: "2-installation",
-          label: "2. Installation"
+          label: "2. Installation / Architechture"
         },
         {
           value: "3-conception-design",
@@ -713,7 +698,7 @@ var fiches = {
         },
         {
           value: "8-maintenance",
-          label: "8. Maintenance"
+          label: "8. Maintenance / Usage / Contribution"
         },
         {
           value: "9-end-of-life",
