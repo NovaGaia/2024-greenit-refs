@@ -38,7 +38,7 @@ jobs:
         run: npm install
 
       - name: Run build task
-        run: npm run build
+        run: npm run ci:build
         env:
           SITE_URL: ${{ vars.SITE_URL }}
           PUBLIC_BASE: ${{ vars.PUBLIC_BASE }}
