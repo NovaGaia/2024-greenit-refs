@@ -52,7 +52,7 @@ jobs:
           server: ${{ vars.REMOTE_HOST }}
           username: ${{ vars.REMOTE_USER }}
           password: ${{ secrets.ftp_password }}
-          local-dir: ./dist
+          local-dir: ./dist/
           server-dir: ${{ vars.REMOTE_TARGET }}
 
   #     - name: Deploy to Server via ssh key
