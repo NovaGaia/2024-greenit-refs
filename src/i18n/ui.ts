@@ -1,4 +1,3 @@
-import { get } from "http";
 import { getRefConfig } from "referentiel-config";
 
 export const showDefaultLang = true;
@@ -137,13 +136,13 @@ export const ui = {
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
-    "2-installation": "2. Installation",
+    "2-installation": "2. Installation / Architechture",
     "3-conception-design": "3. Conception & Design",
     "4-integration-development": "4. Intégration & Développement",
     "5-content-media": "5. Contenu & médias",
     "6-tests-validation": "6. Tests & Validation",
     "7-deployment": "7. Mise en ligne",
-    "8-maintenance": "8. Maintenance",
+    "8-maintenance": "8. Maintenance / Usage / Contribution",
     "9-end-of-life": "9. Fin de vie",
     // Environmental impact
     environmental_impact: "Impact environnemental",
@@ -286,13 +285,13 @@ export const ui = {
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
-    "2-installation": "2. Installation",
+    "2-installation": "2. Installation / Architechture",
     "3-conception-design": "3. Conception & Design",
     "4-integration-development": "4. Intégration & Développement",
     "5-content-media": "5. Contenu & médias",
     "6-tests-validation": "6. Tests & Validation",
     "7-deployment": "7. Mise en ligne",
-    "8-maintenance": "8. Maintenance",
+    "8-maintenance": "8. Maintenance / Usage / Contribution",
     "9-end-of-life": "9. Fin de vie",
     // Environmental impact
     environmental_impact: "Impact environnemental",
@@ -437,13 +436,13 @@ export const ui = {
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
-    "2-installation": "2. Installation",
+    "2-installation": "2. Installation / Architechture",
     "3-conception-design": "3. Conception & Design",
     "4-integration-development": "4. Intégration & Développement",
     "5-content-media": "5. Contenu & médias",
     "6-tests-validation": "6. Tests & Validation",
     "7-deployment": "7. Mise en ligne",
-    "8-maintenance": "8. Maintenance",
+    "8-maintenance": "8. Maintenance / Usage / Contribution",
     "9-end-of-life": "9. Fin de vie",
     // Environmental impact
     environmental_impact: "Impact environnemental",

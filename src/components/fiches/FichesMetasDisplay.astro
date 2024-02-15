@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getCalculatedPriorityImplementation } from "@js/utils";
 import { getRefConfig } from "../../../referentiel-config";
 import MetaItem from "./MetaItem.astro";
 
@@ -48,10 +49,9 @@ const t = useTranslations(lang);
           />
           <MetaItem
             frontmatter={{
-              "priority-level": Math.ceil(
-                ((frontmatter["moe"] * frontmatter["environmental_impact"]) /
-                  25) *
-                  5,
+              "priority-level": getCalculatedPriorityImplementation(
+                frontmatter["moe"],
+                frontmatter["environmental_impact"],
               ),
             }}
             meta="priority-level"
@@ -68,12 +68,16 @@ const t = useTranslations(lang);
         />
       )
     }
-    <MetaItem
-      frontmatter={frontmatter}
-      meta="scope"
-      displayTitle
-      fontSize="sm"
-    />
+    {
+      getRefConfig().featuresEnabled.perimetre === true ? (
+        <MetaItem
+          frontmatter={frontmatter}
+          meta="scope"
+          displayTitle
+          fontSize="sm"
+        />
+      ) : null
+    }
     <MetaItem
       frontmatter={frontmatter}
       meta="responsible"

@@ -64,3 +64,7 @@ export function responsiveSequence(first, last, size = 16) {
 
   return seq.map((value) => Math.round(value));
 }
+
+export function getCalculatedPriorityImplementation(moe, environmental_impact) {
+  return Math.ceil(((moe * environmental_impact) / 25) * 5) + 1;
+}

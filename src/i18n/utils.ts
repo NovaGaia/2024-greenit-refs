@@ -23,6 +23,9 @@ export function useTranslations(lang: keyof typeof ui) {
 
 export function useTranslatedPath(lang: keyof typeof ui) {
   return function translatePath(path: string, l: string = lang) {
+    if (path === "") {
+      return `${import.meta.env.SITE_URL || process.env.SITE_URL}${import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE}/${l}.html`;
+    }
     return !showDefaultLang && l === defaultLang
       ? `${import.meta.env.SITE_URL || process.env.SITE_URL}${import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE}/${path}`
       : `${import.meta.env.SITE_URL || process.env.SITE_URL}${import.meta.env.PUBLIC_BASE || process.env.PUBLIC_BASE}/${l}${path}`;

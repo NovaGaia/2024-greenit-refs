@@ -1,8 +1,8 @@
 ---
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
-import { slugify } from "@js/utils";
 import type { CollectionEntry } from "astro:content";
 import Card from "./Card";
+import FichesCard from "./fiches/FichesCard.astro";
 
 const REF_NAME = process.env.PUBLIC_REF_NAME;
 
@@ -58,54 +58,7 @@ const [, ...entry_slug] = entry.slug.split("/");
   >
     {
       type === Card.FICHES ? (
-        <div
-          class="mb-0 mt-0 text-lg font-bold text-neutral md:grid md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-2"
-          data-lifecycle={slugify(entry.data.lifecycle)}
-          data-scope={slugify(entry.data.scope)}
-          data-saved_resources={slugify(entry.data.saved_resources.join(" "))}
-        >
-          <h2 class="m-0 flex flex-row items-start text-lg font-bold text-neutral md:col-span-1 md:row-span-2">
-            <span class="badge mr-2 whitespace-nowrap border-primary bg-primary">
-              {REF_NAME} {entry.data.refID}
-            </span>
-            <span>{entry.data.title}</span>
-          </h2>
-          <div class="flex flex-row items-center justify-end gap-2">
-            <span
-              title={t("Priorité d'implémentation")}
-              aria-label={`${t("Priorité d'implémentation")} : ${
-                entry.data[`priority_implementation`]
-              }`}
-              role="img"
-            >
-              {t(cleanImpact("priority_implementation"))}
-            </span>
-            <span>|</span>
-            <span
-              title={t("Impact environnemental")}
-              aria-label={`${t("Impact environnemental")} : ${
-                entry.data[`environmental_impact`]
-              }`}
-              role="img"
-            >
-              {t(cleanImpact("environmental_impact"))}
-            </span>
-          </div>
-          <div class="mt-2 flex flex-row items-center justify-end gap-2 md:mt-0 md:gap-4">
-            <span
-              title={t("lifecycle")}
-              class="badge border-primary text-xs text-neutral"
-            >
-              {t(entry.data.lifecycle)}
-            </span>
-            <span
-              title={t("scope")}
-              class="badge border-primary text-xs text-neutral"
-            >
-              {t(entry.data.scope)}
-            </span>
-          </div>
-        </div>
+        <FichesCard entry={entry} />
       ) : (
         <h3 class="mt-0">{entry.data.title}</h3>
       )
