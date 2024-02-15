@@ -11,7 +11,10 @@
     "chown node_modules": "sudo chown -R node:node node_modules",
     "npm install": "npm install",
   },
-  // "postAttachCommand": "pnpm dev",
+
+  "postAttachCommand": {
+    "git config --global core.autocrlf true": "git config --global core.autocrlf true"
+  },
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
@@ -26,7 +29,6 @@
   "postCreateCommand": {
     ".nvmrc": "echo $(node --version) > .nvmrc",
     ".npmrc": "echo package-import-method=clone-or-copy > .npmrc",
-    "git config --global core.autocrlf true": "git config --global core.autocrlf true",
     "prettier": "npm i -g prettier",
   },
 
