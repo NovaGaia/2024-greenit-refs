@@ -26,6 +26,7 @@
   "postCreateCommand": {
     ".nvmrc": "echo $(node --version) > .nvmrc",
     ".npmrc": "echo package-import-method=clone-or-copy > .npmrc",
+    "git config --global core.autocrlf true": "git config --global core.autocrlf true",
     "prettier": "npm i -g prettier",
   },
 
