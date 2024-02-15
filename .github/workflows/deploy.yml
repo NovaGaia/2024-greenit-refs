@@ -46,6 +46,17 @@ jobs:
           PUBLIC_REPO_URL: ${{ vars.PUBLIC_REPO_URL }}
           PUBLIC_REPO_BRANCH: ${{ vars.PUBLIC_REPO_BRANCH }}
 
+      - name: Deploy to Server via ssh key
+        uses: easingthemes/ssh-deploy@v4.0.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ vars.REMOTE_HOST }}
+          REMOTE_USER: ${{ vars.REMOTE_USER }}
+          TARGET: ${{ vars.REMOTE_TARGET }}
+          SCRIPT_BEFORE: whoami
+
       - name: Upload Pages Artifact
         # Must use v2 to avoid requiring `actions/deploy-pages@v4` or newer
         uses: actions/upload-pages-artifact@v2
