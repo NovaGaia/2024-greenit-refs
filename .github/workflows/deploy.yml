@@ -18,15 +18,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
+      - name: "↘ Checkout your repository using git"
         uses: actions/checkout@v3
 
-      - name: Install Node.js
+      - name: "👾 Install Node.js"
         uses: actions/setup-node@v3
         with:
           node-version: "18"
 
-      - name: "Cache Node dependencies"
+      - name: "🔄 Cache Node dependencies"
         uses: actions/cache@v3
         with:
           path: "~/.npm"
@@ -34,10 +34,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install npm dependencies
+      - name: "📦 Install npm dependencies"
         run: npm install
 
-      - name: Run build task
+      - name: "👷 Run build task"
         run: npm run ci:build
         env:
           SITE_URL: ${{ vars.SITE_URL }}
@@ -46,16 +46,25 @@ jobs:
           PUBLIC_REPO_URL: ${{ vars.PUBLIC_REPO_URL }}
           PUBLIC_REPO_BRANCH: ${{ vars.PUBLIC_REPO_BRANCH }}
 
-      - name: Deploy to Server via ssh key
-        uses: easingthemes/ssh-deploy@v4.0.5
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          ARGS: "-rlgoDzvc -i"
-          SOURCE: "dist/"
-          REMOTE_HOST: ${{ vars.REMOTE_HOST }}
-          REMOTE_USER: ${{ vars.REMOTE_USER }}
-          TARGET: ${{ vars.REMOTE_TARGET }}
-          SCRIPT_BEFORE: whoami
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ vars.REMOTE_HOST }}
+          username: ${{ vars.REMOTE_USER }}
+          password: ${{ secrets.ftp_password }}
+          local-dir: ./dist
+          server-dir: ${{ vars.REMOTE_TARGET }}
+
+  #     - name: Deploy to Server via ssh key
+  #       uses: easingthemes/ssh-deploy@v4.0.5
+  #       env:
+  #         SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+  #         ARGS: "-rlgoDzvc -i"
+  #         SOURCE: "dist/"
+  #         REMOTE_HOST: ${{ vars.REMOTE_HOST }}
+  #         REMOTE_USER: ${{ vars.REMOTE_USER }}
+  #         TARGET: ${{ vars.REMOTE_TARGET }}
+  #         SCRIPT_BEFORE: whoami
 
   #     - name: Upload Pages Artifact
   #       # Must use v2 to avoid requiring `actions/deploy-pages@v4` or newer
