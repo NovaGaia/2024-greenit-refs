@@ -5,8 +5,30 @@ import {
   type TinaField,
 } from "tinacms";
 import { RestartWarning } from "./warning";
-import { slugify } from "../../src/js/utils";
-import { getRefConfig } from "../../referentiel-config";
+import {
+  slugify,
+  getCalculatedPriorityImplementation,
+} from "../../src/js/utils";
+import { MESURE_ON_5, getRefConfig } from "../../referentiel-config";
+
+const getPriorityImplementation = (values) => {
+  const featuresEnabled = getRefConfig(
+    process.env.TINA_PUBLIC_REF_NAME,
+  ).featuresEnabled;
+
+  if (
+    featuresEnabled.priority_implementation === MESURE_ON_5 &&
+    featuresEnabled.environmental_impact === MESURE_ON_5 &&
+    featuresEnabled.moe === true
+  ) {
+    return getCalculatedPriorityImplementation(
+      values.moe,
+      values.environmental_impact,
+    );
+  } else {
+    return values.priority_implementation;
+  }
+};
 
 /**
  * This function is called before the form is submitted.
@@ -24,6 +46,7 @@ const onFichesBeforeSubmit = async ({
   values: Record<string, any>;
 }) => {
   const TINA_PUBLIC_REF_NAME_PROCESS = process.env.TINA_PUBLIC_REF_NAME;
+
   if (!values.responsible) {
     values.responsible = [];
   }
@@ -38,11 +61,13 @@ const onFichesBeforeSubmit = async ({
         values.refID +
         "-" +
         slugify(values.title),
+      priority_implementation: getPriorityImplementation(values),
     };
   }
   return {
     ...values,
     updatedAt: new Date().toISOString(),
+    priority_implementation: getPriorityImplementation(values),
   };
 };
 

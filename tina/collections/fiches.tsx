@@ -21,10 +21,11 @@ const TINA_PUBLIC_REF_NAME_PROCESS = process.env.TINA_PUBLIC_REF_NAME;
 
 const getSpecificRefFields: any = () => {
   const specificsFields: TinaField[] = [];
-  if (
-    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled
-      .environmental_impact === MESURE_ON_3
-  ) {
+  const featuresEnabled = getRefConfig(
+    TINA_PUBLIC_REF_NAME_PROCESS,
+  ).featuresEnabled;
+
+  if (featuresEnabled.environmental_impact === MESURE_ON_3) {
     const priority_implementation: TinaField = {
       type: "string",
       name: "environmental_impact",
@@ -53,10 +54,7 @@ const getSpecificRefFields: any = () => {
     specificsFields.push(priority_implementation);
   }
 
-  if (
-    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled
-      .environmental_impact === MESURE_ON_5
-  ) {
+  if (featuresEnabled.environmental_impact === MESURE_ON_5) {
     const environmental_impact: TinaField = {
       type: "number",
       name: "environmental_impact",
@@ -76,10 +74,7 @@ const getSpecificRefFields: any = () => {
     specificsFields.push(environmental_impact);
   }
 
-  if (
-    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled
-      .priority_implementation === MESURE_ON_3
-  ) {
+  if (featuresEnabled.priority_implementation === MESURE_ON_3) {
     const priority_implementation: TinaField = {
       type: "string",
       name: "priority_implementation",
@@ -108,30 +103,23 @@ const getSpecificRefFields: any = () => {
     specificsFields.push(priority_implementation);
   }
 
-  // if (
-  //   getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled
-  //     .priority_implementation === MESURE_ON_5
-  // ) {
-  //   const priority_implementation: TinaField = {
-  //     type: "number",
-  //     name: "priority_implementation",
-  //     label: "Priority implementation",
-  //     required: true,
-  //     ui: {
-  //       validate: (value) => {
-  //         if (value > 5) {
-  //           return "La valeur doit être comprise entre 1 et 5.";
-  //         }
-  //         if (value < 1) {
-  //           return "La valeur doit être comprise entre 1 et 5.";
-  //         }
-  //       },
-  //     },
-  //   };
-  //   specificsFields.push(priority_implementation);
-  // }
+  if (
+    featuresEnabled.priority_implementation === MESURE_ON_5 &&
+    featuresEnabled.environmental_impact === MESURE_ON_5 &&
+    featuresEnabled.moe === true
+  ) {
+    const priority_implementation: TinaField = {
+      type: "number",
+      name: "priority_implementation",
+      label: "Priority implementation",
+      ui: {
+        component: "hidden",
+      },
+    };
+    specificsFields.push(priority_implementation);
+  }
 
-  if (getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.moe === true) {
+  if (featuresEnabled.moe === true) {
     const moe: TinaField = {
       type: "number",
       name: "moe",
@@ -151,9 +139,7 @@ const getSpecificRefFields: any = () => {
     specificsFields.push(moe);
   }
 
-  if (
-    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.tiers === true
-  ) {
+  if (featuresEnabled.tiers === true) {
     const tiers: TinaField = {
       type: "string",
       name: "tiers",
@@ -181,9 +167,7 @@ const getSpecificRefFields: any = () => {
     specificsFields.push(tiers);
   }
 
-  if (
-    getRefConfig(TINA_PUBLIC_REF_NAME_PROCESS).featuresEnabled.scope === true
-  ) {
+  if (featuresEnabled.scope === true) {
     const perimetre: TinaField = {
       type: "string",
       name: "scope",
