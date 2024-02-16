@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getLangFromUrl, isStringInUi, useTranslations } from "@i18n/utils";
 import { slugify } from "@js/utils";
 import type { CollectionEntry } from "astro:content";
 import {
@@ -7,8 +7,6 @@ import {
   MESURE_ON_5,
   getRefConfig,
 } from "../../../referentiel-config";
-
-import { getCalculatedPriorityImplementation } from "@js/utils";
 
 type Props = {
   entry: CollectionEntry<"fiches">;
@@ -40,7 +38,7 @@ function cleanImpact(meta) {
 
 const getScope = () => {
   if (getRefConfig().featuresEnabled.scope === true) {
-    return { "data-scope": slugify(entry.data.scope) };
+    return { "data-scope": slugify(entry.data.scope || "") };
   }
 };
 ---
@@ -61,39 +59,19 @@ const getScope = () => {
     <span>{entry.data.title}</span>
   </h2>
   <div class="flex flex-row items-center justify-end gap-2">
-    {
-      getRefConfig().featuresEnabled.priority_implementation ===
-        MESURE_ON_3 && (
-        <span
-          title={t("Priorité d'implémentation")}
-          aria-label={`${t("Priorité d'implémentation")} : ${
-            entry.data[`priority_implementation`]
-          }`}
-          role="img"
-        >
-          {t(cleanImpact("priority_implementation"))}
-        </span>
-      )
-    }
-    {
-      getRefConfig().featuresEnabled.environmental_impact === MESURE_ON_5 &&
-        getRefConfig().featuresEnabled.moe === true && (
-          <span
-            title={t("Priorité d'implémentation")}
-            aria-label={`${t("Priorité d'implémentation")} : ${`${t("Priorité d'implémentation")} : ${getCalculatedPriorityImplementation(
-              entry.data[`moe`],
-              entry.data[`environmental_impact`],
-            )}`}`}
-            role="img"
-            class="text-base"
-          >
-            {`${t("Priorité d'implémentation")} : ${getCalculatedPriorityImplementation(
-              entry.data[`moe`],
-              entry.data[`environmental_impact`],
-            )}`}
-          </span>
-        )
-    }
+    <span
+      title={t("Priorité d'implémentation")}
+      aria-label={`${t("Priorité d'implémentation")} : ${
+        entry.data[`priority_implementation`]
+      }`}
+      role="img"
+    >
+      {
+        typeof entry.data[`priority_implementation`] === "number"
+          ? entry.data[`priority_implementation`]
+          : t(cleanImpact("priority_implementation"))
+      }
+    </span>
     <span>|</span>
     {
       getRefConfig().featuresEnabled.environmental_impact === MESURE_ON_3 && (
@@ -130,7 +108,8 @@ const getScope = () => {
       title={t("lifecycle")}
       class="badge border-primary text-xs text-neutral"
     >
-      {t(entry.data.lifecycle)}
+      {/* @ts-ignore */}
+      {isStringInUi(lang, entry.data.lifecycle) && t(entry.data.lifecycle)}
     </span>
     {
       getRefConfig().featuresEnabled.scope === true && (
@@ -138,7 +117,8 @@ const getScope = () => {
           title={t("scope")}
           class="badge border-primary text-xs text-neutral"
         >
-          {t(entry.data.scope)}
+          {/* @ts-ignore */}
+          {isStringInUi(lang, entry.data.scope) && t(entry.data.scope)}
         </span>
       )
     }
