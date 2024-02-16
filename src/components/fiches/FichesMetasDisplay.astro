@@ -1,134 +1,142 @@
 ---
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
-import { MESURE_ON_5, getRefConfig } from "../../../referentiel-config";
-import MetaItem from "./MetaItem.astro";
+import { getLangFromUrl, isStringInUi, useTranslations } from "@i18n/utils";
+import { slugify } from "@js/utils";
+import type { CollectionEntry } from "astro:content";
+import {
+  MESURE_ON_3,
+  MESURE_ON_5,
+  getRefConfig,
+} from "../../../referentiel-config";
 
 type Props = {
-  className?: string;
-  frontmatter: any;
-  tableOfContents: Array<{ depth: number; text: string; slug: string }>;
+  entry: CollectionEntry<"fiches">;
 };
 
-const { className, frontmatter, tableOfContents } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const REF_NAME = import.meta.env.PUBLIC_REF_NAME || process.env.PUBLIC_REF_NAME;
+
+const { entry } = Astro.props;
+
+function cleanImpact(meta) {
+  // TODO: replace with a proper translation
+  let regexp: RegExp;
+  switch (getLangFromUrl(Astro.url)) {
+    case "es":
+      regexp = /t("Fort")|t("Moyen")|t("Faible")/gi;
+      break;
+    case "en":
+      regexp = /t("High")|t("Medium")|t("Low")/gi;
+      break;
+    default:
+      regexp = /t("Fuerte")|t("Medio")|t("Débil")/gi;
+      break;
+  }
+  return entry.data[`${meta}`]?.replace(regexp, " ") || "TBD";
+}
+
+const getScope = () => {
+  if (getRefConfig().featuresEnabled.scope === true) {
+    return { "data-scope": slugify(entry.data.scope || "") };
+  }
+};
 ---
 
 <div
-  class:list={[
-    className,
-    `box flex flex-col border-neutral-transparent
-        md:flex-row md:flex-wrap md:justify-between md:gap-4
-        lg:sticky lg:top-[80px] lg:mt-8 lg:flex-col`,
-  ]}
+  class="mb-0 mt-0 text-lg font-bold text-neutral md:grid md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-2"
+  data-lifecycle={slugify(entry.data.lifecycle)}
+  {...getScope()}
+  data-saved_resources={slugify(entry.data.saved_resources.join(" "))}
 >
-  <ul class="my-2 md:mb-0">
-    <MetaItem
-      frontmatter={frontmatter}
-      meta="lifecycle"
-      displayTitle
-      fontSize="sm"
-    />
-
-    <MetaItem
-      frontmatter={frontmatter}
-      fontSize="sm"
-      meta="environmental_impact"
-      displayTitle
-    />
-
+  <h2
+    class="m-0 flex flex-row items-start text-lg font-bold text-neutral md:col-span-1 md:row-span-2"
+  >
+    <span class="badge mr-2 whitespace-nowrap border-primary bg-primary">
+      {REF_NAME}
+      {entry.data.refID}
+    </span>
+    <span>{entry.data.title}</span>
+  </h2>
+  <div class="flex flex-row items-center justify-end gap-2">
     {
-      getRefConfig().featuresEnabled.moe === true && (
-        <MetaItem
-          frontmatter={frontmatter}
-          meta="moe"
-          displayTitle
-          fontSize="sm"
-        />
+      typeof entry.data[`priority_implementation`] === "number" && (
+        <span
+          title={t("Priorité d'implémentation")}
+          aria-label={`${t("Priorité d'implémentation")} : ${
+            entry.data[`priority_implementation`]
+          }`}
+          role="img"
+          class="text-base"
+        >
+          {t("Priorité d'implémentation") +
+            " " +
+            entry.data[`priority_implementation`]}
+        </span>
       )
     }
     {
-      getRefConfig().featuresEnabled.priority_implementation === MESURE_ON_5 &&
-      getRefConfig().featuresEnabled.moe === true ? (
-        <MetaItem
-          frontmatter={{
-            "priority-level": frontmatter["priority_implementation"],
-          }}
-          meta="priority-level"
-          displayTitle
-          fontSize="sm"
-        />
-      ) : (
-        <MetaItem
-          frontmatter={frontmatter}
-          meta="priority_implementation"
-          displayTitle
-          fontSize="sm"
-        />
+      typeof entry.data[`priority_implementation`] !== "number" && (
+        <span
+          title={t("Priorité d'implémentation")}
+          aria-label={`${t("Priorité d'implémentation")} : ${
+            entry.data[`priority_implementation`]
+          }`}
+          role="img"
+        >
+          {t(cleanImpact("priority_implementation"))}
+        </span>
+      )
+    }
+    <span>|</span>
+    {
+      getRefConfig().featuresEnabled.environmental_impact === MESURE_ON_3 && (
+        <span
+          title={t("Impact environnemental")}
+          aria-label={`${t("Impact environnemental")} : ${
+            entry.data[`environmental_impact`]
+          }`}
+        >
+          {t(cleanImpact("environmental_impact"))}
+        </span>
       )
     }
     {
-      getRefConfig().featuresEnabled.perimetre === true ? (
-        <MetaItem
-          frontmatter={frontmatter}
-          meta="scope"
-          displayTitle
-          fontSize="sm"
-        />
-      ) : null
+      getRefConfig().featuresEnabled.environmental_impact === MESURE_ON_5 && (
+        <span
+          title={t("Impact environnemental")}
+          aria-label={`${t("Impact environnemental")} : ${
+            entry.data[`environmental_impact`]
+          }`}
+          class="text-base"
+        >
+          {`${t("Impact environnemental")} : ${
+            entry.data[`environmental_impact`]
+          }`}
+        </span>
+      )
     }
-    <MetaItem
-      frontmatter={frontmatter}
-      meta="responsible"
-      collectionType="personas"
-      collectionTypeMeta="shortName"
-      displayTitle
-      fontSize="sm"
-    />
-  </ul>
-  <div
-    class="border-t-2 border-neutral-transparent md:border-r-2 lg:border-t-2"
-  >
   </div>
-  <ul class="my-2 md:mb-0">
-    <MetaItem
-      frontmatter={frontmatter}
-      meta="saved_resources"
-      displayTitle
-      fontSize="sm"
-    />
-  </ul>
   <div
-    class="border-t-2 border-neutral-transparent md:border-r-2 lg:border-r-0"
+    class="mt-2 flex flex-row items-center justify-end gap-2 md:mt-0 md:gap-4"
   >
-  </div>
-  <div class="my-2 text-sm md:mb-0">
-    <p class="mb-0 font-bold">{t("Sommaire :")}</p>
+    <span
+      title={t("lifecycle")}
+      class="badge border-primary text-xs text-neutral"
+    >
+      {/* @ts-ignore */}
+      {isStringInUi(lang, entry.data.lifecycle) && t(entry.data.lifecycle)}
+    </span>
     {
-      /*
-    <!-- <nav
-        aria-label="navigation article"
-        class="summary-article"
-        dangerouslySetInnerHTML={{ __html: tableOfContents }}
-        /> -->
-     */
+      getRefConfig().featuresEnabled.scope === true && (
+        <span
+          title={t("scope")}
+          class="badge border-primary text-xs text-neutral"
+        >
+          {/* @ts-ignore */}
+          {isStringInUi(lang, entry.data.scope) && t(entry.data.scope)}
+        </span>
+      )
     }
-    <nav aria-label="navigation article" class="summary-article">
-      <ul>
-        {
-          tableOfContents.map((h) => {
-            return (
-              <li>
-                {" "}
-                <a href={`#${h.slug}`}>{h.text}</a>
-              </li>
-            );
-          })
-        }
-        <li>
-          <a href="#principe-de-validations">{t("Principe de validation")}</a>
-        </li>
-      </ul>
-    </nav>
   </div>
 </div>
