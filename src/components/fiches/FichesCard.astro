@@ -33,7 +33,7 @@ function cleanImpact(meta) {
       regexp = /t("Fuerte")|t("Medio")|t("Débil")/gi;
       break;
   }
-  return entry.data[`${meta}`].replace(regexp, " ");
+  return entry.data[`${meta}`]?.replace(regexp, " ") || "TBD";
 }
 
 const getScope = () => {
@@ -59,19 +59,35 @@ const getScope = () => {
     <span>{entry.data.title}</span>
   </h2>
   <div class="flex flex-row items-center justify-end gap-2">
-    <span
-      title={t("Priorité d'implémentation")}
-      aria-label={`${t("Priorité d'implémentation")} : ${
-        entry.data[`priority_implementation`]
-      }`}
-      role="img"
-    >
-      {
-        typeof entry.data[`priority_implementation`] === "number"
-          ? entry.data[`priority_implementation`]
-          : t(cleanImpact("priority_implementation"))
-      }
-    </span>
+    {
+      typeof entry.data[`priority_implementation`] === "number" && (
+        <span
+          title={t("Priorité d'implémentation")}
+          aria-label={`${t("Priorité d'implémentation")} : ${
+            entry.data[`priority_implementation`]
+          }`}
+          role="img"
+          class="text-base"
+        >
+          {t("Priorité d'implémentation") +
+            " " +
+            entry.data[`priority_implementation`]}
+        </span>
+      )
+    }
+    {
+      typeof entry.data[`priority_implementation`] !== "number" && (
+        <span
+          title={t("Priorité d'implémentation")}
+          aria-label={`${t("Priorité d'implémentation")} : ${
+            entry.data[`priority_implementation`]
+          }`}
+          role="img"
+        >
+          {t(cleanImpact("priority_implementation"))}
+        </span>
+      )
+    }
     <span>|</span>
     {
       getRefConfig().featuresEnabled.environmental_impact === MESURE_ON_3 && (

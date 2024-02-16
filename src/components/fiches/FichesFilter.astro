@@ -30,6 +30,7 @@ const getDatas = async () => {
           if (Array.isArray(entry.data[key])) {
             datas
               .find((data) => data.name === key)
+              // @ts-ignore
               .values.push(...entry.data[key]);
           } else {
             datas

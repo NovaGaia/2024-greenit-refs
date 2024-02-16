@@ -1,30 +1,10 @@
 ---
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getLangFromUrl } from "@i18n/utils";
 import type { CollectionEntry } from "astro:content";
 import Card from "./Card";
 import FichesCard from "./fiches/FichesCard.astro";
 
-const REF_NAME = process.env.PUBLIC_REF_NAME;
-
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
-function cleanImpact(meta) {
-  // TODO: replace with a proper translation
-  let regexp: RegExp;
-  switch (getLangFromUrl(Astro.url)) {
-    case "es":
-      regexp = /t("Fort")|t("Moyen")|t("Faible")/gi;
-      break;
-    case "en":
-      regexp = /t("High")|t("Medium")|t("Low")/gi;
-      break;
-    default:
-      regexp = /t("Fuerte")|t("Medio")|t("Débil")/gi;
-      break;
-  }
-  return entry.data[`${meta}`].replace(regexp, " ");
-}
 
 type Props = {
   entry: CollectionEntry<"fiches" | "lexique" | "personas"> | any;
