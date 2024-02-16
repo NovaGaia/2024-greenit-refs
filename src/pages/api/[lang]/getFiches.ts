@@ -30,7 +30,12 @@ export const GET: APIRoute = async ({ params, request }) => {
       }
       output.refs.push(o);
     });
-  return new Response(JSON.stringify(output));
+  return new Response(JSON.stringify(output), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+  });
 };
 
 export async function getStaticPaths() {

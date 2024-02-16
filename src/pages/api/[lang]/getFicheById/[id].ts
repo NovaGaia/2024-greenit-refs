@@ -25,7 +25,12 @@ export async function GET({ params, request }) {
   if (getRefConfig().featuresEnabled.scope) {
     o["scope"] = entry.data.scope;
   }
-  return new Response(JSON.stringify(o));
+  return new Response(JSON.stringify(o), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+  });
 }
 
 export async function getStaticPaths() {
