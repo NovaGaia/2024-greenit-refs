@@ -98,9 +98,9 @@ export const getRefConfig: RefConfig = (specificRef) => {
         currentVersion: "4.0.0",
         creationYear: 2012,
       };
-      config.featuresEnabled.lexique = false;
+      config.featuresEnabled.lexique = true;
       config.featuresEnabled.linkToPersonas = false;
-      config.featuresEnabled.priority_implementation = "false";
+      config.featuresEnabled.priority_implementation = MESURE_ON_5;
       config.featuresEnabled.environmental_impact = MESURE_ON_5;
       config.featuresEnabled.moe = true;
       config.featuresEnabled.tiers = true;

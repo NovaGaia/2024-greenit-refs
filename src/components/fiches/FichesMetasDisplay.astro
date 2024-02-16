@@ -1,7 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
-import { getCalculatedPriorityImplementation } from "@js/utils";
-import { getRefConfig } from "../../../referentiel-config";
+import { MESURE_ON_5, getRefConfig } from "../../../referentiel-config";
 import MetaItem from "./MetaItem.astro";
 
 type Props = {
@@ -39,32 +38,32 @@ const t = useTranslations(lang);
     />
 
     {
+      getRefConfig().featuresEnabled.moe === true && (
+        <MetaItem
+          frontmatter={frontmatter}
+          meta="moe"
+          displayTitle
+          fontSize="sm"
+        />
+      )
+    }
+    {
+      getRefConfig().featuresEnabled.priority_implementation === MESURE_ON_5 &&
       getRefConfig().featuresEnabled.moe === true ? (
-        <>
-          <MetaItem
-            frontmatter={frontmatter}
-            meta="moe"
-            displayTitle
-            fontSize="sm"
-          />
-          <MetaItem
-            frontmatter={{
-              "priority-level": getCalculatedPriorityImplementation(
-                frontmatter["moe"],
-                frontmatter["environmental_impact"],
-              ),
-            }}
-            meta="priority-level"
-            displayTitle
-            fontSize="sm"
-          />
-        </>
+        <MetaItem
+          frontmatter={{
+            "priority-level": frontmatter["priority_implementation"],
+          }}
+          meta="priority-level"
+          displayTitle
+          fontSize="sm"
+        />
       ) : (
         <MetaItem
           frontmatter={frontmatter}
           meta="priority_implementation"
-          fontSize="sm"
           displayTitle
+          fontSize="sm"
         />
       )
     }

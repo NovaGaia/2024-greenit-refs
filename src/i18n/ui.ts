@@ -315,6 +315,7 @@ export const ui = {
     tdb: "À définir",
   },
   fr: {
+    "": "",
     // SEO
     "seo.site_name": "Les bonnes pratiques d'écoconception",
     "seo.default.description": "Les bonnes pratiques d'écoconception",

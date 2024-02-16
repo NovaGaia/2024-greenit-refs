@@ -1,9 +1,6 @@
 ---
-import {
-  capitalizeFirstLetter,
-  getLangFromUrl,
-  useTranslations,
-} from "@i18n/utils";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { capitalizeFirstLetter } from "@js/utils";
 import type { CollectionEntry } from "astro:content";
 import { getRefConfig } from "../../../referentiel-config";
 
@@ -32,7 +29,7 @@ const t = useTranslations(lang);
         const [, ...entry_slug] = entry.slug.split("/");
         return (
           <>
-            {entry.data.validations.map((validation, index) => {
+            {entry.data.validations?.map((validation, index) => {
               return (
                 <tr>
                   <td>
@@ -51,7 +48,9 @@ const t = useTranslations(lang);
                   </td>
                   <td>
                     {entry.data.title}{" "}
-                    {entry.data.validations.length > 1 && `(${index + 1})`}
+                    {entry.data.validations &&
+                      entry.data.validations.length > 1 &&
+                      `(${index + 1})`}
                   </td>
                   <td>
                     {t("Le nombre")}{" "}
@@ -63,36 +62,6 @@ const t = useTranslations(lang);
               );
             })}
           </>
-        );
-        return (
-          <tr>
-            <td>
-              <a href={`${entry_slug}`} class="text-sm no-underline">
-                🔗{" "}
-                <span class="underline">
-                  {process.env.PUBLIC_REF_NAME} {entry.data.refID}
-                </span>
-              </a>
-            </td>
-            <td>{capitalizeFirstLetter(t(entry.data.scope as any))}</td>
-            {/*
-              <td>{capitalizeFirstLetter(t(entry.data.lifecycle as any))}</td>
-            */}
-            <td>{entry.data.title}</td>
-            <td>
-              {/*
-                    <span>{entry.data.validations.length}</span>
-                */}
-              {entry.data.validations.map((validation) => {
-                return (
-                  <>
-                    {validation.rule} ≤ {validation.maxValue}
-                    <br />
-                  </>
-                );
-              })}
-            </td>
-          </tr>
         );
       })
     }

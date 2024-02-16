@@ -65,6 +65,21 @@ export function responsiveSequence(first, last, size = 16) {
   return seq.map((value) => Math.round(value));
 }
 
+/**
+ * Calculates the priority of an implementation based on its MOE and environmental impact.
+ * @param {*} moe
+ * @param {*} environmental_impact
+ * @returns {number} The calculated priority.
+ */
 export function getCalculatedPriorityImplementation(moe, environmental_impact) {
   return Math.ceil(((moe * environmental_impact) / 25) * 5) + 1;
+}
+
+/**
+ * Capitalizes the first letter of a string.
+ * @param {*} string
+ * @returns {string} The string with the first letter capitalized.
+ */
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
