@@ -468,5 +468,10 @@ export const ui = {
     moe: "Mise en oeuvre",
     "priority-level": "Degré de priorité",
     tdb: "À définir",
+    // Tiers
+    tiers: "Tier impacté",
+    "user-device": "Utilisateur/Terminal",
+    // "network": "Réseau",
+    "data-center": "Data-center",
   },
 } as const;
