@@ -77,6 +77,16 @@ const t = useTranslations(lang);
         />
       ) : null
     }
+    {
+      getRefConfig().featuresEnabled.tiers === true ? (
+        <MetaItem
+          frontmatter={frontmatter}
+          meta="tiers"
+          displayTitle
+          fontSize="sm"
+        />
+      ) : null
+    }
     <MetaItem
       frontmatter={frontmatter}
       meta="responsible"
