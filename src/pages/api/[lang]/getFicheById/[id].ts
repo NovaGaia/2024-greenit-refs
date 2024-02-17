@@ -28,7 +28,8 @@ export async function GET({ params, request }) {
   return new Response(JSON.stringify(o), {
     status: 200,
     headers: {
-      "Content-Type": "application/json;charset=utf-8",
+      "Content-Type": "application/json; charset=UTF-8",
+      Charset: "UTF-8",
     },
   });
 }
@@ -46,7 +47,6 @@ export async function getStaticPaths() {
           lang,
           id: entry.data.refID,
         },
-        props: { entry, entries },
       };
     });
 

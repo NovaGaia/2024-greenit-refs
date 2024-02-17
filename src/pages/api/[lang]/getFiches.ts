@@ -1,5 +1,5 @@
-import { code_languages } from "@i18n/ui";
 import type { APIRoute } from "astro";
+import { code_languages } from "@i18n/ui";
 import { getCollection } from "astro:content";
 import { getRefConfig } from "referentiel-config";
 
@@ -33,7 +33,8 @@ export const GET: APIRoute = async ({ params, request }) => {
   return new Response(JSON.stringify(output), {
     status: 200,
     headers: {
-      "Content-Type": "application/json;charset=utf-8",
+      "Content-Type": "application/json; charset=UTF-8",
+      Charset: "UTF-8",
     },
   });
 };
