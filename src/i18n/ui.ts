@@ -38,6 +38,9 @@ export const ui = {
     // src/pages/[lang]/fiches/index.astro && src/components/fiches/FichesListView.astro
     "Bonnes pratiques": "Buenas prácticas",
     "Consulter les Bonnes pratiques": "Consulta las Mejores Prácticas",
+    "Vue en cartes": "Vista del mapa",
+    "Vue en tableau (pour copier/coller)":
+      "Vista de tabla (para copiar/pegar)",
 
     // src/pages/[lang]/lexique/index.astro && src/components/lexique/LexiqueListView.astro
     Lexique: "Léxico",
@@ -65,109 +68,108 @@ export const ui = {
     "Consulter le contenu de la licence CC BY-NC-ND 4.0 (site externe)":
       "Ver el contenido de la licencia CC BY-NC-ND 4.0 (sitio externo)",
 
-    // A continuer...
-
     // src/components/ContributeCTA.astro
     "Vous avez repérez une coquille ou vous souhaitez contribuer ?":
-      "Vous avez repérez une coquille ou vous souhaitez contribuer ?",
+      "¿Has detectado un error tipográfico o te gustaría contribuir?",
     "Venez sur le repo pour lancer une discussion sur":
-      "Venez sur le repo pour lancer une discussion sur",
-    "la fiche": "la fiche",
-    "la fiche du lexique": "la fiche du lexique",
-    "le persona": "le persona",
+      "Ven al repositorio para iniciar una discusión sobre",
+    "la fiche": "la ficha",
+    "la fiche du lexique": "la hoja del glosario",
+    "le persona": "la persona",
 
     // src/pages/[lang]/fiches/index.astro
     "Les Fiches de Bonnes pratiques pour rendre le numérique plus respectueux de l'environnement.":
-      "Les Fiches de Bonnes pratiques pour rendre le numérique plus respectueux de l'environnement.",
+      "Fichas de buenas prácticas para hacer la tecnología digital más respetuosa con el medio ambiente.",
 
     // src/pages/[lang]/lexique/index.astro
     "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.":
-      "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.",
+      "Términos utilizados para hacer que lo digital sea más respetuoso con el medio ambiente.",
 
     // src/pages/[lang]/personas/index.astro
     "Les profils que nous ciblons avec ce référentiel.":
-      "Les profils que nous ciblons avec ce référentiel.",
+      "Los perfiles a los que nos dirigimos con este repositorio.",
 
     // src/components/mdx/MDXLexiqueTooltip.astro
     "Définition manquante, vérifier le formatage du lien ou si la fiche existe dans le Lexique.":
-      "Définition manquante, vérifier le formatage du lien ou si la fiche existe dans le Lexique.",
+      "Falta definición, verifique el formato del enlace o si la entrada existe en el Glosario.",
 
     // src/components/CardView.astro
-    Fort: "Fort",
-    Moyen: "Moyen",
-    Faible: "Faible",
+    Fort: "Fuerte",
+    Moyen: "Promedio",
+    Faible: "Débil",
 
     // src/components/fiches/FichesFilter.astro
-    Afficher: "Afficher",
-    Masquer: "Masquer",
-    "les filtres": "les filtres",
-    Catégories: "Catégories",
+    Afficher: "Mostrar",
+    Masquer: "Esconder",
+    "les filtres": "los filtros",
+    Catégories: "Categorías",
 
     // src/components/fiches/FichesTableValidation.astro
-    "Principe de validation": "Principe de validation",
-    "Le nombre": "Le nombre",
-    "est inférieur ou égal à": "est inférieur ou égal à",
+    "Principe de validation": "Principio de validación",
+    "Le nombre": "El número",
+    "est inférieur ou égal à": "es menor o igual a",
 
     // src/components/fiches/FicheViewPaginate.astro
     "Navigation entre les bonnes pratiques":
-      "Navigation entre les bonnes pratiques",
-    "Priorité d'implémentation": "Priorité d'implémentation",
-    "Impact environnemental": "Impact environnemental",
+      "Navegando entre las mejores prácticas",
+    "Priorité d'implémentation": "Prioridad de implementación",
+    "Impact environnemental": "Impacto medioambiental",
 
     // src/components/FichesMetasDisplay.astro
-    "Sommaire :": "Sommaire :",
+    "Sommaire :": "Resumen :",
+    responsible: "Gerente(s)",
 
     // src/components/LanguagePicker.astro
     "Language picker": "Sélecteur de langue",
     "Changer de langue": "🇬🇧 / 🇫🇷",
 
     // Scope
-    scope: "Périmètre",
-    cache: "Cache",
-    documents: "Documents",
-    features: "Fonctionnalités",
-    images: "Images",
+    scope: "Perímetro",
+    cache: "Oculto",
+    documents: "Documentos",
+    features: "Características",
+    images: "Fotos",
     "front-office": "Front-office",
-    hosting: "Hébergement",
-    performance: "Performance",
-    security: "Sécurité",
-    themes: "Thèmes",
+    hosting: "Alojamiento",
+    performance: "Rendimiento",
+    security: "Seguridad",
+    themes: "Temas",
     seo: "SEO",
-    storage: "Stockage",
-    "videos-sounds": "Vidéos/Audios",
+    storage: "Almacenamiento",
+    "videos-sounds": "Vídeos/Audios",
     // Lifecycle
-    lifecycle: "Cycle de vie",
-    "1-analyse-of-needs": "1. Analyse des besoins",
-    "2-installation": "2. Installation",
-    "3-conception-design": "3. Conception & Design",
-    "4-integration-development": "4. Intégration & Développement",
-    "5-content-media": "5. Contenu & médias",
-    "6-tests-validation": "6. Tests & Validation",
-    "7-deployment": "7. Mise en ligne",
-    "8-maintenance": "8. Maintenance",
-    "9-end-of-life": "9. Fin de vie",
+    lifecycle: "Ciclo de vida",
+    "1-analyse-of-needs": "1. Análisis de necesidades",
+    "2-installation": "2. Instalación",
+    "3-conception-design": "3. Concepción y Diseño",
+    "4-integration-development": "4. Integración y Desarrollo",
+    "5-content-media": "5. Contenido y medios",
+    "6-tests-validation": "6. Pruebas y Validación",
+    "7-deployment": "7. Publicación",
+    "8-maintenance": "8. Mantenimiento",
+    "9-end-of-life": "9. Fin de la vida",
     // Environmental impact
-    environmental_impact: "Impact environnemental",
-    high_environmental_impact: "Fort 🌱🌱🌱",
-    medium_environmental_impact: "Moyen 🌱🌱",
-    low_environmental_impact: "Faible 🌱",
+    environmental_impact: "Impacto medioambiental",
+    high_environmental_impact: "Fuerte 🌱🌱🌱",
+    medium_environmental_impact: "Promedio 🌱🌱",
+    low_environmental_impact: "Débil 🌱",
     // Priority implementation
-    priority_implementation: "Priorité d'implémentation",
-    high_priority: "Haute 👍👍👍",
-    medium_priority: "Moyenne 👍👍",
-    low_priority: "Faible 👍",
+    priority_implementation: "Prioridad de implementación",
+    high_priority: "Alto 👍👍👍",
+    medium_priority: "Promedio 👍👍",
+    low_priority: "Débil 👍",
     // Saved resource(s)
-    saved_resources: "Ressource(s) économisée(s)",
-    cpu: "Processeur",
-    ram: "Mémoire vive",
-    network: "Réseau",
-    requests: "Requêtes",
-    "e-waste": "Déchets électroniques",
-    electricity: "Consommation électrique",
-    ghg: "Émissions de gaz à effet de serre",
-    tdb: "À définir",
+    saved_resources: "Recursos guardados",
+    cpu: "Procesador",
+    ram: "Memoria viva",
+    network: "Red",
+    requests: "Consultas",
+    "e-waste": "Residuos electrónicos",
+    electricity: "El consumo de energía",
+    ghg: "Emisiones de gases de efecto invernadero",
+    tdb: "A definir",
   },
-  en: {
+en: {
     // SEO
     "seo.site_name": "Good ecodesign practices",
     "seo.default.description": "Good ecodesign practices",
@@ -187,6 +189,9 @@ export const ui = {
     // src/pages/[lang]/fiches/index.astro && src/components/fiches/FichesListView.astro
     "Bonnes pratiques": "Good practices",
     "Consulter les Bonnes pratiques": "Consult the Best practices",
+    "Vue en cartes": "Cards view",
+    "Vue en tableau (pour copier/coller)":
+      "Table view (for copy/paste)",
 
     // src/pages/[lang]/lexique/index.astro && src/components/lexique/LexiqueListView.astro
     Lexique: "Glossary",
@@ -214,107 +219,105 @@ export const ui = {
     "Consulter le contenu de la licence CC BY-NC-ND 4.0 (site externe)":
       "View CC BY-NC-ND 4.0 license content (external site)",
 
-    // A continuer...
-
     // src/components/ContributeCTA.astro
     "Vous avez repérez une coquille ou vous souhaitez contribuer ?":
-      "Vous avez repérez une coquille ou vous souhaitez contribuer ?",
+      "Have you spotted a typo or would you like to contribute?",
     "Venez sur le repo pour lancer une discussion sur":
-      "Venez sur le repo pour lancer une discussion sur",
-    "la fiche": "la fiche",
-    "la fiche du lexique": "la fiche du lexique",
-    "le persona": "le persona",
+      "Come to the repo to start a discussion about",
+    "la fiche": "the sheet",
+    "la fiche du lexique": "the glossary sheet",
+    "le persona": "the persona",
 
     // src/pages/[lang]/fiches/index.astro
     "Les Fiches de Bonnes pratiques pour rendre le numérique plus respectueux de l'environnement.":
-      "Les Fiches de Bonnes pratiques pour rendre le numérique plus respectueux de l'environnement.",
+      "Best practice sheets to make digital technology more environmentally friendly.",
 
     // src/pages/[lang]/lexique/index.astro
     "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.":
-      "Les termes utilisés pour rendre le numérique plus respectueux de l'environnement.",
+      "Terms used to make digital more environmentally friendly.",
 
     // src/pages/[lang]/personas/index.astro
     "Les profils que nous ciblons avec ce référentiel.":
-      "Les profils que nous ciblons avec ce référentiel.",
+      "The profiles we target with this repository.",
 
     // src/components/mdx/MDXLexiqueTooltip.astro
     "Définition manquante, vérifier le formatage du lien ou si la fiche existe dans le Lexique.":
-      "Définition manquante, vérifier le formatage du lien ou si la fiche existe dans le Lexique.",
+      "Missing definition, check the formatting of the link or if the entry exists in the Glossary.",
 
     // src/components/CardView.astro
-    Fort: "Fort",
-    Moyen: "Moyen",
-    Faible: "Faible",
+    Fort: "Strong",
+    Moyen: "Average",
+    Faible: "Weak",
 
     // src/components/fiches/FichesFilter.astro
-    Afficher: "Afficher",
-    Masquer: "Masquer",
-    "les filtres": "les filtres",
-    Catégories: "Catégories",
+    Afficher: "Display",
+    Masquer: "Hide",
+    "les filtres": "the filters",
+    Catégories: "Categories",
 
     // src/components/fiches/FichesTableValidation.astro
-    "Principe de validation": "Principe de validation",
-    "Le nombre": "Le nombre",
-    "est inférieur ou égal à": "est inférieur ou égal à",
+    "Principe de validation": "Validation principle",
+    "Le nombre": "The number",
+    "est inférieur ou égal à": "is less than or equal to",
 
     // src/components/fiches/FicheViewPaginate.astro
     "Navigation entre les bonnes pratiques":
-      "Navigation entre les bonnes pratiques",
-    "Priorité d'implémentation": "Priorité d'implémentation",
-    "Impact environnemental": "Impact environnemental",
+      "Navigating between best practices",
+    "Priorité d'implémentation": "Implementation Priority",
+    "Impact environnemental": "Environmental impact",
 
     // src/components/FichesMetasDisplay.astro
-    "Sommaire :": "Sommaire :",
+    "Sommaire :": "Summary :",
 
     // src/components/LanguagePicker.astro
-    "Language picker": "Sélecteur de langue",
+    "Language picker": "Language selector",
     "Changer de langue": "🇪🇸 / 🇫🇷",
 
     // Scope
-    scope: "Périmètre",
+    scope: "Perimeter",
     cache: "Cache",
     documents: "Documents",
-    features: "Fonctionnalités",
-    images: "Images",
-    "front-office": "Front-office",
-    hosting: "Hébergement",
+    features: "Features",
+    images: "Pictures",
+    "front-office": "Front office",
+    hosting: "Hosting",
     performance: "Performance",
-    security: "Sécurité",
-    themes: "Thèmes",
+    security: "Security",
+    themes: "Themes",
     seo: "SEO",
-    storage: "Stockage",
-    "videos-sounds": "Vidéos/Audios",
+    storage: "Storage",
+    "videos-sounds": "Videos/Audios",
     // Lifecycle
-    lifecycle: "Cycle de vie",
-    "1-analyse-of-needs": "1. Analyse des besoins",
+    lifecycle: "Life cycle",
+    "1-analyse-of-needs": "1. Analyse of needs",
     "2-installation": "2. Installation",
     "3-conception-design": "3. Conception & Design",
-    "4-integration-development": "4. Intégration & Développement",
-    "5-content-media": "5. Contenu & médias",
-    "6-tests-validation": "6. Tests & Validation",
-    "7-deployment": "7. Mise en ligne",
+    "4-integration-development": "4. Integration & Development",
+    "5-content-media": "5. Content & media",
+    "6-tests-validation": "6. Testing & Validation",
+    "7-deployment": "7. Put online",
     "8-maintenance": "8. Maintenance",
-    "9-end-of-life": "9. Fin de vie",
+    "9-end-of-life": "9. End of life",
     // Environmental impact
-    environmental_impact: "Impact environnemental",
-    high_environmental_impact: "Fort 🌱🌱🌱",
-    medium_environmental_impact: "Moyen 🌱🌱",
-    low_environmental_impact: "Faible 🌱",
+    environmental_impact: "Environmental impact",
+    high_environmental_impact: "Strong 🌱🌱🌱",
+    medium_environmental_impact: "Average 🌱🌱",
+    low_environmental_impact: "Weak 🌱",
     // Priority implementation
-    priority_implementation: "Priorité d'implémentation",
-    high_priority: "Haute 👍👍👍",
-    medium_priority: "Moyenne 👍👍",
-    low_priority: "Faible 👍",
+    priority_implementation: "Implementation Priority",
+    high_priority: "High 👍👍👍",
+    medium_priority: "Average 👍👍",
+    low_priority: "Weak 👍",
     // Saved resource(s)
-    saved_resources: "Ressource(s) économisée(s)",
-    cpu: "Processeur",
-    ram: "Mémoire vive",
-    network: "Réseau",
-    requests: "Requêtes",
-    "e-waste": "Déchets électroniques",
-    electricity: "Consommation électrique",
-    ghg: "Émissions de gaz à effet de serre",
-    tdb: "À définir",
+    saved_resources: "Resource(s) saved",
+    cpu: "Processor",
+    ram: "RAM",
+    network: "Network",
+    requests: "Queries",
+    "e-waste": "Electronic waste",
+    electricity: "Power consumption",
+    ghg: "Greenhouse gas emissions",
+    tdb: "To define",
   },
   fr: {
     // SEO
