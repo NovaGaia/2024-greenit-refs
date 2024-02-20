@@ -2,7 +2,7 @@
 import ResponsiveImage from "@components/ResponsiveImage.astro";
 import type { ImageMetadata } from "astro";
 import { Icon } from "astro-icon/components";
-import { Picture } from "astro:assets";
+import { Picture, getImage } from "astro:assets";
 const props: any = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -12,6 +12,10 @@ if (!images[props.src])
   throw new Error(
     `"${props.src}" does not exist in glob: "src/assets/**/*.{jpeg,jpg,png,gif,svg}"`,
   );
+const unZoomedImage = await getImage({
+  src: images[props.src](),
+  format: "webp",
+});
 ---
 
 <figure
@@ -33,7 +37,11 @@ if (!images[props.src])
 >
   {
     props.zoomable ? (
-      <a href={props.src} target="_blank" class="group relative inline-block">
+      <a
+        href={unZoomedImage?.src || ""}
+        target="_blank"
+        class="group relative inline-block"
+      >
         <Picture
           src={images[props.src]()}
           formats={["avif", "webp"]}
