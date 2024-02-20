@@ -16,6 +16,7 @@ const imageBlock: Template = {
     defaultItem: {
       position: "block",
       imgWidth: "twoThirdWidth",
+      zoomable: true,
     },
   },
   fields: [
@@ -27,7 +28,7 @@ const imageBlock: Template = {
     },
     { type: "string", label: "Alt", name: "alt", required: true },
     { type: "string", label: "Caption", name: "caption" },
-
+    { type: "boolean", label: "Zoomable", name: "zoomable" },
     {
       type: "string",
       label: "Position",
