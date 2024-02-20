@@ -6,7 +6,7 @@
       "script": "dev",
       "problemMatcher": [],
       "label": "npm: dev",
-      "detail": "npm run dev:local:rwp",
+      "detail": "npm run dev",
       "group": {
         "kind": "build",
         "isDefault": true
