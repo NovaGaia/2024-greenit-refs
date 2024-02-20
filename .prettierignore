@@ -22,3 +22,5 @@ pnpm-debug.log*
 .netlify
 functions/.netlify
 coverage
+
+src/content/**/*
