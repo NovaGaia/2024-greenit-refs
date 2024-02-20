@@ -15,13 +15,18 @@ if (!images[props.src])
 
 <figure
   class:list={[
-    props.position,
-    props.imgWidth,
     {
-      "mr-2 pb-2": props.position === "float-left",
+      "float-left mr-2 pb-2": props.position === "float-left",
+      "float-right ml-2 pb-2": props.position === "float-right",
+      "mx-auto block pb-2": props.position === "block",
     },
     {
-      "ml-2 pb-2": props.position === "float-right",
+      "w-auto": props.imgWidth === "auto",
+      "w-full": props.imgWidth === "fullWidth",
+      "w-full md:w-2/3": props.imgWidth === "twoThirdWidth",
+      "w-full md:w-1/2": props.imgWidth === "halfWidth",
+      "w-full md:w-1/3": props.imgWidth === "thirdWidth",
+      "w-full md:w-1/4": props.imgWidth === "quarterWidth",
     },
   ]}
 >
@@ -32,7 +37,7 @@ if (!images[props.src])
     height={props.height || 300}
     alt={props.alt || `Undefined`}
     title={props.title || ``}
-    class:list={[props.class]}
+    class:list={[`mx-auto`, props.class]}
   />
   {
     props.caption && (
