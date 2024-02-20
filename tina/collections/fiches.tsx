@@ -11,6 +11,7 @@ import {
   MESURE_ON_3,
   MESURE_ON_5,
 } from "../../referentiel-config";
+import { imageBlock } from "../utils/templates.js";
 
 const PUBLIC_BASE =
   process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== ""
@@ -452,7 +453,7 @@ const fiches: Collection = {
       isBody: true,
       label: "Contenu",
       required: true,
-      templates: [tinaTableTemplate],
+      templates: [tinaTableTemplate, imageBlock],
     },
     {
       type: "object",

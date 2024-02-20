@@ -1,3 +1,4 @@
+import { imageBlock } from "../utils/templates";
 import {
   defaultFields,
   onDefaultPagesBeforeSubmit,
@@ -45,7 +46,7 @@ const home: Collection = {
       required: true,
       // description:
       //   "Ne pas utiliser le niveau 1 (#) pour vos titres, il est réservé au titre de la page (champs `Title`).",
-      templates: [templateCTAWithIcon, tinaTableTemplate],
+      templates: [templateCTAWithIcon, tinaTableTemplate, imageBlock],
     },
   ],
 };

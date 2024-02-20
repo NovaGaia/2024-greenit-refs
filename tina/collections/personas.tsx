@@ -1,3 +1,4 @@
+import { imageBlock } from "../utils/templates.tsx";
 import { slugify } from "../../src/js/utils.js";
 import {
   titleField,
@@ -5,7 +6,7 @@ import {
   defaultFields,
   onPersonasBeforeSubmit,
 } from "../utils/commonFields.tsx";
-import type { Collection } from "tinacms";
+import { tinaTableTemplate, type Collection } from "tinacms";
 
 const PUBLIC_BASE =
   process.env.PUBLIC_BASE && process.env.PUBLIC_BASE !== ""
@@ -57,6 +58,7 @@ const personas: Collection = {
       isBody: true,
       label: "Contenu",
       required: true,
+      templates: [tinaTableTemplate, imageBlock],
     },
   ],
 };
