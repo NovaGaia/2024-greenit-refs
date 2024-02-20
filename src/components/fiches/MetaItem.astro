@@ -28,6 +28,9 @@ const getDatas = async ({ collectionType, item, meta, collectionTypeMeta }) => {
     .replace(`src/content/${collectionType}/`, "")
     .replace(".mdx", "");
   const o: any = await getEntry(collectionType, id);
+  if (!o?.slug) {
+    return { label: "TBD", path: "#" };
+  }
   const [lang, ...slug] = o.slug.split("/");
   return {
     label: o.data[collectionTypeMeta],
