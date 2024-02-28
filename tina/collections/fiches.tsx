@@ -363,7 +363,7 @@ const fiches: Collection = {
         },
         {
           value: "2-installation",
-          label: "2. Installation / Architechture",
+          label: "2. Installation / Architecture",
         },
         {
           value: "3-conception-design",
