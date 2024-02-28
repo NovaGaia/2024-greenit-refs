@@ -136,7 +136,7 @@ export const ui = {
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
-    "2-installation": "2. Installation / Architechture",
+    "2-installation": "2. Installation / Architecture",
     "3-conception-design": "3. Conception & Design",
     "4-integration-development": "4. Intégration & Développement",
     "5-content-media": "5. Contenu & médias",
@@ -285,7 +285,7 @@ export const ui = {
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
-    "2-installation": "2. Installation / Architechture",
+    "2-installation": "2. Installation / Architecture",
     "3-conception-design": "3. Conception & Design",
     "4-integration-development": "4. Intégration & Développement",
     "5-content-media": "5. Contenu & médias",
@@ -437,7 +437,7 @@ export const ui = {
     // Lifecycle
     lifecycle: "Cycle de vie",
     "1-analyse-of-needs": "1. Analyse des besoins",
-    "2-installation": "2. Installation / Architechture",
+    "2-installation": "2. Installation / Architecture",
     "3-conception-design": "3. Conception & Design",
     "4-integration-development": "4. Intégration & Développement",
     "5-content-media": "5. Contenu & médias",
@@ -472,6 +472,6 @@ export const ui = {
     tiers: "Tier impacté",
     "user-device": "Utilisateur/Terminal",
     // "network": "Réseau",
-    "data-center": "Data-center",
+    datacenter: "Datacenter",
   },
 } as const;
