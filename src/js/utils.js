@@ -72,7 +72,7 @@ export function responsiveSequence(first, last, size = 16) {
  * @returns {number} The calculated priority.
  */
 export function getCalculatedPriorityImplementation(moe, environmental_impact) {
-  return Math.ceil(((moe * environmental_impact) / 25) * 5) + 1;
+  return Math.ceil(((moe * environmental_impact) / 25) * 5);
 }
 
 /**
