@@ -37,8 +37,7 @@ export const ui = {
     "Bonnes pratiques": "Buenas prácticas",
     "Consulter les Bonnes pratiques": "Consulta las Mejores Prácticas",
     "Vue en cartes": "Vista del mapa",
-    "Vue en tableau (pour copier/coller)":
-      "Vista de tabla (para copiar/pegar)",
+    "Vue en tableau (pour copier/coller)": "Vista de tabla (para copiar/pegar)",
 
     // src/pages/[lang]/lexique/index.astro && src/components/lexique/LexiqueListView.astro
     Lexique: "Léxico",
@@ -138,13 +137,13 @@ export const ui = {
     // Lifecycle
     lifecycle: "Ciclo de vida",
     "1-analyse-of-needs": "1. Análisis de necesidades",
-    "2-installation": "2. Instalación",
+    "2-installation": "2. Instalación / Arquitectura de software",
     "3-conception-design": "3. Concepción y Diseño",
     "4-integration-development": "4. Integración y Desarrollo",
     "5-content-media": "5. Contenido y medios",
     "6-tests-validation": "6. Pruebas y Validación",
     "7-deployment": "7. Publicación",
-    "8-maintenance": "8. Mantenimiento",
+    "8-maintenance": "8. Mantenimiento / Uso / Aporte",
     "9-end-of-life": "9. Fin de la vida",
     // Environmental impact
     environmental_impact: "Impacto medioambiental",
@@ -167,7 +166,7 @@ export const ui = {
     ghg: "Emisiones de gases de efecto invernadero",
     tdb: "A definir",
   },
-en: {
+  en: {
     // SEO
     "seo.site_name": "Good ecodesign practices",
     "seo.default.description": "Good ecodesign practices",
@@ -188,8 +187,7 @@ en: {
     "Bonnes pratiques": "Good practices",
     "Consulter les Bonnes pratiques": "Consult the Best practices",
     "Vue en cartes": "Cards view",
-    "Vue en tableau (pour copier/coller)":
-      "Table view (for copy/paste)",
+    "Vue en tableau (pour copier/coller)": "Table view (for copy/paste)",
 
     // src/pages/[lang]/lexique/index.astro && src/components/lexique/LexiqueListView.astro
     Lexique: "Glossary",
@@ -288,13 +286,13 @@ en: {
     // Lifecycle
     lifecycle: "Life cycle",
     "1-analyse-of-needs": "1. Analyse of needs",
-    "2-installation": "2. Installation",
+    "2-installation": "2. Installation / Software architecture",
     "3-conception-design": "3. Conception & Design",
     "4-integration-development": "4. Integration & Development",
     "5-content-media": "5. Content & media",
     "6-tests-validation": "6. Testing & Validation",
     "7-deployment": "7. Put online",
-    "8-maintenance": "8. Maintenance",
+    "8-maintenance": "8. Maintenance / Use / Contribution",
     "9-end-of-life": "9. End of life",
     // Environmental impact
     environmental_impact: "Environmental impact",
