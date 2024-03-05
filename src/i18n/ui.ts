@@ -94,12 +94,17 @@ export const ui = {
     Fort: "Fuerte",
     Moyen: "Promedio",
     Faible: "Débil",
+    "Mise à jour le": "Actualizado en",
 
     // src/components/fiches/FichesFilter.astro
     Afficher: "Mostrar",
     Masquer: "Esconder",
     "les filtres": "los filtros",
     Catégories: "Categorías",
+
+    // src/components/fiches/FichePermaLink.astro
+    Permalien: "Enlace Permanente",
+    "Lien copié": "Enlace copiado",
 
     // src/components/fiches/FichesTableValidation.astro
     "Principe de validation": "Principio de validación",
@@ -244,12 +249,17 @@ export const ui = {
     Fort: "Strong",
     Moyen: "Average",
     Faible: "Weak",
+    "Mise à jour le": "Updated on",
 
     // src/components/fiches/FichesFilter.astro
     Afficher: "Display",
     Masquer: "Hide",
     "les filtres": "the filters",
     Catégories: "Categories",
+
+    // src/components/fiches/FichePermaLink.astro
+    Permalien: "Permalink",
+    "Lien copié": "Link copied",
 
     // src/components/fiches/FichesTableValidation.astro
     "Principe de validation": "Validation principle",
