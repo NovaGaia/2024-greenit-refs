@@ -154,6 +154,9 @@
   .btn {
     @apply cursor-pointer rounded-lg p-3 px-4 normal-case no-underline duration-100 hover:drop-shadow-lg;
   }
+  .btn-responsive {
+    @apply rounded-md p-1 px-2 hover:drop-shadow-md lg:rounded-lg lg:p-3 lg:px-4 hover:lg:drop-shadow-lg;
+  }
   .btn-bg {
     @apply bg-primary text-primary-content hover:bg-primary-focus;
   }

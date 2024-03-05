@@ -395,12 +395,17 @@ export const ui = {
     Fort: "Fort",
     Moyen: "Moyen",
     Faible: "Faible",
+    "Mise à jour le": "Mise à jour le",
 
     // src/components/fiches/FichesFilter.astro
     Afficher: "Afficher",
     Masquer: "Masquer",
     "les filtres": "les filtres",
     Catégories: "Catégories",
+
+    // src/components/fiches/FichePermaLink.astro
+    Permalien: "Permalien",
+    "Lien copié": "Lien copié",
 
     // src/components/fiches/FichesTableValidation.astro
     "Principe de validation": "Principe de validation",

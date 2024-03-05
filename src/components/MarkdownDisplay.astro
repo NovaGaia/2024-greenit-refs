@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import { formatDate } from "@js/utils";
 import type { CollectionEntry } from "astro:content";
 import Card from "./Card";
+import FichePermaLink from "./fiches/FichePermaLink.astro";
 import FicheVersionDisplay from "./fiches/FicheVersionDisplay.astro";
 import FichesMetasDisplay from "./fiches/FichesMetasDisplay.astro";
 import FichesTableValidation from "./fiches/FichesTableValidation.astro";
@@ -24,13 +25,14 @@ const t = useTranslations(lang);
   {
     type === Card.FICHES && (
       <>
-        <i>
-          Mise à jour le{" "}
+        <i class="flex items-center">
+          {t("Mise à jour le")}{" "}
           {formatDate(entry.data.updatedAt || entry.data.updatedAt)}
         </i>
         <span class="hidden" data-pagefind-filter="type">
           {t("Bonnes pratiques")}
         </span>
+        <FichePermaLink entry={entry} />
         <h1 class="flex flex-col items-start gap-2 lg:col-span-2 lg:flex-row lg:items-center lg:gap-0">
           <span class="badge mr-2 whitespace-nowrap border-primary bg-primary">
             {REF_NAME} {entry.data["refID"]}
@@ -85,6 +87,7 @@ const t = useTranslations(lang);
         <FicheVersionDisplay versions={entry.data["versions"]} />
       )
     }
+    {/* CONTENT */}
     <slot />
     {
       type === Card.FICHES && (
