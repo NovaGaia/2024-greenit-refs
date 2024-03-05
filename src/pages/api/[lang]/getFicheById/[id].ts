@@ -1,6 +1,40 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import type { EntryType } from "perf_hooks";
+import { marked } from "marked";
 import { getRefConfig } from "referentiel-config";
+
+const block = (text: string) => text + "\n\n";
+const escapeBlock = (text: string) => escape(text) + "\n\n";
+const line = (text: string) => text + "\n";
+const inline = (text: string) => text;
+const newline = () => "\n";
+const empty = () => "";
+
+const TxtRenderer = {
+  // Block elements
+  code: escapeBlock,
+  blockquote: block,
+  html: empty,
+  heading: block,
+  hr: newline,
+  list: (text) => block(text.trim()),
+  listitem: line,
+  checkbox: empty,
+  paragraph: block,
+  table: (header, body) => line(header + body),
+  tablerow: (text) => line(text.trim()),
+  tablecell: (text) => text + " ",
+  // Inline elements
+  strong: inline,
+  em: inline,
+  codespan: inline,
+  br: newline,
+  del: inline,
+  link: (_0, _1, text) => text,
+  image: (_0, _1, text) => text,
+  text: inline,
+  // etc.
+  options: {},
+};
 
 export async function GET({ params, request }) {
   const id = params.id;
@@ -15,6 +49,9 @@ export async function GET({ params, request }) {
   }
   const entry = filteredEntries[0];
   const [_lang, ...slug] = entry.slug.split("/");
+  const flatBody =
+    (await marked(entry.body, { renderer: TxtRenderer })).slice(0, 500) + "...";
+
   let o = {
     id: entry.data.refID,
     lang: lang,
@@ -25,6 +62,7 @@ export async function GET({ params, request }) {
   if (getRefConfig().featuresEnabled.scope) {
     o["scope"] = entry.data.scope;
   }
+  o["description"] = flatBody;
   return new Response(JSON.stringify(o), {
     status: 200,
     headers: {
