@@ -78,7 +78,7 @@ const getValue = (value) => {
               >
                 →
                 {getRefConfig().featuresEnabled.linkToPersonas === true ? (
-                  <a href={value.path} class="uppercase">
+                  <a href={`${value.path}.html`} class="uppercase">
                     {value.label}
                   </a>
                 ) : (
